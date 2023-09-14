@@ -15,4 +15,6 @@
 npm install retypeapp --global
 ````
 5. Run retype:
-`retype start`
+````
+retype start
+```

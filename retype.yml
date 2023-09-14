@@ -6,7 +6,7 @@ branding:
   label: Manual
 locale: pt-BR
 links:
-- text: Getting Started
-  link: https://retype.com/guides/getting-started/
+- text: z/VM Cheat Sheet
+  link: https://titosoft.github.io/z/vm/zvm-cheatsheet/
 footer:
   copyright: "Please share with the z community."

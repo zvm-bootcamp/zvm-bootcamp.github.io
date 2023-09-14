@@ -11,10 +11,10 @@
  2. Clone the repository using git
  3. Go to your clone repository in a terminal
  4. Install retype:
- ````
+ ```
 npm install retypeapp --global
-````
+```
 5. Run retype:
-````
+```
 retype start
 ```

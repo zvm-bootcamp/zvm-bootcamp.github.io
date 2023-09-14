@@ -1,0 +1,12 @@
+input: .
+output: .retype
+url: # Add your website address here
+branding:
+  title: z/VM Bootcamp
+  label: Manual
+locale: pt-BR
+links:
+- text: Getting Started
+  link: https://retype.com/guides/getting-started/
+footer:
+  copyright: "Please share with the z community."

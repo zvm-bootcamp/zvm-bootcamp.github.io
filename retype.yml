@@ -1,6 +1,6 @@
 input: .
 output: .retype
-url: # Add your website address here
+url: https://zvm-bootcamp.github.io
 branding:
   title: z/VM Bootcamp
   label: Manual

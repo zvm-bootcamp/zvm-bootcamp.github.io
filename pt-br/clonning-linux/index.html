@@ -9,32 +9,34 @@
     <meta name="generator" content="Retype 3.4.1">
 
     <!-- Primary Meta Tags -->
-    <title>Welcome</title>
-    <meta name="title" content="Welcome">
-    <meta name="description" content="Hi!">
+    <title>Clone Linux</title>
+    <meta name="title" content="Clone Linux">
+    <meta name="description" content="During this chapter we will create our second Linux (LINUX2) using LINUX1 (from the previus chapter) as our golden image.">
 
     <!-- Canonical -->
-    <link rel="canonical" href="https://zvm-bootcamp.github.io/">
+    <link rel="canonical" href="https://zvm-bootcamp.github.io/pt-br/clonning-linux/">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://zvm-bootcamp.github.io/">
-    <meta property="og:title" content="Welcome">
-    <meta property="og:description" content="Hi!">
+    <meta property="og:url" content="https://zvm-bootcamp.github.io/pt-br/clonning-linux/">
+    <meta property="og:title" content="Clone Linux">
+    <meta property="og:description" content="During this chapter we will create our second Linux (LINUX2) using LINUX1 (from the previus chapter) as our golden image.">
+    <meta property="og:image" content="https://zvm-bootcamp.github.io/imgs/yast-net1.png">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://zvm-bootcamp.github.io/">
-    <meta property="twitter:title" content="Welcome">
-    <meta property="twitter:description" content="Hi!">
+    <meta property="twitter:url" content="https://zvm-bootcamp.github.io/pt-br/clonning-linux/">
+    <meta property="twitter:title" content="Clone Linux">
+    <meta property="twitter:description" content="During this chapter we will create our second Linux (LINUX2) using LINUX1 (from the previus chapter) as our golden image.">
+    <meta property="twitter:image" content="https://zvm-bootcamp.github.io/imgs/yast-net1.png">
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="resources/css/retype.css?v=3.4.1.748114234369" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.4.1.748114234369" rel="stylesheet">
 
-    <script data-cfasync="false" src="resources/js/config.js?v=3.4.1.748114234369" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="resources/js/retype.js?v=3.4.1" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="resources/js/lunr.js?v=3.4.1.748114234369" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.4.1.748114234369" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/retype.js?v=3.4.1" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.4.1.748114234369" data-turbo-eval="false" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -49,10 +51,10 @@
                 <!-- Logo -->
                 <div class="flex items-center justify-between h-full py-2 md:w-75">
                     <div class="flex items-center px-2 md:px-6">
-                        <a id="docs-site-logo" href="" class="flex items-center leading-snug text-xl">
+                        <a id="docs-site-logo" href="../../" class="flex items-center leading-snug text-xl">
                             <span class="w-10 mr-2 grow-0 shrink-0 overflow-hidden">
-                                <img class="max-h-10 dark:hidden md:inline-block" src="static/vmbear.jpg">
-                                <img class="max-h-10 hidden dark:inline-block" src="static/vmbear.jpg">
+                                <img class="max-h-10 dark:hidden md:inline-block" src="../../static/vmbear.jpg">
+                                <img class="max-h-10 hidden dark:inline-block" src="../../static/vmbear.jpg">
                             </span>
                             <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">z/VM Bootcamp</span>
                         </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">Manual</span>
@@ -167,13 +169,192 @@
                                 <!-- Rendered if sidebar right is enabled -->
                                 <div id="docs-sidebar-right-toggle"></div>
                                 <!-- Page content  -->
-<doc-anchor-target id="welcome" class="break-words">
+<doc-anchor-target id="cap:clonelinux" class="break-words">
     <h1>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#welcome">#</doc-anchor-trigger>
-        <span>Welcome</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#cap:clonelinux">#</doc-anchor-trigger>
+        <span>Clone Linux</span>
     </h1>
 </doc-anchor-target>
-<p>Hi!</p>
+<p>During this chapter we will create our second Linux (LINUX2) using
+LINUX1 (from the previus chapter) as our golden image.</p>
+<doc-anchor-target id="before-you-begin">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#before-you-begin">#</doc-anchor-trigger>
+        <span>Before you begin</span>
+    </h2>
+</doc-anchor-target>
+<p>You need to:</p>
+<div class="easylist"><p>&amp; <strong>Be sure that LINUX1 is not running</strong> so the new clone can use
+LINUX1&#x27;s IP address. You will use LINUX1&#x27;s IP address temporarily for
+each Linux clone during the cloning process. Since no two Linux virtual
+servers can have the same IP address at the same time, you must clone
+Linux servers one at a time, then customize them. &amp; Have the new IP
+address for the cloned Linux virtual server. &amp; Log on as MAINT.</p>
+</div>
+<doc-anchor-target id="procedure">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#procedure">#</doc-anchor-trigger>
+        <span>Procedure</span>
+    </h2>
+</doc-anchor-target>
+<p>Assuming that LINUX2 is created in exercise
+<doc-anchor-trigger to="#sec:createlinux2" reference-type="ref" reference="sec:createlinux2">9.7.1</doc-anchor-trigger>, we will clone all the disks from LINUX1
+to LINUX2. We will use DIRMAINT for this activity.</p>
+<div class="easylist"><p>&amp; Unlock LINUX1&#x27;s directory entry. From the command line, type this
+command and press the Enter key:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">dirm for linux1 unlock
+DVHXMT1191I Your UNLOCK request has been sent for processing to DIRMAINT
+DVHXMT1191I at SSI1.
+Ready; T=0.12/0.14 16:22:44
+ DVHREQ2288I Your UNLOCK request for LINUX1 at * has been accepted.
+ DVHLOC3601E Directory entry LINUX1 is already unlocked.
+ DVHREQ2289E Your UNLOCK request for LINUX1 at * has failed; with RC =
+ DVHREQ2289E 3601.</code></pre>
+</doc-codeblock></div>
+<p>&amp; If you received the error above, it is ok. We just need to ensure that
+the directory is unlocked.</p>
+<p>&amp; Clone the disks from LINUX1 to the clone LINUX02. From the command
+line, type these DirMaint commands and press the Enter key after each
+one:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; dirm for linux2 clonedisk 100 linux1 100
+===&gt; dirm for linux2 clonedisk 101 linux1 101
+===&gt; dirm for linux2 clonedisk 102 linux1 102
+===&gt; dirm for linux2 clonedisk 103 linux1 103
+===&gt; dirm for linux2 clonedisk 104 linux1 104</code></pre>
+</doc-codeblock></div>
+<div class="bclogo"><p>Hints Notice that the target is &quot;linux2&quot; and it is defined before
+&quot;linux1&quot; in the command above.</p>
+<p>Example:</p>
+<p><em>dirm for linux2 clonedisk 100 linux1 100</em></p>
+<p style="color: blue">The command above means: &quot;For [linux2], in my mdisk
+[100] clone [linux1] mdisk
+[100]&quot;</p>
+</div>
+</div>
+<p>&amp; You will receive a response like this one for each command:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">dirm for linux2 clonedisk 100 linux1 100
+DVHXMT1191I Your CLONEDISK request has been sent for processing to
+DVHXMT1191I DIRMAINT at SSI1.
+Ready; T=0.15/0.17 10:44:43
+ DVHREQ2288I Your CLONEDISK request for LINUX2 at * has been accepted.
+ DVHSCU3541I Work unit 30104444 has been built and queued for processing.
+ DVHSHN3541I Processing work unit 30104444 as MAINT from SSI1,
+ DVHSHN3541I notifying MAINT at SSI1, request 565 for LINUX2 sysaffin
+ DVHSHN3541I *; to: CLONEDISK 0100 LINUX1 0100
+ DVHBIU3450I The source for directory entry DATAMOVE has been updated.
+ DVHBIU3424I The next ONLINE will take place immediately.
+ DVHDRC3451I The next ONLINE will take place via delta object directory.
+ DVHBIU3428I Changes made to directory entry DATAMOVE have been placed
+ DVHBIU3428I online.
+ DVHBIU3450I The source for directory entry DATAMOVE has been updated.
+ DVHBIU3424I The next ONLINE will take place immediately.
+ DVHDRC3451I The next ONLINE will take place via delta object directory.
+ DVHBIU3428I Changes made to directory entry DATAMOVE have been placed
+ DVHBIU3428I online.
+ DVHBIU3450I The source for directory entry DATAMOVE has been updated.
+ DVHBIU3424I The next ONLINE will take place immediately.
+ DVHDRC3451I The next ONLINE will take place via delta object directory.
+ DVHBIU3428I Changes made to directory entry DATAMOVE have been placed
+ DVHBIU3428I online.
+ DVHBIU3450I The source for directory entry LINUX2 has been updated.
+ DVHBIU3424I The next ONLINE will take place immediately.
+ DVHDRC3451I The next ONLINE will take place via delta object directory.
+ DVHBIU3428I Changes made to directory entry LINUX2 have been placed
+ DVHBIU3428I online.
+ DVHBIU3450I The source for directory entry DATAMOVE has been updated.
+ DVHBIU3424I The next ONLINE will take place immediately.
+ DVHDRC3451I The next ONLINE will take place via delta object directory.
+ DVHBIU3428I Changes made to directory entry DATAMOVE have been placed
+ DVHBIU3428I online.
+ DVHRLA3891I Your DMVCTL request has been relayed for processing.
+ DVHREQ2289I Your CLONEDISK request for LINUX2 at * has completed; with
+ DVHREQ2289I RC = 0.</code></pre>
+</doc-codeblock></div>
+<p>&amp; Cloning might take time. You are ready to move to the next step after
+your work units have completed successfully. To determine the status of
+your work units, type this command and press the Enter key:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; dirm query datamove *</code></pre>
+</doc-codeblock></div>
+<p>&amp; If something is running you may see a workunit:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">dirm query datamove *
+DVHXMT1191I Your QUERY request has been sent for processing to
+DVHXMT1191I DIRMAINT at SSI1.
+Ready; T=0.12/0.13 10:56:46
+ DVHREQ2288I Your QUERY request for MAINT at * has been accepted.
+ DVHQRY3389I DATAMOVE DATAMOVE at SSI1 Status: ACTIVE WUCF:30105634
+ DVHQRY3389I Pending: 1 Autologs: 0
+ DVHREQ2289I Your QUERY request for MAINT at * has completed; with RC =
+ DVHREQ2289I 0.</code></pre>
+</doc-codeblock></div>
+<p>&amp; Otherwise the DATAMOVE queue should be empty:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">dirm query datamove *
+DVHXMT1191I Your QUERY request has been sent for processing to
+DVHXMT1191I DIRMAINT at SSI1.
+Ready; T=0.11/0.13 11:12:31
+ DVHREQ2288I Your QUERY request for MAINT at * has been accepted.
+ DVHQRY3389I DATAMOVE DATAMOVE at SSI1 Status: INACTIVE WUCF:NONE
+ DVHQRY3389I Pending: 0 Autologs: 0
+ DVHREQ2289I Your QUERY request for MAINT at * has completed; with RC =
+ DVHREQ2289I 0.</code></pre>
+</doc-codeblock></div>
+<p>&amp; As soon as your clone is complete, log onto LINUX02. The Linux
+operating system loads.</p>
+<p>&amp; SSH to the new Linux virtual server and update the network
+configuration files to make permanent the network changes. You might
+need to modify the IP address and host name through a tool like yast2.</p>
+<p>&amp; From the command line execute:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none"># yast </code></pre>
+</doc-codeblock></div>
+<p>&amp; Select Network Devices and Enter on Network Settings</p>
+<p><figure class="content-center">
+    <img src="../../imgs/yast-net1.png" alt="Select Network Devices and Enter on Network
+Settings" id="fig:yast-net1">
+    <figcaption class="caption">Select Network Devices and Enter on Network
+Settings</figcaption>
+</figure>
+</p>
+<p>&amp; Press <strong>alt+s</strong> to go to &quot;Hostname/DNS&quot; tab, update the hostname of
+the new server and press <strong>alt+v</strong> to go back to &quot;Overview&quot; tab.</p>
+<p><figure class="content-center">
+    <img src="../../imgs/yast-net4.png" alt="Change your hostname" id="fig:yast-net4">
+    <figcaption class="caption">Change your hostname</figcaption>
+</figure>
+</p>
+<p>&amp; Back to &quot;Overview&quot; tab, select the network card using &quot;TAB&quot; key and
+press Alt+i to edit it.</p>
+<p><figure class="content-center">
+    <img src="../../imgs/yast-net2.png" alt="Select the network card" id="fig:yast-net2">
+    <figcaption class="caption">Select the network card</figcaption>
+</figure>
+</p>
+<p>&amp; Go to IP Address Field and update it using the new IP</p>
+<p><figure class="content-center">
+    <img src="../../imgs/yast-net3.png" alt="Update the IP Address" id="fig:yast-net3">
+    <figcaption class="caption">Update the IP Address</figcaption>
+</figure>
+</p>
+<p>&amp; As soon as you change the IP address you will lose your SSH
+connection. Reconnect using your new IP or reboot the server from 3270
+console.</p>
+<p>&amp; Check that the Linux operating system reboots properly and that the
+network connections are correct.</p>
+<p>&amp; Try pinging this Linux server or try to access a remote site from this
+Linux server.</p>
+<p>&amp; Congratulations, your clone is complete!</p>
+<div><p>This is our actual environment after the changes:</p>
+<p><figure class="content-center">
+    <img src="../../imgs/workshop-linux.png" alt="Complete Environment" id="fig:completeenv">
+    <figcaption class="caption">Complete Environment</figcaption>
+</figure>
+</p>
+</div>
 
                                 
                                 <!-- Required only on API pages -->
@@ -183,13 +364,20 @@
                             
                                 <nav class="flex mt-14">
                                     <div class="w-1/2">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../pt-br/installing-linux/">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                            <span>
+                                                <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Anterior</span>
+                                                <span class="block mt-1">Installing Linux</span>
+                                            </span>
+                                        </a>
                                     </div>
                             
                                     <div class="w-1/2">
-                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l rounded-r-lg transition-colors duration-150 relative hover:z-5" href="en/">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../pt-br/basic-automation/">
                                             <span>
                                                 <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Próximo</span>
-                                                <span class="block mt-1">English version</span>
+                                                <span class="block mt-1">Basic system automation</span>
                                             </span>
                                             <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                                         </a>
@@ -233,6 +421,6 @@
 
     <div id="docs-overlay-target"></div>
 
-    <script data-cfasync="false">window.__DOCS__ = { "title": "Welcome", isRoot: true, level: 0, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+    <script data-cfasync="false">window.__DOCS__ = { "title": "Clone Linux", level: 2, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
 </body>
 </html>

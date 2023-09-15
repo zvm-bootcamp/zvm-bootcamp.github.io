@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.4.1.748114234369">
+
+    <!-- See retype.com -->
+    <meta name="generator" content="Retype 3.4.1">
+
+    <!-- Primary Meta Tags -->
+    <title>Installing Linux</title>
+    <meta name="title" content="Installing Linux">
+    <meta name="description" content="& Logon on VMTOOLS">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://zvm-bootcamp.github.io/pt-br/installing-linux/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://zvm-bootcamp.github.io/pt-br/installing-linux/">
+    <meta property="og:title" content="Installing Linux">
+    <meta property="og:description" content="& Logon on VMTOOLS">
+    <meta property="og:image" content="https://zvm-bootcamp.github.io/imgs/linux1.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://zvm-bootcamp.github.io/pt-br/installing-linux/">
+    <meta property="twitter:title" content="Installing Linux">
+    <meta property="twitter:description" content="& Logon on VMTOOLS">
+    <meta property="twitter:image" content="https://zvm-bootcamp.github.io/imgs/linux1.png">
+
+    <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
+
+    <link href="../../resources/css/retype.css?v=3.4.1.748114234369" rel="stylesheet">
+
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.4.1.748114234369" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/retype.js?v=3.4.1" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.4.1.748114234369" data-turbo-eval="false" defer></script>
+</head>
+<body>
+    <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
+        <div class="absolute bottom-0 left-0 bg-gray-100 dark:bg-dark-800" style="top: 5rem; right: 50%"></div>
+    
+        <header id="docs-site-header" class="sticky top-0 z-30 flex w-full h-16 bg-white border-b border-gray-200 md:h-20 dark:bg-dark-850 dark:border-dark-650">
+            <div class="container relative flex items-center justify-between pr-6 grow md:justify-start">
+                <!-- Mobile menu button skeleton -->
+                <button v-cloak class="skeleton docs-mobile-menu-button flex items-center justify-center shrink-0 overflow-hidden dark:text-white focus:outline-none rounded-full w-10 h-10 ml-3.5 md:hidden"><svg xmlns="http://www.w3.org/2000/svg" class="mb-px shrink-0" width="24" height="24" viewBox="0 0 24 24" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor"><path d="M2 4h20v2H2zM2 11h20v2H2zM2 18h20v2H2z"></path></g></svg></button>
+                <div v-cloak id="docs-sidebar-toggle"></div>
+        
+                <!-- Logo -->
+                <div class="flex items-center justify-between h-full py-2 md:w-75">
+                    <div class="flex items-center px-2 md:px-6">
+                        <a id="docs-site-logo" href="../../" class="flex items-center leading-snug text-xl">
+                            <span class="w-10 mr-2 grow-0 shrink-0 overflow-hidden">
+                                <img class="max-h-10 dark:hidden md:inline-block" src="../../static/vmbear.jpg">
+                                <img class="max-h-10 hidden dark:inline-block" src="../../static/vmbear.jpg">
+                            </span>
+                            <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">z/VM Bootcamp</span>
+                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">Manual</span>
+                    </div>
+        
+                    <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
+                </div>
+        
+                <div class="flex justify-between md:grow">
+                    <!-- Top Nav -->
+                    <nav class="hidden md:flex">
+                        <ul class="flex flex-col mb-4 md:pl-16 md:mb-0 md:flex-row md:items-center">
+                            <li class="mr-6">
+                                <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://titosoft.github.io/z/vm/zvm-cheatsheet/" target="_blank">z/VM Cheat Sheet</a>
+                            </li>
+        
+                        </ul>
+                    </nav>
+        
+                    <!-- Header Right Skeleton -->
+                    <div v-cloak class="flex justify-end grow skeleton">
+        
+                        <!-- Search input mock -->
+                        <div class="relative hidden w-40 lg:block lg:max-w-sm lg:ml-auto">
+                            <div class="absolute flex items-center justify-center h-full pl-3 dark:text-dark-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon-base" width="16" height="16" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 1px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                            </div>
+                            <input class="w-full h-10 placeholder-gray-400 transition-colors duration-200 ease-in bg-gray-200 border border-transparent rounded md:text-sm hover:bg-white hover:border-gray-300 focus:outline-none focus:bg-white focus:border-gray-500 dark:bg-dark-600 dark:border-dark-600 dark:placeholder-dark-400" style="padding: 0.625rem 0.75rem 0.625rem 2rem" type="text" placeholder="Pesquisar">
+                        </div>
+        
+                        <!-- Mobile search button -->
+                        <div class="flex items-center justify-center w-10 h-10 lg:hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="20" height="20" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                        </div>
+        
+                        <!-- Dark mode switch placeholder -->
+                        <div class="w-10 h-10 lg:ml-2"></div>
+        
+                        <!-- History button -->
+                        <div class="flex items-center justify-center w-10 h-10" style="margin-right: -0.625rem;">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="22" height="22" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor" ><g ><path d="M12.01 6.01c-.55 0-1 .45-1 1V12a1 1 0 00.4.8l3 2.22a.985.985 0 001.39-.2.996.996 0 00-.21-1.4l-2.6-1.92V7.01c.02-.55-.43-1-.98-1z"></path><path d="M12.01 1.91c-5.33 0-9.69 4.16-10.05 9.4l-.29-.26a.997.997 0 10-1.34 1.48l1.97 1.79c.19.17.43.26.67.26s.48-.09.67-.26l1.97-1.79a.997.997 0 10-1.34-1.48l-.31.28c.34-4.14 3.82-7.41 8.05-7.41 4.46 0 8.08 3.63 8.08 8.09s-3.63 8.08-8.08 8.08c-2.18 0-4.22-.85-5.75-2.4a.996.996 0 10-1.42 1.4 10.02 10.02 0 007.17 2.99c5.56 0 10.08-4.52 10.08-10.08.01-5.56-4.52-10.09-10.08-10.09z"></path></g></g></svg>
+                        </div>
+                    </div>
+        
+                    <div v-cloak class="flex justify-end grow">
+                        <div id="docs-mobile-search-button"></div>
+                        <doc-search-desktop></doc-search-desktop>
+        
+                        <doc-theme-switch class="lg:ml-2"></doc-theme-switch>
+                        <doc-history></doc-history>
+                    </div>
+                </div>
+            </div>
+        </header>
+    
+        <div class="container relative flex bg-white">
+            <!-- Sidebar Skeleton -->
+            <div v-cloak class="fixed flex flex-col shrink-0 duration-300 ease-in-out bg-gray-100 border-gray-200 sidebar top-20 w-75 border-r h-screen md:sticky transition-transform skeleton dark:bg-dark-800 dark:border-dark-650">
+            
+                <!-- Render this div, if config.showSidebarFilter is `true` -->
+                <div class="flex items-center h-16 px-6">
+                    <input class="w-full h-8 px-3 py-2 transition-colors duration-200 ease-linear bg-white border border-gray-200 rounded shadow-none text-sm focus:outline-none focus:border-gray-600 dark:bg-dark-600 dark:border-dark-600" type="text" placeholder="Filtrar">
+                </div>
+            
+                <div class="pl-6 mt-1 mb-4">
+                    <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                </div>
+            
+                <div class="shrink-0 mt-auto bg-transparent dark:border-dark-650">
+                    <a class="flex items-center justify-center flex-nowrap h-16 text-gray-400 dark:text-dark-400 hover:text-gray-700 dark:hover:text-dark-300 transition-colors duration-150 ease-in docs-powered-by" target="_blank" href="https://retype.com/" rel="noopener">
+                        <span class="text-xs whitespace-nowrap">Powered by</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="ml-2" fill="currentColor" width="96" height="20" overflow="visible"><path d="M0 0v20h13.59V0H0zm11.15 17.54H2.44V2.46h8.71v15.08zM15.8 20h2.44V4.67L15.8 2.22zM20.45 6.89V20h2.44V9.34z"/><g><path d="M40.16 8.44c0 1.49-.59 2.45-1.75 2.88l2.34 3.32h-2.53l-2.04-2.96h-1.43v2.96h-2.06V5.36h3.5c1.43 0 2.46.24 3.07.73s.9 1.27.9 2.35zm-2.48 1.1c.26-.23.38-.59.38-1.09 0-.5-.13-.84-.4-1.03s-.73-.28-1.39-.28h-1.54v2.75h1.5c.72 0 1.2-.12 1.45-.35zM51.56 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92h4.74v1.83h-6.79V5.36h6.64zM60.09 7.15v7.48h-2.06V7.15h-2.61V5.36h7.28v1.79h-2.61zM70.81 14.64h-2.06v-3.66l-3.19-5.61h2.23l1.99 3.45 1.99-3.45H74l-3.19 5.61v3.66zM83.99 6.19c.65.55.97 1.4.97 2.55s-.33 1.98-1 2.51-1.68.8-3.04.8h-1.23v2.59h-2.06V5.36h3.26c1.42 0 2.45.28 3.1.83zm-1.51 3.65c.25-.28.37-.69.37-1.22s-.16-.92-.48-1.14c-.32-.23-.82-.34-1.5-.34H79.7v3.12h1.38c.68 0 1.15-.14 1.4-.42zM95.85 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92H96v1.83h-6.79V5.36h6.64z"/></g></svg>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Sidebar component -->
+            <doc-sidebar v-cloak>
+                <template #sidebar-footer>
+                    <div class="shrink-0 mt-auto border-t md:bg-transparent md:border-none dark:border-dark-650">
+            
+                        <div class="py-3 px-6 md:hidden border-b dark:border-dark-650">
+                            <nav>
+                                <ul class="flex flex-wrap justify-center items-center">
+                                    <li class="mr-6">
+                                        <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://titosoft.github.io/z/vm/zvm-cheatsheet/" target="_blank">z/VM Cheat Sheet</a>
+                                    </li>
+            
+                                </ul>
+                            </nav>
+                        </div>
+            
+                        <a class="flex items-center justify-center flex-nowrap h-16 text-gray-400 dark:text-dark-400 hover:text-gray-700 dark:hover:text-dark-300 transition-colors duration-150 ease-in docs-powered-by" target="_blank" href="https://retype.com/" rel="noopener">
+                            <span class="text-xs whitespace-nowrap">Powered by</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-2" fill="currentColor" width="96" height="20" overflow="visible"><path d="M0 0v20h13.59V0H0zm11.15 17.54H2.44V2.46h8.71v15.08zM15.8 20h2.44V4.67L15.8 2.22zM20.45 6.89V20h2.44V9.34z"/><g><path d="M40.16 8.44c0 1.49-.59 2.45-1.75 2.88l2.34 3.32h-2.53l-2.04-2.96h-1.43v2.96h-2.06V5.36h3.5c1.43 0 2.46.24 3.07.73s.9 1.27.9 2.35zm-2.48 1.1c.26-.23.38-.59.38-1.09 0-.5-.13-.84-.4-1.03s-.73-.28-1.39-.28h-1.54v2.75h1.5c.72 0 1.2-.12 1.45-.35zM51.56 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92h4.74v1.83h-6.79V5.36h6.64zM60.09 7.15v7.48h-2.06V7.15h-2.61V5.36h7.28v1.79h-2.61zM70.81 14.64h-2.06v-3.66l-3.19-5.61h2.23l1.99 3.45 1.99-3.45H74l-3.19 5.61v3.66zM83.99 6.19c.65.55.97 1.4.97 2.55s-.33 1.98-1 2.51-1.68.8-3.04.8h-1.23v2.59h-2.06V5.36h3.26c1.42 0 2.45.28 3.1.83zm-1.51 3.65c.25-.28.37-.69.37-1.22s-.16-.92-.48-1.14c-.32-.23-.82-.34-1.5-.34H79.7v3.12h1.38c.68 0 1.15-.14 1.4-.42zM95.85 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92H96v1.83h-6.79V5.36h6.64z"/></g></svg>
+                        </a>
+                    </div>
+                </template>
+            </doc-sidebar>
+    
+            <div class="grow min-w-0 dark:bg-dark-850">
+                <!-- Render "toolbar" template here on api pages --><!-- Render page content -->
+                <div class="flex">
+                    <div class="min-w-0 p-4 grow md:px-16">
+                        <main class="relative pb-12 lg:pt-2">
+                            <div class="docs-markdown" id="docs-content">
+                                <!-- Rendered if sidebar right is enabled -->
+                                <div id="docs-sidebar-right-toggle"></div>
+                                <!-- Page content  -->
+<doc-anchor-target id="chap:installinglinux" class="break-words">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#chap:installinglinux">#</doc-anchor-trigger>
+        <span>Installing Linux</span>
+    </h1>
+</doc-anchor-target>
+<doc-anchor-target id="linux-profile-exec">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#linux-profile-exec">#</doc-anchor-trigger>
+        <span>Linux PROFILE EXEC</span>
+    </h2>
+</doc-anchor-target>
+<div class="easylist"><p>&amp; Logon on VMTOOLS</p>
+<p>&amp; Inside VMTOOLS 192 disk make sure that there is a file called PROFILE
+EXEC.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">X PROFILE EXEC D</code></pre>
+</doc-codeblock></div>
+<p>&amp; If it is empty, use input mode and paste the following content:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">/* PROFILE EXEC for Linux virtual servers */
+'CP SET RUN ON'
+'CP SET PF11 RETRIEVE FORWARD'
+'CP SET PF12 RETRIEVE'
+'ACC 592 C'
+'PIPE CP QUERY' userid() '| var user'
+parse value user with id . dsc .
+if (dsc = 'DSC') then /* user is disconnected */
+'CP IPL 100'
+else /* user is interactive -&gt; prompt */
+do
+say 'Do you want to IPL Linux from minidisk 100? y/n'
+parse upper pull answer .
+if (answer = 'Y') then 'CP IPL 100'
+end</code></pre>
+</doc-codeblock></div>
+<p>The PROFILE EXEC that you just copied is a REXX EXEC that is analogous
+to a .bash_profile startup script. If the user ID is logged on in a
+disconnected mode (usually via XAUTOLOG), Linux will be IPLed from
+minidisk 100. Otherwise, the user is prompted.</p>
+</div>
+<doc-anchor-target id="running-the-installation">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#running-the-installation">#</doc-anchor-trigger>
+        <span>Running The Installation</span>
+    </h2>
+</doc-anchor-target>
+<div class="easylist"><p>&amp; Logon on LINUX1, answer &quot;no&quot; when asked to IPL 100.</p>
+<p>&amp; Run the setup REXX (The name of the file may differ depending on the
+distruibution, ask your instructor).</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">LINUX</code></pre>
+</doc-codeblock></div>
+<p>&amp; The Linux boot output will show up and at the end you may see:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">...
+Linux version 3.0.76-0.9-default (geeko@buildhost) (gcc version 4.3.4 [gcc-4_3-b
+ranch revision 152973] (SUSE Linux) ) #1 SMP Fri May 31 09:17:47 UTC 2013 (82ad5
+ef)
+setup.1a06a7: Linux is running as a z/VM guest operating system in 64-bit mode
+Zone PFN ranges:
+  DMA 0x00000000 -&gt; 0x00080000
+  Normal empty
+Movable zone start PFN for each node
+early_node_map[1] active PFN ranges
+   0: 0x00000000 -&gt; 0x00040000
+PERCPU: Embedded 10 pages/cpu @0000000002a4d000 s11776 r8192 d20992 u40960
+Built 1 zonelists in Zone order, mobility grouping on. Total pages: 258560
+Kernel command line: ramdisk_size=65536 root=/dev/ram1 ro init=/linuxrc TERM=dum
+b        HostIP=9.12.7.8
+         Hostname=virtcook8.itso.ibm.com
+         Gateway=9.12.4.1
+         Netmask=255.255.240.0 Layer2=1
+         ReadChannel=0.0.0600 WriteChannel=0.0.0601 DataChannel=0.
+0.0602   Nameserver=9.12.6.7
+         portname=whatever portno=0
+         Install=nfs://9.12.5.251/srv/nfs/s11s3
+         UseSSH=1 SSHPassword=12345678
+         UseVNC=1 VNCPassword=12345678
+         InstNetDev=osa OsaInterface=qdio OsaMedium=eth Manual=0
+...</code></pre>
+</doc-codeblock></div>
+<p>&amp; You should be prompted for Installation Instructions, these steps are
+covered in class with your instructor.</p>
+<p>&amp; After all steps, you should see messages showing the installation
+system being loaded. For example:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">...
+Loading Installation System (1/6) (24640 kB) - 3%  4%  5%  6%  7%  8%
+...</code></pre>
+</doc-codeblock></div>
+<p>&amp; A VNC server process will be started. You should see the following
+messages:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">starting VNC server...
+A log file will be written to: /var/log/YaST2/vncserver.log ...
+***
+***
+You can connect to &lt;host&gt;, display :1 now with vncviewer
+***
+Or use a Java capable browser on http://&lt;host&gt;:5801/
+***
+*** Starting YaST2 ***</code></pre>
+</doc-codeblock></div>
+<p>&amp; Start a VNC viewer session to the installation process.</p>
+<p>&amp; You should see a window entitled Welcome. Select your Language and
+Keyboard. After reading the License Agreement, click the check-box <strong>I
+Agree to the License Terms</strong>, then click <strong>Next</strong>.</p>
+<p>&amp; At the Disk Activation window, click <strong>Configure DASD Disks</strong>.</p>
+<p>&amp; At the DASD Disk Management window:</p>
+<p>&amp;&amp; Click Select or Deselect for the two read/write disks (100, 101, 102,
+103 and 104).</p>
+<p><figure class="content-center">
+    <img src="../../imgs/linux1.png" alt="Select disks to be used during the
+installation" id="fig:linux1">
+    <figcaption class="caption">Select disks to be used during the
+installation</figcaption>
+</figure>
+</p>
+<p>&amp;&amp; Click <strong>Activate</strong> on the <strong>Perform Action</strong> pop-up menu. If the
+DASDs have not been formatted previously, you will be asked if you want
+to format them now. Format the DASDs now. This will take a few minutes.</p>
+<p><figure class="content-center">
+    <img src="../../imgs/linux2.png" alt="Activate DASDs" id="fig:linux2">
+    <figcaption class="caption">Activate DASDs</figcaption>
+</figure>
+</p>
+<p>&amp;&amp; If you want to make sure to get the disks in a certain device order,
+activate them one by one. The first disk will be /dev/dasda, the second
+disk will be /dev/dasdb, and so on.</p>
+<p>&amp;&amp; The DASDs will be activated quickly.</p>
+<p>&amp;&amp; Click Next when the formatting is complete.</p>
+<p>&amp;&amp; In the Disk Activation window, click <strong>Next</strong>.</p>
+<p>&amp; If you see a pop-up window stating &quot;The partitioning on disk X is not
+readable by the partitioning tool parted...&quot;, click OK</p>
+<p>&amp; From this point, the installation process behaves identically to any
+other architecture.</p>
+<p>&amp; In the <em>Installation Mode</em> window, accept the default of <strong>New
+installation</strong> and click Next. &amp; In the <em>Clock and Time Zone</em> window,
+select your time settings and click Next. &amp; In the Installation Settings
+window, click the tab <strong>Expert</strong>. &amp; In the Installation Settings window,
+click <strong>Partitioning</strong>. &amp; In the Preparing Hard Disk window, accept the
+default of <strong>Customer Partitioning (for experts)</strong> and click Next. &amp; In
+the <em>Expert Partitioner</em> window and the <em>System View</em> column on the
+left, click a plus sign next to <strong>Hard Disks</strong> to expand a list of all
+available disks, check figure <doc-anchor-trigger to="#fig:linux3" reference-type="ref" reference="fig:linux3">10.3</doc-anchor-trigger> below.</p>
+<p><figure class="content-center">
+    <img src="../../imgs/linux3.png" alt="Hard Disks" id="fig:linux3">
+    <figcaption class="caption">Hard Disks</figcaption>
+</figure>
+</p>
+<p>&amp; Double-click the IBM-DASD that corresponds to the 100 minidisk in the
+Available Storage section. In this example, it is /dev/dasda (about 1GB)
+&amp; In the Hard Disk: /dev/dasda section, click the Add button to add a
+partition. &amp; In the Add Partition window on /dev/dasda, set partition
+size to <strong>Maximum Size (1.10GB)</strong> and click Next. &amp; On the next screen,
+accept the defaults (Format partition, Ext3 file system, Mount
+partition, and a Mount Point of /), as shown in Figure
+<doc-anchor-trigger to="#fig:linux4" reference-type="ref" reference="fig:linux4">10.4</doc-anchor-trigger>. Click
+Finish.</p>
+<p><figure class="content-center">
+    <img src="../../imgs/linux4.png" alt="Add Partition on /dev/dasda" id="fig:linux4">
+    <figcaption class="caption">Add Partition on /dev/dasda</figcaption>
+</figure>
+</p>
+<p>&amp; Create an empty partition /dev/dasdb, /dev/dasdc, /dev/dasdd in the
+same fashion as you did to create /dev/dasda but <strong>(Select /dev/dasdb
+=&gt; Add =&gt; Maximum Size =&gt; Do not format/Do not mount partition).
+Accept the default size of all the space.</strong> Check figure
+<doc-anchor-trigger to="#fig:linux5" reference-type="ref" reference="fig:linux5">10.5</doc-anchor-trigger></p>
+<p><figure class="content-center">
+    <img src="../../imgs/linux5.png" alt="Add Partition on /dev/dasdb,c,d" id="fig:linux5">
+    <figcaption class="caption">Add Partition on /dev/dasdb,c,d</figcaption>
+</figure>
+</p>
+<p>&amp; For /dev/dasde format the partition as <strong>Swap</strong>. Check figure
+<doc-anchor-trigger to="#fig:linux6" reference-type="ref" reference="fig:linux6">10.6</doc-anchor-trigger></p>
+<p><figure class="content-center">
+    <img src="../../imgs/linux6.png" alt="/dev/dasde as swap" id="fig:linux6">
+    <figcaption class="caption">/dev/dasde as swap</figcaption>
+</figure>
+</p>
+<p>&amp; Now /dev/dasdb,c,d can be used to create a volume group. Click Volume
+Management as shown on Figure <doc-anchor-trigger to="#fig:linux7" reference-type="ref" reference="fig:linux7">10.7</doc-anchor-trigger>.</p>
+<p><figure class="content-center">
+    <img src="../../imgs/linux7.png" alt="Add Volume Group" id="fig:linux7">
+    <figcaption class="caption">Add Volume Group</figcaption>
+</figure>
+</p>
+<p>&amp; Click Add =&gt; Volume Group. &amp; At the Add Volume Group window, set the
+volume group name to <strong>optvg</strong>. &amp; Click Add after selecting /dev/dasdb1
+to the Selected Physical Volumes. Click Finish.</p>
+<p>&amp; Click Add =&gt; Volume Group again. &amp; At the Add Volume Group window,
+set the volume group name to <strong>system</strong>. &amp; Click Add after selecting
+/dev/dasdc1 to the Selected Physical Volumes. Click Finish.</p>
+<p>&amp; Click Add =&gt; Volume Group again. &amp; At the Add Volume Group window,
+set the volume group name to <strong>home</strong>. &amp; Click Add after selecting
+/dev/dasdd1 to the Selected Physical Volumes. Click Finish.</p>
+<p>&amp; Your Volume Management screen should be like this:</p>
+<p><figure class="content-center">
+    <img src="../../imgs/linux8.png" alt="Volume Groups" id="fig:linux8">
+    <figcaption class="caption">Volume Groups</figcaption>
+</figure>
+</p>
+<p>&amp; Back in <em>Expert Partitioner</em>, click the plus sign to the left of
+<em>Volume Management</em>. You should see the new home, system and optvg
+volume group. &amp; Click on each and the Volume Group window will be
+displayed, as shown on Figure <doc-anchor-trigger to="#fig:linux9" reference-type="ref" reference="fig:linux9">10.9</doc-anchor-trigger>. It shows there are no logical volumes defined.
+Start with <em>home</em> VG and Click Add.</p>
+<p><figure class="content-center">
+    <img src="../../imgs/linux9.png" alt="Logical Volume" id="fig:linux9">
+    <figcaption class="caption">Logical Volume</figcaption>
+</figure>
+</p>
+<p>&amp; Enter home as the name for new logical volume and click Next. &amp; On the
+Add Logical Volume window, click the Maximum Size radio button (452Mb)
+Click Next. &amp; Accept ext3 as the File System type and the Mount point of
+<strong>/home</strong>. Click Finish. &amp; Now click on <em>optvg</em> mount point and create a
+<em>opt</em> using the Maximum Size of optvg, File System type <em>ext3</em> and Mount
+point of /opt. &amp; For system vg you will create 3 Logical Volumes: &amp;&amp;
+tmp - /tmp - 500MB ext3 &amp;&amp; usr - /usr - 2GB ext3 &amp;&amp; var - /var - the
+rest (about 1.64GB) ext3</p>
+<p>Check figure <doc-anchor-trigger to="#fig:linux10" reference-type="ref" reference="fig:linux10">10.10</doc-anchor-trigger> to see the result:</p>
+<p><figure class="content-center">
+    <img src="../../imgs/linux10.png" alt="Logical Volumes configured" id="fig:linux10">
+    <figcaption class="caption">Logical Volumes configured</figcaption>
+</figure>
+</p>
+<p>&amp; Click Accept.</p>
+<p>&amp; The Figure <doc-anchor-trigger to="#fig:dasddiagram" reference-type="ref" reference="fig:dasddiagram">10.11</doc-anchor-trigger> shows the dasd configuration for our Linux.</p>
+<p><figure class="content-center">
+    <img src="../../imgs/dasddiagram.png" alt="DASD distribution" id="fig:dasddiagram">
+    <figcaption class="caption">DASD distribution</figcaption>
+</figure>
+</p>
+<p>&amp; In the Installation Settings window, select Software. You might see a
+Disk Space Warning window. If so, click OK. &amp; The Software Selection
+window opens. Leave <strong>Base System, 32-Bit Runtime Environment, Help and
+Support Documentation, and Minimal System selected</strong>. Clear all other
+setting as shown in Figure <doc-anchor-trigger to="#fig:linux11" reference-type="ref" reference="fig:linux11">10.12</doc-anchor-trigger>, click OK. Click the disk usage window to
+update the graphs.</p>
+<p><figure class="content-center">
+    <img src="../../imgs/linux11.png" alt="Softwares to be installed" id="fig:linux11">
+    <figcaption class="caption">Softwares to be installed</figcaption>
+</figure>
+</p>
+<p>&amp; In the Expert tab, move down to Default Runlevel and choose 3: Full
+multiuser with network. Click OK. You will receive a VNC warning. Click
+Yes.</p>
+<p>&amp; You are ready to begin the installation. Click <strong>Install</strong>.</p>
+<p>&amp; The window Finishing Basic Installation will appear, then the VNC
+client will end and the system will reboot. Go back to the 3270 console
+and clear the screen a number of times. &amp; Restart or go back to the same
+VNC client used for the first part of installation. From a browser
+either click Login Again or click the browser&#x27;s refresh button until
+another VNC login window appears. If you are using a VNC client, open
+that application again. &amp; Log in using the same VNC password (12345678
+in this example). &amp; In the Password for root user window, type the root
+password twice and click Next. Do not forget this password. &amp; In the
+Hostname and Domain Name window, both Hostname and Domain Name are
+entered by the installer as they are specified in LINUX PARM file. In
+this example, <strong>linux1-titog</strong> is the host name and <strong>workshop.ibm.com</strong>
+is the domain name. Clear the Change Hostname via DHCP check-box. Click
+Next. &amp; In the Network Configuration window you will see Firewall is
+enabled, click the word <strong>disable</strong> to disable it. All other values
+should be correct; therefore, just click <strong>Next</strong>. &amp; In the Test
+Internet Connection window, if you do not have Internet access, select
+<strong>No, skip this test</strong>, and click <strong>Next</strong>. &amp; In the <em>Network Services
+Configuration</em> window, accept the default and click <strong>Next</strong>. A
+certificate will be created. &amp; In the User Authentication Method window,
+select <strong>Local (/etc/passwd)</strong> and click <strong>Next</strong>. &amp; In the New Local
+User window, add at least one user to have a non-root ID on all cloned
+systems. When you are done, click <strong>Next</strong>. &amp; In the Writing the system
+configuration window the <strong>SuSEconfig</strong> tool writes all your settings to
+disk. &amp; The next window will be Release Notes. After reviewing the
+release notes, click Next. &amp; In the Hardware Configuration window,
+choose the <strong>Skip Configuration</strong> radio button and click <strong>Next</strong>. &amp; The
+last installation window is Installation Completed. Clear the box Clone
+This System for AutoYaST2 check box and click <strong>Finish</strong>.</p>
+<p>The VNC session should end. Return to the 3270 session and you may have
+to clear the screen a few times. Then, you should see a login prompt.
+You are done installing Linux! You can disconnect from the 3270 session
+using the <strong>DISCONNECT</strong> command:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">==&gt; #cp disc</code></pre>
+</doc-codeblock></div>
+<p>You can now access this Linux system using SSH.</p>
+</div>
+<doc-anchor-target id="initial-configuration">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#initial-configuration">#</doc-anchor-trigger>
+        <span>Initial configuration</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="disable-unneeded-services">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#disable-unneeded-services">#</doc-anchor-trigger>
+        <span>Disable Unneeded Services</span>
+    </h3>
+</doc-anchor-target>
+<p>In order to keep the golden image as lean as possible in terms of CPU
+usage, some of these services can be turned off. Turn off the following
+services by using the following chkconfig commands:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">chkconfig auditd off
+chkconfig fbset off
+chkconfig network-remotefs off
+chkconfig postfix off
+chkconfig splash off
+chkconfig splash_early off
+chkconfig smartd off</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="install-cmsfs">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#install-cmsfs">#</doc-anchor-trigger>
+        <span>Install CMSfs</span>
+    </h3>
+</doc-anchor-target>
+<p>To read CMS files from Linux, the cmsfs RPM is used. The clone script
+requires it to read parameter files. To add this package to the golden
+image, use:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">(*|\textbf{linux1-titog:~ \# zypper in cmsfs}|*)
+Loading repository data...
+Reading installed packages...
+Resolving package dependencies...
+
+The following NEW package is going to be installed:
+  cmsfs 
+
+
+Overall download size: 33,0 K. After the operation, additional 148,0 K will be used.
+Continue? [YES/no]: YES
+Retrieving package cmsfs-1.1.8-6.2.s390x (1/1), 33,0 K (148,0 K unpacked)
+Retrieving: cmsfs-1.1.8-6.2.s390x.rpm [done]
+Installing: cmsfs-1.1.8-6.2 [done]</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="configure-etcinittab">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#configure-etcinittab">#</doc-anchor-trigger>
+        <span>Configure /etc/inittab</span>
+    </h3>
+</doc-anchor-target>
+<p>Linux reboots when a <em>Ctrl-Alt-Del</em> key sequence is trapped. This key
+sequence is simulated by z/VM when it issues a <strong>SIGNAL SHUTDOWN</strong>
+command. Rather than rebooting, it might be better that your system
+halts (shuts down).</p>
+<p>Change shutdown -r to shutdown -h:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">(*|\textbf{\# cd /etc}|*)
+(*|\textbf{\# cp inittab inittab.orig}|*)
+(*|\textbf{\# vi inittab}|*)
+...
+# The default runlevel is defined here
+(*|\textbf{id:3:initdefault:}|*)
+...
+# what to do when CTRL-ALT-DEL is pressed
+ca::ctrlaltdel:/sbin/(*|\textbf{shutdown -h}|*) -t 4 now
+...</code></pre>
+</doc-codeblock></div>
+<p>This change will be picked up when the system is rebooted.</p>
+<doc-anchor-target id="sec:configurebootlocal">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#sec:configurebootlocal">#</doc-anchor-trigger>
+        <span>Configure boot.local</span>
+    </h3>
+</doc-anchor-target>
+<p>The chshut command is added twice so that the virtual machine is logged
+off after it is halted or powered off. This will allow for an orderly
+shutdown of z/VM. To do so, add the following four lines to boot.local:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">(*|\textbf{\# vi /etc/init.d/boot.local}|*)
+...
+# Here you should add things, that should happen directly after booting
+# before we're going to the first run level.
+#
+(*|\textbf{modprobe vmcp}|*)
+(*|\textbf{chshut halt vmcmd logoff}|*)
+(*|\textbf{chshut poff vmcmd logoff}|*)</code></pre>
+</doc-codeblock></div>
+<p>You can execute /etc/init.d/boot.local to test the new settings:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">(*|\textbf{linux1-titog:~ \# bash /etc/init.d/boot.local}|*)
+(*|\textbf{linux1-titog:~ \# lsshut }|*)
+Trigger          Action
+========================
+Halt             vmcmd (&quot;logoff&quot;)
+Panic            stop
+Power off        vmcmd (&quot;logoff&quot;)
+Reboot           reipl</code></pre>
+</doc-codeblock></div>
+<p>Your Linux first image is now ready!</p>
+
+                                
+                                <!-- Required only on API pages -->
+                                <doc-toolbar-member-filter-no-results></doc-toolbar-member-filter-no-results>
+                            </div>
+                            <footer class="clear-both">
+                            
+                                <nav class="flex mt-14">
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../pt-br/creating-a-virtual-machine/">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                            <span>
+                                                <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Anterior</span>
+                                                <span class="block mt-1">Creating a Virtual Machine</span>
+                                            </span>
+                                        </a>
+                                    </div>
+                            
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../pt-br/clonning-linux/">
+                                            <span>
+                                                <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Próximo</span>
+                                                <span class="block mt-1">Clone Linux</span>
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                        </a>
+                                    </div>
+                                </nav>
+                            </footer>
+                        </main>
+                
+                        <div class="border-t dark:border-dark-650 pt-6 mb-8">
+                            <footer class="flex flex-wrap items-center justify-between">
+                                <div>
+                                    <ul class="flex flex-wrap items-center text-sm">
+                                    </ul>
+                                </div>
+                                <div class="docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>Please share with the z community.</p></div>
+                            </footer>
+                        </div>
+                    </div>
+                
+                    <!-- Rendered if sidebar right is enabled -->
+                    <!-- Sidebar right skeleton-->
+                    <div v-cloak class="fixed top-0 bottom-0 right-0 translate-x-full bg-white border-gray-200 lg:sticky lg:border-l lg:shrink-0 lg:pt-6 lg:transform-none sm:w-1/2 lg:w-64 lg:z-0 md:w-104 sidebar-right skeleton dark:bg-dark-850 dark:border-dark-650">
+                        <div class="pl-5">
+                            <div class="w-32 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                            <div class="w-48 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                            <div class="w-40 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                        </div>
+                    </div>
+                
+                    <!-- User should be able to hide sidebar right -->
+                    <doc-sidebar-right v-cloak></doc-sidebar-right>
+                </div>
+
+            </div>
+        </div>
+    
+        <doc-search-mobile></doc-search-mobile>
+        <doc-back-to-top></doc-back-to-top>
+    </div>
+
+
+    <div id="docs-overlay-target"></div>
+
+    <script data-cfasync="false">window.__DOCS__ = { "title": "Installing Linux", level: 2, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+</body>
+</html>

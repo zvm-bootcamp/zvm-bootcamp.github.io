@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.4.1.748114234369">
+
+    <!-- See retype.com -->
+    <meta name="generator" content="Retype 3.4.1">
+
+    <!-- Primary Meta Tags -->
+    <title>System Configuration</title>
+    <meta name="title" content="System Configuration">
+    <meta name="description" content="As a system programmer, you should become familiar with the SYSTEM CONFIG file.">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://zvm-bootcamp.github.io/pt-br/system-configuration/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://zvm-bootcamp.github.io/pt-br/system-configuration/">
+    <meta property="og:title" content="System Configuration">
+    <meta property="og:description" content="As a system programmer, you should become familiar with the SYSTEM CONFIG file.">
+    <meta property="og:image" content="https://zvm-bootcamp.github.io/imgs/workshop-pagespool.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://zvm-bootcamp.github.io/pt-br/system-configuration/">
+    <meta property="twitter:title" content="System Configuration">
+    <meta property="twitter:description" content="As a system programmer, you should become familiar with the SYSTEM CONFIG file.">
+    <meta property="twitter:image" content="https://zvm-bootcamp.github.io/imgs/workshop-pagespool.png">
+
+    <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
+
+    <link href="../../resources/css/retype.css?v=3.4.1.748114234369" rel="stylesheet">
+
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.4.1.748114234369" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/retype.js?v=3.4.1" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.4.1.748114234369" data-turbo-eval="false" defer></script>
+</head>
+<body>
+    <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
+        <div class="absolute bottom-0 left-0 bg-gray-100 dark:bg-dark-800" style="top: 5rem; right: 50%"></div>
+    
+        <header id="docs-site-header" class="sticky top-0 z-30 flex w-full h-16 bg-white border-b border-gray-200 md:h-20 dark:bg-dark-850 dark:border-dark-650">
+            <div class="container relative flex items-center justify-between pr-6 grow md:justify-start">
+                <!-- Mobile menu button skeleton -->
+                <button v-cloak class="skeleton docs-mobile-menu-button flex items-center justify-center shrink-0 overflow-hidden dark:text-white focus:outline-none rounded-full w-10 h-10 ml-3.5 md:hidden"><svg xmlns="http://www.w3.org/2000/svg" class="mb-px shrink-0" width="24" height="24" viewBox="0 0 24 24" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor"><path d="M2 4h20v2H2zM2 11h20v2H2zM2 18h20v2H2z"></path></g></svg></button>
+                <div v-cloak id="docs-sidebar-toggle"></div>
+        
+                <!-- Logo -->
+                <div class="flex items-center justify-between h-full py-2 md:w-75">
+                    <div class="flex items-center px-2 md:px-6">
+                        <a id="docs-site-logo" href="../../" class="flex items-center leading-snug text-xl">
+                            <span class="w-10 mr-2 grow-0 shrink-0 overflow-hidden">
+                                <img class="max-h-10 dark:hidden md:inline-block" src="../../static/vmbear.jpg">
+                                <img class="max-h-10 hidden dark:inline-block" src="../../static/vmbear.jpg">
+                            </span>
+                            <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">z/VM Bootcamp</span>
+                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">Manual</span>
+                    </div>
+        
+                    <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
+                </div>
+        
+                <div class="flex justify-between md:grow">
+                    <!-- Top Nav -->
+                    <nav class="hidden md:flex">
+                        <ul class="flex flex-col mb-4 md:pl-16 md:mb-0 md:flex-row md:items-center">
+                            <li class="mr-6">
+                                <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://titosoft.github.io/z/vm/zvm-cheatsheet/" target="_blank">z/VM Cheat Sheet</a>
+                            </li>
+        
+                        </ul>
+                    </nav>
+        
+                    <!-- Header Right Skeleton -->
+                    <div v-cloak class="flex justify-end grow skeleton">
+        
+                        <!-- Search input mock -->
+                        <div class="relative hidden w-40 lg:block lg:max-w-sm lg:ml-auto">
+                            <div class="absolute flex items-center justify-center h-full pl-3 dark:text-dark-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon-base" width="16" height="16" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 1px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                            </div>
+                            <input class="w-full h-10 placeholder-gray-400 transition-colors duration-200 ease-in bg-gray-200 border border-transparent rounded md:text-sm hover:bg-white hover:border-gray-300 focus:outline-none focus:bg-white focus:border-gray-500 dark:bg-dark-600 dark:border-dark-600 dark:placeholder-dark-400" style="padding: 0.625rem 0.75rem 0.625rem 2rem" type="text" placeholder="Pesquisar">
+                        </div>
+        
+                        <!-- Mobile search button -->
+                        <div class="flex items-center justify-center w-10 h-10 lg:hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="20" height="20" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                        </div>
+        
+                        <!-- Dark mode switch placeholder -->
+                        <div class="w-10 h-10 lg:ml-2"></div>
+        
+                        <!-- History button -->
+                        <div class="flex items-center justify-center w-10 h-10" style="margin-right: -0.625rem;">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="22" height="22" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor" ><g ><path d="M12.01 6.01c-.55 0-1 .45-1 1V12a1 1 0 00.4.8l3 2.22a.985.985 0 001.39-.2.996.996 0 00-.21-1.4l-2.6-1.92V7.01c.02-.55-.43-1-.98-1z"></path><path d="M12.01 1.91c-5.33 0-9.69 4.16-10.05 9.4l-.29-.26a.997.997 0 10-1.34 1.48l1.97 1.79c.19.17.43.26.67.26s.48-.09.67-.26l1.97-1.79a.997.997 0 10-1.34-1.48l-.31.28c.34-4.14 3.82-7.41 8.05-7.41 4.46 0 8.08 3.63 8.08 8.09s-3.63 8.08-8.08 8.08c-2.18 0-4.22-.85-5.75-2.4a.996.996 0 10-1.42 1.4 10.02 10.02 0 007.17 2.99c5.56 0 10.08-4.52 10.08-10.08.01-5.56-4.52-10.09-10.08-10.09z"></path></g></g></svg>
+                        </div>
+                    </div>
+        
+                    <div v-cloak class="flex justify-end grow">
+                        <div id="docs-mobile-search-button"></div>
+                        <doc-search-desktop></doc-search-desktop>
+        
+                        <doc-theme-switch class="lg:ml-2"></doc-theme-switch>
+                        <doc-history></doc-history>
+                    </div>
+                </div>
+            </div>
+        </header>
+    
+        <div class="container relative flex bg-white">
+            <!-- Sidebar Skeleton -->
+            <div v-cloak class="fixed flex flex-col shrink-0 duration-300 ease-in-out bg-gray-100 border-gray-200 sidebar top-20 w-75 border-r h-screen md:sticky transition-transform skeleton dark:bg-dark-800 dark:border-dark-650">
+            
+                <!-- Render this div, if config.showSidebarFilter is `true` -->
+                <div class="flex items-center h-16 px-6">
+                    <input class="w-full h-8 px-3 py-2 transition-colors duration-200 ease-linear bg-white border border-gray-200 rounded shadow-none text-sm focus:outline-none focus:border-gray-600 dark:bg-dark-600 dark:border-dark-600" type="text" placeholder="Filtrar">
+                </div>
+            
+                <div class="pl-6 mt-1 mb-4">
+                    <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                </div>
+            
+                <div class="shrink-0 mt-auto bg-transparent dark:border-dark-650">
+                    <a class="flex items-center justify-center flex-nowrap h-16 text-gray-400 dark:text-dark-400 hover:text-gray-700 dark:hover:text-dark-300 transition-colors duration-150 ease-in docs-powered-by" target="_blank" href="https://retype.com/" rel="noopener">
+                        <span class="text-xs whitespace-nowrap">Powered by</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="ml-2" fill="currentColor" width="96" height="20" overflow="visible"><path d="M0 0v20h13.59V0H0zm11.15 17.54H2.44V2.46h8.71v15.08zM15.8 20h2.44V4.67L15.8 2.22zM20.45 6.89V20h2.44V9.34z"/><g><path d="M40.16 8.44c0 1.49-.59 2.45-1.75 2.88l2.34 3.32h-2.53l-2.04-2.96h-1.43v2.96h-2.06V5.36h3.5c1.43 0 2.46.24 3.07.73s.9 1.27.9 2.35zm-2.48 1.1c.26-.23.38-.59.38-1.09 0-.5-.13-.84-.4-1.03s-.73-.28-1.39-.28h-1.54v2.75h1.5c.72 0 1.2-.12 1.45-.35zM51.56 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92h4.74v1.83h-6.79V5.36h6.64zM60.09 7.15v7.48h-2.06V7.15h-2.61V5.36h7.28v1.79h-2.61zM70.81 14.64h-2.06v-3.66l-3.19-5.61h2.23l1.99 3.45 1.99-3.45H74l-3.19 5.61v3.66zM83.99 6.19c.65.55.97 1.4.97 2.55s-.33 1.98-1 2.51-1.68.8-3.04.8h-1.23v2.59h-2.06V5.36h3.26c1.42 0 2.45.28 3.1.83zm-1.51 3.65c.25-.28.37-.69.37-1.22s-.16-.92-.48-1.14c-.32-.23-.82-.34-1.5-.34H79.7v3.12h1.38c.68 0 1.15-.14 1.4-.42zM95.85 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92H96v1.83h-6.79V5.36h6.64z"/></g></svg>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Sidebar component -->
+            <doc-sidebar v-cloak>
+                <template #sidebar-footer>
+                    <div class="shrink-0 mt-auto border-t md:bg-transparent md:border-none dark:border-dark-650">
+            
+                        <div class="py-3 px-6 md:hidden border-b dark:border-dark-650">
+                            <nav>
+                                <ul class="flex flex-wrap justify-center items-center">
+                                    <li class="mr-6">
+                                        <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://titosoft.github.io/z/vm/zvm-cheatsheet/" target="_blank">z/VM Cheat Sheet</a>
+                                    </li>
+            
+                                </ul>
+                            </nav>
+                        </div>
+            
+                        <a class="flex items-center justify-center flex-nowrap h-16 text-gray-400 dark:text-dark-400 hover:text-gray-700 dark:hover:text-dark-300 transition-colors duration-150 ease-in docs-powered-by" target="_blank" href="https://retype.com/" rel="noopener">
+                            <span class="text-xs whitespace-nowrap">Powered by</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-2" fill="currentColor" width="96" height="20" overflow="visible"><path d="M0 0v20h13.59V0H0zm11.15 17.54H2.44V2.46h8.71v15.08zM15.8 20h2.44V4.67L15.8 2.22zM20.45 6.89V20h2.44V9.34z"/><g><path d="M40.16 8.44c0 1.49-.59 2.45-1.75 2.88l2.34 3.32h-2.53l-2.04-2.96h-1.43v2.96h-2.06V5.36h3.5c1.43 0 2.46.24 3.07.73s.9 1.27.9 2.35zm-2.48 1.1c.26-.23.38-.59.38-1.09 0-.5-.13-.84-.4-1.03s-.73-.28-1.39-.28h-1.54v2.75h1.5c.72 0 1.2-.12 1.45-.35zM51.56 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92h4.74v1.83h-6.79V5.36h6.64zM60.09 7.15v7.48h-2.06V7.15h-2.61V5.36h7.28v1.79h-2.61zM70.81 14.64h-2.06v-3.66l-3.19-5.61h2.23l1.99 3.45 1.99-3.45H74l-3.19 5.61v3.66zM83.99 6.19c.65.55.97 1.4.97 2.55s-.33 1.98-1 2.51-1.68.8-3.04.8h-1.23v2.59h-2.06V5.36h3.26c1.42 0 2.45.28 3.1.83zm-1.51 3.65c.25-.28.37-.69.37-1.22s-.16-.92-.48-1.14c-.32-.23-.82-.34-1.5-.34H79.7v3.12h1.38c.68 0 1.15-.14 1.4-.42zM95.85 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92H96v1.83h-6.79V5.36h6.64z"/></g></svg>
+                        </a>
+                    </div>
+                </template>
+            </doc-sidebar>
+    
+            <div class="grow min-w-0 dark:bg-dark-850">
+                <!-- Render "toolbar" template here on api pages --><!-- Render page content -->
+                <div class="flex">
+                    <div class="min-w-0 p-4 grow md:px-16">
+                        <main class="relative pb-12 lg:pt-2">
+                            <div class="docs-markdown" id="docs-content">
+                                <!-- Rendered if sidebar right is enabled -->
+                                <div id="docs-sidebar-right-toggle"></div>
+                                <!-- Page content  -->
+<doc-anchor-target id="ch:systemconfig" class="break-words">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#ch:systemconfig">#</doc-anchor-trigger>
+        <span>System Configuration</span>
+    </h1>
+</doc-anchor-target>
+<p>As a system programmer, you should become familiar with the SYSTEM
+CONFIG file.</p>
+<p>The SYSTEM CONFIG file contains the primary system definitions used when
+CP is booted (IPLed). All of the information needed to configure CP
+statically comes from this file. In an SSI cluster, all members use the
+same SYSTEM CONFIG file; however, you can specify that certain
+configuration statements apply only to specific members by qualifying
+the statements with a system identifier. This topic has examples of this
+specifying method.</p>
+<p>The SYSTEM CONFIG file resides on a special CMS-formatted minidisk (CF0)
+belonging to the PMAINT user ID. Minidisks containing such objects are
+called parm disks because when allocated those disks are given a special
+record category type called &quot;PARM&quot;. There can be more than one parm disk
+allocated in a z/VM system for backup and recovery.</p>
+<p>Related information: &quot;Using Configuration Files&quot; in z/VM: CP Planning
+and Administration, SC24-6178-09.</p>
+<doc-anchor-target id="exercises">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#exercises">#</doc-anchor-trigger>
+        <span>Exercises</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="system-parameter-disks">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#system-parameter-disks">#</doc-anchor-trigger>
+        <span>System parameter disks</span>
+    </h3>
+</doc-anchor-target>
+<p>The SYSTEM CONFIG file is located on a system&#x27;s parameter disk. Before
+you begin updating the SYSTEM CONFIG file, you must access the parm disk
+(In this case, the PMAINT&#x27;s CF0).</p>
+<p>MAINT&#x27;s CF1, and CF3 minidisks are traditionally used as the system&#x27;s
+parameter disks. Use the QUERY CPDISK command to query what system
+parameter disks are in use with your system:</p>
+<div class="easylist"><p>&amp; Logon as MAINT &amp; Enter the following command and press Enter</p>
+</div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; q cpdisk</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">q userid                                                             
+MAINT    AT ZVMWSXX                                                  
+q cpdisk                                                             
+Label  Userid   Vdev Mode Stat Vol-ID Rdev Type   StartLoc     EndLoc
+MNTCF1 MAINT    0CF1  A   R/O  AB1RES 6205 CKD          39        158
+MNTCF3 MAINT    0CF3  C   R/O  AB1RES 6205 CKD         160        279</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="steps-for-accessing-the-parm-disk-and-creating-a-backup-for-system-config">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#steps-for-accessing-the-parm-disk-and-creating-a-backup-for-system-config">#</doc-anchor-trigger>
+        <span>Steps for accessing the parm disk and creating a backup for SYSTEM CONFIG</span>
+    </h3>
+</doc-anchor-target>
+<p>Perform these steps to access the CF0 parm disk:</p>
+<div class="easylist"><p>&amp; Logon as MAINT &amp; Access the parm disk (PMAINT&#x27;s CF0). Type these
+commands and press the Enter key after each command:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; link pmaint cf0 cf0 mr
+
+===&gt; access cf0 x</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">q userid                                                                        
+MAINT    AT ZVMWSXX                                                             
+Ready; T=0.01/0.01 08:30:09                                                     
+
+link pmaint cf0 cf0 mr                                                          
+Ready; T=0.01/0.01 08:30:23                                                     
+
+access cf0 x                                                                    
+Ready; T=0.01/0.01 08:30:37                                                     
+
+q disk                                                                          
+LABEL  VDEV M  STAT   CYL TYPE BLKSZ   FILES  BLKS USED-(%) BLKS LEFT  BLK TOTAL
+MNT191 191  A   R/W   175 3390 4096        4         11-01      31489      31500
+MNT5E5 5E5  B   R/O    18 3390 4096      134       1537-47       1703       3240
+MNT2CC 2CC  C   R/O    10 3390 4096        3        104-06       1696       1800
+MNT51D 51D  D   R/O    26 3390 4096      293       1796-38       2884       4680
+PMT551 551  E   R/O    40 3390 4096        8        119-02       7081       7200
+MNT190 190  S   R/O   207 3390 4096      696      18085-49      19175      37260
+MNT19E 19E  Y/S R/O   500 3390 4096     1123      30403-34      59597      90000
+(*|\textcolor{red}{PMTCF0 CF0}|*)  X   R/W   120 3390 4096        2         15-01      21585      21600
+Ready; T=0.01/0.01 08:30:39                                                     
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                            RUNNING   ZVMWSXX   </code></pre>
+</doc-codeblock></div>
+<p>&amp; As a preferred practice, create a backup of SYSTEM CONFIG:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; copy system config x system configbk x </code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">copy system config x system configbk x  
+Ready; T=0.01/0.01 08:32:53             
+
+listfile * * x                          
+LOGO     CONFIG   X1                    
+SYSTEM   CONFIG   X1                    
+SYSTEM   CONFIGBK X1                    
+Ready; T=0.01/0.01 08:32:59      </code></pre>
+</doc-codeblock></div>
+</div>
+<p>You know you are done when you have access to the CF0 disk and have
+created a backup of SYSTEM CONFIG on the parm disk.</p>
+<doc-anchor-target id="edit-the-system-config-file">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#edit-the-system-config-file">#</doc-anchor-trigger>
+        <span>Edit the SYSTEM CONFIG file</span>
+    </h3>
+</doc-anchor-target>
+<p>After you linked in &quot;Multiple Write Mode&quot;, you can edit the SYSTEM
+CONFIG file with XEDIT editor.</p>
+<p>Before you begin updating the SYSTEM CONFIG file, we will create a small
+REXX that will automate the access to SYSTEM CONFIG disk. From MAINT use
+XEDIT to create a new file called GETCF0 EXEC A:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; xedit getcf0 exec a</code></pre>
+</doc-codeblock></div>
+<p>Add the follow content:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">/* REXX will link PMAINT CF0 */
+
+'LINK PMAINT CF0 CF0 MR'
+'ACCESS CF0 X'</code></pre>
+</doc-codeblock></div>
+<p>Execute a script &quot;GETCF0&quot; which will access the parm disk as the &quot;X&quot;
+disk.</p>
+<doc-anchor-target id="steps-for-updating-the-cp-owned-volume-list">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#steps-for-updating-the-cp-owned-volume-list">#</doc-anchor-trigger>
+        <span>Steps for updating the CP-owned volume list</span>
+    </h3>
+</doc-anchor-target>
+<p>The CP-owned volume list is the place where you specify the labels of
+paging, spooling, and temporary disk volumes that CP should
+automatically attach to the system during IPL. These volumes contain the
+system data for your z/VM system. All other volumes on the system are
+considered user volumes.</p>
+<p><strong>Before you begin:</strong> You need to format and allocate your paging,
+spooling, temporary disk or Perm Volumes. You need to access to the parm
+disk.</p>
+<p>Perform these steps to update the CP-owned volume list:</p>
+<div class="easylist"><p>&amp; Logon as MAINT &amp; Edit the SYSTEM CONFIG file. Type any of these two
+commands to get access and edit the file, and press the Enter key:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; xedit system config x</code></pre>
+</doc-codeblock></div>
+<p>Or</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; filel * * x (go to the CMD column of the file, type x and press enter)</code></pre>
+</doc-codeblock></div>
+<p>You will see a file like the following:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">SYSTEM   CONFIG   X1  F 80  Trunc=80 Size=376 Line=0 Col=1 Alt=0               
+                                                                                
+00000 * * * Top of File * * *                                                   
+00001 /**********************************************************************/  
+00002 /*             SYSTEM CONFIG FILE                                     */  
+00003 /**********************************************************************/  
+00004 /*                                                                    */  
+00005 /*  Refer to CP Planning and Administration for SYSTEM CONFIG rules   */  
+00006 /*                                                                    */  
+00007 /*  Warning - Always run CPSYNTAX after updating the SYSTEM CONFIG    */  
+00008 /*                                                                    */  
+00009 /**********************************************************************/  
+00010                                                                           
+00011                                                                           
+00012 /**********************************************************************/  
+00013 /*                   System_Identifier Information                    */  
+00014 /**********************************************************************/  
+00015                                                                           
+00016   /* System_Identifier LPAR ZVMWSXX  ZVMWSXX */                           
+00017   /* System_Identifier LPAR @@LU-2 @@MEMSLOT2 */
+00018   /* System_Identifier LPAR @@LU-3 @@MEMSLOT3 */                          
+00019   /* System_Identifier LPAR @@LU-4 @@MEMSLOT4 */                          
+00020                                                                           
+00021       System_Identifier * * ZVMWSXX                                       
+00022                                                                           
+00023                                                                           
+00024 /**********************************************************************/  
+00025 /*         SSI Statement required for VMSSI feature                   */  
+00026 /**********************************************************************/  
+00027                                                                           
+00028   SSI CLUSTER1  PDR_VOLUME VMCOM1,                                        
+00029         SLOT 1 ZVMWSXX                                                    
+00030 /*      SLOT 2 @@MEMSLOT2,  */                                            
+00031 /*      SLOT 3 @@MEMSLOT3,  */                                            
+00032 /*      SLOT 4 @@MEMSLOT4   */                                            
+00033                                                                           
+00034                                                                           
+00035 /**********************************************************************/  
+00036 /*                Checkpoint and Warmstart Information                */  
+00037 /**********************************************************************/  
+00038                                                                           
+00039   ZVMWSXX:     System_Residence,                                          
+====&gt;                                                                           </code></pre>
+</doc-codeblock></div>
+<p>&amp; Find the string &quot;DUMP &amp; SPOOL VOLUMES&quot;. At the XEDIT command line,
+type this command and press the Enter key:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; /dump/ &amp; /spool/ &amp; /volume/</code></pre>
+</doc-codeblock></div>
+<p>&amp; Add additional Spool volumes to slots in <strong>ascending</strong> order (slots
+11, 12, and so forth).</p>
+<p>Duplicate the following line:</p>
+<div class="bclogo"><p>Duplicating a line on XEDIT To duplicate a line in XEDIT place a double
+quote (&quot;) in the line number and press enter, example:</p>
+<p>00080
+/**********************************************************************/</p>
+<p>00081</p>
+<p style="color: red">[&quot;]0082 CP_Owned Slot 10 M01S01</p>
+<p>00083</p>
+<p>00084
+/**********************************************************************/</p>
+</div>
+</div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">00082     CP_Owned   Slot  10  M01S01</code></pre>
+</doc-codeblock></div>
+<p>Add the Spool volume previously formatted (M01S02) <strong>below the M01S01
+line</strong>.</p>
+<p>You should now see something like the following:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">00072 /*                                           DUMP &amp; SPOOL VOLUMES     */
+00073 /* Dump and spool volumes begin with slot 10 and are assigned in      */
+00074 /* ascending order, without regard to the system that owns them.      */
+00075 /* In an SSI cluster all member systems MUST have access to ALL spool */
+00076 /* volumes and they MUST be assigned the same slot number on each     */
+00077 /* system. When moving to an SSI cluster volume ownership, which      */
+00078 /* determines which member owns and can allocate the spool space,     */
+00079 /* will be established by CPFMTXA.                                    */
+00080 /**********************************************************************/
+00081
+00082     CP_Owned   Slot  10  M01S01
+00083     CP_Owned   (*|\textcolor{red}{Slot  11}|*)  (*|\textcolor{red}{M01S02}|*)</code></pre>
+</doc-codeblock></div>
+<p>&amp; To add the PAGE volume, find the string &quot;PAGE &amp; TDISK VOLUMES&quot; (Tip:
+you may be able to see this section just below the SPOOL section). At
+the XEDIT command line, type this command and press the Enter key:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; /page/ &amp; /tdisk/ &amp; /volume/</code></pre>
+</doc-codeblock></div>
+<p>&amp; Add additional Page volumes to slots in <strong>descending</strong> order (slots
+254, 253, and so forth).</p>
+<p>Duplicate the following line:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">00095     CP_Owned   Slot 255  M01P01</code></pre>
+</doc-codeblock></div>
+<p>Add the Page volume previously formatted (M01P02) <strong>above the M01P01
+line</strong>.</p>
+<p>You should now see something like the following:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">SYSTEM   CONFIG   Z1  F 80  Trunc=80 Size=280 Line=85 Col=1 Alt=2              
+                                                                                
+00085 /*                                           PAGE &amp; TDISK VOLUMES     */  
+00086 /* In a SSI cluster Paging and T-disk volumes are not shared.         */  
+00087 /* To avoid interference with spool volumes and to automatically      */  
+00088 /* have all unused slots defined as &quot;Reserved&quot;, begin with slot 255   */  
+00089 /* and assign them in descending order.  It is NOT required that each */  
+00090 /* system use the same slot numbers for paging and T-disk volumes.    */  
+00091 /* When moving to an SSI cluster volume ownership will be established */  
+00092 /* by CPFMTXA OWNER.                                                  */  
+00093 /**********************************************************************/  
+00094                                                                           
+00095     CP_Owned   (*|\textcolor{red}{Slot 254}|*)   (*| \textcolor{red}{M01P02} |*)                                           
+00096     CP_Owned   Slot 255  M01P01                                           
+00097                                                                           
+00098 /**********************************************************************/  
+00099 /*                          User_Volume_List                          */  
+00100 /**********************************************************************/  
+00101 /* These volumes contain the minidisks for your guests, as well as    */  
+00102 /* the product disks for z/VM. Volumes that are not intended to hold  */  
+00103 /* &quot;local&quot; minidisks, i.e., minidisks that would be unique to a       */  
+00104 /* single system, should be kept on separate volumes.                 */  
+00105                                                                           
+00106 /**********************************************************************/  
+00107 /* Shared User Volumes                                                */  
+00108 /**********************************************************************/  
+00109                User_Volume_List  VMCOM2 630RL1 630RL2                     
+00110                                                                           
+00111 /**********************************************************************/  
+00112 /* User volumes for local minidisks                                   */  
+00113 /**********************************************************************/  
+====&gt;                         </code></pre>
+</doc-codeblock></div>
+<p>&amp; Save the file. At the XEDIT command line, type this command and press
+the Enter key:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; save</code></pre>
+</doc-codeblock></div>
+<div><doc-anchor-target id="steps-for-updating-the-user-volume-list">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#steps-for-updating-the-user-volume-list">#</doc-anchor-trigger>
+        <span>Steps for updating the user volume list</span>
+    </h3>
+</doc-anchor-target>
+<p>Just as there is a list of DASD volumes that CP should automatically
+attach to the system during IPL for access to CP system areas, there is
+a list of DASD volumes that CP should automatically attach to the system
+for user minidisk definitions.</p>
+<p>Because all minidisks are managed by CP, all volumes that house
+minidisks must be attached to the z/VM system. CP must control the
+volumes so it can reorient channel programs initiated by a guest
+operating system. The guest perceives its disks as starting at cylinder
+0, but the true location of the guest&#x27;s minidisk starts at an offset of
+real cylinder 0.</p>
+<p>Unless you qualify user volume statements with a system name, the user
+volumes are attached to all members in the SSI cluster.</p>
+<p>If no user volumes are attached to the system at IPL time, the real
+devices housing minidisks need to be attached <strong>manually</strong>. Otherwise,
+virtual machines will have no disks. To avoid manual attachment, you can
+tell CP to look for DASD volume labels and attach those devices at IPL
+time.</p>
+<p>The <strong>USER_VOLUME_LIST</strong> statement directs CP to attach specific user
+DASD volumes at z/VM load (IPL) time. The <strong>USER_VOLUME_INCLUDE</strong>
+statement allows you to create a general volume identifier and to
+include all volumes that match the general identifier.</p>
+<p>Example: If all your Linux user volumes have a volume identifier
+starting with LNX, you can add this statement:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">02109          User_Volume_Include LNX*</code></pre>
+</doc-codeblock></div>
+<p>If a volume is normally attached to the system using a
+USER_VOLUME_INCLUDE statement, CP does not notify the operator if the
+volume is not mounted. If a user volume is necessary for normal system
+operation, specify it with a USER_VOLUME_LIST statement so that the
+operator is notified during system initialization if the volume is not
+mounted.</p>
+<p><strong>Before you begin:</strong> You need to format and allocate the user volumes
+you need. You need to access to the parm disk.</p>
+<div class="easylist"><p>&amp; If not already doing so, you must edit the SYSTEM CONFIG file. Type
+this command and press the Enter key:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; xedit system config x</code></pre>
+</doc-codeblock></div>
+<p>Perform these steps to update the user volume list:</p>
+<p>&amp; Find the string &quot;User_Volume_List&quot; in the section titled &quot;User volumes
+for local minidisks.&quot; At the XEDIT command line, type this command and
+press the Enter key:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; /user_volume_list</code></pre>
+</doc-codeblock></div>
+<p>&amp; For shared user volumes, update the User_Volume_List statements in the
+&quot;Shared User Volumes&quot; section.</p>
+<p>&amp; Include the LNX301, LNX302 and LNX303 volumes on this list (We will
+use a wildcard LNX*)</p>
+<p>&amp; In the prefix area for the last USER_VOLUME_LIST statement, type &quot;i2&quot;
+and press the Enter key. For instance:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">00099 /*                          User_Volume_List                          */
+00100 /**********************************************************************/
+00101 /* These volumes contain the minidisks for your guests, as well as    */
+00102 /* the product disks for z/VM. Volumes that are not intended to hold  */
+00103 /* &quot;local&quot; minidisks, i.e., minidisks that would be unique to a       */
+00104 /* single system, should be kept on separate volumes.                 */
+00105                                                                         
+00106 /**********************************************************************/
+00107 /* Shared User Volumes                                                */
+00108 /**********************************************************************/
+(*|\textcolor{red}{i2}|*)109                User_Volume_List  VMCOM2 630RL1 630RL2                   
+00110                                                                         
+00111 /**********************************************************************/
+00112 /* User volumes for local minidisks                                   */
+00113 /**********************************************************************/</code></pre>
+</doc-codeblock></div>
+<p>&amp; Add a User_Volume_Include statement. If you followed the instructions
+from the last chapter you probably have volumes named LNX301, LNX302 and
+LNX303, so it makes sense to use LNX* wildcard for our volumes.
+Example:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">00099 /*                          User_Volume_List                          */
+00100 /**********************************************************************/
+00101 /* These volumes contain the minidisks for your guests, as well as    */
+00102 /* the product disks for z/VM. Volumes that are not intended to hold  */
+00103 /* &quot;local&quot; minidisks, i.e., minidisks that would be unique to a       */
+00104 /* single system, should be kept on separate volumes.                 */
+00105                                                                         
+00106 /**********************************************************************/
+00107 /* Shared User Volumes                                                */
+00108 /**********************************************************************/
+00109                User_Volume_List  VMCOM2 630RL1 630RL2                   
+00110                (*|\textcolor{red}{User\_Volume\_Include  LNX*}|*)                                                                        
+00111                                                                       
+00112 /**********************************************************************/
+00113 /* User volumes for local minidisks                                   */
+00114 /**********************************************************************/</code></pre>
+</doc-codeblock></div>
+<p>&amp; When you finish the User_Volume_List statements, press the Enter key.
+&amp; Save the file. At the XEDIT command line, type this command and press
+the Enter key:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; save</code></pre>
+</doc-codeblock></div>
+<p>Question: Is there another way to add those LNX* disks to the User
+Volume List?</p>
+<p>R:</p>
+</div>
+</div>
+<doc-anchor-target id="steps-for-updating-the-features-statement">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#steps-for-updating-the-features-statement">#</doc-anchor-trigger>
+        <span>Steps for updating the FEATURES statement</span>
+    </h3>
+</doc-anchor-target>
+<p>The FEATURES statement in SYSTEM CONFIG allows you to modify attributes
+associated with the running system at IPL time. In this procedure, you
+will modify some of the features.</p>
+<div class="easylist"><p>&amp; The <strong>Auto_Warm_IPL</strong> feature causes CP to bypass prompting for start
+options, provided the previous system shutdown was successful. The
+feature allows for a fully automated startup of z/VM.</p>
+<p>&amp; The <strong>Clear_TDisk</strong> feature causes CP to erase temporary disks fully
+(that is, overwrite the entire temporary disk with zeros) after those
+disks are detached. The feature prevents another user who might define
+an identically sized temporary disk from accessing data written by the
+previous user.</p>
+<p>&amp; The <strong>Retrieve</strong> defines the default and maximum number of retrieve
+buffers allowed per user on your system. Retrieve buffers create a
+command history, from which users can retrieve commands previously
+issued. Command retrieval is usually assigned to a program function key
+such as PF12 (F12). The assignment is through the CP SET command, SET
+PF12 RETRIEVE. By pressing PF12, a command is retrieved and written back
+into the command area on the terminal screen. You probably do not need
+to change these settings.</p>
+<p>&amp; The <strong>Passwords_on_Cmds</strong> feature allows users to use passwords when
+using the CP AUTOLOG, LINK, or LOGON commands.</p>
+<p>&amp; The <strong>Disconnect_timeout</strong> feature controls whether and when a virtual
+machine is logged off after it has been forced to disconnect. You will
+turn this feature off, so that any virtual machine that has been forced
+to disconnect will not be logged off.</p>
+<p id="sec:signalshutdown" label="sec:signalshutdown">&amp; The <strong>ShutdownTime</strong> and <strong>Signal ShutdownTime</strong> features enable a
+virtual machine to register with CP to receive a shutdown signal when
+z/VM is shutting down. CP waits to shut itself down until the time
+interval (in seconds) is exceeded, or all of the virtual machines
+enabled for the signal shutdown have reported a successful shutdown.
+Some Linux distributions support this function, which allows Linux to
+shut down cleanly before z/VM shuts down. []</p>
+<p><strong>Note:</strong> Unless you qualify the features with a system name, these
+features will be the same for all members in your SSI cluster.</p>
+</div>
+<p>Procedure: Find the line containing the text &quot;Features Statement&quot;, it is
+a section. At the XEDIT command line, type this command and press the
+Enter key:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; /Features Statement</code></pre>
+</doc-codeblock></div>
+<p>You will see something like this:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">00146 /*                         Features Statement                         */
+00147 /**********************************************************************/
+00148
+00149  Features ,
+00150    Disable ,                       /* Disable the following features */
+00151      Set_Privclass ,               /* Disallow SET PRIVCLASS command */
+00152      Auto_Warm_IPL ,               /* Prompt at IPL always           */
+00153      Clear_TDisk   ,               /* Don't clear TDisks at IPL time */
+00154    Retrieve ,                      /* Retrieve options               */
+00155      Default  20 ,                 /* Default.... default is 20      */
+00156      Maximum  255 ,                /* Maximum.... default is 255     */
+00157    MaxUsers noLimit ,              /* No limit on number of users    */
+00158    Passwords_on_Cmds ,             /* What commands allow passwords? */
+00159      Autolog  yes ,                /* ... AUTOLOG does               */
+00160      Link     yes ,                /* ... LINK does                  */
+00161      Logon    yes ,                /* ... and LOGON does, too        */
+00162    Vdisk Userlim 144000 blocks     /* Maximum vdisk allowed per user */</code></pre>
+</doc-codeblock></div>
+<p>and we will modify to something like this:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">00148 /*                         Features Statement                         */
+00149 /**********************************************************************/
+00150
+00151  Features ,
+00152    Enable,                         /* Enable the following features  */
+00153      Set_Privclass ,               /* Allow SET PRIVCLASS command    */
+00154      Auto_Warm_IPL ,               /* Do not prompt at IPL           */
+00155      Clear_TDisk   ,               /* Clear TDisks at IPL time       */
+00156    Retrieve ,                      /* Retrieve options               */
+00157      Default  99 ,                 /* Default.... default is 20      */
+00158      Maximum  255 ,                /* Maximum.... default is 255     */
+00159    MaxUsers noLimit ,              /* No limit on number of users    */
+00160    Passwords_on_Cmds ,             /* What commands allow passwords? */
+00161      Autolog  yes ,                /* ... AUTOLOG does               */
+00162      Link     yes ,                /* ... LINK does                  */
+00163      Logon    yes ,                /* ... and LOGON does, too        */
+00164    Vdisk ,                         /* Maximum vdisk allowed per user */
+00165      Syslim infinite ,
+00166      Userlim infinite ,
+00167    Disconnect_timeout off
+00168    Set ,
+00169      ShutdownTime 30 ,
+00170      Signal ShutdownTime 500
+00171
+</code></pre>
+</doc-codeblock></div>
+<p>On the next section we will setup the devices to start up online.</p>
+<doc-anchor-target id="set-up-control-access-to-devices-at-startup">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#set-up-control-access-to-devices-at-startup">#</doc-anchor-trigger>
+        <span>Set up control access to devices at startup</span>
+    </h3>
+</doc-anchor-target>
+<p>Sometimes your z/VM system might have access to devices that you do not
+want to be varied online during IPL. For instance, the devices might
+duplicate labels of devices used by your production system, or might be
+in use by other LPARs or systems. You can specify ranges of devices that
+z/VM should not vary online during IPL.</p>
+<p>Find the section titled &quot;Status of Devices&quot;. At the XEDIT command line,
+type this command and press the Enter key:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; /status of devices</code></pre>
+</doc-codeblock></div>
+<p>On the line with the string &quot;Devices&quot;, type i in the prefix area and
+press the Enter key:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">SYSTEM   CONFIG   Z1  F 80  Trunc=80 Size=286 Line=190 Col=1 Alt=2           
+                                                                              
+00190 /*                        Status of Devices                           */
+00191 /**********************************************************************/
+00192                                                                         
+(*| \textcolor{red}{i} |*)0193  Devices ,                                                              
+00194    Online_at_IPL   0000-FFFF,                                           
+00195    Sensed          0000-FFFF                                            
+00196                                                                         
+00197 /**********************************************************************/
+00198 /*                     Console Definitions                            */
+00199 /**********************************************************************/
+00200      </code></pre>
+</doc-codeblock></div>
+<p>Type the following line, then press the Enter key:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; Offline_at_IPL 0000-FFFF,</code></pre>
+</doc-codeblock></div>
+<p>Type over the device range on the ONLINE_AT_IPL statement with a device
+range specific for your system.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; Online_at_IPL 0009,   /* Console device */</code></pre>
+</doc-codeblock></div>
+<p>Add a new ONLINE_AT_IPL statement for each device range. Use the i
+prefix command to add lines.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; Online_at_IPL 0200-0700,  /* PERM,PAGE,SPOOL */
+===&gt; Online_at_IPL 0800-0808,  /* OSAs */</code></pre>
+</doc-codeblock></div>
+<p>The result:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">SYSTEM   CONFIG   Z1  F 80  Trunc=80 Size=289 Line=187 Col=1 Alt=0           
+                                                                              
+00187 /**********************************************************************/
+00188 /*                        Status of Devices                           */
+00189 /**********************************************************************/
+00190                                                                         
+00191  Devices ,                                                              
+00192    Offline_at_IPL   0000-FFFF,                                          
+00193    Online_at_IPL    0009,       /* Console */                
+00196    Online_at_IPL    0200-0700,  /* PERM,PAGE,SPOOL */
+00198    Online_at_IPL    0800-0808,  /* OSAs */
+00200    Sensed           0000-FFFF                                           
+00201                                                                                            </code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="set-addresses-for-consoles">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#set-addresses-for-consoles">#</doc-anchor-trigger>
+        <span>Set addresses for consoles</span>
+    </h3>
+</doc-anchor-target>
+<p>During the first IPL of your z/VM system, you needed to specify a load
+parameter so you could communicate with the Stand-Alone Program Loader
+(SAPL). The reason is the new z/VM system did not know which device
+addresses to use to display messages and prompts. The installation
+system includes default device addresses for use as the system operator
+console and emergency messages console, but these addresses rarely
+correspond to your production hardware configuration. So you will not
+need to use the SAPL each time you IPL z/VM, you need to supply the
+address of your IPL console and your emergency messages console on the
+Operator_Consoles statement. During IPL, CP tries each device on the
+Operator_Consoles statement (from left to right) until it finds an
+active device. If no devices on the list are active, CP loads a disabled
+wait state and terminates. The emergency message console is used as an
+additional console during failures. Define the emergency console with
+the Emergency_Message_Console statement.</p>
+<p>Find the section titled &quot;Console Definitions&quot;.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; /console </code></pre>
+</doc-codeblock></div>
+<p>Set <strong>0009</strong> as the first device on the <strong>Operator_Consoles</strong> and the
+<strong>Emergency_Message_Consoles</strong> statement. This will tell z/VM to open
+operator communications with device <strong>0009</strong> which is the device address
+of the virtual console. This will alleviate the need for passing load
+parameters at the next boot.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">00200 /**********************************************************************/
+00201 /*                     Console Definitions                            */
+00202 /**********************************************************************/
+00203                                                                         
+00204  Operator_Consoles     (*|\textcolor{red}{0009}|*) 0020 0021 0022 0023 0E20 0E21 1020 ,        
+00205                        System_3270 System_Console                       
+00206  Emergency_Message_Consoles   (*|\textcolor{red}{0009}|*) 0020 0021 0022 0023 0E20 0E21 1020 , 
+00207                               System_Console                            
+00208                                                                         </code></pre>
+</doc-codeblock></div>
+<p>Save all the changes you have made so far and exit the SYSTEM CONFIG
+file.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; file</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="steps-for-checking-the-syntax-of-the-system-config-file">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#steps-for-checking-the-syntax-of-the-system-config-file">#</doc-anchor-trigger>
+        <span>Steps for checking the syntax of the SYSTEM CONFIG file</span>
+    </h3>
+</doc-anchor-target>
+<p>Since the SYSTEM CONFIG file contains very important data, extreme care
+must be taken to ensure its contents are correct. The system may not
+start correctly if this file contains errors. Fixing the errors can be
+cumbersome. z/VM provides a utility, CPSYNTAX, in the 193 minidisk to
+check the syntax of the SYSTEM CONFIG file.</p>
+<p><strong>Procedure</strong></p>
+<div class="easylist"><p>&amp; Logon as MAINT &amp; To gain access to the CPSYNTAX command, access the
+193 disk as F. From the command line, type the following command and
+press the Enter key:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; access 193 f</code></pre>
+</doc-codeblock></div>
+<p>&amp; Run the CPSYNTAX command. From the command line, type this command and
+press the Enter key:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; cpsyntax system config x</code></pre>
+</doc-codeblock></div>
+<p>&amp; Check for a zero return code. If you do not get a zero return code,
+modify the SYSTEM CONFIG file and rerun the CPSYNTAX utility. Example of
+a non-zero return code:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">acc 193 f                                                                       
+Ready; T=0.01/0.01 17:14:17                                                     
+
+listfile cpsyntax * *                                                           
+CPSYNTAX EXEC     F2                                                            
+Ready; T=0.01/0.01 17:14:28                                                     
+
+cpsyntax system config x                                                        
+HCPSYK6700E FILE SYSTEM CONFIG X, RECORD 164:                                   
+HCPSYK6701E INVALID SYSTEM CONFIGURATION FILE STATEMENT - DISCONNECT_TIMEOUT    
+                                                                                
+Ready(00008); T=0.37/0.38 17:14:46                                              
+                                                                                
+                                                                                
+                                                                                
+                                                            RUNNING   ZVMWSXX  </code></pre>
+</doc-codeblock></div>
+<p>&amp; Lets create a FREECF0 EXEC on your MAINT &quot;A-disk&quot;, it will release the
+cf0 disk for us on future updates:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; x freecf0 exec</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">00000 * * * Top of File * * *
+00001 /* REXX */             
+00002 'RELEASE X'            
+00003 'CP DETACH CF0'        
+00004 * * * End of File * * *</code></pre>
+</doc-codeblock></div>
+<p>&amp; Execute the script &quot;FREECF0&quot; to release and detach the parm disk CF0.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; freecf0</code></pre>
+</doc-codeblock></div>
+</div>
+<doc-anchor-target id="restart-zvm-and-verify-changes">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#restart-zvm-and-verify-changes">#</doc-anchor-trigger>
+        <span>Restart z/VM and verify changes</span>
+    </h3>
+</doc-anchor-target>
+<p>In this exercise, you will learn to use some new CP/CMS commands to
+verify the changes you have made to the system.</p>
+<div class="easylist"><p>&amp; Shutdown and IPL your z/VM</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; shutdown reipl</code></pre>
+</doc-codeblock></div>
+<p>When the system shuts down and re-IPLs, you will see a number of IPL
+messages. z/VM restores the system to the same state as it was prior to
+shutdown (for instance, with OPERATOR disconnected).</p>
+<p>Press the Pause key if the console status is &quot;MORE...&quot;</p>
+<p>To get a z/VM logo, press the Enter key.</p>
+<p>Log on as MAINT (password WD5JU8QP)</p>
+<p>Press the Enter Key to go from &quot;VM READ&quot; to &quot;RUNNING&quot; State.</p>
+<p>&amp; Check paging and spooling space</p>
+<p>Use the QUERY ALLOC to display the number of cylinders or pages that are
+allocated, in use, and available for DASD volumes attached to the
+system.</p>
+<p>Display the allocation information for paging space.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; query alloc page</code></pre>
+</doc-codeblock></div>
+<p>The output should show that the system now have two paging volumes.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">q alloc page                                                
+                EXTENT     EXTENT  TOTAL  PAGES   HIGH    % 
+VOLID  RDEV      START        END  PAGES IN USE   PAGE USED 
+------ ---- ---------- ---------- ------ ------ ------ ---- 
+M01P02 0300          0       2500 450180     40     51   1% 
+M01P01 0206          1       3337 600660      0      0   0% 
+                                  ------ ------        ---- 
+SUMMARY                            1026K     24          1% 
+USABLE                             1026K     24          1% 
+Ready; T=0.01/0.01 11:14:41                                                              </code></pre>
+</doc-codeblock></div>
+<p>Display the allocation information for spooling space.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; query alloc spool</code></pre>
+</doc-codeblock></div>
+<p>If you added another disk for spool, the output should show that the
+system now have two spool volumes.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">query alloc spool                                          
+                EXTENT     EXTENT  TOTAL  PAGES   HIGH    %
+VOLID  RDEV      START        END  PAGES IN USE   PAGE USED
+------ ---- ---------- ---------- ------ ------ ------ ----
+M01S01 0205          1       3337 600660   9020  39600   1%
+M01P02 0304          1       3337 600660      0      0   0%
+                                  ------ ------        ----
+SUMMARY                            1026K   9020          1%
+USABLE                             1026K   9020          1%
+Ready; T=0.01/0.01 11:15:20   </code></pre>
+</doc-codeblock></div>
+<p>&amp; Check the system identifier Use the IDENTIFY command to display
+information about your user ID and node</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; id</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">identify                                                           
+MAINT    AT ZVMWSXX  VIA *        09/13/13 11:18:27 EDT      FRIDAY
+Ready; T=0.01/0.01 11:18:27  </code></pre>
+</doc-codeblock></div>
+<p>Your system identifier should be ZVMWSxx. The system identifier is also
+displayed at the lower right hand corner of your console.</p>
+<p>&amp; Check the user volume list</p>
+<p>Use the QUERY DASD command to display a list of the DASDs that are
+attached to the system.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">q dasd                         
+DASD 0200 CP OWNED  M01RES   89
+DASD 0201 CP OWNED  VMCOM1   13
+DASD 0202 CP SYSTEM VMCOM2   2 
+DASD 0203 CP SYSTEM 630RL1   12
+DASD 0204 CP SYSTEM 630RL2   6 
+DASD 0205 CP OWNED  M01S01   1 
+DASD 0206 CP OWNED  M01P01   0 
+DASD 0207 CP SYSTEM M01W01   10
+DASD 0208 CP SYSTEM M01W02   1 
+DASD 0209 CP SYSTEM M01W03   1 
+DASD (*|\textcolor{red}{0300}|*) CP OWNED  (*|\textcolor{red}{M01P02}|*)   0 
+DASD (*|\textcolor{red}{0301}|*) CP SYSTEM (*|\textcolor{red}{LNX301}|*)   0
+DASD (*|\textcolor{red}{0302}|*) CP SYSTEM (*|\textcolor{red}{LNX302}|*)   0
+DASD (*|\textcolor{red}{0303}|*) CP SYSTEM (*|\textcolor{red}{LNX303}|*)   0
+DASD (*|\textcolor{red}{0304}|*) CP OWNED  (*|\textcolor{red}{M01S02}|*)   0 
+Ready; T=0.01/0.01 11:19:21    </code></pre>
+</doc-codeblock></div>
+<p>&amp; Check features Use the QUERY RETRIEVE command to display the setting
+of the retrieve key buffer limits.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; q ret</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">q ret                                                     
+99 buffers available.  Maximum of 255 buffers may be selected.
+Ready; T=0.01/0.01 12:27:53      </code></pre>
+</doc-codeblock></div>
+<p>A maximum of 99 commands can now be stored and retrieved from the
+retrieve key buffer. The retrieve keys (PF11 and PF12) are defined in
+the PROFILE EXEC file.</p>
+<p>&amp; Check offline devices</p>
+<p>Once again, use the QUERY DASD command to display any offline devices.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; query dasd offline</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">query dasd offline             
+An offline DASD was not found. 
+Ready; T=0.01/0.01 12:29:29</code></pre>
+</doc-codeblock></div>
+</div>
+<p>This is our actual environment after the changes:</p>
+<p><figure class="content-center">
+    <img src="../../imgs/workshop-pagespool.png" alt="Environment with extra PAGE and
+SPOOL" id="fig:workshoppagespool">
+    <figcaption class="caption">Environment with extra PAGE and
+SPOOL</figcaption>
+</figure>
+</p>
+
+                                
+                                <!-- Required only on API pages -->
+                                <doc-toolbar-member-filter-no-results></doc-toolbar-member-filter-no-results>
+                            </div>
+                            <footer class="clear-both">
+                            
+                                <nav class="flex mt-14">
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../pt-br/cms/">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                            <span>
+                                                <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Anterior</span>
+                                                <span class="block mt-1">CMS</span>
+                                            </span>
+                                        </a>
+                                    </div>
+                            
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../pt-br/network-concepts/">
+                                            <span>
+                                                <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Próximo</span>
+                                                <span class="block mt-1">Network Concepts</span>
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                        </a>
+                                    </div>
+                                </nav>
+                            </footer>
+                        </main>
+                
+                        <div class="border-t dark:border-dark-650 pt-6 mb-8">
+                            <footer class="flex flex-wrap items-center justify-between">
+                                <div>
+                                    <ul class="flex flex-wrap items-center text-sm">
+                                    </ul>
+                                </div>
+                                <div class="docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>Please share with the z community.</p></div>
+                            </footer>
+                        </div>
+                    </div>
+                
+                    <!-- Rendered if sidebar right is enabled -->
+                    <!-- Sidebar right skeleton-->
+                    <div v-cloak class="fixed top-0 bottom-0 right-0 translate-x-full bg-white border-gray-200 lg:sticky lg:border-l lg:shrink-0 lg:pt-6 lg:transform-none sm:w-1/2 lg:w-64 lg:z-0 md:w-104 sidebar-right skeleton dark:bg-dark-850 dark:border-dark-650">
+                        <div class="pl-5">
+                            <div class="w-32 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                            <div class="w-48 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                            <div class="w-40 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                        </div>
+                    </div>
+                
+                    <!-- User should be able to hide sidebar right -->
+                    <doc-sidebar-right v-cloak></doc-sidebar-right>
+                </div>
+
+            </div>
+        </div>
+    
+        <doc-search-mobile></doc-search-mobile>
+        <doc-back-to-top></doc-back-to-top>
+    </div>
+
+
+    <div id="docs-overlay-target"></div>
+
+    <script data-cfasync="false">window.__DOCS__ = { "title": "System Configuration", level: 2, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+</body>
+</html>

@@ -9,32 +9,34 @@
     <meta name="generator" content="Retype 3.4.1">
 
     <!-- Primary Meta Tags -->
-    <title>Welcome</title>
-    <meta name="title" content="Welcome">
-    <meta name="description" content="Hi!">
+    <title>Terminal Server using IUCV</title>
+    <meta name="title" content="Terminal Server using IUCV">
+    <meta name="description" content="Congratulations you have unlocked an extra content! :)">
 
     <!-- Canonical -->
-    <link rel="canonical" href="https://zvm-bootcamp.github.io/">
+    <link rel="canonical" href="https://zvm-bootcamp.github.io/pt-br/terminal-server-iucv/">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://zvm-bootcamp.github.io/">
-    <meta property="og:title" content="Welcome">
-    <meta property="og:description" content="Hi!">
+    <meta property="og:url" content="https://zvm-bootcamp.github.io/pt-br/terminal-server-iucv/">
+    <meta property="og:title" content="Terminal Server using IUCV">
+    <meta property="og:description" content="Congratulations you have unlocked an extra content! :)">
+    <meta property="og:image" content="https://zvm-bootcamp.github.io/imgs/ts_iucv.png">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://zvm-bootcamp.github.io/">
-    <meta property="twitter:title" content="Welcome">
-    <meta property="twitter:description" content="Hi!">
+    <meta property="twitter:url" content="https://zvm-bootcamp.github.io/pt-br/terminal-server-iucv/">
+    <meta property="twitter:title" content="Terminal Server using IUCV">
+    <meta property="twitter:description" content="Congratulations you have unlocked an extra content! :)">
+    <meta property="twitter:image" content="https://zvm-bootcamp.github.io/imgs/ts_iucv.png">
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="resources/css/retype.css?v=3.4.1.748114234369" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.4.1.748114234369" rel="stylesheet">
 
-    <script data-cfasync="false" src="resources/js/config.js?v=3.4.1.748114234369" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="resources/js/retype.js?v=3.4.1" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="resources/js/lunr.js?v=3.4.1.748114234369" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.4.1.748114234369" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/retype.js?v=3.4.1" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.4.1.748114234369" data-turbo-eval="false" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -49,10 +51,10 @@
                 <!-- Logo -->
                 <div class="flex items-center justify-between h-full py-2 md:w-75">
                     <div class="flex items-center px-2 md:px-6">
-                        <a id="docs-site-logo" href="" class="flex items-center leading-snug text-xl">
+                        <a id="docs-site-logo" href="../../" class="flex items-center leading-snug text-xl">
                             <span class="w-10 mr-2 grow-0 shrink-0 overflow-hidden">
-                                <img class="max-h-10 dark:hidden md:inline-block" src="static/vmbear.jpg">
-                                <img class="max-h-10 hidden dark:inline-block" src="static/vmbear.jpg">
+                                <img class="max-h-10 dark:hidden md:inline-block" src="../../static/vmbear.jpg">
+                                <img class="max-h-10 hidden dark:inline-block" src="../../static/vmbear.jpg">
                             </span>
                             <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">z/VM Bootcamp</span>
                         </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">Manual</span>
@@ -167,13 +169,206 @@
                                 <!-- Rendered if sidebar right is enabled -->
                                 <div id="docs-sidebar-right-toggle"></div>
                                 <!-- Page content  -->
-<doc-anchor-target id="welcome" class="break-words">
+<doc-anchor-target id="terminal-server-using-iucv" class="break-words">
     <h1>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#welcome">#</doc-anchor-trigger>
-        <span>Welcome</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#terminal-server-using-iucv">#</doc-anchor-trigger>
+        <span>Terminal Server using IUCV</span>
     </h1>
 </doc-anchor-target>
-<p>Hi!</p>
+<p>Congratulations you have unlocked an extra content! :)</p>
+<p>On this chapter we will discuss the use of an IUCV Terminal Server to
+connect to Linux on z System guests. It will increase the availability
+by providing emergency access if the network for a system fails.</p>
+<p>The terminal server and all target systems run as guests of the same
+z/VM instance. Terminal server and target systems are connected through
+the z/VM Inter-User Communication Vehicle (IUCV). From the terminal
+server, administrators can access terminal devices on target systems
+without requiring direct TCP/IP connections to the target systems.</p>
+<p>You can use a terminal server to achieve these goals:</p>
+<div class="easylist"><p>&amp; Increase availability by providing emergency access to target systems
+if the primary network for these systems fails.</p>
+<p>&amp; Heighten security by separating user networks from administrator
+networks or by isolating sensitive Linux instances from IP networks.</p>
+<p>&amp; Simplify systems administration by providing a central access point to
+target systems.</p>
+</div>
+<p><figure class="content-center">
+    <img src="../../imgs/ts_iucv.png" alt="Terminal server environment" id="fig:tsiucv">
+    <figcaption class="caption">Terminal server environment</figcaption>
+</figure>
+</p>
+<doc-anchor-target id="configuring-the-server">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#configuring-the-server">#</doc-anchor-trigger>
+        <span>Configuring the Server</span>
+    </h2>
+</doc-anchor-target>
+<p>The first step is to add two new statements to the server Directory. Our
+server is LINUX1, that way, we will execute the following DIRMAINT
+commands:</p>
+<div class="easylist"><p>&amp; To allow our Terminal Server to connect on any guest:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; DIRM FOR LINUX1 IUCV ANY</code></pre>
+</doc-codeblock></div>
+<p>&amp; We will limit the number of concurrent IUCV connections to 128. If
+omitted, the limit defaults to 64, the maximum value for MAXCONN is
+65535</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; DIRM FOR LINUX1 SETOPTN ADD MAXCONN 128</code></pre>
+</doc-codeblock></div>
+<p>&amp; The configuration for the server is complete. Logoff and restart
+LINUX1:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; FORCE LINUX1</code></pre>
+</doc-codeblock></div>
+<p>&amp; Wait for it LOGOFF and then:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; XAUTOLOG LINUX1</code></pre>
+</doc-codeblock></div>
+</div>
+<doc-anchor-target id="configuring-the-client">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#configuring-the-client">#</doc-anchor-trigger>
+        <span>Configuring The Client</span>
+    </h2>
+</doc-anchor-target>
+<div class="easylist"><p>&amp; To configure the client we just need one statement:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; DIRM FOR LINUX2 IUCV ALLOW</code></pre>
+</doc-codeblock></div>
+<div class="bclogo"><p>Tip If you want to set IUCV ALLOW to all your Linux guests set it in
+LINDFLT:</p>
+<doc-panels>
+   <doc-panel id="dirm-for-lindflt-iucv-allow">
+       <template #title>DIRM FOR LINDFLT IUCV ALLOW</template>
+   </doc-panel>
+</div>
+</div>
+<p>&amp; The configuration for the client is complete. Logoff and restart
+LINUX2:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; FORCE LINUX2</code></pre>
+</doc-codeblock></div>
+<p>&amp; Wait for it LOGOFF and then:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; XAUTOLOG LINUX2</code></pre>
+</doc-codeblock></div>
+<div><doc-anchor-target id="testing-using-iucvconn">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#testing-using-iucvconn">#</doc-anchor-trigger>
+        <span>Testing using iucvconn</span>
+    </h2>
+</doc-anchor-target>
+<div class="easylist"><p>&amp; Login as root in LINUX1</p>
+<p>&amp; Execute:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">linux1:~ # iucvconn LINUX2 lnxhvc0</code></pre>
+</doc-codeblock></div>
+<p>&amp; Press ENTER twice and the login prompt will appear for LINUX2, logon
+as root and you will connect to LINUX2 via iucv.</p>
+</div>
+</div>
+<doc-anchor-target id="configuring-ts-shell-for-an-user">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#configuring-ts-shell-for-an-user">#</doc-anchor-trigger>
+        <span>Configuring ts-shell for an user</span>
+    </h2>
+</doc-anchor-target>
+<p>The ts-shell will lock an user to a limited shell that will only be able
+to connect or list the IUCV clients that it has access.</p>
+<doc-anchor-target id="creating-an-user-that-will-be-locked-in-ts-shell">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#creating-an-user-that-will-be-locked-in-ts-shell">#</doc-anchor-trigger>
+        <span>Creating an user that will be locked in ts-shell</span>
+    </h3>
+</doc-anchor-target>
+<div class="easylist"><p>&amp; First lets create a group that will also be allowed to connect to some
+servers</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">groupadd testgrp</code></pre>
+</doc-codeblock></div>
+<p>&amp; Create an user called &quot;bob&quot; that will be locked in ts-shell:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">linux1:~ # useradd -m -s /usr/bin/ts-shell -g ts-shell -G testgrp bob</code></pre>
+</doc-codeblock></div>
+<p>&amp; Change its password</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">linux1:~ # passwd bob</code></pre>
+</doc-codeblock></div>
+<p>&amp; Authorize &quot;bob&quot; and its group to connect to LINUX2:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">linux1:~ # vim /etc/iucvterm/ts-authorization.conf</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none"># Terminal server authorization configuration
+#
+# See ts-shell(1) manual page for file format syntax.
+#
+# See also authorization-sample.conf in the documentation directory.
+#
+@testgrp = list:linux2
+bob = list:linux2</code></pre>
+</doc-codeblock></div>
+<p>&amp; Enable audit on ts-shell</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">linux1:~ # /etc/iucvterm/ts-audit-systems.conf</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none"># List of z/VM guest virtual machines
+# for which terminal session are logged
+#
+linux2</code></pre>
+</doc-codeblock></div>
+</div>
+<doc-anchor-target id="testing-ts-shell">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#testing-ts-shell">#</doc-anchor-trigger>
+        <span>Testing ts-shell</span>
+    </h3>
+</doc-anchor-target>
+<div class="easylist"><p>&amp; Login as &quot;bob&quot; in LINUX1, you will see a prompt like this:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">Welcome to the Terminal Server shell.
+Type 'help' to get a list of available commands.
+
+
+bob@ts-shell&gt; </code></pre>
+</doc-codeblock></div>
+<p>&amp; To connect to LINUX2 type:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">bob@ts-shell&gt; connect linux2</code></pre>
+</doc-codeblock></div>
+<p>&amp; Press ENTER twice</p>
+</div>
+<doc-anchor-target id="checking-audit-logs">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#checking-audit-logs">#</doc-anchor-trigger>
+        <span>Checking audit logs</span>
+    </h3>
+</doc-anchor-target>
+<div class="easylist"><p>&amp; As root on LINUX1, go to /var/log/ts-shell/bob (There will be a folder
+for each user)</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">linux1:~ # cd /var/log/ts-shell/bob</code></pre>
+</doc-codeblock></div>
+<p>&amp; List the files there</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">linux1:~ # ls /var/log/ts-shell/bob</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">linux1:~ # ls /var/log/ts-shell/bob/
+LINUX2_2016-07-21-211256         LINUX2_2016-07-21-211620.timing  LINUX2_2016-07-21-211913.info    LINUX2_2016-07-21-213401         LINUX2_2016-07-21-213510.timing
+LINUX2_2016-07-21-211256.info    LINUX2_2016-07-21-211652         LINUX2_2016-07-21-211913.timing  LINUX2_2016-07-21-213401.info    LINUX2_2016-07-21-213601
+LINUX2_2016-07-21-211256.timing  LINUX2_2016-07-21-211652.info    LINUX2_2016-07-21-213354         LINUX2_2016-07-21-213401.timing  LINUX2_2016-07-21-213601.info
+LINUX2_2016-07-21-211620         LINUX2_2016-07-21-211652.timing  LINUX2_2016-07-21-213354.info    LINUX2_2016-07-21-213510         LINUX2_2016-07-21-213601.timing
+LINUX2_2016-07-21-211620.info    LINUX2_2016-07-21-211913         LINUX2_2016-07-21-213354.timing  LINUX2_2016-07-21-213510.info</code></pre>
+</doc-codeblock></div>
+<p>&amp; Choose one of these files and use &quot;scriptreplay&quot; to replay the
+session:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">linux1:~ # scriptreplay LINUX2_2016-07-21-213354.timing LINUX2_2016-07-21-213354</code></pre>
+</doc-codeblock></div>
+</div>
 
                                 
                                 <!-- Required only on API pages -->
@@ -183,13 +378,20 @@
                             
                                 <nav class="flex mt-14">
                                     <div class="w-1/2">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../pt-br/performance-monitoring-tool/">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                            <span>
+                                                <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Anterior</span>
+                                                <span class="block mt-1">Performance Monitoring Tools</span>
+                                            </span>
+                                        </a>
                                     </div>
                             
                                     <div class="w-1/2">
-                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l rounded-r-lg transition-colors duration-150 relative hover:z-5" href="en/">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../pt-br/how-to-link-a-disk-from-another-linux/">
                                             <span>
                                                 <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Próximo</span>
-                                                <span class="block mt-1">English version</span>
+                                                <span class="block mt-1">How to link a disk from another Linux</span>
                                             </span>
                                             <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                                         </a>
@@ -233,6 +435,6 @@
 
     <div id="docs-overlay-target"></div>
 
-    <script data-cfasync="false">window.__DOCS__ = { "title": "Welcome", isRoot: true, level: 0, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+    <script data-cfasync="false">window.__DOCS__ = { "title": "Terminal Server using IUCV", level: 2, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
 </body>
 </html>

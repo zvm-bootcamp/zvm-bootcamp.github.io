@@ -1,0 +1,1422 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.4.1.748114234369">
+
+    <!-- See retype.com -->
+    <meta name="generator" content="Retype 3.4.1">
+
+    <!-- Primary Meta Tags -->
+    <title>Control Program (CP)</title>
+    <meta name="title" content="Control Program (CP)">
+    <meta name="description" content="z/VM possui dois componentes principais:">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://zvm-bootcamp.github.io/pt-br/the-cp-control-program/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://zvm-bootcamp.github.io/pt-br/the-cp-control-program/">
+    <meta property="og:title" content="Control Program (CP)">
+    <meta property="og:description" content="z/VM possui dois componentes principais:">
+    <meta property="og:image" content="https://zvm-bootcamp.github.io/imgs/userdir.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://zvm-bootcamp.github.io/pt-br/the-cp-control-program/">
+    <meta property="twitter:title" content="Control Program (CP)">
+    <meta property="twitter:description" content="z/VM possui dois componentes principais:">
+    <meta property="twitter:image" content="https://zvm-bootcamp.github.io/imgs/userdir.png">
+
+    <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
+
+    <link href="../../resources/css/retype.css?v=3.4.1.748114234369" rel="stylesheet">
+
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.4.1.748114234369" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/retype.js?v=3.4.1" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.4.1.748114234369" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.4.1.748114234369" defer></script>
+</head>
+<body>
+    <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
+        <div class="absolute bottom-0 left-0 bg-gray-100 dark:bg-dark-800" style="top: 5rem; right: 50%"></div>
+    
+        <header id="docs-site-header" class="sticky top-0 z-30 flex w-full h-16 bg-white border-b border-gray-200 md:h-20 dark:bg-dark-850 dark:border-dark-650">
+            <div class="container relative flex items-center justify-between pr-6 grow md:justify-start">
+                <!-- Mobile menu button skeleton -->
+                <button v-cloak class="skeleton docs-mobile-menu-button flex items-center justify-center shrink-0 overflow-hidden dark:text-white focus:outline-none rounded-full w-10 h-10 ml-3.5 md:hidden"><svg xmlns="http://www.w3.org/2000/svg" class="mb-px shrink-0" width="24" height="24" viewBox="0 0 24 24" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor"><path d="M2 4h20v2H2zM2 11h20v2H2zM2 18h20v2H2z"></path></g></svg></button>
+                <div v-cloak id="docs-sidebar-toggle"></div>
+        
+                <!-- Logo -->
+                <div class="flex items-center justify-between h-full py-2 md:w-75">
+                    <div class="flex items-center px-2 md:px-6">
+                        <a id="docs-site-logo" href="../../" class="flex items-center leading-snug text-xl">
+                            <span class="w-10 mr-2 grow-0 shrink-0 overflow-hidden">
+                                <img class="max-h-10 dark:hidden md:inline-block" src="../../static/vmbear.jpg">
+                                <img class="max-h-10 hidden dark:inline-block" src="../../static/vmbear.jpg">
+                            </span>
+                            <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">z/VM Bootcamp</span>
+                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">Manual</span>
+                    </div>
+        
+                    <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
+                </div>
+        
+                <div class="flex justify-between md:grow">
+                    <!-- Top Nav -->
+                    <nav class="hidden md:flex">
+                        <ul class="flex flex-col mb-4 md:pl-16 md:mb-0 md:flex-row md:items-center">
+                            <li class="mr-6">
+                                <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://titosoft.github.io/z/vm/zvm-cheatsheet/" target="_blank">z/VM Cheat Sheet</a>
+                            </li>
+        
+                        </ul>
+                    </nav>
+        
+                    <!-- Header Right Skeleton -->
+                    <div v-cloak class="flex justify-end grow skeleton">
+        
+                        <!-- Search input mock -->
+                        <div class="relative hidden w-40 lg:block lg:max-w-sm lg:ml-auto">
+                            <div class="absolute flex items-center justify-center h-full pl-3 dark:text-dark-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon-base" width="16" height="16" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 1px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                            </div>
+                            <input class="w-full h-10 placeholder-gray-400 transition-colors duration-200 ease-in bg-gray-200 border border-transparent rounded md:text-sm hover:bg-white hover:border-gray-300 focus:outline-none focus:bg-white focus:border-gray-500 dark:bg-dark-600 dark:border-dark-600 dark:placeholder-dark-400" style="padding: 0.625rem 0.75rem 0.625rem 2rem" type="text" placeholder="Pesquisar">
+                        </div>
+        
+                        <!-- Mobile search button -->
+                        <div class="flex items-center justify-center w-10 h-10 lg:hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="20" height="20" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                        </div>
+        
+                        <!-- Dark mode switch placeholder -->
+                        <div class="w-10 h-10 lg:ml-2"></div>
+        
+                        <!-- History button -->
+                        <div class="flex items-center justify-center w-10 h-10" style="margin-right: -0.625rem;">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="22" height="22" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor" ><g ><path d="M12.01 6.01c-.55 0-1 .45-1 1V12a1 1 0 00.4.8l3 2.22a.985.985 0 001.39-.2.996.996 0 00-.21-1.4l-2.6-1.92V7.01c.02-.55-.43-1-.98-1z"></path><path d="M12.01 1.91c-5.33 0-9.69 4.16-10.05 9.4l-.29-.26a.997.997 0 10-1.34 1.48l1.97 1.79c.19.17.43.26.67.26s.48-.09.67-.26l1.97-1.79a.997.997 0 10-1.34-1.48l-.31.28c.34-4.14 3.82-7.41 8.05-7.41 4.46 0 8.08 3.63 8.08 8.09s-3.63 8.08-8.08 8.08c-2.18 0-4.22-.85-5.75-2.4a.996.996 0 10-1.42 1.4 10.02 10.02 0 007.17 2.99c5.56 0 10.08-4.52 10.08-10.08.01-5.56-4.52-10.09-10.08-10.09z"></path></g></g></svg>
+                        </div>
+                    </div>
+        
+                    <div v-cloak class="flex justify-end grow">
+                        <div id="docs-mobile-search-button"></div>
+                        <doc-search-desktop></doc-search-desktop>
+        
+                        <doc-theme-switch class="lg:ml-2"></doc-theme-switch>
+                        <doc-history></doc-history>
+                    </div>
+                </div>
+            </div>
+        </header>
+    
+        <div class="container relative flex bg-white">
+            <!-- Sidebar Skeleton -->
+            <div v-cloak class="fixed flex flex-col shrink-0 duration-300 ease-in-out bg-gray-100 border-gray-200 sidebar top-20 w-75 border-r h-screen md:sticky transition-transform skeleton dark:bg-dark-800 dark:border-dark-650">
+            
+                <!-- Render this div, if config.showSidebarFilter is `true` -->
+                <div class="flex items-center h-16 px-6">
+                    <input class="w-full h-8 px-3 py-2 transition-colors duration-200 ease-linear bg-white border border-gray-200 rounded shadow-none text-sm focus:outline-none focus:border-gray-600 dark:bg-dark-600 dark:border-dark-600" type="text" placeholder="Filtrar">
+                </div>
+            
+                <div class="pl-6 mt-1 mb-4">
+                    <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                </div>
+            
+                <div class="shrink-0 mt-auto bg-transparent dark:border-dark-650">
+                    <a class="flex items-center justify-center flex-nowrap h-16 text-gray-400 dark:text-dark-400 hover:text-gray-700 dark:hover:text-dark-300 transition-colors duration-150 ease-in docs-powered-by" target="_blank" href="https://retype.com/" rel="noopener">
+                        <span class="text-xs whitespace-nowrap">Powered by</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="ml-2" fill="currentColor" width="96" height="20" overflow="visible"><path d="M0 0v20h13.59V0H0zm11.15 17.54H2.44V2.46h8.71v15.08zM15.8 20h2.44V4.67L15.8 2.22zM20.45 6.89V20h2.44V9.34z"/><g><path d="M40.16 8.44c0 1.49-.59 2.45-1.75 2.88l2.34 3.32h-2.53l-2.04-2.96h-1.43v2.96h-2.06V5.36h3.5c1.43 0 2.46.24 3.07.73s.9 1.27.9 2.35zm-2.48 1.1c.26-.23.38-.59.38-1.09 0-.5-.13-.84-.4-1.03s-.73-.28-1.39-.28h-1.54v2.75h1.5c.72 0 1.2-.12 1.45-.35zM51.56 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92h4.74v1.83h-6.79V5.36h6.64zM60.09 7.15v7.48h-2.06V7.15h-2.61V5.36h7.28v1.79h-2.61zM70.81 14.64h-2.06v-3.66l-3.19-5.61h2.23l1.99 3.45 1.99-3.45H74l-3.19 5.61v3.66zM83.99 6.19c.65.55.97 1.4.97 2.55s-.33 1.98-1 2.51-1.68.8-3.04.8h-1.23v2.59h-2.06V5.36h3.26c1.42 0 2.45.28 3.1.83zm-1.51 3.65c.25-.28.37-.69.37-1.22s-.16-.92-.48-1.14c-.32-.23-.82-.34-1.5-.34H79.7v3.12h1.38c.68 0 1.15-.14 1.4-.42zM95.85 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92H96v1.83h-6.79V5.36h6.64z"/></g></svg>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Sidebar component -->
+            <doc-sidebar v-cloak>
+                <template #sidebar-footer>
+                    <div class="shrink-0 mt-auto border-t md:bg-transparent md:border-none dark:border-dark-650">
+            
+                        <div class="py-3 px-6 md:hidden border-b dark:border-dark-650">
+                            <nav>
+                                <ul class="flex flex-wrap justify-center items-center">
+                                    <li class="mr-6">
+                                        <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://titosoft.github.io/z/vm/zvm-cheatsheet/" target="_blank">z/VM Cheat Sheet</a>
+                                    </li>
+            
+                                </ul>
+                            </nav>
+                        </div>
+            
+                        <a class="flex items-center justify-center flex-nowrap h-16 text-gray-400 dark:text-dark-400 hover:text-gray-700 dark:hover:text-dark-300 transition-colors duration-150 ease-in docs-powered-by" target="_blank" href="https://retype.com/" rel="noopener">
+                            <span class="text-xs whitespace-nowrap">Powered by</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-2" fill="currentColor" width="96" height="20" overflow="visible"><path d="M0 0v20h13.59V0H0zm11.15 17.54H2.44V2.46h8.71v15.08zM15.8 20h2.44V4.67L15.8 2.22zM20.45 6.89V20h2.44V9.34z"/><g><path d="M40.16 8.44c0 1.49-.59 2.45-1.75 2.88l2.34 3.32h-2.53l-2.04-2.96h-1.43v2.96h-2.06V5.36h3.5c1.43 0 2.46.24 3.07.73s.9 1.27.9 2.35zm-2.48 1.1c.26-.23.38-.59.38-1.09 0-.5-.13-.84-.4-1.03s-.73-.28-1.39-.28h-1.54v2.75h1.5c.72 0 1.2-.12 1.45-.35zM51.56 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92h4.74v1.83h-6.79V5.36h6.64zM60.09 7.15v7.48h-2.06V7.15h-2.61V5.36h7.28v1.79h-2.61zM70.81 14.64h-2.06v-3.66l-3.19-5.61h2.23l1.99 3.45 1.99-3.45H74l-3.19 5.61v3.66zM83.99 6.19c.65.55.97 1.4.97 2.55s-.33 1.98-1 2.51-1.68.8-3.04.8h-1.23v2.59h-2.06V5.36h3.26c1.42 0 2.45.28 3.1.83zm-1.51 3.65c.25-.28.37-.69.37-1.22s-.16-.92-.48-1.14c-.32-.23-.82-.34-1.5-.34H79.7v3.12h1.38c.68 0 1.15-.14 1.4-.42zM95.85 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92H96v1.83h-6.79V5.36h6.64z"/></g></svg>
+                        </a>
+                    </div>
+                </template>
+            </doc-sidebar>
+    
+            <div class="grow min-w-0 dark:bg-dark-850">
+                <!-- Render "toolbar" template here on api pages --><!-- Render page content -->
+                <div class="flex">
+                    <div class="min-w-0 p-4 grow md:px-16">
+                        <main class="relative pb-12 lg:pt-2">
+                            <div class="docs-markdown" id="docs-content">
+                                <!-- Rendered if sidebar right is enabled -->
+                                <div id="docs-sidebar-right-toggle"></div>
+                                <!-- Page content  -->
+<doc-anchor-target id="control-program-cp" class="break-words">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#control-program-cp">#</doc-anchor-trigger>
+        <span>Control Program (CP)</span>
+    </h1>
+</doc-anchor-target>
+<doc-anchor-target id="introdução">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#introdução">#</doc-anchor-trigger>
+        <span>Introdução</span>
+    </h2>
+</doc-anchor-target>
+<p>z/VM possui dois componentes principais:</p>
+<ul>
+<li><p>O Programa de Controle (CP) controla a Máquina Real.</p>
+</li>
+<li><p>O Sistema de Monitor Conversacional (CMS) controla as Máquinas Virtuais.</p>
+</li>
+</ul>
+<p>O CP é às vezes chamado de hipervisor. Ele é a camada entre o
+hardware e as máquinas virtuais. Cada máquina virtual parece ter seu
+próprio CPU, armazenamento (memória) e dispositivos. Na realidade, esses itens podem ser:</p>
+<ul>
+<li><p>Reais. Por exemplo, você pode dedicar uma interface de rede real a uma
+máquina virtual para seu uso exclusivo.</p>
+</li>
+<li><p>Compartilhados. Por exemplo, o CPU é compartilhado por meio de divisão de tempo e o
+armazenamento real é compartilhado como armazenamento virtual.</p>
+</li>
+<li><p>Simulados. Por exemplo, um switch virtual é um switch de rede LAN simulado.
+CP mapeia transparentemente dispositivos e recursos virtuais para seus equivalentes reais.</p>
+</li>
+<li><p>Emulados. Por exemplo, discos SCSI emulados FBA. As declarações EDEVICE
+nos permitem definir dispositivos emulados que representam dispositivos reais para CP. Isso significa dispositivos SCSI.</p>
+</li>
+</ul>
+<p>Os tópicos a seguir explicam como o CP gerencia os recursos do computador para
+máquinas virtuais.</p>
+<doc-anchor-target id="central-processing-units-cpus">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#central-processing-units-cpus">#</doc-anchor-trigger>
+        <span>Central processing units (CPUs)</span>
+    </h2>
+</doc-anchor-target>
+<p>TODO: Review</p>
+<ul>
+<li>Um servidor IBM z13 pode ter até 141 processadores.</li>
+<li>Um servidor IBM zEnterprise EC12 pode ter até 101 processadores.</li>
+<li>z13 pode ter até 80 LPARs, um aumento dos 65 em zEC12.</li>
+<li>Uma Partição Lógica agora pode ter até 141 processadores definidos no z13 (101 para zEC12).</li>
+<li>Uma LPAR z/VM pode ter até 64 processadores lógicos se o SMT estiver desativado ou 32 processadores lógicos definidos se o SMT estiver ativado.</li>
+<li>Processadores virtuais (ou CPUs virtuais) em uma única máquina virtual (arquitetada): 64
+<ul>
+<li>No entanto, NVirtual &gt; NLogical geralmente não é prático.</li>
+</ul>
+</li>
+<li>Se capaz de rodar no modo multiprocessador, seu sistema operacional de máquina virtual despacha trabalho em suas CPUs virtuais como se estivesse rodando em hardware real. O CP cuida do despacho de trabalho em suas CPUs virtuais para CPUs reais.</li>
+<li><strong>Diretriz:</strong> Nunca dê a uma máquina virtual mais CPUs virtuais do que existem CPUs reais.</li>
+</ul>
+<p>Geralmente, as máquinas virtuais compartilham todos os CPUs, mas um CPU real pode ser dedicado a uma máquina virtual, o que significa que o CPU é reservado para uso exclusivo dessa máquina virtual. Isso obviamente tem um impacto no desempenho das outras máquinas virtuais no sistema.</p>
+<doc-anchor-target id="storage">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#storage">#</doc-anchor-trigger>
+        <span>Storage</span>
+    </h2>
+</doc-anchor-target>
+<p>O termo <em>Storage</em> no mainframe é análogo à memória em um computador pessoal. Os comandos do CP se referem à memória como <em>storage</em>, portanto, não confunda o termo &quot;<em>storage</em>&quot; com armazenamento em disco ou fita.</p>
+<p>Cada máquina virtual tem seu próprio <em>storage</em> virtual. O CP gerencia a residência das páginas da máquina virtual no <em>storage</em> real por meio da paginação. Páginas que não foram referenciadas podem ser movidas do <em>storage</em> real para um dispositivo de paginação. Quando uma máquina virtual requer uma página que não está mais no <em>storage</em> real, ocorre uma falta de página e o CP traz a página faltante de volta para o <em>storage</em> real.</p>
+<p>O CP possui facilidades que permitem que partes do <em>storage</em> real sejam compartilhadas por muitas máquinas virtuais. Tais porções são chamadas de segmentos compartilhados. Esse compartilhamento economiza no <em>storage</em> real e requer menos paginação, melhorando assim o desempenho. Por exemplo, o núcleo CMS é compartilhado no <em>storage</em> real por todas as máquinas virtuais que carregaram o CMS pelo nome; ou seja, toda máquina virtual CMS mapeia um segmento de <em>storage</em> virtual de 1 MB para o mesmo 1 MB de <em>storage</em> real.</p>
+<doc-anchor-target id="dasd-and-minidisks">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#dasd-and-minidisks">#</doc-anchor-trigger>
+        <span>DASD and minidisks</span>
+    </h2>
+</doc-anchor-target>
+<p>DASD, o termo de mainframe para drives de disco, significa &quot;direct access storage device&quot; e é análogo a um disco rígido em um computador pessoal. Um único DASD real é chamado de volume ou volume real. Cada volume tem uma etiqueta ou número de série de volume (volser) que identifica o volume para o z/VM.</p>
+<p>É importante entender a maneira como o z/VM compartilha DASD. O CP pode logicamente particionar volumes DASD reais em minidiscos, que é análogo a dividir um disco rígido de computador pessoal em várias partições. Um minidisco tem sua própria etiqueta, que é distinta da etiqueta DASD real. Cada máquina virtual pode ter um ou mais minidiscos e esses minidiscos estão sob controle do sistema operacional da maquina virtual.</p>
+<doc-anchor-target id="minidisks-temporários">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#minidisks-temporários">#</doc-anchor-trigger>
+        <span>Minidisks Temporários</span>
+    </h2>
+</doc-anchor-target>
+<p>Você pode criar um minidisco temporário a partir de um pool especial de discos reais. O disco dura enquanto a máquina virtual estiver conectada. Ao desconectar, o minidisco temporário é excluído e o espaço retorna para o pool de disco temporário disponível.</p>
+<doc-anchor-target id="discos-virtuais-em-storage">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#discos-virtuais-em-storage">#</doc-anchor-trigger>
+        <span>Discos virtuais em storage</span>
+    </h2>
+</doc-anchor-target>
+<p>Discos virtuais em armazenamento são semelhantes a minidiscos temporários, exceto que os discos são mapeados para o <em>storage</em> em vez de cilindros de discos reais. O uso de discos virtuais em <em>storage</em> evita a necessidade de I/O de disco. O CP gerencia as páginas do disco virtual como parte de sua gestão de memória real.</p>
+<doc-anchor-target id="virtual-readers-punches-e-printers">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#virtual-readers-punches-e-printers">#</doc-anchor-trigger>
+        <span>Virtual readers, punches, e printers</span>
+    </h2>
+</doc-anchor-target>
+<p>Estes dispositivos não estão associados a dispositivos reais, mas são implementados através do sistema de arquivos de spool.</p>
+<p>Nos primeiros dias da computação, a entrada no computador vinha de cartões perfurados carregados em um leitor de cartões (<em>reader</em>). Você usava uma perfuradora (<em>keypunch</em>) para registrar seu programa em cartões perfurados, depois carregava os cartões em um leitor de cartões (<em>reader</em>), que interpretava seus cartões e carregava seu programa no computador. A saída do programa era escrita em uma impressora (<em>printer</em>). O z/VM preserva esse pedaço da história da computação através de dispositivos virtuais de leitura, perfuração e impressão, também chamados de dispositivos de registro unitário. Os dispositivos de registro unitário oferecem uma maneira prática de enviar arquivos de um dispositivo virtual para outro, para outras máquinas virtuais ou para dispositivos reais (como impressoras reais). Por exemplo, você pode pensar em um arquivo sendo enviado de uma máquina virtual para outra como o equivalente virtual de pegar uma pilha de cartões de um computador e carregá-la no leitor de cartões de outro computador.</p>
+<p>Por trás da manipulação desses arquivos, está um sistema de arquivos CP chamado sistema de arquivos de spool. O CP gerencia arquivos de spool em um ou mais volumes DASD que atuam como áreas de armazenamento temporário. Um arquivo de spool é uma coleção de dados juntamente com instruções de controle de dispositivo para processamento em um dispositivo de registro unitário. O spooling é o processamento de arquivos criados por ou destinados a leitores virtuais, perfurações e impressoras. Através de comandos CP e CMS, você pode enviar arquivos de spool de um dispositivo virtual para outro, de sua máquina virtual para outra e para dispositivos reais.</p>
+<p>Por convenção, cada máquina virtual tem um leitor virtual (<em>reader</em>) no número de dispositivo virtual <strong>00C</strong>, uma perfuradora virtual (<em>punch</em>) no número de dispositivo virtual <strong>00D</strong> e uma impressora virtual (<em>printer</em>) no número de dispositivo virtual <strong>00E</strong>. Seu leitor virtual é como a caixa de entrada de um sistema de e-mail, exceto que mais do que apenas e-mails podem ser colocados lá. Através de sua perfuradora virtual, você pode colocar uma cópia de um sistema operacional inteiro no spool do sistema, e então usar o comando CP IPL para carregar e executar esse sistema operacional em sua máquina virtual.</p>
+<doc-anchor-target id="o-virtual-machine-console">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#o-virtual-machine-console">#</doc-anchor-trigger>
+        <span>O virtual machine console</span>
+    </h2>
+</doc-anchor-target>
+<p>O console da máquina virtual ou console virtual é a interface principal
+da máquina virtual. Quando você se conecta a uma máquina virtual a partir de um
+terminal local ou uma estação de trabalho remota, o console virtual é
+associado à sessão do terminal. A partir do console, você pode inserir comandos CP,
+como carregar (IPL) um sistema operacional. O console virtual
+é o dispositivo que um sistema operacional vê como seu sistema ou console
+de hardware.</p>
+<p>Enquanto você trabalha em seu console, o canto inferior direito da tela
+exibe vários avisos de status. Os avisos informam o que está acontecendo
+no sistema no momento atual. Se você esquecer o que esses avisos
+significam, você pode retornar a esta seção para referência.</p>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th><strong>Status do Console</strong></th>
+<th><strong>Descrição</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>CP READ</strong></td>
+<td>Este aviso significa que o Programa de Controle (CP) está esperando você inserir um comando.</td>
+</tr>
+<tr>
+<td><strong>VM READ</strong></td>
+<td>Este aviso significa que um sistema operacional de máquina virtual, como o CMS, está esperando você inserir um comando.</td>
+</tr>
+<tr>
+<td><strong>RUNNING</strong></td>
+<td>Este aviso significa que a máquina virtual está processando algo. No caso do CMS, significa que o CMS está pronto para que você insira um comando.</td>
+</tr>
+<tr>
+<td><strong>MORE...</strong></td>
+<td>Este aviso indica que há mais informações do que podem caber na tela atual. Após uma pausa (que depende das configurações do terminal da sua máquina virtual), a próxima tela de informações é exibida. Para ver a próxima tela imediatamente, pressione a tecla Limpar (Clear). Para manter essa informação na tela, pressione a tecla Enter, o que muda <strong>MORE...</strong> para <strong>HOLDING</strong>.</td>
+</tr>
+<tr>
+<td><strong>HOLDING</strong></td>
+<td>Este aviso significa que o sistema está esperando que você limpe a tela antes de mostrar mais informações. O aviso aparece quando a tela exibe <strong>MORE...</strong> e você pressiona a tecla Enter. O aviso também pode aparecer quando outro usuário lhe envia uma mensagem. Para cancelar a retenção, pressione a tecla <em>Clear</em>.</td>
+</tr>
+<tr>
+<td><strong>NOT ACCEPTED</strong></td>
+<td>Este aviso significa que o sistema está processando algo e está muito ocupado para aceitar outro comando. Espere alguns segundos e insira seu comando novamente.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<doc-anchor-target id="o-diretório-do-usuário">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#o-diretório-do-usuário">#</doc-anchor-trigger>
+        <span>O Diretório do Usuário</span>
+    </h2>
+</doc-anchor-target>
+<p>O diretório do usuário z/VM (ou registro do usuário) descreve a configuração
+e as características operacionais de cada máquina virtual que pode ser
+criada pelo CP. Um diretório do usuário z/VM existe em duas formas: uma forma de origem
+que consiste em um ou mais arquivos CMS, e uma forma de objeto, compilada
+a partir da origem, em um disco formatado pelo CP.</p>
+<p>Cada máquina virtual tem uma entrada no diretório.</p>
+<p><figure class="content-center">
+    <img src="../../imgs/userdir.png" alt="User Directory example">
+    <figcaption class="caption">User Directory example</figcaption>
+</figure>
+</p>
+<doc-anchor-target id="exercícios">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#exercícios">#</doc-anchor-trigger>
+        <span>Exercícios</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="logon-na-maint">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#logon-na-maint">#</doc-anchor-trigger>
+        <span>Logon na MAINT</span>
+    </h3>
+</doc-anchor-target>
+<p>Faça login na máquina virtual MAINT. A senha padrão mudou
+no <strong>z/VM 6.3</strong>. Em nosso ambiente, a senha padrão é
+<strong>WD5JU8QP</strong> (ou o nome da máquina em alguns casos). Sempre verifique
+o Guia de Instalação que acompanha seu pedido no IBM Shopz.</p>
+<p>Alternativamente, limpe a tela de login e, no modo CP, digite <strong>===&gt; logon maint WD5JU8QP</strong></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">USERID ===&gt; maint 
+PASSWORD ===&gt; WD5JU8QP (complex password - installation default) </code></pre>
+</doc-codeblock></div>
+<p><strong>Pressione a tecla ENTER uma vez para mostrar algumas mensagens do PROFILE EXEC para este userid.</strong></p>
+<p><strong>Pressione a tecla ENTER novamente para continuar e alterar o status de &quot;VM READ&quot; para o status &quot;RUNNING&quot;.</strong></p>
+<p>O &quot;PROFILE EXEC&quot; será executado para configurar seu ambiente. Agora você está no CMS. É semelhante ao TSO no z/OS ou a um shell no Linux. Você aprenderá mais sobre o CMS na próxima seção. Agora, vamos fazer alguns comandos CP para se familiarizar com o sistema.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">LOGON MAINT                                                                     
+z/VM Version 6 Release 3.0, Service Level 1301 (64-bit),                        
+built on IBM Virtualization Technology                                          
+There is no logmsg data                                                         
+FILES:   NO RDR,   NO PRT,   NO PUN                                             
+LOGON AT 22:42:30 EDT SATURDAY 08/31/13                                         
+z/VM V6.3.0    2013-08-31 21:23                                                 
+                                                                                
+DMSACP723I B (5E5) R/O                                                          
+DMSACP723I D (51D) R/O                                                          
+DMSACP723I E (551) R/O                                                          
+                                                                                
+******************************************************************              
+                                                                                
+THE MAINT630 USER ID **MUST** BE USED INSTEAD OF MAINT                          
+WHEN INSTALLING SERVICE.                                                        
+                                                                                
+******************************************************************              
+                                                                                
+PRESS ENTER TO CONTINUE                                                         
+                                                                                
+Ready; T=0.01/0.01 22:43:44                                                     
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                            RUNNING   ZVMWSXX   </code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="comandos-cp">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#comandos-cp">#</doc-anchor-trigger>
+        <span>Comandos CP</span>
+    </h2>
+</doc-anchor-target>
+<p>Esta seção descreverá alguns comandos CP.</p>
+<doc-anchor-target id="help">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#help">#</doc-anchor-trigger>
+        <span>HELP</span>
+    </h3>
+</doc-anchor-target>
+<p>Você usa os comandos CP para se comunicar com o programa de controle. Os comandos CP
+controlam os dispositivos conectados a uma máquina virtual e suas
+características.</p>
+<p>1. Para ver uma lista dos comandos CP:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; HELP</code></pre>
+</doc-codeblock></div>
+<p><strong>Posicione o cursor em &quot;CP&quot;</strong></p>
+<p><strong>Pressione a tecla ENTER</strong></p>
+<p><strong>O que você vê aqui é um subconjunto dos comandos CP disponíveis no z/VM.</strong></p>
+<p>2. Para exibir o texto de ajuda para o comando DISCONNECT:</p>
+<p><strong>Pressione F8, se necessário, para avançar a tela.</strong></p>
+<p><strong>Posicione o cursor em &quot;DISConn&quot;</strong></p>
+<p><strong>Pressione a tecla ENTER</strong></p>
+<p>A parte inferior da tela lista as teclas PF para opções adicionais que
+estão disponíveis para o comando selecionado.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">CP MENU                  Menu Help Information                   line 10 of 34 
+                                                                                
+ *CPQUERY  :DYNIO    CPRELease DUPlex    LINK      REFRESH   STore              
+ *CPSET    :HELP     CPTRAP    ECho      LOADBUF   REPeat    SYNCmdrs           
+ *CPUTIL   #CP       CPTYPE    ENable    LOADVFCB  REQuest   SYStem             
+ *DEFINE   ACNT      CPU       EXTernal  LOCate    RESET     TAg                
+ *DELETE   ACTivate  CPVLoad   FLASHBND  LOCATEVM  RESTART   TERMinal           
+ *DETACH   ASSOCiate CPXLoad   FLASHCopy LOCK      RETAIN    TRace              
+ *DISABLE  ASTERISK  CPXUnload FLASHEST  LOGoff    REWind    TRANsfer           
+ *DISPLAY  AT        DEActive  FLASHRES  Logon     SAVESEG   TRSAVE             
+ *DUMP     ATTach    DEDicate  FLASHTGT  Message   SAVESYS   TRSOurce           
+ *ENABLE   ATTN      DEFine    FLASHWIT  MESSAGEA  SCREen    UNCOUPLE           
+ *INDICATE AUTOLOg   DEFSEG    Flush     MESSAGEU  SEND      UNDEDicate         
+ *LOCATE   BAckspace DEFSYS    FOR       MODify    SET       UNDIAL             
+ *MODIFY   Begin     DELete    FORCE     MONitor   SHUTDOWN  UNLOCK             
+ *MONITOR  CHange    DESTAGE   FORWard   MSGNOH    SIGnal    UTILITY            
+ *PURGE    Close     DETach    FRee      NOTReady  SILENTly  VARY               
+ *RDEVICE  COMMands  Dial      GIVE      ORDer     SLeep     VDelete            
+ *SPXTAPE  COMMIT    DISAble   GIVRDEV   PER       SMsg      VInput             
+ *STORE    CONCOPY   DISASSOCi GIVVDEV   POUNDCP   SNAPDUMP  VMDump             
+ *TERMINAL COUPLE    DISCARD   HALT      PURge     SPAce     VMDUMPTL           
+ *TRACE    CP        (*| \textcolor{red}{DISConn} |*)  HOld      Query     SPool     VMRELOcate         
+ *TRSOURCE CPACcess  DISPlay   HYPerswap READY     SPXtape   Warning            
+ *VMDUMPTL CPCAche   DRain     INDicate  RECordin  STArt     XAUTOLOg           
+ *XLINK    CPHX      DUmp      Ipl       REDEFine  STOP      XLINK              
+ :DUMPS    CPLISTfile                                                           
+* * * End of File * * *                                                         
+ PF1= Help     2= Top      3= Quit     4= Return     5= Clocate   6= ?          
+ PF7= Backward 8= Forward  9= PFkeys  10=           11=          12= Cursor     
+                                                                                
+====&gt;                                                                           
+                                                            Macro-read 2 Files  </code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">CP DISCONN                All Help Information                   line 1 of 140 
+(c) Copyright IBM Corporation 1990, 2013                                        
+                                                                                
+ DISCONNECT                                                                     
+                                                                                
+ &gt;&gt;--DISConnect--.------.----------------------------------------------------&gt;&lt; 
+                 '-HOld-'                                                       
+                                                                                
+ Authorization                                                                  
+                                                                                
+ Privilege Class: Any                                                           
+                                                                                
+ Purpose                                                                        
+                                                                                
+ Use DISCONNECT to disconnect your display from the host system without         
+ stopping operations in your virtual machine.                                   
+                                                                                
+ Operands                                                                       
+                                                                                
+ HOld                                                                           
+     causes the non-SNA TTY display terminal telecommunication connection to    
+     remain in effect after your session is disconnected. If you specify the    
+     HOLD option from a logical device, you disconnect from the logical device  
+     without losing the connection between the logical device and the system.   
+                                                                                
+ Usage Notes                                                                    
+                                                                                
+ PF1=          2= Top      3= Quit     4= Return     5= Clocate   6= ?          
+ PF7= Backward 8= Forward  9= PFkeys  10=           11=          12= Cursor     
+                                                                                
+====&gt;                                                                           
+                                                            Macro-read 3 Files  </code></pre>
+</doc-codeblock></div>
+<p>3. Quando terminar de navegar, saia da utilidade de ajuda.</p>
+<p><strong>Pressione a tecla F3 (Sair) repetidamente até retornar ao estado &quot;RUNNING&quot;</strong></p>
+<p>Você pode ter que fazer isso repetidamente, dependendo de quão aprofundado você foi na função AJUDA.</p>
+<p>4. Outra maneira de ir diretamente para o menu de comandos CP é com o seguinte comando de ajuda:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; HELP CP MENU</code></pre>
+</doc-codeblock></div>
+<p>5. Saia do menu de ajuda e retorne ao prompt &quot;READY&quot;:</p>
+<p><strong>Pressione a tecla F3 repetidamente até retornar ao estado &quot;RUNNING&quot;</strong></p>
+<doc-anchor-target id="query">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#query">#</doc-anchor-trigger>
+        <span>QUERY</span>
+    </h3>
+</doc-anchor-target>
+<p>Vamos aprender um pouco sobre o ambiente da sua máquina virtual com o
+comando QUERY.</p>
+<p>1. Para exibir uma lista de comandos que sua máquina virtual (MAINT, neste
+caso) está autorizada a emitir:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; query commands</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">Ready; T=0.01/0.01 12:06:06                                                     
+query  commands                                                                      
+ACNT        ACTIVATE    ADJUNCT     ADSTOP      ASSOCIATE   AT                  
+ATTACH      ATTN        AUTOLOG     BACKSPACE   BEGIN       CHANGE              
+CLOSE       COMMANDS    COMMIT      CONCOPY     COUPLE      CPACCESS            
+CPCACHE     CPHX        CPLISTFILE  CPRELEASE   CPFORMAT    CPTRAP              
+CPTYPE      CPU         CPVLOAD     CPXLOAD     CPXUNLOAD   DEACTIVE            
+DEACTIVATE  DEDICATE    DEFINE      DEFSEG      DEFSYS      DELETE              
+DESTAGE     DETACH      DIAL        DISABLE     DISASSOCIATEDISCARD             
+DISCONNECT  DISPLAY     DRAIN       DUMP        DUPLEX      ECHO                
+ENABLE      EXTERNAL    FLASHCOPY   FLUSH       FOR         FORCE               
+FORWARD     FREE        GIVE        HALT        HOLD        HYPERSWAP           
+INDICATE    IPL         LINK        LOADBUF     LOADVFCB    LOCATE              
+LOCATEVM    LOCK        LOGON       LOGOFF      MESSAGE     MODIFY              
+MONITOR     MSGNOH      NOTREADY    ORDER       PURGE       QUERY               
+READY       RECORDING   REDEFINE    REFRESH     REPEAT      REQUEST             
+RESET       RESTART     RETAIN      REWIND      SAVESEG     SAVESYS             
+SCREEN      SEND        SET         SHUTDOWN    SIGNAL      SILENTLY            
+SLEEP       SMSG        SNAPDUMP    SPACE       SPOOL       SPXTAPE             
+START       STOP        STORE       SYNCMDRS    SYSTEM      TAG                 
+                                                                                
+                                                            MORE...   ZVMWSXX   </code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">TERMINAL    TRACE       TRANSFER    TRSAVE      TRSOURCE    UNCOUPLE            
+UNDEDICATE  UNDIAL      UNLOCK      VARY        VDELETE     VINPUT              
+VMDUMP      VMRELOCATE  WARNING     XAUTOLOG    XLINK       XSPOOL              
+DIAG00      DIAG04      DIAG08      DIAG0C      DIAG10      DIAG14              
+DIAG18      DIAG20      DIAG24      DIAG28      DIAG34      DIAG3C              
+DIAG40      DIAG44      DIAG48      DIAG4C      DIAG54      DIAG58              
+DIAG5C      DIAG60      DIAG64      DIAG68      DIAG70      DIAG74              
+DIAG7C      DIAG84      DIAG88      DIAG8C      DIAG90      DIAG94              
+DIAG98      DIAG9C      DIAGA0      DIAGA4      DIAGA8      DIAGB0              
+DIAGB4      DIAGB8      DIAGBC      DIAGC8      DIAGCC      DIAGD0              
+DIAGD4      DIAGD8      DIAGDC      DIAGE0      DIAGE4      DIAGEC              
+DIAGF0      DIAGF8      DIAG204     DIAG210     DIAG214     DIAG218             
+DIAG220     DIAG224     DIAG238     DIAG23C     DIAG240     DIAG244             
+DIAG248     DIAG250     DIAG254     DIAG258     DIAG25C     DIAG260             
+DIAG264     DIAG268     DIAG26C     DIAG270     DIAG274     DIAG278             
+DIAG27C     DIAG280     DIAG288     DIAG290     DIAG29C     DIAG2A0             
+DIAG2A4     DIAG2A8     DIAG2AC     DIAG2C0     DIAG2C4     DIAG2CC             
+DIAG2E0     DIAG2FC     DIAG308                                                 
+Ready; T=0.01/0.01 12:06:09                                                     
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                            RUNNING   ZVMWSXX   </code></pre>
+</doc-codeblock></div>
+<p>Esta lista é longa porque a máquina virtual MAINT possui o mais alto
+nível de classe de privilégio (A, B, C, D, E, F, G), o que a permite emitir
+todos os comandos. Normalmente, uma máquina virtual geral deve ter apenas
+classe geral (G) de privilégio, que só permite que ela emita comandos para
+controlar seus próprios recursos.</p>
+<p>2. Exiba uma lista de todos os processadores reais e indique a maneira como
+cada processador está sendo utilizado.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; query processors</code></pre>
+</doc-codeblock></div>
+<p>A saída indica que seu z/VM possui ______________ processadores reais. O endereço do processador 00 é o ______________ processador e o endereço do processador 01 é o ______________ .</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">query processors                     
+PROCESSOR 00 MASTER CP     
+PROCESSOR 01 ALTERNATE CP  
+PROCESSOR 02 ALTERNATE CP  
+PROCESSOR 03 ALTERNATE CP  
+PROCESSOR 04 ALTERNATE CP  
+Ready; T=0.01/0.01 00:50:16</code></pre>
+</doc-codeblock></div>
+<p>3. Exiba o tamanho do storage real.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; query storage</code></pre>
+</doc-codeblock></div>
+<p>A saída indica que seu sistema z/VM tem ______________ de storage real.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">QUERY STORAGE
+STORAGE = 2G CONFIGURED = 2G INC = 1M STANDBY = 0  RESERVED = 0
+Ready; T=0.01/0.01 00:50:34                                    </code></pre>
+</doc-codeblock></div>
+<p>4. Exiba o tamanho do storage acessível à sua máquina virtual (MAINT)</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; query virtual storage </code></pre>
+</doc-codeblock></div>
+<p>A máquina virtual MAINT tem acesso a ______________ MB de storage virtual.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">Q V STOR                    
+STORAGE = 256M              
+Ready; T=0.01/0.01 00:50:49 
+QUERY VIRTUAL STORAGE       
+STORAGE = 256M              
+Ready; T=0.01/0.01 00:50:56</code></pre>
+</doc-codeblock></div>
+<p>5. Exiba o status dos dispositivos de armazenamento direto real (DASDs).</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; q dasd all</code></pre>
+</doc-codeblock></div>
+<p>Uma lista de dispositivos conhecidos por esta máquina virtual é exibida. Verifique a tabela abaixo para descrições de cada dispositivo e para que são usados.</p>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Device IDs</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0200</td>
+<td>Volume de inicialização ou &quot;res&quot; pack, às vezes chamado de SYSRES, ou volume de residência do sistema. O volume que você acabou de &quot;IPL&quot; (IPL 0200 CLEAR).</td>
+</tr>
+<tr>
+<td>0201, 0205, 0206</td>
+<td>Outros volumes de propriedade de CP. Por enquanto, considere volumes de propriedade de CP como volumes de sistema, contendo coisas como espaço de página (swap para aqueles que preferem a terminologia distribuída), espaço de spool, espaço temporário de arquivo, etc...</td>
+</tr>
+<tr>
+<td>2222, 24CC, 2CF0</td>
+<td>Discos CMS usados para suportar seu ID de equipe no primeiro nível z/VM (ZVMDEMO).</td>
+</tr>
+<tr>
+<td>0300, 0304</td>
+<td>DASD para uso z/VM.</td>
+</tr>
+<tr>
+<td>0301, 0302, 0303</td>
+<td>Usado para construir máquinas virtuais Linux.</td>
+</tr>
+<tr>
+<td>0191</td>
+<td>DASD compartilhado com alguns arquivos importantes usados durante este bootcamp.</td>
+</tr>
+<tr>
+<td>0190, 0191, 019D, 019E, 0400, 0401 e 0402</td>
+<td>Discos adicionais de MAINT 1º nível.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">Q DASD ALL                                                                   
+DASD 0200 CP OWNED  M01RES   21                                              
+DASD 0201 CP OWNED  VMCOM1   2                                               
+DASD 0202 CP SYSTEM VMCOM2   1                                               
+DASD 0203 CP SYSTEM 630RL1   11                                              
+DASD 0204 CP SYSTEM 630RL2   2                                               
+DASD 0205 CP OWNED  M01S01   1                                               
+DASD 0206 CP OWNED  M01P01   0                                               
+DASD 0207 CP SYSTEM M01W01   1                                               
+DASD 0208 CP SYSTEM M01W02   1                                               
+DASD 0209 CP SYSTEM M01W03   1                                               
+DASD 0190 MNT190  , DASD 0191 MNT191  , DASD 019D MNT19D  , DASD 019E MNT19E 
+DASD 0300 M01S01  , DASD 0301 M02S01  , DASD 0401 MNT401  , DASD 0402 MNT402 
+DASD 04CC MNT4CC  , DASD 2222 MNT4CC  , DASD 24CC MNT4CC  , DASD 2CF0 PMTCF0 
+An offline DASD was not found.                                               
+Ready; T=0.01/0.01 00:51:10                                                                                                                                  
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                            RUNNING   ZVMWSXX   </code></pre>
+</doc-codeblock></div>
+<p>6. Exibir todos os dispositivos Open System Adapter (OSA) disponíveis.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; q osa free</code></pre>
+</doc-codeblock></div>
+<p>O output retorna todos os dispositivos OSA livres. Um dispositivo OSA livre é aquele que
+não está atualmente em uso por um usuário ou pelo sistema.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">q osa free                                                                
+OSA  0800 FREE    , OSA  0801 FREE    , OSA  0802 FREE    , OSA  0803 FREE    
+OSA  0804 FREE    , OSA  0805 FREE    , OSA  0806 FREE    , OSA  0807 FREE    
+OSA  0808 FREE    , OSA  0809 FREE    , OSA  080A FREE    , OSA  080B FREE                                        
+Ready; T=0.01/0.01 23:03:30                                                                                                                               
+                                                                                
+                                                            RUNNING   ZVMWSXX</code></pre>
+</doc-codeblock></div>
+<p>7. Exiba o número de cilindros ou páginas que estão alocados, em uso,
+e disponíveis para volumes DASD anexados ao sistema que são propriedade de
+&#x27;CP&#x27; (Control Program). Estes são tipicamente DASDs relacionados ao sistema.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; q alloc</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">Q ALLOC                                                                         
+DASD 0200 M01RES 3390 CKD-ECKD (UNITS IN CYLINDERS)                             
+     TDISK TOTAL=00000000000 INUSE=00000000000 AVAIL=00000000000                
+     PAGE  TOTAL=00000000000 INUSE=00000000000 AVAIL=00000000000                
+     SPOOL TOTAL=00000000000 INUSE=00000000000 AVAIL=00000000000                
+     DRCT  TOTAL=00000000020 INUSE=00000000001 AVAIL=00000000019, ACTIVE        
+DASD 0201 VMCOM1 3390 CKD-ECKD (UNITS IN CYLINDERS)                             
+     TDISK TOTAL=00000000000 INUSE=00000000000 AVAIL=00000000000                
+     PAGE  TOTAL=00000000000 INUSE=00000000000 AVAIL=00000000000                
+     SPOOL TOTAL=00000000000 INUSE=00000000000 AVAIL=00000000000                
+     DRCT  TOTAL=00000000000 INUSE=00000000000 AVAIL=00000000000                
+DASD 0205 M01S01 3390 CKD-ECKD (UNITS IN CYLINDERS)                             
+     TDISK TOTAL=00000000000 INUSE=00000000000 AVAIL=00000000000                
+     PAGE  TOTAL=00000000000 INUSE=00000000000 AVAIL=00000000000                
+     SPOOL TOTAL=00000003337 INUSE=00000000162 AVAIL=00000003175                
+     DRCT  TOTAL=00000000000 INUSE=00000000000 AVAIL=00000000000                
+DASD 0206 M01P01 3390 CKD-ECKD (UNITS IN CYLINDERS)                             
+     TDISK TOTAL=00000000000 INUSE=00000000000 AVAIL=00000000000                
+     PAGE  TOTAL=00000003337 INUSE=00000000001 AVAIL=00000003336                
+     SPOOL TOTAL=00000000000 INUSE=00000000000 AVAIL=00000000000                
+     DRCT  TOTAL=00000000000 INUSE=00000000000 AVAIL=00000000000                
+IPL NUCLEUS ACTIVE ON VOLUME M01RES                                             
+Ready; T=0.01/0.01 00:55:04                                                     
+                                                                                
+                                                                                
+                                                            RUNNING   ZVMWSXX                                                                           </code></pre>
+</doc-codeblock></div>
+<p>Em um exercício posterior, você aprenderá como formatar um volume DASD.
+Basicamente, um volume deve ser alocado e utilizado das seguintes maneiras:</p>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th><strong>Tipo</strong></th>
+<th><strong>Descrição</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>TDISK</strong></td>
+<td>Tdisk é uma abreviação de disco temporário. O z/VM oferece a capacidade de definir discos temporários de trabalho ou utilitários.</td>
+</tr>
+<tr>
+<td><strong>PAGE</strong></td>
+<td>O espaço de paginação no mainframe é semelhante ao swapping no ambiente distribuído. Windows tem arquivos de swap. Linux tem dispositivos de swap ou arquivos de swap. z/VM tem espaço de paginação.</td>
+</tr>
+<tr>
+<td><strong>SPOOL</strong></td>
+<td>O espaço de spool é onde arquivos de impressão, leitura e perfuração são armazenados.</td>
+</tr>
+<tr>
+<td><strong>PERM</strong></td>
+<td>Espaço permanente do usuário.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<doc-anchor-target id="vary">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#vary">#</doc-anchor-trigger>
+        <span>VARY</span>
+    </h3>
+</doc-anchor-target>
+<p>Com um mainframe, você tem a capacidade de ligar dispositivos e torná-los disponíveis para uso, ou você pode desligá-los e removê-los do pool de recursos disponíveis. Isso é chamado de variar dispositivos online e variar dispositivos off-line.</p>
+<p>Em um exercício anterior, você usou o comando &#x27;Q DASD ALL&#x27; para exibir o status dos DASDs reais. Como os dispositivos 2222, 24CC e 2CF0 não são necessários para sua máquina virtual de segundo nível, vamos variá-los para offline.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; vary offline 2222 24CC 2CF0</code></pre>
+</doc-codeblock></div>
+<p>Exiba o status desses dispositivos para verificar se eles estão offline.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; q 2222 24CC 2CF0
+===&gt; vary online 2222 24CC 2CF0</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="attach">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#attach">#</doc-anchor-trigger>
+        <span>ATTACH</span>
+    </h3>
+</doc-anchor-target>
+<p>Em um exercício anterior, você usou o comando &#x27;Q OSA FREE&#x27; para exibir todos os endereços disponíveis do Open Systems Adapter. Você pode &#x27;anexar&#x27; um dispositivo livre a uma máquina virtual e disponibilizá-lo para uso. Uma forma de anexar um dispositivo real é usando o comando &#x27;ATTACH&#x27;.</p>
+<p>Você usará os dispositivos OSA 800-802 neste workshop mais tarde para fornecer rede para o convidado Linux que você irá construir. Vamos anexar esses dispositivos à máquina virtual MAINT agora.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; attach 800-802 maint </code></pre>
+</doc-codeblock></div>
+<p>Exiba o status desses dispositivos:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; query osa free
+===&gt; q 800-802 </code></pre>
+</doc-codeblock></div>
+<p>Observe que eles não estão mais livres (Q OSA FREE)! Eles aparecem como anexados ao MAINT. O comando para retornar esses dispositivos ao pool de recursos livres para que outras máquinas virtuais os utilizem é &#x27;DETACH&#x27;.</p>
+<doc-anchor-target id="indicate">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#indicate">#</doc-anchor-trigger>
+        <span>INDICATE</span>
+    </h3>
+</doc-anchor-target>
+<p>O CP também possui comandos para ajudar você a monitorar o que está acontecendo com o seu sistema; IND ou INDICATE, é um desses comandos. Vamos experimentar alguns:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; ind load </code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">ind load                                                                        
+AVGPROC-000% 05                                                                 
+MDC READS-000000/SEC WRITES-000000/SEC HIT RATIO-000%                           
+PAGING-0/SEC                                                                    
+Q0-00000(00000)                           DORMANT-00001                         
+Q1-00000(00000)           E1-00000(00000)                                       
+Q2-00000(00000) EXPAN-001 E2-00000(00000)                                       
+Q3-00000(00000) EXPAN-001 E3-00000(00000)                                       
+                                                                                
+PROC 0000-000% CP   HZ     PROC 0001-000% CP   HZ                               
+PROC 0002-000% CP   HZ     PROC 0003-000% CP   HZ                               
+PROC 0004-000% CP   HZ                                                          
+                                                                                
+LIMITED-00000                                                                   
+Ready; T=0.01/0.01 23:06:38                                                     
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                            RUNNING   ZVMWSXX  </code></pre>
+</doc-codeblock></div>
+<p>Este simples comando informa muitas coisas. Você pode perceber de imediato que o seu sistema está &quot;dormindo&quot;!</p>
+<ul>
+<li>A utilização média é 000</li>
+<li>Sem atividades de I/O</li>
+<li>Sem paginação (lembre-se de que no z/VM 6.3 a IBM mudou o algoritmo de paginação; talvez às vezes você veja alguma atividade de paginação em um sistema não estressado)</li>
+<li>Etc.</li>
+</ul>
+<p>Outro comando útil é o &#x27;IND USER&#x27;. Você pode usar este comando para descobrir como uma máquina virtual específica está se comportando. Se os campos de contagem de I/O estiverem progredindo, você sabe que a máquina está trabalhando em algo. Esperançosamente, é algo produtivo. Você pode querer tentar alguns comandos IND USER quando o seu convidado Linux estiver rodando mais tarde. (Veja a saída abaixo)</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; ind user maint
+===&gt; ind user operator
+===&gt; and so on... (QUERY NAMES - show the users on z/VM)</code></pre>
+</doc-codeblock></div>
+<p>Tente outrass variações...</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; ind paging
+===&gt; ind i/o</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">ind user                                                       
+USERID=MAINT    MACH=ESA STOR=256M VIRT=V XSTORE=NONE          
+IPLSYS=DEV 0190 DEVNUM=00036                                   
+PAGES: RES=1622  WS=1601  LOCKEDREAL=0  RESVD=0                
+       INSTAN=1622                                             
+NPREF=0  PREF=0  READS=1  WRITES=13                            
+CPU 00: CTIME=00:38 VTIME=000:00 TTIME=000:00 IO=000603        
+        RDR=000000 PRT=000432 PCH=000000 TYPE=CP   CPUAFFIN=ON 
+Ready; T=0.01/0.01 12:21:33                                    </code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">ind paging                   
+No users in page wait        
+Ready; T=0.01/0.01 13:46:33  </code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">ind i/o                     
+No users in I/O wait        
+Ready; T=0.01/0.01 13:47:04</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="cpfmtxa">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#cpfmtxa">#</doc-anchor-trigger>
+        <span>CPFMTXA</span>
+    </h3>
+</doc-anchor-target>
+<p>Quando você adiciona um novo disco a um PC, você pode formatá-lo, particioná-lo e construir sistemas de arquivos. Quando você adiciona um disco a um sistema z/VM, deve formatá-lo e informar ao z/VM como gostaria que o disco fosse usado, por exemplo: Page, Spool, Perm, etc.</p>
+<p>CPFMTXA é uma utilidade para formatar e alocar página, spool, disco temporário e espaço de diretório em volumes DASD. Esses volumes especiais estão listados na lista &#x27;CP_OWNED_VOLUMES&#x27; do arquivo &#x27;SYSTEM CONFIG&#x27;. O z/VM usa volumes nesta lista sempre que precisa alocar espaço de página, spool, temporário e diretório. Além disso, o CPFMTXA pode ser usado para formatar, rotular e alocar volumes DASD para espaço de minidisco de usuário. Esse tipo de alocação é chamado de espaço PERM.</p>
+<p>Agora, vamos praticar o uso da utilidade CPFMTXA.</p>
+<doc-anchor-target id="formatando-um-dispositivo-para-page">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#formatando-um-dispositivo-para-page">#</doc-anchor-trigger>
+        <span>Formatando um dispositivo para PAGE</span>
+    </h4>
+</doc-anchor-target>
+<p>1. Primeiro, exiba uma lista de DASDs disponíveis:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; q dasd free </code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">q dasd free                                                                 
+DASD 0190 MNT190  , DASD 0191 DSD191  , DASD 0192 CMS191  , DASD 019D MNT19D
+DASD 019E MNT19E  , DASD 0300 M01P02  , DASD 0301 M01P01  , DASD 0302 M01W01
+DASD 0303 M01W02  , DASD 0401 MNT401  , DASD 0402 MNT402  , DASD 04CC MNT4CC
+DASD 2222 MNT4CC  , DASD 24CC MNT4CC  , DASD 2CF0 FREE
+Ready; T=0.01/0.01 15:49:09                                                 </code></pre>
+</doc-codeblock></div>
+<p>O comando QUERY deve informar que o(s) disco(s) está(ão) livre(s). Anexe o volume ao MAINT. Exemplo: Se o volume estiver no endereço real 300, digite este comando e pressione a tecla Enter:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; attach 300 *</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">attach 300 *                                 
+DASD 0300 ATTACHED TO MAINT 0300 WITH DEVCTL 
+Ready; T=0.01/0.01 15:48:00                  </code></pre>
+</doc-codeblock></div>
+<p>O asterisco significa &quot;anexar o dispositivo a mim&quot;, o ID do usuário que está emitindo o comando de anexar.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; q 300</code></pre>
+</doc-codeblock></div>
+<p>O dispositivo 300 deve aparecer como anexado ao MAINT.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">q 300                                         
+DASD 0300 ATTACHED TO MAINT    0300 R/W ZV63PG
+Ready; T=0.01/0.01 15:49:45                   </code></pre>
+</doc-codeblock></div>
+<p>Para obter acesso à utilidade CPFMTXA, verifique se você tem acesso ao minidisco 551. Na linha de comando, digite o seguinte comando e pressione a tecla Enter:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; q accessed </code></pre>
+</doc-codeblock></div>
+<p>Ou</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; q disk</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">q accessed                                 
+Mode  Stat     Files  Vdev  Label/Directory
+A      R/W         5  191   MNT191         
+B      R/O       134  5E5   MNT5E5         
+C      R/W         3  2CC   MNT2CC         
+D      R/O       293  51D   MNT51D         
+E      R/O         8  551   PMT551         
+S      R/O       696  190   MNT190         
+Y/S    R/O      1123  19E   MNT19E         
+Z/Z    R/O       404  19D   MNT19D         
+Ready; T=0.01/0.01 15:51:28                </code></pre>
+</doc-codeblock></div>
+<p>Neste exemplo, temos o minidisco 551 acessado com a letra E. Se você não tiver este minidisco acessado, digite o seguinte comando e pressione enter:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; access 551 e </code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">acc 551 e                                  
+DMSACP723I E (551) R/O                     
+Ready; T=0.01/0.01 15:54:33                
+q accessed                                 
+Mode  Stat     Files  Vdev  Label/Directory
+A      R/W         5  191   MNT191         
+B      R/O       134  5E5   MNT5E5         
+C      R/W         3  2CC   MNT2CC         
+D      R/O       293  51D   MNT51D         
+E      R/O         8  551   PMT551         
+S      R/O       696  190   MNT190         
+Y/S    R/O      1123  19E   MNT19E         
+Z/Z    R/O       404  19D   MNT19D         
+Ready; T=0.01/0.01 15:54:40                </code></pre>
+</doc-codeblock></div>
+<p>Formate o dispositivo 0300 com o utilitário CPFMTXA. Digite:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; cpfmtxa </code></pre>
+</doc-codeblock></div>
+<p>O utilitário CPFMTXA perguntará se você deseja formatar, alocar ou etiquetar. CPFMTXA é uma utilidade multifuncional. Neste caso, você deseja começar formatando. Digite:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; format</code></pre>
+</doc-codeblock></div>
+<p>CPFMTXA pergunta em seguida qual dispositivo você gostaria de formatar. Você vai formatar o dispositivo 0300, o dispositivo que você acabou de anexar ao MAINT. Digite:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; 0300</code></pre>
+</doc-codeblock></div>
+<p>CPFMTXA pergunta em seguida qual intervalo de cilindros você gostaria de formatar. Esta é uma ótima funcionalidade. Às vezes você não quer formatar todo o volume, apenas intervalos de cilindros selecionados em um volume. Neste caso, você deseja formatar todo o volume, então digite:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; 0 end</code></pre>
+</doc-codeblock></div>
+<p>Em seguida, é solicitado um novo rótulo de volume (M01P02 significa volume de paginação). Digite:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; M01P02</code></pre>
+</doc-codeblock></div>
+<p>Somos avisados de que o CPFMTXA está prestes a apagar todos os dados no volume; tem certeza de que deseja continuar?</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">CPFMTXA:                                                     
+FORMAT WILL ERASE CYLINDERS 000000000-000003337 ON DISK 0300 
+DO YOU WANT TO CONTINUE? (YES | NO)                          </code></pre>
+</doc-codeblock></div>
+<p>Digite:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; yes</code></pre>
+</doc-codeblock></div>
+<p>O CPFMTXA agora invoca o ICKDSF para começar a formatar o volume. Este seria um bom momento para pegar uma xícara de café! Quando a formatação estiver concluída, o CPFMTXA apresenta o seguinte:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">cpfmtxa                                                                         
+ENTER FORMAT, ALLOCATE, LABEL, OWNER OR QUIT:                                   
+format                                                                          
+ENTER THE VDEV TO BE PROCESSED OR QUIT:                                         
+0300                                                                            
+ENTER THE CYLINDER RANGE TO BE FORMATTED ON DISK 0300 OR QUIT:                  
+0 end                                                                           
+ENTER THE VOLUME LABEL FOR DISK 0300:                                           
+M01P02                                                                          
+CPFMTXA:                                                                        
+FORMAT WILL ERASE CYLINDERS 000000000-000003337 ON DISK 0300                    
+DO YOU WANT TO CONTINUE? (YES | NO)                                             
+yes                                                                             
+HCPCCF6209I INVOKING ICKDSF.                                                    
+ICK030E DEFINE INPUT  DEVICE: FN FT FM, &quot;CONSOLE&quot;, OR &quot;READER&quot;                  
+CONSOLE                                                                         
+ICK031E DEFINE OUTPUT DEVICE: FN FT FM, &quot;CONSOLE&quot;, OR &quot;PRINTER&quot;                 
+CONSOLE                                                                         
+ICKDSF - CMS/XA/ESA DEVICE SUPPORT FACILITIES 17.0                TIME: 02:34:33
+        08/25/13     PAGE   1                                                   
+                                                                                
+ENTER INPUT COMMAND:                                                            
+  CPVOL FMT MODE(ESA) UNIT(0300) VOLID(M01P02) NOVFY NFILL -                    
+ENTER INPUT COMMAND:                                                            
+ RANGE(0,3337)                                                                  
+ICK00700I DEVICE INFORMATION FOR 0300 IS CURRENTLY AS FOLLOWS:                  
+          PHYSICAL DEVICE = 3390                                                
+          STORAGE CONTROLLER = 3990                                             
+          STORAGE CONTROL DESCRIPTOR = E9                                       
+          DEVICE DESCRIPTOR = 0C                                                
+          ADDITIONAL DEVICE INFORMATION = 4A001F3C                              
+          TRKS/CYL = 15, # PRIMARY CYLS = 3338                                  
+ICK04000I DEVICE IS IN SIMPLEX STATE                                            
+ICK00703I DEVICE IS OPERATED AS A MINIDISK                                      
+ICK00091I 0300 NED=002107.900.IBM.82.0000000V9341                               
+ICK091I   0300 NED=002107.900.IBM.82.0000000V9341                               
+ICK03020I CPVOL WILL PROCESS 0300 FOR VM/ESA MODE                               
+ICK03090I VOLUME SERIAL = M01P02                                                
+ICK03022I FORMATTING THE DEVICE WITHOUT FILLER RECORDS                          
+ICK03011I CYLINDER RANGE TO BE FORMATTED IS 0 - 3337                            
+ICK003D REPLY U TO ALTER VOLUME 0300 CONTENTS, ELSE T                           
+                                                                                
+                                                            MORE...   ZVMWSXX</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">UICK03000I CPVOL REPORT FOR 0300 FOLLOWS:                                        
+                                                                                
+          FORMATTING OF CYLINDER 0 STARTED AT: 02:56:23                         
+          FORMATTING OF CYLINDER 100 ENDED AT: 02:56:23                         
+          FORMATTING OF CYLINDER 200 ENDED AT: 02:56:24                         
+          FORMATTING OF CYLINDER 300 ENDED AT: 02:56:25                         
+          FORMATTING OF CYLINDER 400 ENDED AT: 02:56:26                         
+          FORMATTING OF CYLINDER 500 ENDED AT: 02:56:37                         
+          FORMATTING OF CYLINDER 600 ENDED AT: 02:56:38                         
+          FORMATTING OF CYLINDER 700 ENDED AT: 02:56:39                         
+          FORMATTING OF CYLINDER 800 ENDED AT: 02:56:39                         
+          FORMATTING OF CYLINDER 900 ENDED AT: 02:56:40                         
+          FORMATTING OF CYLINDER 1000 ENDED AT: 02:56:41                        
+          FORMATTING OF CYLINDER 1100 ENDED AT: 02:56:42                        
+[...]                 
+          FORMATTING OF CYLINDER 2800 ENDED AT: 02:56:54                     
+FORMATTING OF CYLINDER 2900 ENDED AT: 02:56:55                     
+FORMATTING OF CYLINDER 3000 ENDED AT: 02:56:56                     
+FORMATTING OF CYLINDER 3100 ENDED AT: 02:56:56                     
+FORMATTING OF CYLINDER 3200 ENDED AT: 02:56:57                     
+FORMATTING OF CYLINDER 3300 ENDED AT: 02:56:58                     
+FORMATTING OF CYLINDER 3337 ENDED AT: 02:56:58                     
+                                                                   
+VOLUME SERIAL NUMBER IS NOW = M01P02                               
+
+          CYLINDER ALLOCATION CURRENTLY IS AS FOLLOWS:
+          TYPE     START      END        TOTAL
+          ----     -----      ---        -----
+          PERM     0          3337       3338
+ 
+ICK00001I FUNCTION COMPLETED, HIGHEST CONDITION CODE WAS 0
+          14:28:59    04/28/16
+ 
+ENTER INPUT COMMAND:
+ END
+ 
+ICK00002I ICKDSF PROCESSING COMPLETE. MAXIMUM CONDITION CODE WAS 0
+ENTER ALLOCATION DATA
+TYPE CYLINDERS
+.................                                                                   
+                                                                   
+                                                  VM READ   ZVMWSXX </code></pre>
+</doc-codeblock></div>
+<p>O CPFMTXA está reportando o mapa de alocação atual do novo volume <strong>M01P02</strong>. Como você pode notar, ele está esperando uma entrada sua (instrução VM READ na parte inferior). Em resposta ao prompt &quot;ENTER ALLOCATION DATA&quot;, digite os seguintes comandos:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; PAGE 0 END &lt;Enter&gt;
+===&gt; END &lt;Enter&gt;</code></pre>
+</doc-codeblock></div>
+<p>Note que, por padrão, o CPFMTXA aloca todos os cilindros como espaço PERM. O espaço PERM é onde os minidisks da máquina virtual são alocados, mas nós alteramos esse comportamento em resposta ao &quot;ENTER ALLOCATION DATA&quot;.</p>
+<div class="codeblock-wrapper"><doc-codeblock line-numbers>
+<pre class="language-javascript" data-line="6"><code v-pre class="language-javascript">ICK03000I CPVOL REPORT FOR 0300 FOLLOWS:
+ 
+          CYLINDER ALLOCATION CURRENTLY IS AS FOLLOWS:
+          TYPE     START      END        TOTAL
+          ----     -----      ---        -----
+          PAGE     0          3337       3338
+ 
+ICK00001I FUNCTION COMPLETED, HIGHEST CONDITION CODE WAS 0
+          14:33:26    04/28/16
+ 
+ENTER INPUT COMMAND:
+ END
+ 
+ICK00002I ICKDSF PROCESSING COMPLETE. MAXIMUM CONDITION CODE WAS 0
+Ready; T=0.06/0.14 14:33:26                                                  
+                                                                                
+                                                                                
+                                                                                
+ 
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                            RUNNING   ZVMWSXX   </code></pre>
+</doc-codeblock></div>
+<p>Para PAGE, SPOOL ou TDISK, precisamos definir um proprietário para o volume, especificando ssiname.sysname.</p>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-500 dark:bg-blue-400"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-500 dark:text-blue-400" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+<p>Regras para propriedade de volumes: Para volumes de usuário que são <strong>compartilhados</strong> (volumes PERM) em todo o cluster SSI, especifique NOSYS para o sysname (OWNER ssiname.NOSYS). Para volumes de usuário que <strong>não são compartilhados</strong> (volumes PAGE, SPOOL, TDISK) em todo o cluster SSI, especifique o sysname (OWNER ssiname.sysname).</p>
+        </div>
+    </div>
+</div>
+<p>Defina a propriedade para o volume:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; cpfmtxa 0300 label owner ssiname.sysname</code></pre>
+</doc-codeblock></div>
+<p>Para o nosso exemplo, digite o seguinte e pressione enter:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; cpfmtxa 0300 M01P02 owner nossi.ZVMWSXX</code></pre>
+</doc-codeblock></div>
+<p>Agora você terminou com o dispositivo 300. Desanexe-o do MAINT. Digite:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; detach 300</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">detach 300                  
+DASD 0300 DETACHED          
+Ready; T=0.01/0.01 16:42:59</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="sec:formatdisks">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#sec:formatdisks">#</doc-anchor-trigger>
+        <span>Exercício</span>
+    </h4>
+</doc-anchor-target>
+<p>Utilizando o que você aprendeu no laboratório anterior:</p>
+<ul>
+<li>Formate o dispositivo <strong>304</strong> como SPOOL. Por favor, note que para CPFMTXA o nome do tipo é SPOL (apenas 1 &quot;O&quot;), não SPOOL. Nomeie-o como <strong>M01S02</strong>. Não esqueça de configurar a propriedade.</li>
+<li>Formate os dispositivos 301, 302 e 303, rotule-os como, por exemplo, LNX301, LNX302 e LNX303 e aloque o dispositivo inteiro com espaço PERM.</li>
+</ul>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-500 dark:bg-blue-400"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-500 dark:text-blue-400" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+<p>Hints Attach the device to MAINT</p>
+<p>Format it</p>
+<p>Detach the device</p>
+        </div>
+    </div>
+</div>
+<p>Na próxima seção, você aprenderá como adicionar isso ao sistema e tornar a alteração permanente.</p>
+<doc-anchor-target id="adicionando-page-ao-system">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#adicionando-page-ao-system">#</doc-anchor-trigger>
+        <span>Adicionando PAGE ao SYSTEM</span>
+    </h3>
+</doc-anchor-target>
+<p>Antes de começar você precisa estar logado como <strong>MAINT</strong>.</p>
+<p>Verifique os volumes de paginação no seu Sistema z/VM. Digite o seguinte comando e pressione a tecla Enter:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; query alloc page</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">query alloc page                                            
+                EXTENT     EXTENT  TOTAL  PAGES   HIGH    % 
+VOLID  RDEV      START        END  PAGES IN USE   PAGE USED 
+------ ---- ---------- ---------- ------ ------ ------ ---- 
+M01P01 0206          1       3337 600660     25     34   1% 
+                                  ------ ------        ---- 
+SUMMARY                           600660     25          1% 
+USABLE                            600660     25          1% 
+Ready; T=0.01/0.01 15:59:14                                 </code></pre>
+</doc-codeblock></div>
+<p>Defina a propriedade para o volume (se você ainda não o fez). Digite os seguintes comandos e pressione enter:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; attach 0300 *
+===&gt; cpfmtxa 0300 m01p02 owner nossi.zvmwsxx
+===&gt; detach 300 *</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">att 300 *                                                                       
+DASD 0300 ATTACHED TO MAINT 0300 WITH DEVCTL                                    
+Ready; T=0.01/0.01 17:13:58                                                     
+
+cpfmtxa 0300 m01p02 owner nossi.zvmwsxx                                         
+HCPCCF6209I INVOKING ICKDSF.                                                    
+ICK030E DEFINE INPUT  DEVICE: FN FT FM, &quot;CONSOLE&quot;, OR &quot;READER&quot;                  
+CONSOLE                                                                         
+ICK031E DEFINE OUTPUT DEVICE: FN FT FM, &quot;CONSOLE&quot;, OR &quot;PRINTER&quot;                 
+CONSOLE                                                                         
+ICKDSF - CMS/XA/ESA DEVICE SUPPORT FACILITIES 17.0                TIME: 17:14:14
+        09/05/13     PAGE   1                                                   
+                                                                                
+ENTER INPUT COMMAND:                                                            
+ CPVOL OWNER UNIT(0300) VFY(M01P02) NOSSI SYSNAME(ZVMWSxx)                      
+ICK00700I DEVICE INFORMATION FOR 0300 IS CURRENTLY AS FOLLOWS:                  
+          PHYSICAL DEVICE = 3390                                                
+          STORAGE CONTROLLER = 3990                                             
+          STORAGE CONTROL DESCRIPTOR = E9                                       
+          DEVICE DESCRIPTOR = 0C                                                
+          ADDITIONAL DEVICE INFORMATION = 4A001F3C                              
+          TRKS/CYL = 15, # PRIMARY CYLS = 3338                                  
+ICK04000I DEVICE IS IN SIMPLEX STATE                                            
+ICK00703I DEVICE IS OPERATED AS A MINIDISK                                      
+ICK00091I 0300 NED=002107.900.IBM.82.0000000V9341                               
+ICK091I   0300 NED=002107.900.IBM.82.0000000V9341                               
+ICK03020I CPVOL WILL PROCESS 0300 FOR VM/ESA MODE                               
+ICK03090I VOLUME SERIAL = M01P02                                                
+ICK03092I VOLUME VM SSI OWNER = (NO OWNER ASSIGNED)                             
+ICK03093I VOLUME SYSTEM OWNER = ZVMWSXX                                         
+ICK003D REPLY U TO ALTER VOLUME 0300 CONTENTS, ELSE T                           
+                                                                                
+                                                            MORE...   ZVMWSXX   </code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">U                                                                               
+ICK03000I CPVOL REPORT FOR 0300 FOLLOWS:                                        
+          VOLUME VM SSI OWNER = (NO OWNER ASSIGNED)                             
+          VOLUME SYSTEM OWNER = ZVMWSXX                                         
+                                                                                
+ICK00001I FUNCTION COMPLETED, HIGHEST CONDITION CODE WAS 0                      
+          17:14:14    09/05/13                                                  
+                                                                                
+ENTER INPUT COMMAND:                                                            
+ END                                                                            
+                                                                                
+ICK00002I ICKDSF PROCESSING COMPLETE. MAXIMUM CONDITION CODE WAS 0              
+Ready; T=0.01/0.01 17:15:16                                                     
+detach 300 *                
+DASD 0300 DETACHED BY MAINT 
+Ready; T=0.01/0.01 17:16:28                                                                                 
+                                                                                
+ 
+                                                                                
+                                                                                
+                                                                                
+                                                            RUNNING   ZVMWSXX </code></pre>
+</doc-codeblock></div>
+<p>Digite o seguinte comando para obter o próximo número de slot disponível. Pressione Pausar/Interromper para limpar a tela até ver o slot 255 (o slot de página padrão na instalação). Em nosso sistema, você verá o slot 254 disponível.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; query cpowned</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none"> 239  ------  ----  -----  Reserved                -------- --------            
+ 240  ------  ----  -----  Reserved                -------- --------            
+ 241  ------  ----  -----  Reserved                -------- --------            
+ 242  ------  ----  -----  Reserved                -------- --------            
+ 243  ------  ----  -----  Reserved                -------- --------            
+ 244  ------  ----  -----  Reserved                -------- --------            
+ 245  ------  ----  -----  Reserved                -------- --------            
+ 246  ------  ----  -----  Reserved                -------- --------            
+ 247  ------  ----  -----  Reserved                -------- --------            
+ 248  ------  ----  -----  Reserved                -------- --------            
+ 249  ------  ----  -----  Reserved                -------- --------            
+ 250  ------  ----  -----  Reserved                -------- --------            
+ 251  ------  ----  -----  Reserved                -------- --------            
+ 252  ------  ----  -----  Reserved                -------- --------            
+ 253  ------  ----  -----  Reserved                -------- --------            
+ 254  ------  ----  -----  Reserved                -------- --------            
+ 255  M01P01  0206  Own    Online and attached     -------- ZVMWSXX             
+Ready; T=0.01/0.01 17:20:18                                                     
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                            RUNNING   ZVMWSXX   </code></pre>
+</doc-codeblock></div>
+<p>Digite o seguinte comando para definir dinamicamente o novo volume de página no slot 254.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; define cpowned slot 254 m01p02</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">define cpowned slot 254 m01p02
+Ready; T=0.01/0.01 17:25:28 </code></pre>
+</doc-codeblock></div>
+<p>Digite o seguinte comando e pressione enter. Agora você anexou um novo volume de página ao seu sistema z/VM.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; attach 300 system m01p02</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">attach 0300 system m01p02          
+DASD 0300 ATTACHED TO SYSTEM M01P02
+Ready; T=0.01/0.01 17:26:36    </code></pre>
+</doc-codeblock></div>
+<p>Digite os seguintes comandos para garantir que o novo volume de página está funcionando em seu sistema z/VM. O novo volume de página deve agora aparecer.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; query alloc page</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">q alloc page                                                
+                EXTENT     EXTENT  TOTAL  PAGES   HIGH    % 
+VOLID  RDEV      START        END  PAGES IN USE   PAGE USED 
+------ ---- ---------- ---------- ------ ------ ------ ---- 
+M01P02 0300          0       2500 450180      0      0   0% 
+M01P01 0206          1       3337 600660     25     34   1% 
+                                  ------ ------        ---- 
+SUMMARY                            1026K     25          1% 
+USABLE                             1026K     25          1% 
+Ready; T=0.01/0.01 17:29:42                                 
+                                                            </code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; query cpowned</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">239  ------  ----  -----  Reserved                -------- --------            
+ 240  ------  ----  -----  Reserved                -------- --------            
+ 241  ------  ----  -----  Reserved                -------- --------            
+ 242  ------  ----  -----  Reserved                -------- --------            
+ 243  ------  ----  -----  Reserved                -------- --------            
+ 244  ------  ----  -----  Reserved                -------- --------            
+ 245  ------  ----  -----  Reserved                -------- --------            
+ 246  ------  ----  -----  Reserved                -------- --------            
+ 247  ------  ----  -----  Reserved                -------- --------            
+ 248  ------  ----  -----  Reserved                -------- --------            
+ 249  ------  ----  -----  Reserved                -------- --------            
+ 250  ------  ----  -----  Reserved                -------- --------            
+ 251  ------  ----  -----  Reserved                -------- --------            
+ 252  ------  ----  -----  Reserved                -------- --------            
+ 253  ------  ----  -----  Reserved                -------- --------            
+ 254  M01P02  0300  Own    Online and attached     -------- ZVMWSXX             
+ 255  M01P01  0206  Own    Online and attached     -------- ZVMWSXX             
+Ready; T=0.01/0.01 17:30:14                                                     
+                                                                                
+                                                                                
+                                                                                
+                                                            RUNNING   ZVMWSXX   </code></pre>
+</doc-codeblock></div>
+<p>Vamos aprender como adicionar esse volume de página ao arquivo SYSTEM CONFIG na Unidade, ou teremos resultados desagradáveis no próximo IPL do z/VM. (Capítulo <doc-anchor-trigger to="#ch:systemconfig">4</doc-anchor-trigger> - explicaremos melhor o SYSTEM CONFIG).</p>
+
+                                
+                                <!-- Required only on API pages -->
+                                <doc-toolbar-member-filter-no-results></doc-toolbar-member-filter-no-results>
+                            </div>
+                            <footer class="clear-both">
+                            
+                                <nav class="flex mt-14">
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../pt-br/environment/">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                            <span>
+                                                <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Anterior</span>
+                                                <span class="block mt-1">Ambiente do Workshop</span>
+                                            </span>
+                                        </a>
+                                    </div>
+                            
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../pt-br/cms/">
+                                            <span>
+                                                <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Próximo</span>
+                                                <span class="block mt-1">CMS</span>
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                        </a>
+                                    </div>
+                                </nav>
+                            </footer>
+                        </main>
+                
+                        <div class="border-t dark:border-dark-650 pt-6 mb-8">
+                            <footer class="flex flex-wrap items-center justify-between">
+                                <div>
+                                    <ul class="flex flex-wrap items-center text-sm">
+                                    </ul>
+                                </div>
+                                <div class="docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>Please share with the z community.</p></div>
+                            </footer>
+                        </div>
+                    </div>
+                
+                    <!-- Rendered if sidebar right is enabled -->
+                    <!-- Sidebar right skeleton-->
+                    <div v-cloak class="fixed top-0 bottom-0 right-0 translate-x-full bg-white border-gray-200 lg:sticky lg:border-l lg:shrink-0 lg:pt-6 lg:transform-none sm:w-1/2 lg:w-64 lg:z-0 md:w-104 sidebar-right skeleton dark:bg-dark-850 dark:border-dark-650">
+                        <div class="pl-5">
+                            <div class="w-32 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                            <div class="w-48 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                            <div class="w-40 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                        </div>
+                    </div>
+                
+                    <!-- User should be able to hide sidebar right -->
+                    <doc-sidebar-right v-cloak></doc-sidebar-right>
+                </div>
+
+            </div>
+        </div>
+    
+        <doc-search-mobile></doc-search-mobile>
+        <doc-back-to-top></doc-back-to-top>
+    </div>
+
+
+    <div id="docs-overlay-target"></div>
+
+    <script data-cfasync="false">window.__DOCS__ = { "title": "Control Program (CP)", level: 2, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+</body>
+</html>

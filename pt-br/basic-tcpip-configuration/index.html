@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.4.1.748114234369">
+
+    <!-- See retype.com -->
+    <meta name="generator" content="Retype 3.4.1">
+
+    <!-- Primary Meta Tags -->
+    <title>Basic TCP/IP Configuration</title>
+    <meta name="title" content="Basic TCP/IP Configuration">
+    <meta name="description" content="This section describes the virtual machines that are necessary to provide basic and optional TCP/IP services. The virtual machines listed">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://zvm-bootcamp.github.io/pt-br/basic-tcpip-configuration/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://zvm-bootcamp.github.io/pt-br/basic-tcpip-configuration/">
+    <meta property="og:title" content="Basic TCP/IP Configuration">
+    <meta property="og:description" content="This section describes the virtual machines that are necessary to provide basic and optional TCP/IP services. The virtual machines listed">
+    <meta property="og:image" content="https://zvm-bootcamp.github.io/imgs/workshop-tcpip.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://zvm-bootcamp.github.io/pt-br/basic-tcpip-configuration/">
+    <meta property="twitter:title" content="Basic TCP/IP Configuration">
+    <meta property="twitter:description" content="This section describes the virtual machines that are necessary to provide basic and optional TCP/IP services. The virtual machines listed">
+    <meta property="twitter:image" content="https://zvm-bootcamp.github.io/imgs/workshop-tcpip.png">
+
+    <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
+
+    <link href="../../resources/css/retype.css?v=3.4.1.748114234369" rel="stylesheet">
+
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.4.1.748114234369" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/retype.js?v=3.4.1" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.4.1.748114234369" data-turbo-eval="false" defer></script>
+</head>
+<body>
+    <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
+        <div class="absolute bottom-0 left-0 bg-gray-100 dark:bg-dark-800" style="top: 5rem; right: 50%"></div>
+    
+        <header id="docs-site-header" class="sticky top-0 z-30 flex w-full h-16 bg-white border-b border-gray-200 md:h-20 dark:bg-dark-850 dark:border-dark-650">
+            <div class="container relative flex items-center justify-between pr-6 grow md:justify-start">
+                <!-- Mobile menu button skeleton -->
+                <button v-cloak class="skeleton docs-mobile-menu-button flex items-center justify-center shrink-0 overflow-hidden dark:text-white focus:outline-none rounded-full w-10 h-10 ml-3.5 md:hidden"><svg xmlns="http://www.w3.org/2000/svg" class="mb-px shrink-0" width="24" height="24" viewBox="0 0 24 24" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor"><path d="M2 4h20v2H2zM2 11h20v2H2zM2 18h20v2H2z"></path></g></svg></button>
+                <div v-cloak id="docs-sidebar-toggle"></div>
+        
+                <!-- Logo -->
+                <div class="flex items-center justify-between h-full py-2 md:w-75">
+                    <div class="flex items-center px-2 md:px-6">
+                        <a id="docs-site-logo" href="../../" class="flex items-center leading-snug text-xl">
+                            <span class="w-10 mr-2 grow-0 shrink-0 overflow-hidden">
+                                <img class="max-h-10 dark:hidden md:inline-block" src="../../static/vmbear.jpg">
+                                <img class="max-h-10 hidden dark:inline-block" src="../../static/vmbear.jpg">
+                            </span>
+                            <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">z/VM Bootcamp</span>
+                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">Manual</span>
+                    </div>
+        
+                    <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
+                </div>
+        
+                <div class="flex justify-between md:grow">
+                    <!-- Top Nav -->
+                    <nav class="hidden md:flex">
+                        <ul class="flex flex-col mb-4 md:pl-16 md:mb-0 md:flex-row md:items-center">
+                            <li class="mr-6">
+                                <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://titosoft.github.io/z/vm/zvm-cheatsheet/" target="_blank">z/VM Cheat Sheet</a>
+                            </li>
+        
+                        </ul>
+                    </nav>
+        
+                    <!-- Header Right Skeleton -->
+                    <div v-cloak class="flex justify-end grow skeleton">
+        
+                        <!-- Search input mock -->
+                        <div class="relative hidden w-40 lg:block lg:max-w-sm lg:ml-auto">
+                            <div class="absolute flex items-center justify-center h-full pl-3 dark:text-dark-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon-base" width="16" height="16" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 1px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                            </div>
+                            <input class="w-full h-10 placeholder-gray-400 transition-colors duration-200 ease-in bg-gray-200 border border-transparent rounded md:text-sm hover:bg-white hover:border-gray-300 focus:outline-none focus:bg-white focus:border-gray-500 dark:bg-dark-600 dark:border-dark-600 dark:placeholder-dark-400" style="padding: 0.625rem 0.75rem 0.625rem 2rem" type="text" placeholder="Pesquisar">
+                        </div>
+        
+                        <!-- Mobile search button -->
+                        <div class="flex items-center justify-center w-10 h-10 lg:hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="20" height="20" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                        </div>
+        
+                        <!-- Dark mode switch placeholder -->
+                        <div class="w-10 h-10 lg:ml-2"></div>
+        
+                        <!-- History button -->
+                        <div class="flex items-center justify-center w-10 h-10" style="margin-right: -0.625rem;">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="22" height="22" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor" ><g ><path d="M12.01 6.01c-.55 0-1 .45-1 1V12a1 1 0 00.4.8l3 2.22a.985.985 0 001.39-.2.996.996 0 00-.21-1.4l-2.6-1.92V7.01c.02-.55-.43-1-.98-1z"></path><path d="M12.01 1.91c-5.33 0-9.69 4.16-10.05 9.4l-.29-.26a.997.997 0 10-1.34 1.48l1.97 1.79c.19.17.43.26.67.26s.48-.09.67-.26l1.97-1.79a.997.997 0 10-1.34-1.48l-.31.28c.34-4.14 3.82-7.41 8.05-7.41 4.46 0 8.08 3.63 8.08 8.09s-3.63 8.08-8.08 8.08c-2.18 0-4.22-.85-5.75-2.4a.996.996 0 10-1.42 1.4 10.02 10.02 0 007.17 2.99c5.56 0 10.08-4.52 10.08-10.08.01-5.56-4.52-10.09-10.08-10.09z"></path></g></g></svg>
+                        </div>
+                    </div>
+        
+                    <div v-cloak class="flex justify-end grow">
+                        <div id="docs-mobile-search-button"></div>
+                        <doc-search-desktop></doc-search-desktop>
+        
+                        <doc-theme-switch class="lg:ml-2"></doc-theme-switch>
+                        <doc-history></doc-history>
+                    </div>
+                </div>
+            </div>
+        </header>
+    
+        <div class="container relative flex bg-white">
+            <!-- Sidebar Skeleton -->
+            <div v-cloak class="fixed flex flex-col shrink-0 duration-300 ease-in-out bg-gray-100 border-gray-200 sidebar top-20 w-75 border-r h-screen md:sticky transition-transform skeleton dark:bg-dark-800 dark:border-dark-650">
+            
+                <!-- Render this div, if config.showSidebarFilter is `true` -->
+                <div class="flex items-center h-16 px-6">
+                    <input class="w-full h-8 px-3 py-2 transition-colors duration-200 ease-linear bg-white border border-gray-200 rounded shadow-none text-sm focus:outline-none focus:border-gray-600 dark:bg-dark-600 dark:border-dark-600" type="text" placeholder="Filtrar">
+                </div>
+            
+                <div class="pl-6 mt-1 mb-4">
+                    <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                </div>
+            
+                <div class="shrink-0 mt-auto bg-transparent dark:border-dark-650">
+                    <a class="flex items-center justify-center flex-nowrap h-16 text-gray-400 dark:text-dark-400 hover:text-gray-700 dark:hover:text-dark-300 transition-colors duration-150 ease-in docs-powered-by" target="_blank" href="https://retype.com/" rel="noopener">
+                        <span class="text-xs whitespace-nowrap">Powered by</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="ml-2" fill="currentColor" width="96" height="20" overflow="visible"><path d="M0 0v20h13.59V0H0zm11.15 17.54H2.44V2.46h8.71v15.08zM15.8 20h2.44V4.67L15.8 2.22zM20.45 6.89V20h2.44V9.34z"/><g><path d="M40.16 8.44c0 1.49-.59 2.45-1.75 2.88l2.34 3.32h-2.53l-2.04-2.96h-1.43v2.96h-2.06V5.36h3.5c1.43 0 2.46.24 3.07.73s.9 1.27.9 2.35zm-2.48 1.1c.26-.23.38-.59.38-1.09 0-.5-.13-.84-.4-1.03s-.73-.28-1.39-.28h-1.54v2.75h1.5c.72 0 1.2-.12 1.45-.35zM51.56 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92h4.74v1.83h-6.79V5.36h6.64zM60.09 7.15v7.48h-2.06V7.15h-2.61V5.36h7.28v1.79h-2.61zM70.81 14.64h-2.06v-3.66l-3.19-5.61h2.23l1.99 3.45 1.99-3.45H74l-3.19 5.61v3.66zM83.99 6.19c.65.55.97 1.4.97 2.55s-.33 1.98-1 2.51-1.68.8-3.04.8h-1.23v2.59h-2.06V5.36h3.26c1.42 0 2.45.28 3.1.83zm-1.51 3.65c.25-.28.37-.69.37-1.22s-.16-.92-.48-1.14c-.32-.23-.82-.34-1.5-.34H79.7v3.12h1.38c.68 0 1.15-.14 1.4-.42zM95.85 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92H96v1.83h-6.79V5.36h6.64z"/></g></svg>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Sidebar component -->
+            <doc-sidebar v-cloak>
+                <template #sidebar-footer>
+                    <div class="shrink-0 mt-auto border-t md:bg-transparent md:border-none dark:border-dark-650">
+            
+                        <div class="py-3 px-6 md:hidden border-b dark:border-dark-650">
+                            <nav>
+                                <ul class="flex flex-wrap justify-center items-center">
+                                    <li class="mr-6">
+                                        <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://titosoft.github.io/z/vm/zvm-cheatsheet/" target="_blank">z/VM Cheat Sheet</a>
+                                    </li>
+            
+                                </ul>
+                            </nav>
+                        </div>
+            
+                        <a class="flex items-center justify-center flex-nowrap h-16 text-gray-400 dark:text-dark-400 hover:text-gray-700 dark:hover:text-dark-300 transition-colors duration-150 ease-in docs-powered-by" target="_blank" href="https://retype.com/" rel="noopener">
+                            <span class="text-xs whitespace-nowrap">Powered by</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-2" fill="currentColor" width="96" height="20" overflow="visible"><path d="M0 0v20h13.59V0H0zm11.15 17.54H2.44V2.46h8.71v15.08zM15.8 20h2.44V4.67L15.8 2.22zM20.45 6.89V20h2.44V9.34z"/><g><path d="M40.16 8.44c0 1.49-.59 2.45-1.75 2.88l2.34 3.32h-2.53l-2.04-2.96h-1.43v2.96h-2.06V5.36h3.5c1.43 0 2.46.24 3.07.73s.9 1.27.9 2.35zm-2.48 1.1c.26-.23.38-.59.38-1.09 0-.5-.13-.84-.4-1.03s-.73-.28-1.39-.28h-1.54v2.75h1.5c.72 0 1.2-.12 1.45-.35zM51.56 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92h4.74v1.83h-6.79V5.36h6.64zM60.09 7.15v7.48h-2.06V7.15h-2.61V5.36h7.28v1.79h-2.61zM70.81 14.64h-2.06v-3.66l-3.19-5.61h2.23l1.99 3.45 1.99-3.45H74l-3.19 5.61v3.66zM83.99 6.19c.65.55.97 1.4.97 2.55s-.33 1.98-1 2.51-1.68.8-3.04.8h-1.23v2.59h-2.06V5.36h3.26c1.42 0 2.45.28 3.1.83zm-1.51 3.65c.25-.28.37-.69.37-1.22s-.16-.92-.48-1.14c-.32-.23-.82-.34-1.5-.34H79.7v3.12h1.38c.68 0 1.15-.14 1.4-.42zM95.85 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92H96v1.83h-6.79V5.36h6.64z"/></g></svg>
+                        </a>
+                    </div>
+                </template>
+            </doc-sidebar>
+    
+            <div class="grow min-w-0 dark:bg-dark-850">
+                <!-- Render "toolbar" template here on api pages --><!-- Render page content -->
+                <div class="flex">
+                    <div class="min-w-0 p-4 grow md:px-16">
+                        <main class="relative pb-12 lg:pt-2">
+                            <div class="docs-markdown" id="docs-content">
+                                <!-- Rendered if sidebar right is enabled -->
+                                <div id="docs-sidebar-right-toggle"></div>
+                                <!-- Page content  -->
+<doc-anchor-target id="basic-tcpip-configuration" class="break-words">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#basic-tcpip-configuration">#</doc-anchor-trigger>
+        <span>Basic TCP/IP Configuration</span>
+    </h1>
+</doc-anchor-target>
+<doc-anchor-target id="tcpip-service-machines">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#tcpip-service-machines">#</doc-anchor-trigger>
+        <span>TCPIP Service Machines</span>
+    </h2>
+</doc-anchor-target>
+<p>This section describes the virtual machines that are necessary to
+provide basic and optional TCP/IP services. The virtual machines listed
+here comprise a set of &quot;default&quot; TCP/IP virtual machines that are
+defined as part of the z/VM system when it is installed.</p>
+<p>While various TCP/IP virtual machines have specific definition
+requirements, all TCP/IP servers must maintain links to the following
+minidisks, to allow for correct operation:</p>
+<div id="tab:tcpip"><p><strong>Minidisk</strong>   <strong>Description</strong></p>
+<hr>
+<dl>
+<dt>TCPMAINT 592   Client-code disk</dt>
+<dt>TCPMAINT 591   Server-code disk</dt>
+<dt>TCPMAINT 198   Configuration file, or customization disk</dt>
+<dd>TCPIP Service Machines</dd>
+</dl>
+</div>
+<doc-anchor-target id="required-virtual-machines">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#required-virtual-machines">#</doc-anchor-trigger>
+        <span>Required Virtual Machines</span>
+    </h2>
+</doc-anchor-target>
+<p>The following virtual machines are required to provide basic TCP/IP
+services:</p>
+<div id="tab:tcpip2"><p><strong>Machine</strong>   <strong>Function</strong></p>
+<hr>
+<dl>
+<dt>6VMTCP30      Maintains the TCP/IP system. Installation and service resources are owned by this user ID.</dt>
+<dt>TCPIP         Provides TCP/IP communication services. The Telnet server is implemented as a &quot;internal client&quot; within the TCPIP virtual machine.</dt>
+<dt>TCPMAINT      Owns TCP/IP production resources --- the 198, 591, and 592 disks.</dt>
+<dd>Required Virtual Machines</dd>
+</dl>
+</div>
+<doc-anchor-target id="optional-virtual-machines">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#optional-virtual-machines">#</doc-anchor-trigger>
+        <span>Optional Virtual Machines</span>
+    </h2>
+</doc-anchor-target>
+<p>There are many optional virtual machines that you can setup to perform
+TCP/IP server functions. Some of these servers include FTPSERVE, IMAP,
+PORTMAP, NAMESRV, SSLSERV, SMTP, etc.</p>
+<doc-anchor-target id="configuration-files">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#configuration-files">#</doc-anchor-trigger>
+        <span>Configuration files</span>
+    </h2>
+</doc-anchor-target>
+<p>This section lists the various TCP/IP configuration files which are
+necessary to provide basic TCP/IP services for most environments.</p>
+<p>The first file, IBM DTCPARMS, contains server configuration definitions.
+The next three files, PROFILE TCPIP, HOSTS LOCAL, and ETC HOSTS, are
+configuration files for the TCPIP server virtual machine. The next two
+files, TCPIP DATA and ETC SERVICES, need to be accessible to all TCP/IP
+servers, applications, and users; these files contain information that
+is (or may be) referenced by all users. ETC GATEWAYS contains routing
+information for distant networks and hosts.</p>
+<doc-anchor-target id="the-dtcparms-files">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#the-dtcparms-files">#</doc-anchor-trigger>
+        <span>The DTCPARMS files</span>
+    </h3>
+</doc-anchor-target>
+<p>Configuration of each server is controlled by a set of files with a file
+type of DTCPARMS. These files may contain two types of information:</p>
+<div class="easylist"><p>&amp; Server class names that define the application protocols available for
+all server virtual machines. &amp; Individual server user IDs and their
+associated server class, as well as the operational characteristics of
+the server (security, devices, parameters, etc.).</p>
+</div>
+<p>The TCP/IP server initialization program searches for server definitions
+in a hierarchical fashion. The following table lists the DTCPARMS files
+in the order that they are searched, along with a description of each
+file.</p>
+<div id="tab:tcpip3"><p><strong>File</strong>          <strong>Purpose</strong></p>
+<hr>
+<dl>
+<dt>userid DTCPARMS   Can be used for servers that do not require configuration by the TCP/IP administrator, such as a test server. Such a file might commonly reside on a server disk or directory accessed at file mode A.</dt>
+<dt>nodeid DTCPARMS   Useful for shared-DASD configurations. The node ID used is the node ID returned by the CMS IDENTIFY command. This file should be maintained on the TCPMAINT 198 disk.</dt>
+<dt>SYSTEM DTCPARMS   Most customized server configurations should be maintained in this file. This file should be maintained on the TCPMAINT 198 disk.</dt>
+<dt>IBM DTCPARMS      Server classes provided by IBM, as well as the default server configurations, are supplied by this file. This file resides on the TCPMAINT 591 disk and should never be modified, because it can be replaced when service is applied, or when a new release is installed. All modifications required for your installation should be placed in SYSTEM DTCPARMS (or, nodeID DTCPARMS, as warranted).</dt>
+<dd>The DTCPARMS files</dd>
+</dl>
+</div>
+<doc-anchor-target id="the-tcpip-data-file">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#the-tcpip-data-file">#</doc-anchor-trigger>
+        <span>The TCPIP DATA File</span>
+    </h3>
+</doc-anchor-target>
+<p>The TCPIP DATA file defines system parameters used by TCP/IP client
+applications. It is used to specify configuration information for single
+or multiple host systems. It also allows you to specify:</p>
+<div class="easylist"><p>&amp; Host name of the VM host &amp; User ID of the TCPIP virtual machine &amp;
+Domain origin of the host &amp; Output trace &amp; Name server specifications</p>
+</div>
+<p>A sample TCP/IP DATA file is shipped as TCPIP SDATA on the TCPMAINT 592
+disk.</p>
+<doc-anchor-target id="the-etc-hosts-files">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#the-etc-hosts-files">#</doc-anchor-trigger>
+        <span>The ETC HOSTS Files</span>
+    </h3>
+</doc-anchor-target>
+<p>The local host files contain information needed for local host name
+resolution. Any domain name or IP address specified in this file is
+accessible for use on your network. Local host files are used to create
+the site table, which enables name resolution and reverse name
+resolution without using a domain name server.</p>
+<p>TCP/IP for z/VM offers two local host files for domain name resolution
+and reverse name resolution. The old HOSTS LOCAL file (which supports
+IPv4 only), and the preferred ETC HOSTS file (which supports both IPv4
+and IPv6).</p>
+<p>The ETC HOSTS file does not require additional processing to create the
+site tables used for name resolution. The site tables are created
+dynamically by the resolver when the ETC HOSTS file is used. Use of the
+HOSTS LOCAL file requires that you run the MAKESITE command to create
+the site tables. Whenever changes are made to the HOSTS LOCAL file, you
+must run the MAKESITE command to recreate the site tables.</p>
+<p>A sample file, ETCHOSTS SAMPLE, is supplied with the TCP/IP distribution
+tapes on the.</p>
+<doc-anchor-target id="the-tcpip-server-profile-file">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#the-tcpip-server-profile-file">#</doc-anchor-trigger>
+        <span>The TCPIP server profile file</span>
+    </h3>
+</doc-anchor-target>
+<p>When the TCPIP virtual machine is started, TCP/IP operation and
+configuration parameters are read from an initial configuration file.
+TCP/IP searches for an initial configuration file in the following order
+and uses the first file present in that order:</p>
+<div class="easylist"><p>&amp; userid TCPIP, where userid is the user ID of the of the TCP/IP server
+&amp; node_name TCPIP, where node_name is the system node name returned by
+the CMS IDENTIFY command &amp; PROFILE TCPIP</p>
+</div>
+<p>This file is used to customize your system, specify system operation,
+Telnet, and network parameters. If no file is found, TCP/IP uses server
+default values.</p>
+<p>A sample initial configuration file is provided as PROFILE STCPIP on the
+TCPMAINT 591 disk.</p>
+<doc-anchor-target id="exercises">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#exercises">#</doc-anchor-trigger>
+        <span>Exercises</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="ipwizard">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#ipwizard">#</doc-anchor-trigger>
+        <span>IPWIZARD</span>
+    </h3>
+</doc-anchor-target>
+<p>You can initially configure TCP/IP via the IPWIZARD command which is
+generally used just once. After IPWIZARD creates the initial
+configuration files, they are typically maintained manually.</p>
+<div class="easylist"><p>&amp; Log on as MAINT. &amp; The IPWIZARD command is on the MAINT 193 disk.
+Issue the ACCESS command so you will pick up IPWIZARD from that
+minidisk.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">==&gt; acc 193 g</code></pre>
+</doc-codeblock></div>
+<p>&amp; Invoke the IPWIZARD.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">==&gt; ipwizard</code></pre>
+</doc-codeblock></div>
+<p>&amp; At the &#x27;*** z/VM TCP/IP Configuration Wizard ***&#x27; panel. Fill in
+the following data:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">    *** z/VM TCP/IP Configuration Wizard ***                 
+                                                                             
+The items that follow describe your z/VM host                                
+                                                                             
+User ID of VM TCP/IP Stack Virtual Machine:   TCPIP___                       
+                                                                             
+Host Name:     (*| \textcolor{red}{ZVMWSxx} |*) (your group name) ___________                                          
+Domain Name:   (*| \textcolor{red}{mycompany.com} |*)_________                      
+                                                                             
+Gateway IP Address:  (*|\textcolor{red}{YOUR\_GW\_ADDR}|*)_______________________                 
+                                                                             
+DNS Addresses:                                                               
+1) (*|\textcolor{red}{YOUR\_DNS}|*)_______                                                           
+2) _______________                                                           
+3) _______________                          
+       PF1 = HELP   PF3 = QUIT   PF8 = Continue   ENTER = Refresh    </code></pre>
+</doc-codeblock></div>
+<p>&amp; Continue with next step.</p>
+<p><strong>Press the F8 key</strong></p>
+<p>&amp; At the &#x27;*** General Interface Configuration Panel ***&#x27; panel.
+Fill in the following data:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">                  *** General Interface Configuration Panel ***             
+                                                                            
+Interface Name:  ETH0____________     Device Number:  0800                  
+                                                                            
+IP Address:      (*|\textcolor{red}{YOUR\_IP\_ADDR}|*) (your team IP number)_                                            
+Subnet Mask:     (*|\textcolor{red}{YOUR\_MASK}|*)__                                            
+                                                                            
+Path MTU Discovery (Optional):  _ Enabled      _ Disabled                   
+                                                                            
+Interface Type (Select one): (*|\textcolor{red}{Ask the layer to the instructor and put an 'X' there}|*)
+                                                                            
+   _    QDIO (layer 3)      _    QDIO (layer 2)      _    LCS               
+   _    HiperSockets        _    CTC                                        
+                                                                            
+                                                                            
+                                                                            
+PF1 = HELP  PF3 = QUIT  PF7 = Backward  PF8 = Continue  ENTER = Refresh   </code></pre>
+</doc-codeblock></div>
+<p>&amp; Continue with next step.</p>
+<p><strong>Press the PF8 key</strong></p>
+<p>&amp; At the &#x27;*** QDIO Interface Configuration Panel ***&#x27; panel. Fill
+in the following data:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">                   *** QDIO Interface Configuration Panel ***                
+                                                                             
+VLAN ID (optional):  ____                                                    
+                                                                             
+                                                                             
+Router Type (Select one):                                                    
+                                                                             
+   _    Primary             _    Secondary           X    None               
+                                                                             
+                                                                             
+Maximum Transmission Unit (MTU) size:  1500_                                 
+                                                                             
+                                                                             
+Port Number (optional):  __                                                  
+                                                                             
+                                                                             
+ PF1 = HELP  PF3 = QUIT  PF5 = Process  PF7 = Backward  ENTER = Refresh      </code></pre>
+</doc-codeblock></div>
+<p>&amp; Start the network configuration.</p>
+<p><strong>Press the PF5 key to Process</strong></p>
+<p>&amp; The TCP/IP stack (TCPIP) must be restarted as part of this procedure.
+Would you like to restart TCPIP and continue?</p>
+<p><strong>Enter &#x27;1&#x27; for Yes</strong></p>
+<p>&amp; The TCP/IP configuration is complete when you see these messages:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">Successfully PINGed Interface (172.24.200.222)                    
+Successfully PINGed Gateway (172.24.200.1)                        
+Successfully PINGed DNS (172.24.200.241)                          
+DTCIPW2519I Configuration complete; connectivity has been verified
+DTCIPW2520I File PROFILE TCPIP created on TCPIP 198               
+DTCIPW2520I File TCPIP DATA created on TCPIP 592                  
+DTCIPW2520I File SYSTEM DTCPARMS created on TCPIP 198             
+(*|\textcolor{red}{IUGIPW8392I IPWIZARD EXEC ENDED SUCCESSFULLY                      }|*)
+DMSVML2061I TCPIP 592 released                                    
+Ready; T=0.15/0.23 23:50:42      </code></pre>
+</doc-codeblock></div>
+<p>&amp; At this point, your z/VM system should be on the network. Go to a DOS
+prompt (or Linux session) and try to ping your z/VM system.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none"># ping &lt;your ip&gt;</code></pre>
+</doc-codeblock></div>
+</div>
+<doc-anchor-target id="viewing-tcpip-configuration-files">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#viewing-tcpip-configuration-files">#</doc-anchor-trigger>
+        <span>Viewing TCP/IP configuration files</span>
+    </h3>
+</doc-anchor-target>
+<p>Let&#x27;s learn what the IPWIZARD did for you.</p>
+<div class="easylist"><p>&amp; Logon to the TCPMAINT virtual machine</p>
+<p><strong>Logoff of MAINT</strong></p>
+<p><strong>Logon to TCPMAINT</strong></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">LOGON TCPMAINT                                          
+z/VM Version 6 Release 3.0, Service Level 1301 (64-bit),
+built on IBM Virtualization Technology                  
+There is no logmsg data                                 
+FILES: 0009 RDR,   NO PRT,   NO PUN                     
+LOGON AT 10:19:32 EDT MONDAY 09/23/13                   
+z/VM V6.3.0    2013-09-13 00:01                         
+                                                        
+Profile..: Spooling console to self (TCPMAINT)...       
+Profile..: Setting PF Keys...                           
+PF12 RETRIEVE BACKWARD                                  
+PF24 RETRIEVE BACKWARD                                  
+Profile..: Setting minidisk environment workspace...    
+DMSACC724I 191 replaces A (191)                         
+                                                        
+Profile..: Setup complete                               
+Ready; T=0.01/0.01 10:19:32        </code></pre>
+</doc-codeblock></div>
+<p>&amp; List the CMS disks that are accessed via the QUERY DISK command. Note
+that the TCPMAINT 198 disk is accessed as your disk:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; q disk</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">q disk                                                                          
+LABEL  VDEV M  STAT   CYL TYPE BLKSZ   FILES  BLKS USED-(%) BLKS LEFT  BLK TOTAL
+TCM191 191  A   R/W     7 3390 4096        2         11-01       1249       1260
+TCM198 198  D   R/W     9 3390 4096        4         11-01       1609       1620
+TCM591 591  E   R/W   122 3390 4096      166       7139-33      14821      21960
+TCM592 592  F   R/W   140 3390 4096      858      10312-41      14888      25200
+MNT190 190  S   R/O   207 3390 4096      696      18085-49      19175      37260
+MNT19E 19E  Y/S R/O   500 3390 4096     1123      30403-34      59597      90000
+MNT191 120  Z   R/O   175 3390 4096        7         24-01      31476      31500
+Ready; T=0.01/0.01 10:24:34                                                     </code></pre>
+</doc-codeblock></div>
+<p>&amp; This is an important disk for TCP/IP configuration files. List all the
+files on this disk. What is the command?</p>
+<p>===&gt;</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">TCPMAINT FILELIST A0  V 169  Trunc=169 Size=2 Line=1 Col=1 Alt=0               
+Cmd   Filename Filetype Fm Format Lrecl    Records     Blocks   Date     Time   
+      PROFILE  TCPIP    D1 V         73         55          1  9/19/14 14:39:11 
+      SYSTEM   DTCPARMS D1 V         71          7          1  9/19/14 14:38:58 
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+    
+                                                                            
+                                                                                
+1= Help       2= Refresh  3= Quit   4= Sort(type)  5= Sort(date)  6= Sort(size) 
+7= Backward   8= Forward  9= FL /n 10=            11= XEDIT/LIST 12= Cursor     
+                                                                                
+====&gt;                                                                           
+                                                            X E D I T  1 File   </code></pre>
+</doc-codeblock></div>
+</div>
+<doc-anchor-target id="profile-tcpip">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#profile-tcpip">#</doc-anchor-trigger>
+        <span>PROFILE TCPIP</span>
+    </h4>
+</doc-anchor-target>
+<div class="easylist"><p>&amp; Look at the file PROFILE TCPIP. You can type an <strong>X</strong>, which is a
+synonym for <strong>X</strong>EDIT right in the FILELIST command next to the file you
+want to edit. &amp; Search for the string DEVICE. You should see many of the
+values that you typed into the IPWIZARD. Following is an example file
+for <strong>ZVMWSXX</strong>:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; /device</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">PROFILE  TCPIP    D1  V 80  Trunc=80 Size=55 Line=37 Col=1 Alt=0               
+                                                                                
+00037 DEVICE DEV@0800  OSD 0800   NONROUTER                                     
+00038 LINK ETH0 QDIOETHERNET DEV@0800   MTU 1800 IP                             
+00039 ; (End DEVICE and LINK statements)                                        
+00040 ; ----------------------------------------------------------------------  
+00041 ; ----------------------------------------------------------------------  
+00042 HOME                                                                      
+00043 172.24.200.222 255.255.255.0 ETH0                                         
+00044 ; (End HOME Address information)                                          
+00045 ; ----------------------------------------------------------------------  
+00046 GATEWAY                                                                   
+00047 ; Network       Subnet          First           Link             MTU      
+00048 ; Address       Mask            Hop             Name             Size     
+00049 ; ------------- --------------- --------------- ---------------- -----    
+00050 DEFAULTNET                      172.24.200.1    ETH0             1800     
+00051 ; (End GATEWAY Static Routing information)                                
+00052 ; ----------------------------------------------------------------------  
+00053 START DEV@0800                                                            
+00054 ; (End START statements)                                                  
+00055 ; ----------------------------------------------------------------------  
+00056 * * * End of File * * *                                                   
+                                                                                
+                                                                                
+ 
+                                                                                
+                                                                                
+                                                                                
+====&gt;                                                                           </code></pre>
+</doc-codeblock></div>
+<p>&amp; Exit this file, enter:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none"> ===&gt; qq</code></pre>
+</doc-codeblock></div>
+</div>
+<doc-anchor-target id="system-dtcparms">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#system-dtcparms">#</doc-anchor-trigger>
+        <span>SYSTEM DTCPARMS</span>
+    </h4>
+</doc-anchor-target>
+<div class="easylist"><p>&amp; Now look at the file SYSTEM DTCPARMS. &amp; You should see the following:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">SYSTEM   DTCPARMS D1  V 80  Trunc=80 Size=7 Line=0 Col=1 Alt=0                 
+                                                                                
+00000 * * * Top of File * * *                                                   
+00001 .**********************************************************************   
+00002 .* SYSTEM DTCPARMS created by DTCIPWIZ EXEC on 19 Sep 2013                
+00003 .* Configuration program run by MAINT at 23:50:15                         
+00004 .**********************************************************************   
+00005 :nick.TCPIP    :type.server                                               
+00006                :class.stack                                               
+00007                :attach.0800-0802                                          
+00008 * * * End of File * * *                                                   
+                                                                                
+                                                                                
+ 
+                                                                                
+====&gt;                                                                           </code></pre>
+</doc-codeblock></div>
+<p>This file is how the OSA devices 800, 801 and 802 are attached to the
+TCPIP service machine.</p>
+<p>&amp; Exit this file:</p>
+<p><strong>Press the F3 key (or type qq)</strong></p>
+<p>&amp; If you are still in FILELIST mode, exit and return to RUNNING mode.</p>
+<p><strong>Press the F3 key</strong></p>
+</div>
+<doc-anchor-target id="renaming-the-profile-tcpip-file">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#renaming-the-profile-tcpip-file">#</doc-anchor-trigger>
+        <span>Renaming the PROFILE TCPIP file</span>
+    </h3>
+</doc-anchor-target>
+<p>One change that is recommended is to rename your main configuration
+file, PROFILE TCPIP. It is possible that applying service to z/VM can
+overwrite the PROFILE TCPIP file.</p>
+<div class="easylist"><p>&amp; Use the RENAME command to change the file:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; rename profile tcpip d zvmwsxx = d</code></pre>
+</doc-codeblock></div>
+<p>&amp; Now you should test this change. You can do this by forcing the TCPIP
+user ID off the system (logging it off) and then logging on
+interactively and watching it come back up. This is analogous to a Linux
+&quot;service network restart&quot; command. Be careful when you do this. If you
+are using the network to get to your system, you will immediately lose
+the connection.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; force tcpip</code></pre>
+</doc-codeblock></div>
+<p>&amp; Now logon to TCPIP and start the TCP/IP stack.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; logoff TCPMAINT
+===&gt; logon TCPIP</code></pre>
+</doc-codeblock></div>
+<p>Press <strong>Enter</strong> to run the PROFILE EXEC</p>
+<p>Press <strong>Enter</strong> again to start the TCP/IP stack. Note that your renamed
+profile is used:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">LOGON TCPIP                                                                     
+z/VM Version 6 Release 3.0, Service Level 1301 (64-bit),                        
+built on IBM Virtualization Technology                                          
+There is no logmsg data                                                         
+FILES:   NO RDR, 0001 PRT,   NO PUN                                             
+LOGON AT 12:25:00 EDT MONDAY 09/23/13                                           
+z/VM V6.3.0    2013-09-13 00:01                                                 
+                                                                                
+DMSACP723I D (198) R/O                                                          
+DMSACP723I E (591) R/O                                                          
+DMSACP723I F (592) R/O                                                          
+Ready; T=0.01/0.01 12:25:03                                                     
+DTCRUN1022I Console log will be sent to default owner ID: TCPMAINT              
+DTCRUN1046I Using 'server' definition (TCPIP) from file: SYSTEM DTCPARMS D1     
+DTCRUN1046I Using 'class' definition (STACK) from file: IBM DTCPARMS E1         
+DTCRUN1096I STORAGE = 128M                                                      
+DTCRUN1038I Server is not configured to support secure connections              
+DTCRUN1021R To cancel TCP/IP Stack startup, type any non-blank character and    
+            press ENTER. To continue startup, just press ENTER.                 
+                                                                                
+DTCRUN1011I Server started at 12:25:07 on 23 Sep 2013 (Monday)                  
+DTCRUN1011I Running server command: TCPIP                                       
+DTCRUN1011I No parameters in use                                                
+DTCRUN1048I SLVL service information for: TCPIP MODULE E2                       
+DTCRUN1048I CMHOSTN  ZVM620    CMPRCOM  ZVM630    CMTCPPR  ZVM630               
+DTCRUN1048I CMUNTOK  ZVM620    FPIPDOW  ZVM630    FPI6DOW  ZVM630               
+DTCRUN1048I FPNOTIF  ZVM630    FPPARSE  ZVM630    FPQDIO   ZVM630               
+DTCRUN1048I FPQUEUE  PK30609   FPROUND  ZVM620    FPSCHED  ZVM630               
+DTCRUN1048I FPTCPDOW ZVM630    FPTCPREQ ZVM620    FPTCPUP  ZVM620               
+DTCRUN1048I FPTIMER  ZVM620    FPTOCLAW PQ95126   FPTOCTC  PQ70168              
+                                                                                
+                                                            MORE...   ZVMWSXX   </code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">DTCRUN1048I TCMIB    ZVM630    TCMON    ZVM630    TCMPRIO  ZVM620               
+DTCRUN1048I TCNED    ZVM630    TCNOTIF  ZVM630    TCOFFLOP PQ21340              
+DTCRUN1048I TCPARSE  ZVM630    TCPDOWN  ZVM620    TCPERUP  PQ49456              
+DTCRUN1048I TCPEXITS ZVM620    TCPIP    ZVM620    TCPIPIN  ZVM630               
+DTCRUN1048I TCPKT    ZVM620    TCPREQU  ZVM630    TCPRINT  ZVM630               
+DTCRUN1048I TCPSSL   PM77039   TCPUP    ZVM630    TCQDIO   ZVM630               
+DTCRUN1048I TCQUEUE  ZVM620    TCROUND  ZVM620    TCSOCKRE PM72267              
+DTCRUN1048I TCSYSIO  PQ51738   TCTOATM  ZVM620    TCTOCLAW PQ95126              
+DTCRUN1048I TCTOCTC  ZVM620    TCTOHPPI PQ51891   TCTOIUC  ZVM630               
+DTCRUN1048I TCTOOSD  ZVM630    TCTOPC3  PQ66267   TCTREEP  ZVM620               
+DTCRUN1048I TCUDPRE  ZVM620    TCUDPUP  ZVM630    TCUTIL   PM71046              
+DTCRUN1048I TCVMSUB  ZVM620    TNLDSFP  ZVM630    TNSTMAS  ZVM630               
+DTCRUN1048I TNTOCP   ZVM620    TNTOTCP  ZVM620    T6PREQU  ZVM630               
+DTCRUN1048I T6PSSL   ZVM630    T6SOCKRE ZVM630                                  
+DTCTCP001I z/VM TCP/IP Level 630                                                
+                              ***** 09/23/13 *****                              
+12:23:09 DTCIPI008I    Initializing... TCPIP MODULE E2 dated 05/22/13 at 14:18  
+12:23:09 DTCIPI052I TCP/IP Module Load Address:  00C00000                       
+12:23:09 DTCIPI009I Devices will use diagnose 98 real channel program support   
+12:23:09 DTCIPI012I TCP/IP running under z/VM system                            
+12:23:09 DTCIPI005I Trying to open TCPIP TCPIP *                                
+12:23:09 DTCIPI005I Trying to open ZVMWSXX TCPIP *                              
+12:23:09 DTCIPI006I Using profile file ZVMWSXX TCPIP D1 dated 09/19/13 at 23:50 
+12:23:09 DTCFPM004I FPSM is available with 0 pages allocated                    
+12:23:09 DTCFPM005I FPSM may allocate an additional 24570 pages out of 27301    
+                              ***** 09/23/13 *****                              
+12:23:09 DTCPRS354I AutoRestart is the default for device DEV@0800              
+12:23:09 DTCOSD080I OSD initializing:                                           
+12:23:09 DTCPRI385I  Device DEV@0800:                                           
+12:23:09 DTCPRI386I     Type: OSD, Status: Not started                          
+                                                                                
+                                                            MORE...   ZVMWSXX   </code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">10:32:22 DTCQDI001I QDIO device DEV@0800 device number 0800:                    
+10:32:22 DTCQDI007I   Enabled for QDIO data transfers                           
+10:32:22 DTCOSD238I ToOsd: IPv4 multicast support enabled for DEV@0800          
+10:32:22 DTCOSD319I ProcessSetArpCache: Supported for device DEV@0800           
+10:32:22 DTCOSD341I Obtained MAC address 02003000001E for device DEV@0800       
+10:32:22 DTCOSD246I OSD device DEV@0800: Assigned IPv4 address 172.24.200.95    
+10:32:22 DTCOSD234I ToOsd: TCPIP host is not set as a router for port UNASSIGNED
+ for IPv4                                                                       
+                                                   
+                                                                                
+                                                            RUNNING   ZVMWS01   </code></pre>
+</doc-codeblock></div>
+<p>&amp; Now should you LOGOFF of TCPIP or DISCONNECT?</p>
+<p>===&gt;</p>
+<p>The former will kill the stack while the latter will allow it to run. A
+VM service machine is analogous to a Linux daemon. Use the #CP DISC
+command. The #CP <em>punches through</em> to the CP level.</p>
+</div>
+<doc-anchor-target id="verify-the-tcpip-setup">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#verify-the-tcpip-setup">#</doc-anchor-trigger>
+        <span>Verify the TCPIP setup</span>
+    </h3>
+</doc-anchor-target>
+<p>If all went well, your z/VM should now be on the network. Let&#x27;s try a
+few things to verify the configuration is correct.</p>
+<div class="easylist"><p>&amp; Start a TN3270 session and connect directly to you z/VM system. You
+now have the ability to log on to more than one virtual machine at a
+time. &amp; Log on as TCPMAINT. &amp; Use the NETSTAT command to display
+information about your network. Display the device information. You
+should see information about the QDIO1 device.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; netstat dev</code></pre>
+</doc-codeblock></div>
+<p>Display the gateway information. You should see information about the
+gateway.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; netstat gate</code></pre>
+</doc-codeblock></div>
+<p>&amp; Ping the gateway (first hop).</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; ping GATEWAYIP</code></pre>
+</doc-codeblock></div>
+<p>&amp; Tracing routes through a network is sometimes necessary to help debug
+connectivity issues. Try the TRACERTE command and trace the route to
+another IP:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; tracerte ANOTHERIP</code></pre>
+</doc-codeblock></div>
+<p>&amp; Log off the TCPMAINT virtual machine.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; logoff </code></pre>
+</doc-codeblock></div>
+</div>
+<doc-anchor-target id="create-a-etc-hosts-file">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#create-a-etc-hosts-file">#</doc-anchor-trigger>
+        <span>Create a ETC HOSTS file</span>
+    </h3>
+</doc-anchor-target>
+<p>The local host files contain information needed for local host name
+resolution. Any domain name or IP address specified in this file is
+accessible for use on your network. Local host files are used to create
+the site table, which enables name resolution and reverse name
+resolution without using a domain name server.</p>
+<p>A sample file, ETCHOSTS SAMPLE, is supplied with the z/VM system
+deliverable on the TCPMAINT 592 disk. You can use this file as a guide
+for creating a customized ETC HOSTS file, that should reside on this
+same minidisk (TCPMAINT 592). Because each site is unique, the
+statements within the ETC HOSTS file must be customized for your
+installation.</p>
+<div class="easylist"><p>&amp; Log on as TCPMAINT.</p>
+<p>&amp; Identify disk 592 file mode</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; q disk</code></pre>
+</doc-codeblock></div>
+<p>&amp; Copy the sample file from disk 592 to ETC HOSTS</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; copy ETCHOSTS SAMPLE f ETC HOSTS =</code></pre>
+</doc-codeblock></div>
+<p>&amp; Edit the file and add the IP from another student</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">00046 # -----------------------------------------------------------------------
+00047 # Local Host Loopback Address (IPv4 format)
+00048 # -----------------------------------------------------------------------
+00049
+00050 127.0.0.1     localhost loopback
+00051 (*|\textcolor{red}{172.24.200.222  zvmwsxx}|*)
+00052
+00053 # -----------------------------------------------------------------------
+00054 # Special IPv6 Addresses
+00055 # -----------------------------------------------------------------------</code></pre>
+</doc-codeblock></div>
+<p>&amp; Test it pinging the z/VM using its name:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; ping zvmwsxxx</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">ping zvmwsxx
+Ping Level 630: Pinging host ZVMWSXX (172.24.200.222).
+                Enter #CP EXT to interrupt.
+PING: Ping #1 response took 0.003 seconds. Successes so far 1.
+Ready; T=0.08/0.17 19:41:26</code></pre>
+</doc-codeblock></div>
+</div>
+<doc-anchor-target id="sec:autologtcpip">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#sec:autologtcpip">#</doc-anchor-trigger>
+        <span>Configure AUTOLOG1&#x27;s PROFILE EXEC</span>
+    </h3>
+</doc-anchor-target>
+<p>When z/VM IPLs, normally the AUTOLOG1 virtual machine is logged on
+(unless the NOAUTOLOG parameter is specified at IPL). Its PROFILE EXEC
+is run when CMS IPLs. Using this file, perform the following tasks:</p>
+<div class="easylist"><p>&amp; Limit minidisk cache in main storage and turn it off in expanded
+storage with the SET MDC command. &amp; Start virtual machines that should
+be started using the XAUTOLOG command</p>
+</div>
+<div class="easylist"><p>&amp; Log on to AUTOLOG1.</p>
+<p>&amp; Before pressing Enter at the VM READ prompt, type <strong>acc (noprof</strong> so
+that the PROFILE EXEC is not run:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">LOGON AUTOLOG1
+z/VM Version 6 Release 3.0, Service Level 1201 (64-bit),
+built on IBM Virtualization Technology
+There is no logmsg data
+FILES: NO RDR, NO PRT, NO PUN
+LOGON AT 13:32:04 EDT TUESDAY 09/03/13
+z/VM V6.3.0
+2013-06-24 16:58
+==&gt; acc (noprof</code></pre>
+</doc-codeblock></div>
+<p>&amp; Make a copy of the original PROFILE EXEC</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">==&gt; copy profile exec a = execorig =</code></pre>
+</doc-codeblock></div>
+<p>Edit the PROFILE EXEC and add the following three lines below the
+Customer processing comment:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">==&gt; x profile exec
+====&gt; /customer</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">...
+/* Customer processing can be added here
+*/
+/*********************************************************************/
+&quot;CP XAUTOLOG TCPIP&quot;   /* Autolog TCPIP */
+&quot;CP SET MDC STOR 0M 256M&quot; /* Limit minidisk cache in CSTOR */
+...
+====&gt; file</code></pre>
+</doc-codeblock></div>
+<p>&amp; The TCPIP VM should start automatically during the IPL.</p>
+</div>
+<p>This is our actual environment after the changes:</p>
+<p><figure class="content-center">
+    <img src="../../imgs/workshop-tcpip.png" alt="Environment with TCPIP" id="fig:workshoptcpip">
+    <figcaption class="caption">Environment with TCPIP</figcaption>
+</figure>
+</p>
+
+                                
+                                <!-- Required only on API pages -->
+                                <doc-toolbar-member-filter-no-results></doc-toolbar-member-filter-no-results>
+                            </div>
+                            <footer class="clear-both">
+                            
+                                <nav class="flex mt-14">
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../pt-br/network-concepts/">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                            <span>
+                                                <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Anterior</span>
+                                                <span class="block mt-1">Network Concepts</span>
+                                            </span>
+                                        </a>
+                                    </div>
+                            
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../pt-br/virtual-switch/">
+                                            <span>
+                                                <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Próximo</span>
+                                                <span class="block mt-1">Virtual Switch</span>
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                        </a>
+                                    </div>
+                                </nav>
+                            </footer>
+                        </main>
+                
+                        <div class="border-t dark:border-dark-650 pt-6 mb-8">
+                            <footer class="flex flex-wrap items-center justify-between">
+                                <div>
+                                    <ul class="flex flex-wrap items-center text-sm">
+                                    </ul>
+                                </div>
+                                <div class="docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>Please share with the z community.</p></div>
+                            </footer>
+                        </div>
+                    </div>
+                
+                    <!-- Rendered if sidebar right is enabled -->
+                    <!-- Sidebar right skeleton-->
+                    <div v-cloak class="fixed top-0 bottom-0 right-0 translate-x-full bg-white border-gray-200 lg:sticky lg:border-l lg:shrink-0 lg:pt-6 lg:transform-none sm:w-1/2 lg:w-64 lg:z-0 md:w-104 sidebar-right skeleton dark:bg-dark-850 dark:border-dark-650">
+                        <div class="pl-5">
+                            <div class="w-32 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                            <div class="w-48 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                            <div class="w-40 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                        </div>
+                    </div>
+                
+                    <!-- User should be able to hide sidebar right -->
+                    <doc-sidebar-right v-cloak></doc-sidebar-right>
+                </div>
+
+            </div>
+        </div>
+    
+        <doc-search-mobile></doc-search-mobile>
+        <doc-back-to-top></doc-back-to-top>
+    </div>
+
+
+    <div id="docs-overlay-target"></div>
+
+    <script data-cfasync="false">window.__DOCS__ = { "title": "Basic TCP/IP Configuration", level: 2, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+</body>
+</html>

@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.4.1.748114234369">
+
+    <!-- See retype.com -->
+    <meta name="generator" content="Retype 3.4.1">
+
+    <!-- Primary Meta Tags -->
+    <title>Creating a Virtual Machine</title>
+    <meta name="title" content="Creating a Virtual Machine">
+    <meta name="description" content="The z/VM user directory specifies the configuration and operating characteristics of virtual machines. A z/VM user directory exists in two">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://zvm-bootcamp.github.io/pt-br/creating-a-virtual-machine/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://zvm-bootcamp.github.io/pt-br/creating-a-virtual-machine/">
+    <meta property="og:title" content="Creating a Virtual Machine">
+    <meta property="og:description" content="The z/VM user directory specifies the configuration and operating characteristics of virtual machines. A z/VM user directory exists in two">
+    <meta property="og:image" content="https://zvm-bootcamp.github.io/imgs/userdir.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://zvm-bootcamp.github.io/pt-br/creating-a-virtual-machine/">
+    <meta property="twitter:title" content="Creating a Virtual Machine">
+    <meta property="twitter:description" content="The z/VM user directory specifies the configuration and operating characteristics of virtual machines. A z/VM user directory exists in two">
+    <meta property="twitter:image" content="https://zvm-bootcamp.github.io/imgs/userdir.png">
+
+    <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
+
+    <link href="../../resources/css/retype.css?v=3.4.1.748114234369" rel="stylesheet">
+
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.4.1.748114234369" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/retype.js?v=3.4.1" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.4.1.748114234369" data-turbo-eval="false" defer></script>
+</head>
+<body>
+    <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
+        <div class="absolute bottom-0 left-0 bg-gray-100 dark:bg-dark-800" style="top: 5rem; right: 50%"></div>
+    
+        <header id="docs-site-header" class="sticky top-0 z-30 flex w-full h-16 bg-white border-b border-gray-200 md:h-20 dark:bg-dark-850 dark:border-dark-650">
+            <div class="container relative flex items-center justify-between pr-6 grow md:justify-start">
+                <!-- Mobile menu button skeleton -->
+                <button v-cloak class="skeleton docs-mobile-menu-button flex items-center justify-center shrink-0 overflow-hidden dark:text-white focus:outline-none rounded-full w-10 h-10 ml-3.5 md:hidden"><svg xmlns="http://www.w3.org/2000/svg" class="mb-px shrink-0" width="24" height="24" viewBox="0 0 24 24" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor"><path d="M2 4h20v2H2zM2 11h20v2H2zM2 18h20v2H2z"></path></g></svg></button>
+                <div v-cloak id="docs-sidebar-toggle"></div>
+        
+                <!-- Logo -->
+                <div class="flex items-center justify-between h-full py-2 md:w-75">
+                    <div class="flex items-center px-2 md:px-6">
+                        <a id="docs-site-logo" href="../../" class="flex items-center leading-snug text-xl">
+                            <span class="w-10 mr-2 grow-0 shrink-0 overflow-hidden">
+                                <img class="max-h-10 dark:hidden md:inline-block" src="../../static/vmbear.jpg">
+                                <img class="max-h-10 hidden dark:inline-block" src="../../static/vmbear.jpg">
+                            </span>
+                            <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">z/VM Bootcamp</span>
+                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">Manual</span>
+                    </div>
+        
+                    <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
+                </div>
+        
+                <div class="flex justify-between md:grow">
+                    <!-- Top Nav -->
+                    <nav class="hidden md:flex">
+                        <ul class="flex flex-col mb-4 md:pl-16 md:mb-0 md:flex-row md:items-center">
+                            <li class="mr-6">
+                                <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://titosoft.github.io/z/vm/zvm-cheatsheet/" target="_blank">z/VM Cheat Sheet</a>
+                            </li>
+        
+                        </ul>
+                    </nav>
+        
+                    <!-- Header Right Skeleton -->
+                    <div v-cloak class="flex justify-end grow skeleton">
+        
+                        <!-- Search input mock -->
+                        <div class="relative hidden w-40 lg:block lg:max-w-sm lg:ml-auto">
+                            <div class="absolute flex items-center justify-center h-full pl-3 dark:text-dark-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon-base" width="16" height="16" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 1px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                            </div>
+                            <input class="w-full h-10 placeholder-gray-400 transition-colors duration-200 ease-in bg-gray-200 border border-transparent rounded md:text-sm hover:bg-white hover:border-gray-300 focus:outline-none focus:bg-white focus:border-gray-500 dark:bg-dark-600 dark:border-dark-600 dark:placeholder-dark-400" style="padding: 0.625rem 0.75rem 0.625rem 2rem" type="text" placeholder="Pesquisar">
+                        </div>
+        
+                        <!-- Mobile search button -->
+                        <div class="flex items-center justify-center w-10 h-10 lg:hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="20" height="20" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                        </div>
+        
+                        <!-- Dark mode switch placeholder -->
+                        <div class="w-10 h-10 lg:ml-2"></div>
+        
+                        <!-- History button -->
+                        <div class="flex items-center justify-center w-10 h-10" style="margin-right: -0.625rem;">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="22" height="22" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor" ><g ><path d="M12.01 6.01c-.55 0-1 .45-1 1V12a1 1 0 00.4.8l3 2.22a.985.985 0 001.39-.2.996.996 0 00-.21-1.4l-2.6-1.92V7.01c.02-.55-.43-1-.98-1z"></path><path d="M12.01 1.91c-5.33 0-9.69 4.16-10.05 9.4l-.29-.26a.997.997 0 10-1.34 1.48l1.97 1.79c.19.17.43.26.67.26s.48-.09.67-.26l1.97-1.79a.997.997 0 10-1.34-1.48l-.31.28c.34-4.14 3.82-7.41 8.05-7.41 4.46 0 8.08 3.63 8.08 8.09s-3.63 8.08-8.08 8.08c-2.18 0-4.22-.85-5.75-2.4a.996.996 0 10-1.42 1.4 10.02 10.02 0 007.17 2.99c5.56 0 10.08-4.52 10.08-10.08.01-5.56-4.52-10.09-10.08-10.09z"></path></g></g></svg>
+                        </div>
+                    </div>
+        
+                    <div v-cloak class="flex justify-end grow">
+                        <div id="docs-mobile-search-button"></div>
+                        <doc-search-desktop></doc-search-desktop>
+        
+                        <doc-theme-switch class="lg:ml-2"></doc-theme-switch>
+                        <doc-history></doc-history>
+                    </div>
+                </div>
+            </div>
+        </header>
+    
+        <div class="container relative flex bg-white">
+            <!-- Sidebar Skeleton -->
+            <div v-cloak class="fixed flex flex-col shrink-0 duration-300 ease-in-out bg-gray-100 border-gray-200 sidebar top-20 w-75 border-r h-screen md:sticky transition-transform skeleton dark:bg-dark-800 dark:border-dark-650">
+            
+                <!-- Render this div, if config.showSidebarFilter is `true` -->
+                <div class="flex items-center h-16 px-6">
+                    <input class="w-full h-8 px-3 py-2 transition-colors duration-200 ease-linear bg-white border border-gray-200 rounded shadow-none text-sm focus:outline-none focus:border-gray-600 dark:bg-dark-600 dark:border-dark-600" type="text" placeholder="Filtrar">
+                </div>
+            
+                <div class="pl-6 mt-1 mb-4">
+                    <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                </div>
+            
+                <div class="shrink-0 mt-auto bg-transparent dark:border-dark-650">
+                    <a class="flex items-center justify-center flex-nowrap h-16 text-gray-400 dark:text-dark-400 hover:text-gray-700 dark:hover:text-dark-300 transition-colors duration-150 ease-in docs-powered-by" target="_blank" href="https://retype.com/" rel="noopener">
+                        <span class="text-xs whitespace-nowrap">Powered by</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="ml-2" fill="currentColor" width="96" height="20" overflow="visible"><path d="M0 0v20h13.59V0H0zm11.15 17.54H2.44V2.46h8.71v15.08zM15.8 20h2.44V4.67L15.8 2.22zM20.45 6.89V20h2.44V9.34z"/><g><path d="M40.16 8.44c0 1.49-.59 2.45-1.75 2.88l2.34 3.32h-2.53l-2.04-2.96h-1.43v2.96h-2.06V5.36h3.5c1.43 0 2.46.24 3.07.73s.9 1.27.9 2.35zm-2.48 1.1c.26-.23.38-.59.38-1.09 0-.5-.13-.84-.4-1.03s-.73-.28-1.39-.28h-1.54v2.75h1.5c.72 0 1.2-.12 1.45-.35zM51.56 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92h4.74v1.83h-6.79V5.36h6.64zM60.09 7.15v7.48h-2.06V7.15h-2.61V5.36h7.28v1.79h-2.61zM70.81 14.64h-2.06v-3.66l-3.19-5.61h2.23l1.99 3.45 1.99-3.45H74l-3.19 5.61v3.66zM83.99 6.19c.65.55.97 1.4.97 2.55s-.33 1.98-1 2.51-1.68.8-3.04.8h-1.23v2.59h-2.06V5.36h3.26c1.42 0 2.45.28 3.1.83zm-1.51 3.65c.25-.28.37-.69.37-1.22s-.16-.92-.48-1.14c-.32-.23-.82-.34-1.5-.34H79.7v3.12h1.38c.68 0 1.15-.14 1.4-.42zM95.85 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92H96v1.83h-6.79V5.36h6.64z"/></g></svg>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Sidebar component -->
+            <doc-sidebar v-cloak>
+                <template #sidebar-footer>
+                    <div class="shrink-0 mt-auto border-t md:bg-transparent md:border-none dark:border-dark-650">
+            
+                        <div class="py-3 px-6 md:hidden border-b dark:border-dark-650">
+                            <nav>
+                                <ul class="flex flex-wrap justify-center items-center">
+                                    <li class="mr-6">
+                                        <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://titosoft.github.io/z/vm/zvm-cheatsheet/" target="_blank">z/VM Cheat Sheet</a>
+                                    </li>
+            
+                                </ul>
+                            </nav>
+                        </div>
+            
+                        <a class="flex items-center justify-center flex-nowrap h-16 text-gray-400 dark:text-dark-400 hover:text-gray-700 dark:hover:text-dark-300 transition-colors duration-150 ease-in docs-powered-by" target="_blank" href="https://retype.com/" rel="noopener">
+                            <span class="text-xs whitespace-nowrap">Powered by</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-2" fill="currentColor" width="96" height="20" overflow="visible"><path d="M0 0v20h13.59V0H0zm11.15 17.54H2.44V2.46h8.71v15.08zM15.8 20h2.44V4.67L15.8 2.22zM20.45 6.89V20h2.44V9.34z"/><g><path d="M40.16 8.44c0 1.49-.59 2.45-1.75 2.88l2.34 3.32h-2.53l-2.04-2.96h-1.43v2.96h-2.06V5.36h3.5c1.43 0 2.46.24 3.07.73s.9 1.27.9 2.35zm-2.48 1.1c.26-.23.38-.59.38-1.09 0-.5-.13-.84-.4-1.03s-.73-.28-1.39-.28h-1.54v2.75h1.5c.72 0 1.2-.12 1.45-.35zM51.56 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92h4.74v1.83h-6.79V5.36h6.64zM60.09 7.15v7.48h-2.06V7.15h-2.61V5.36h7.28v1.79h-2.61zM70.81 14.64h-2.06v-3.66l-3.19-5.61h2.23l1.99 3.45 1.99-3.45H74l-3.19 5.61v3.66zM83.99 6.19c.65.55.97 1.4.97 2.55s-.33 1.98-1 2.51-1.68.8-3.04.8h-1.23v2.59h-2.06V5.36h3.26c1.42 0 2.45.28 3.1.83zm-1.51 3.65c.25-.28.37-.69.37-1.22s-.16-.92-.48-1.14c-.32-.23-.82-.34-1.5-.34H79.7v3.12h1.38c.68 0 1.15-.14 1.4-.42zM95.85 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92H96v1.83h-6.79V5.36h6.64z"/></g></svg>
+                        </a>
+                    </div>
+                </template>
+            </doc-sidebar>
+    
+            <div class="grow min-w-0 dark:bg-dark-850">
+                <!-- Render "toolbar" template here on api pages --><!-- Render page content -->
+                <div class="flex">
+                    <div class="min-w-0 p-4 grow md:px-16">
+                        <main class="relative pb-12 lg:pt-2">
+                            <div class="docs-markdown" id="docs-content">
+                                <!-- Rendered if sidebar right is enabled -->
+                                <div id="docs-sidebar-right-toggle"></div>
+                                <!-- Page content  -->
+<doc-anchor-target id="creating-a-virtual-machine" class="break-words">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#creating-a-virtual-machine">#</doc-anchor-trigger>
+        <span>Creating a Virtual Machine</span>
+    </h1>
+</doc-anchor-target>
+<p>The z/VM user directory specifies the configuration and operating
+characteristics of virtual machines. A z/VM user directory exists in two
+forms: a source form that consists of one or more CMS files, and an
+object form, created from the source, on a CP-formatted disk. Each
+virtual machine has a directory entry. Here is a sample directory entry:</p>
+<p><figure class="content-center">
+    <img src="../../imgs/userdir.png" alt="User Directory example" id="fig:userdir">
+    <figcaption class="caption">User Directory example</figcaption>
+</figure>
+</p>
+<p>The sample on figure <doc-anchor-trigger to="#fig:userdir" reference-type="ref" reference="fig:userdir">9.1</doc-anchor-trigger> is a simple Linux guest. This chapter will
+guide you to build a more complex guest using other directory statements
+like PROFILE and DIRMAINT as a tool to manage those entries.</p>
+<p>An entry begins with one of the following statements: GLOBALDEFS (global
+definitions entry), PROFILE (profile entry), USER (user entry), IDENTITY
+(identity entry), or SUBCONFIG (subconfiguration entry). For our
+workshop the most important entries are <strong>PROFILE</strong> and <strong>USER</strong>, anyway
+the others entries are also explained.</p>
+<doc-anchor-target id="directory-definition">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#directory-definition">#</doc-anchor-trigger>
+        <span>DIRECTORY definition</span>
+    </h2>
+</doc-anchor-target>
+<p>The DIRECTORY Definition consists of one or more DIRECTORY control
+statements that define the output of object directories. The DIRECTORY
+statement defines to CP the device on which you have allocated space for
+the directory. (These devices must also be a CP_owned volume). The user
+directory itself is managed by DIRMAINT.</p>
+<p>The following DIRECTORY definition simply says DASD volume M01RES has
+directory space allocated on it for the object directory. It is a 3390
+device type, and 123 is the virtual device number which contains the
+directory.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">DIRECTORY 123 3390 M01RES</code></pre>
+</doc-codeblock></div>
+<p>You can query DIRECTORY definitions info executing:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">DIRM DIRECTORY ?</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="global-definition">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#global-definition">#</doc-anchor-trigger>
+        <span>GLOBAL definition</span>
+    </h2>
+</doc-anchor-target>
+<p>The Global Definition section begins with the GLOBALDEFS directory
+control statement. It also includes directory control statements that
+define global settings to be used across all user definitions. This is
+an optional statement. If specified it must directly precede all PROFILE
+and USER definitions. There can be only one GLOBALDEFS directory control
+statement specified. The user directory that came with the installed
+system contains the following Globaldefs:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">00026 *                                                              
+00027 GLOBALDEFS                                                     
+00028       POSIXGROUP system 0                                      
+00029       POSIXGROUP staff  1                                      
+00030       POSIXGROUP bin    2                                      
+00031       POSIXGROUP sys    3                                      
+00032       POSIXGROUP adm    4                                      
+00033       POSIXGROUP mail   6                                      
+00034       POSIXGROUP security 7                                    
+00035       POSIXGROUP nobody 4294967294                             
+00036 *                                                              
+00037 ***************************************************************</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="profile-definitions">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#profile-definitions">#</doc-anchor-trigger>
+        <span>PROFILE definitions</span>
+    </h2>
+</doc-anchor-target>
+<p>Each PROFILE definition begins with a PROFILE directory control
+statement and consolidates other directory control statements that are
+commonly used across multiple users. When PROFILE is specified it must
+follow the last DIRECTORY statement, the global definition section (if
+any), and precede the USER statements.</p>
+<p>This is an example of profile:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">PROFILE IBMDFLT           
+  SPOOL 000C 2540 READER *
+  SPOOL 000D 2540 PUNCH A 
+  SPOOL 000E 1403 A       
+  CONSOLE 009 3215 T      
+ LINK MAINT 0190 0190 RR  
+ LINK MAINT 019D 019D RR  
+ LINK MAINT 019E 019E RR  
+ LINK MAINT 0402 0402 RR  
+ LINK MAINT 0401 0401 RR   </code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="user-definitions">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#user-definitions">#</doc-anchor-trigger>
+        <span>USER definitions</span>
+    </h2>
+</doc-anchor-target>
+<p>User definitions (virtual machine definitions or guests) begin with a
+USER directory control statement and define an individual virtual
+machine.</p>
+<p>The USER statement starts each virtual machine&#x27;s directory entry. It
+also defines a user ID and password, a logon and maximum virtual storage
+size, and command privileges.</p>
+<p>Here is one example of user definitions, in this case the PMAINT user:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">USER PMAINT   WD5JU8QP  128M 1000M G
+ AUTOLOG AUTOLOG1 OP1 MAINT         
+ ACCOUNT 1 SYSPROG                  
+ MACH ESA                           
+ POSIXINFO UID 0 GNAME system       
+ OPTION MAINTCCW LNKS LNKE LNKNOPAS 
+ IPL 190                            
+ NAMESAVE GCS                       
+ NAMESAVE VTAM                      
+ CONSOLE 009 3215 T                 
+ LINK MAINT 190 190 RR              
+ LINK MAINT 193 193 RR              
+ LINK MAINT 19E 19E RR              
+ LINK MAINT 19D 19D RR              
+ LINK MAINT 401 401 RR              
+ LINK MAINT 402 402 RR              
+ SPOOL 00C 2540 READER *            
+ SPOOL 00D 2540 PUNCH  A            
+ SPOOL 00E 1403 A               </code></pre>
+</doc-codeblock></div>
+<p>The above directory control statement defines a virtual machine called
+PMAINT, whose password is &#x27;WD5JU8QP&#x27;. When PMAINT logs on it is
+allocated 128 Megabytes of virtual storage. It is allowed a maximum of
+1000 Megabytes of virtual storage, and it is a class G, or general user.</p>
+<p>The following table contains a description of different command classes:</p>
+<div id="tab:privclasses"><p><strong>Class</strong>   <strong>User and Function</strong></p>
+<hr>
+<dl>
+<dt>A           System Operator: The class A user controls the z/VM system. The system operator is responsible for the availability of the z/VM system and its resources. In addition, the system operator controls system accounting, broadcast messages, virtual machine performance options, and other options that affect the overall performance of z/VM.Note: The class A user who is automatically logged on during CP initialization is designated as the primary system operator.</dt>
+<dt>B           System Resource Operator: The class B user controls all the real resources of the z/VM system, except those controlled by the system operator and the spooling operator.</dt>
+<dt>C           System Programmer: The class C user updates or changes system-wide parameters of the z/VM system.</dt>
+<dt>D           Spooling Operator: The class D user controls spool files and the system&#x27;s real reader, printer, and punch equipment allocated to spooling use.</dt>
+<dt>E           System Analyst: The class E user examines and saves system operation data in specified z/VM storage areas.</dt>
+<dt>F           Service Representative: The class F user obtains, and examines in detail, data about input and output devices connected to the z/VM system. This privilege class is reserved for IBM use only.</dt>
+<dt>G           General User: The class G user controls functions associated with a particular virtual machine.</dt>
+<dt>Any         Commands belonging to class &quot;Any&quot; are available to any user, regardless of the user&#x27;s privilege class. These commands are primarily those used to gain access to, or relinquish access from, the z/VM system.</dt>
+<dt>H           Reserved for IBM use.</dt>
+<dt>I - Z - 6   These classes are reserved for redefinition by each installation for its own use (using MODIFY statements or commands).</dt>
+<dd>Privilege Classes</dd>
+</dl>
+</div>
+<doc-anchor-target id="creating-a-simple-cms-user">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#creating-a-simple-cms-user">#</doc-anchor-trigger>
+        <span>Creating a simple CMS user</span>
+    </h2>
+</doc-anchor-target>
+<p>This section will provide you instruction to create a CMS VM. In the
+first step we will not even have disks on this VM and we will learn how
+to add minidisks and how to resize it. This machine will be used to host
+some files that will be used on next chapter
+(<doc-anchor-trigger to="#chap:installinglinux" reference-type="ref" reference="chap:installinglinux">10</doc-anchor-trigger> - ).</p>
+<doc-anchor-target id="how-to-create-a-new-vm">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#how-to-create-a-new-vm">#</doc-anchor-trigger>
+        <span>How to create a new VM</span>
+    </h3>
+</doc-anchor-target>
+<p>Our objective is to create a new VM called <em>VMTOOLS</em>. There is a special
+file type called <em>DIRECT</em>. We are going to create a new file called
+VMTOOLS DIRECT that will host the directory statements needed to run our
+CMS VM.</p>
+<div class="easylist"><p>&amp; Logged as MAINT</p>
+<p>&amp; Create a file called VMTOOLS DIRECT</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">X VMTOOLS DIRECT A</code></pre>
+</doc-codeblock></div>
+<p>&amp; Input the following content:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">(*|\textcolor{blue}{USER VMTOOLS WORK2016 64M 64M G}|*)
+(*|\textcolor{green}{IPL CMS}|*)
+(*|\textcolor{red}{SPOOL 000C 2540 READER *}|*)
+(*|\textcolor{red}{SPOOL 000D 2540 PUNCH A}|*)
+(*|\textcolor{red}{SPOOL 000E 1403 A}|*)
+(*|\textcolor{red}{CONSOLE 009 3215 T}|*)
+(*|\textcolor{green}{LINK MAINT 0190 0190 RR}|*)
+(*|\textcolor{green}{LINK MAINT 019D 019D RR}|*)
+(*|\textcolor{green}{LINK MAINT 019E 019E RR}|*)</code></pre>
+</doc-codeblock></div>
+<p>The blue line defines the name, password, amount of memory and privilege
+class of our new VM</p>
+<p>The green lines are related to CMS. We are linking disks that are
+required to IPL CMS in our VM</p>
+<p>The red lines are related to some standard devices, like Reader, Punch,
+Printer and Console.</p>
+<p>&amp; Save the file and quit</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">====&gt; FILE</code></pre>
+</doc-codeblock></div>
+<p>&amp; To add our new VM to the directory we are going to use DIRM ADD
+command:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">DIRM ADD VMTOOLS</code></pre>
+</doc-codeblock></div>
+<p>&amp; If you got RC = 0, we are good, otherwise there is a typo in your
+VMTOOLS DIRECT file, fix the error and try again.</p>
+</div>
+<doc-anchor-target id="how-to-add-a-minidisk">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#how-to-add-a-minidisk">#</doc-anchor-trigger>
+        <span>How to add a minidisk</span>
+    </h3>
+</doc-anchor-target>
+<div class="easylist"><p>&amp; Try to login in your new VM and you will see a message:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">z/VM Version 6 Release 3.0, Service Level 1501 (64-bit), 
+built on IBM Virtualization Technology
+There is no logmsg data
+FILES: 0003 RDR,   NO PRT,   NO PUN
+LOGON AT 13:30:14 EDT SATURDAY 07/16/16
+z/VM V6.3.0    2015-06-18 16:09
+ 
+DMSACP113S A(191) not attached or invalid device address
+Ready; T=0.03/0.03 13:30:16</code></pre>
+</doc-codeblock></div>
+<p>&amp; Ops! We don&#x27;t have an &quot;A-disk&quot; to our VM... we need to create it.</p>
+<p>&amp; Logoff from VMTOOLS</p>
+<p>&amp; Logon on MAINT</p>
+<p>&amp; Execute:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">DIRM FOR VMTOOLS AMD</code></pre>
+</doc-codeblock></div>
+<p>&amp; It will show a PANEL that need to be filled like this one (The
+passwords are in blank but you can set as: READ WRITE MULTI):</p>
+<p><figure class="content-center">
+    <img src="../../imgs/dasdamd.png" alt="DASD AMD" id="fig:dasdamd">
+    <figcaption class="caption">DASD AMD</figcaption>
+</figure>
+</p>
+<p>&amp; We are creating a new minidisk 191, from our LINUX GROUP, with 5
+cylinders. The label is VMT191.</p>
+<p>&amp; The expected result is:</p>
+<p><figure class="content-center">
+    <img src="../../imgs/dasdamdresult.png" alt="DASD AMD result" id="fig:dasdamdresult">
+    <figcaption class="caption">DASD AMD result</figcaption>
+</figure>
+</p>
+<p>&amp; If you want to check how different is your VMTOOLS directory execute:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">DIRM FOR VMTOOLS REView</code></pre>
+</doc-codeblock></div>
+<p>&amp; RECEIVE &lt;n&gt; (REP</p>
+<p>Where &lt;n&gt; is the reader id that will show at the begging of the
+response.</p>
+<p><figure class="content-center">
+    <img src="../../imgs/receivefile.png" alt="Reader ID" id="fig:receivefile">
+    <figcaption class="caption">Reader ID</figcaption>
+</figure>
+</p>
+<p>&amp; You can open using XEDIT and you will see the new MDISK statement at
+the bottom</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">X VMTOOLS DIRECT</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">MDISK 0191 3390 0001 5 LNX301 MR XXXXXXXX XXXXXXXX XXXXXXXX</code></pre>
+</doc-codeblock></div>
+</div>
+<doc-anchor-target id="how-to-change-minidisk-size">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#how-to-change-minidisk-size">#</doc-anchor-trigger>
+        <span>How to change minidisk size</span>
+    </h3>
+</doc-anchor-target>
+<div class="easylist"><p>&amp; Execute</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">DIRM FOR VMTOOLS CMD</code></pre>
+</doc-codeblock></div>
+<p>&amp; DIRM FOR VMTOOLS CMD will open a panel</p>
+<p>&amp; We are going to increase the size of 191 minidisk from 5 cyl to 10 cyl</p>
+<p>&amp; Follow the panel:</p>
+<p><figure class="content-center">
+    <img src="../../imgs/dasdcmd.png" alt="DASD CMD" id="fig:dasdcmd">
+    <figcaption class="caption">DASD CMD</figcaption>
+</figure>
+</p>
+<p>&amp; Press F5 to submit.</p>
+</div>
+<doc-anchor-target id="exercise-1">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#exercise-1">#</doc-anchor-trigger>
+        <span>Exercise</span>
+    </h3>
+</doc-anchor-target>
+<p>Add a new minidisk:</p>
+<div class="easylist"><p>&amp; Address: 192 &amp; Device type: 3390 &amp; On AUTOG: &amp;&amp; Size: 300 &amp;&amp; Grpname:
+LINUX &amp; Link Mode: MR &amp; Label: LNX192 &amp; Passwords: &amp;&amp; READ WRITE MULTI</p>
+</div>
+<doc-anchor-target id="ftp-files-to-vmtools-192">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#ftp-files-to-vmtools-192">#</doc-anchor-trigger>
+        <span>FTP files to VMTOOLS 192</span>
+    </h3>
+</doc-anchor-target>
+<p>During the class the instruction will teach you how to FTP files to our
+new minidisk 192. These files are essential to the Linux installation.
+These steps are not documented here because it depends on your
+environment.</p>
+<p>These instructions are present in the slide deck.</p>
+<doc-anchor-target id="creating-our-linux-profile">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#creating-our-linux-profile">#</doc-anchor-trigger>
+        <span>Creating our Linux Profile</span>
+    </h2>
+</doc-anchor-target>
+<p>On this section a profile to be included by Linux virtual machines will
+be created.</p>
+<div class="easylist"><p>&amp; Log on as MAINT. &amp; Create the user directory source file.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; x LINDFLT DIRECT</code></pre>
+</doc-codeblock></div>
+<p>&amp; In XEDIT tipe &quot;INPUT&quot; to enable input mode</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; INPUT</code></pre>
+</doc-codeblock></div>
+<p>&amp; Paste de following content</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">PROFILE LINDFLT
+COMMAND CP SET PF12 RETRIEVE
+COMMAND CP SET PF11 RETRIEVE FORWARD
+COMMAND SET VSWITCH VSW1 GRANT &amp;USERID
+COMMAND DEFINE NIC 600 TYPE QDIO
+COMMAND COUPLE 600 TO SYSTEM VSW1
+IPL CMS                                                                   
+MACH ESA 2                                                                
+CPU 00 BASE
+OPTION APPLMON
+SPOOL 000C 2540 READER *         
+SPOOL 000D 2540 PUNCH A     
+SPOOL 000E 1403 A              
+CONSOLE 009 3215 T       
+LINK MAINT 0190 0190 RR    
+LINK MAINT 019D 019D RR      
+LINK MAINT 019E 019E RR   
+LINK VMTOOLS 192 191 RR
+LINK TCPMAINT 592 592 RR </code></pre>
+</doc-codeblock></div>
+<p>&amp; Hit ENTER two times to exit input mode.</p>
+<div class="bclogo"><p>Explanation</p>
+<div class="easylist"><p>&amp; PROFILE LINDFLT - Define the profile named LINDFLT &amp; COMMAND CP SET
+PF12 RETRIEVE - Enable F12 to retrieve commands &amp; COMMAND CP SET PF11
+RETRIEVE FORWARD - Enable F11 to &amp; COMMAND SET VSWITCH VSW1 GRANT
+&amp;USERID - Grant access to VSW1 &amp; COMMAND DEFINE NIC 600 TYPE QDIO -
+Define a network card on vaddr 600 &amp; COMMAND COUPLE 600 TO SYSTEM VSW1 -
+Couple the NIC to VSW1 &amp; IPL CMS - When the user ID is logged on, IPL
+CMS &amp; MACH ESA 2 -The machine architecture is ESA with a maximum of 4
+CPUs. &amp; OPTION APPLMON - To enable Linux guest for data gathering &amp; CPU
+00 BASE - CPU 00 is the base and the only CPU set for now &amp; SPOOL 000C
+2540 READER * - Definition of a virtual reader &amp; SPOOL 000D 2540 PUNCH
+A - Definition of a virtual punch &amp; SPOOL 000E 1403 A - Definition of a
+virtual printer &amp; CONSOLE 009 3215 T - Definition of a console &amp; LINK
+MAINT 0190 0190 RR - Link to MAINT&#x27;s 190 minidisk with read access &amp;
+LINK MAINT 019D 019D RR - Link to MAINT&#x27;s 19D minidisk with read access
+&amp; LINK MAINT 019E 019E RR - Link to MAINT&#x27;s 19E minidisk with read
+access &amp; LINK VMTOOLS 192 191 RR - Link to VMTOOLS 192 minidisk as 191
+with read access &amp; LINK TCPMAINT 592 592 RR - Link to TCPMAINT&#x27;s 592
+minidisk with read access. This is where the ftp utility is located.</p>
+</div>
+</div>
+</div>
+<div><p>&amp; Save and quit XEDIT using &quot;file&quot; command.</p>
+<p>To add our new profile to z/VM directory use DIRM ADD:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">DIRM ADD LINDFLT</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">dirm add lindflt
+PUN FILE 0021 SENT TO   DIRMAINT RDR AS  0051 RECS 0020 CPY  001 0 NOHOLD NOKEEP
+DVHXMT1191I Your ADD request has been sent for processing to DIRMAINT at
+DVHXMT1191I ZVMWSXX.
+Ready; T=0.01/0.01 14:37:31
+ DVHREQ2288I Your ADD request for LINDFLT at * has been accepted.
+ DVHBIU3450I The source for directory entry LINDFLT has been updated.
+ DVHBIU3424I The next ONLINE will take place immediately.
+ DVHBIU3428I Changes made to directory entry LINDFLT have been placed
+ DVHBIU3428I online.
+ DVHBIU3450I The source for directory entry LINDFLT has been updated.
+ DVHBIU3424I The next ONLINE will take place immediately.
+ DVHBIU3428I Changes made to directory entry LINDFLT have been placed
+ DVHBIU3428I online.
+ DVHBIU3450I The source for directory entry LINDFLT has been updated.
+ DVHBIU3424I The next ONLINE will take place immediately.
+ DVHBIU3428I Changes made to directory entry LINDFLT have been placed
+ DVHBIU3428I online.
+ DVHBIU3450I The source for directory entry LINDFLT has been updated.
+ DVHBIU3424I The next ONLINE will take place immediately.
+ DVHBIU3428I Changes made to directory entry LINDFLT have been placed
+ DVHBIU3428I online.
+ DVHBIU3450I The source for directory entry LINDFLT has been updated.
+ DVHBIU3424I The next ONLINE will take place immediately.
+ DVHBIU3428I Changes made to directory entry LINDFLT have been placed
+ DVHBIU3428I online.
+ DVHREQ2289I Your ADD request for LINDFLT at * has completed; with RC =
+ DVHREQ2289I 0.
+ 
+
+                                                            RUNNING   ZVMWSXX </code></pre>
+</doc-codeblock></div>
+</div>
+<doc-anchor-target id="create-the-linux1-virtual-machine">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#create-the-linux1-virtual-machine">#</doc-anchor-trigger>
+        <span>Create the LINUX1 virtual machine</span>
+    </h2>
+</doc-anchor-target>
+<p>To create a Linux image we will use a DASD 3390-09 (10016 cyl) as base.
+DIRMAINT has a feature called PROTODIRs that we can use to create
+directory template for our Linux.</p>
+<div class="easylist"><p>&amp; First, grab a copy of LINUX PROTODIR</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; DIRM SEND LINUX PROTODIR</code></pre>
+</doc-codeblock></div>
+<p>&amp; <strong>Receive</strong> a file called LINUX PROTODIR and edit it</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">X LINUX PROTODIR</code></pre>
+</doc-codeblock></div>
+<p>&amp; In XEDIT tipe &quot;INPUT&quot; to enable input mode</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; INPUT</code></pre>
+</doc-codeblock></div>
+<p>&amp; Paste de following content</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">USER LINUX NOLOG 1G 1G G
+INCLUDE LINDFLT       
+MDISK 0100 3390 AUTOG 1600 LINUX MR READ WRITE MULTIPLE
+MDISK 0101 3390 AUTOG 800 LINUX MR READ WRITE MULTIPLE
+MDISK 0102 3390 AUTOG 6016 LINUX MR READ WRITE MULTIPLE
+MDISK 0103 3390 AUTOG 800 LINUX MR READ WRITE MULTIPLE
+MDISK 0104 3390 AUTOG 800 LINUX MR READ WRITE MULTIPLE</code></pre>
+</doc-codeblock></div>
+<p>&amp; Save and close the file</p>
+<p>&amp; Apply the LINUX PROTODIR changes using the following command</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; DIRM FILE LINUX PROTODIR</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">dirm file linux protodir
+PUN FILE 0320 SENT TO   DIRMAINT RDR AS  0424 RECS 0013 CPY  001 0 NOHOLD NOKEEP
+DVHXMT1191I Your FILE request has been sent for processing to DIRMAINT
+DVHXMT1191I at SSI1.
+Ready; T=0.12/0.14 13:34:17
+ DVHREQ2288I Your FILE request for MAINT at * has been accepted.
+ DVHRCV3821I File LINUX PROTODIR E2 has been received; RC = 0.
+ DVHREQ2289I Your FILE request for MAINT at * has completed; with RC = 0.</code></pre>
+</doc-codeblock></div>
+<p id="step:createlinux" label="step:createlinux">&amp; Create the virtual machine definition for LINUX1. []</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; dirm add linux1 like linux pw zcloud</code></pre>
+</doc-codeblock></div>
+<p>&amp; If you receive RC = 0, you should be able to query your new VM:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">q linux1
+HCPCQU045E LINUX1 not logged on
+Ready(00045); T=0.01/0.01 13:36:33</code></pre>
+</doc-codeblock></div>
+<p>&amp; If you receive &quot;Invalid option - LINUX1&quot; response, something wrong
+occured on step
+<doc-anchor-trigger to="#step:createlinux" reference-type="ref" reference="step:createlinux">[step:createlinux]</doc-anchor-trigger></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">q linux1
+HCPCQV003E Invalid option - LINUX1
+Ready(00003); T=0.01/0.01 13:38:31</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="sec:createlinux2">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#sec:createlinux2">#</doc-anchor-trigger>
+        <span>Exercise</span>
+    </h3>
+</doc-anchor-target>
+<div class="easylist"><p>&amp; Create LINUX2 VM. This VM will be used on chapter
+<doc-anchor-trigger to="#cap:clonelinux" reference-type="ref" reference="cap:clonelinux">11</doc-anchor-trigger>
+()</p>
+</div>
+</div>
+<div></div>
+
+                                
+                                <!-- Required only on API pages -->
+                                <doc-toolbar-member-filter-no-results></doc-toolbar-member-filter-no-results>
+                            </div>
+                            <footer class="clear-both">
+                            
+                                <nav class="flex mt-14">
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../pt-br/directory-maintanance/">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                            <span>
+                                                <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Anterior</span>
+                                                <span class="block mt-1">Directory Maintanace</span>
+                                            </span>
+                                        </a>
+                                    </div>
+                            
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../pt-br/installing-linux/">
+                                            <span>
+                                                <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Próximo</span>
+                                                <span class="block mt-1">Installing Linux</span>
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                        </a>
+                                    </div>
+                                </nav>
+                            </footer>
+                        </main>
+                
+                        <div class="border-t dark:border-dark-650 pt-6 mb-8">
+                            <footer class="flex flex-wrap items-center justify-between">
+                                <div>
+                                    <ul class="flex flex-wrap items-center text-sm">
+                                    </ul>
+                                </div>
+                                <div class="docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>Please share with the z community.</p></div>
+                            </footer>
+                        </div>
+                    </div>
+                
+                    <!-- Rendered if sidebar right is enabled -->
+                    <!-- Sidebar right skeleton-->
+                    <div v-cloak class="fixed top-0 bottom-0 right-0 translate-x-full bg-white border-gray-200 lg:sticky lg:border-l lg:shrink-0 lg:pt-6 lg:transform-none sm:w-1/2 lg:w-64 lg:z-0 md:w-104 sidebar-right skeleton dark:bg-dark-850 dark:border-dark-650">
+                        <div class="pl-5">
+                            <div class="w-32 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                            <div class="w-48 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                            <div class="w-40 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                        </div>
+                    </div>
+                
+                    <!-- User should be able to hide sidebar right -->
+                    <doc-sidebar-right v-cloak></doc-sidebar-right>
+                </div>
+
+            </div>
+        </div>
+    
+        <doc-search-mobile></doc-search-mobile>
+        <doc-back-to-top></doc-back-to-top>
+    </div>
+
+
+    <div id="docs-overlay-target"></div>
+
+    <script data-cfasync="false">window.__DOCS__ = { "title": "Creating a Virtual Machine", level: 2, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+</body>
+</html>

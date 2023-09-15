@@ -9,32 +9,32 @@
     <meta name="generator" content="Retype 3.4.1">
 
     <!-- Primary Meta Tags -->
-    <title>Welcome</title>
-    <meta name="title" content="Welcome">
-    <meta name="description" content="Hi!">
+    <title>Network Concepts</title>
+    <meta name="title" content="Network Concepts">
+    <meta name="description" content="The physical network in System z consists of devices known as Open Systems Adapters (OSAs). Several varieties are available, such as the">
 
     <!-- Canonical -->
-    <link rel="canonical" href="https://zvm-bootcamp.github.io/">
+    <link rel="canonical" href="https://zvm-bootcamp.github.io/pt-br/network-concepts/">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://zvm-bootcamp.github.io/">
-    <meta property="og:title" content="Welcome">
-    <meta property="og:description" content="Hi!">
+    <meta property="og:url" content="https://zvm-bootcamp.github.io/pt-br/network-concepts/">
+    <meta property="og:title" content="Network Concepts">
+    <meta property="og:description" content="The physical network in System z consists of devices known as Open Systems Adapters (OSAs). Several varieties are available, such as the">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://zvm-bootcamp.github.io/">
-    <meta property="twitter:title" content="Welcome">
-    <meta property="twitter:description" content="Hi!">
+    <meta property="twitter:url" content="https://zvm-bootcamp.github.io/pt-br/network-concepts/">
+    <meta property="twitter:title" content="Network Concepts">
+    <meta property="twitter:description" content="The physical network in System z consists of devices known as Open Systems Adapters (OSAs). Several varieties are available, such as the">
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="resources/css/retype.css?v=3.4.1.748114234369" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.4.1.748114234369" rel="stylesheet">
 
-    <script data-cfasync="false" src="resources/js/config.js?v=3.4.1.748114234369" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="resources/js/retype.js?v=3.4.1" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="resources/js/lunr.js?v=3.4.1.748114234369" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.4.1.748114234369" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/retype.js?v=3.4.1" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.4.1.748114234369" data-turbo-eval="false" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -49,10 +49,10 @@
                 <!-- Logo -->
                 <div class="flex items-center justify-between h-full py-2 md:w-75">
                     <div class="flex items-center px-2 md:px-6">
-                        <a id="docs-site-logo" href="" class="flex items-center leading-snug text-xl">
+                        <a id="docs-site-logo" href="../../" class="flex items-center leading-snug text-xl">
                             <span class="w-10 mr-2 grow-0 shrink-0 overflow-hidden">
-                                <img class="max-h-10 dark:hidden md:inline-block" src="static/vmbear.jpg">
-                                <img class="max-h-10 hidden dark:inline-block" src="static/vmbear.jpg">
+                                <img class="max-h-10 dark:hidden md:inline-block" src="../../static/vmbear.jpg">
+                                <img class="max-h-10 hidden dark:inline-block" src="../../static/vmbear.jpg">
                             </span>
                             <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">z/VM Bootcamp</span>
                         </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">Manual</span>
@@ -167,13 +167,144 @@
                                 <!-- Rendered if sidebar right is enabled -->
                                 <div id="docs-sidebar-right-toggle"></div>
                                 <!-- Page content  -->
-<doc-anchor-target id="welcome" class="break-words">
+<doc-anchor-target id="network-concepts" class="break-words">
     <h1>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#welcome">#</doc-anchor-trigger>
-        <span>Welcome</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#network-concepts">#</doc-anchor-trigger>
+        <span>Network Concepts</span>
     </h1>
 </doc-anchor-target>
-<p>Hi!</p>
+<p>The physical network in System z consists of devices known as Open
+Systems Adapters (OSAs). Several varieties are available, such as the
+OSA-Express4S and OSA-Express5S. These are capable of handling up to 640
+TCP/IP stacks simultaneously, including HiperSockets for inter-LPAR
+communication. An IBM System zEC12 provides up to 96 OSA-Express5S ports
+for external network communications. The Open Systems Adapter supports
+both copper and fiber Ethernet connections at speeds of up to 10 Gb.</p>
+<p>As might be expected, the z/VM feature to access the Internet Protocol
+network is TCP/IP for z/VM. OSA-Express devices can be virtualized
+through a virtual switch (VSWITCH) device to many Linux guests. It is
+available using special z/VM machines known as VSWITCH controllers. Each
+Linux guest connects using a virtual device controlled by the qeth
+module to a virtual switch system in a z/VM LPAR.</p>
+<p>An important benefit of the VSWITCH system is that it can be set up with
+redundant OSA devices that provide a failover network system on z/VM</p>
+<p>HiperSockets provide high-speed interconnectivity among guests running
+on a System z. This technology does not require any special physical
+device configurations or cabling. The guests simply communicate with one
+anot her internally via the in-memory capabilities of the PR/SM
+hypervisor. HiperSockets, however, are not intended to be used for
+sophisticated networking and should not be used for external traffic.</p>
+<p>Both OSA-Express and HiperSockets use the Queue Direct I/O (QDIO)
+mechanism to transfer data. This mechanism improves the response time
+using system memory queues to manage the data queue and transfer between
+z/VM and the network device</p>
+<doc-anchor-target id="network-facilities">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#network-facilities">#</doc-anchor-trigger>
+        <span>Network Facilities</span>
+    </h2>
+</doc-anchor-target>
+<p>On the Mainframe, quite a number of different network devices are
+available for use. Many of these come from a historical background, and
+should not be used for new implementations. They commonly stay, however,
+to continue the support of previous installations on newer hardware.
+Linux on System z can operate using all common network interfaces but
+for new installations, there are recommended methods for operation
+depending on the use case.</p>
+<p>The following are some technologies that you will find in the System z
+wo rld that are not used or even seen on x86 systems. This section
+clarifies some new facilities that you are going to find when you are
+migrating from x86 to System z. We provide some brief information that
+you can use to start your network planning. In each subsection, you can
+find a reference for more detailed information.</p>
+<doc-anchor-target id="the-open-systems-adapter-osa">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#the-open-systems-adapter-osa">#</doc-anchor-trigger>
+        <span>The Open Systems Adapter (OSA)</span>
+    </h3>
+</doc-anchor-target>
+<p>The Open Systems Adapter (OSA) is a hardware network controller. It is
+installed in a Mainframe I/O cage and provides connectivity to clients
+on local area networks (LANs) or wide area networks (WANs). It ca n be
+directly attached on Linux but will typically be attached to virtual
+switches (read more in the &quot;Virtual switch&quot; section below). You can find
+more technical information about OSA cards on IBM zEnterprise EC12
+Technical Guide, SG24-8049.</p>
+<doc-anchor-target id="osa-with-link-agregation">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#osa-with-link-agregation">#</doc-anchor-trigger>
+        <span>OSA with Link Agregation</span>
+    </h3>
+</doc-anchor-target>
+<p>You can aggregate multiple physical OSA cards in to a single logical
+link, which is called a link aggregation group (LAG). This configuration
+increases the bandwidth and provides nondisruptive failover. How to co
+nfigure it is well described on Advanced Networking Concepts Applied
+Using Linux on IBM System z, SG24-7995.</p>
+<doc-anchor-target id="hipersockets">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#hipersockets">#</doc-anchor-trigger>
+        <span>HiperSockets</span>
+    </h3>
+</doc-anchor-target>
+<p>HiperSockets is a microcode implementation that emulates a Logical Link
+Control Layer of an OSA interface. HiperSockets provides near zero
+latency at memory speed communications between servers running in
+different LPARs. When connecting a Linux guest to an IBM z/OS system on
+the Mainframe, the HiperSockets network in Layer 3 mode is the method to
+use. HiperSockets must be configured in the I/O configuration of the
+Mainframe. HiperSockets do not provide external connections. If an
+external connection is required, either a HiperSockets bridge must be
+implemented by using a VSWITCH, or a Linux guest must be set up as a
+router.</p>
+<p>HiperSockets provide a very fast connection between LPARs. They provide
+an easy way to connect many Linux servers to a z/OS system in the same
+Mainframe. This direct connection without involving real hardware is an
+important factor to simplify setups with many Linux systems that must be
+connected to z/OS. Some benefits are explained in Set up Linux on IBM
+System z for Production, SG24-8137.</p>
+<doc-anchor-target id="virtual-switch">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#virtual-switch">#</doc-anchor-trigger>
+        <span>Virtual Switch</span>
+    </h3>
+</doc-anchor-target>
+<p>A virtual switch (VSWITCH) is a software program that enables one
+virtual host to communicate with another virtual host within a computer
+system. Virtual switches typically emulate functions of a physical
+Ethernet switch. In Linux on System z, a VSWITCH provides direct
+attachment of z/VM guests to the local physical network segment. The
+VSWITCH allows IP network architects and network administrators to treat
+z/VM guests as a server in the network.</p>
+<p>The switched network inside a z/VM Operating System commonly is
+implemented with a VSWITCH. When running the VSWITCH as Layer 2, it
+behaves similar to a real switch just between virtual machines.</p>
+<p>The actual speed of a connection with a VSWITCH depends on a number of
+different variables. The type of traffic is as important as the real
+underlying hardware and the maximum transmission unit (MTU), which is
+the maximum size (in bytes) of one packet of data that can be
+transferred in a network. Common to all of those solutions is that the
+VSWITCH is faster than a real switch connected to the Mainframe would
+be.</p>
+<p>VSWITCHes do not need a connection to an OSA card to operate. They can
+also provide purely virtual networks. This also simplifies the setup of
+private interconnects between guest systems. When creating private
+interconnects in an SSI with LGR enabled, the use of dedicated VLANs
+with external interface is recommended. This is necessary to accomplish
+the private connection between guests that run on different nodes in the
+SSI.</p>
+<p>Implementing VLANs also helps if different guests run in different
+security zones of a network. It is easy to configure network interfaces
+to Linux guests that provide only selected VLANs to the guest. These can
+be configured either as tagged VLANs or as single untagged VLAN on an
+interface.</p>
+<p>The VSWITCH infrastructure provides two basic configuration options. One
+configures user-based access, the other configures port-based access.
+From the possibilities, both are equivalent, just the configurations
+differs.</p>
+<p>You can read more about VSWITCH benefits on Set up Linux on IBM System z
+for Production, SG24-8137, and technical information about Advanced
+Networking Concepts Applied Using Linux on IBM System z, SG24-7995.</p>
 
                                 
                                 <!-- Required only on API pages -->
@@ -183,13 +314,20 @@
                             
                                 <nav class="flex mt-14">
                                     <div class="w-1/2">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../pt-br/system-configuration/">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                            <span>
+                                                <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Anterior</span>
+                                                <span class="block mt-1">System Configuration</span>
+                                            </span>
+                                        </a>
                                     </div>
                             
                                     <div class="w-1/2">
-                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l rounded-r-lg transition-colors duration-150 relative hover:z-5" href="en/">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../pt-br/basic-tcpip-configuration/">
                                             <span>
                                                 <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Próximo</span>
-                                                <span class="block mt-1">English version</span>
+                                                <span class="block mt-1">Basic TCP/IP Configuration</span>
                                             </span>
                                             <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                                         </a>
@@ -233,6 +371,6 @@
 
     <div id="docs-overlay-target"></div>
 
-    <script data-cfasync="false">window.__DOCS__ = { "title": "Welcome", isRoot: true, level: 0, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+    <script data-cfasync="false">window.__DOCS__ = { "title": "Network Concepts", level: 2, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
 </body>
 </html>

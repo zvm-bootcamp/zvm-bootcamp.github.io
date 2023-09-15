@@ -9,32 +9,32 @@
     <meta name="generator" content="Retype 3.4.1">
 
     <!-- Primary Meta Tags -->
-    <title>Welcome</title>
-    <meta name="title" content="Welcome">
-    <meta name="description" content="Hi!">
+    <title>How to link a disk from another Linux</title>
+    <meta name="title" content="How to link a disk from another Linux">
+    <meta name="description" content="& To link a disk as Read-write from another server you need to make sure that this server is down. You can check via 3270 or Linux:">
 
     <!-- Canonical -->
-    <link rel="canonical" href="https://zvm-bootcamp.github.io/">
+    <link rel="canonical" href="https://zvm-bootcamp.github.io/pt-br/how-to-link-a-disk-from-another-linux/">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://zvm-bootcamp.github.io/">
-    <meta property="og:title" content="Welcome">
-    <meta property="og:description" content="Hi!">
+    <meta property="og:url" content="https://zvm-bootcamp.github.io/pt-br/how-to-link-a-disk-from-another-linux/">
+    <meta property="og:title" content="How to link a disk from another Linux">
+    <meta property="og:description" content="& To link a disk as Read-write from another server you need to make sure that this server is down. You can check via 3270 or Linux:">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://zvm-bootcamp.github.io/">
-    <meta property="twitter:title" content="Welcome">
-    <meta property="twitter:description" content="Hi!">
+    <meta property="twitter:url" content="https://zvm-bootcamp.github.io/pt-br/how-to-link-a-disk-from-another-linux/">
+    <meta property="twitter:title" content="How to link a disk from another Linux">
+    <meta property="twitter:description" content="& To link a disk as Read-write from another server you need to make sure that this server is down. You can check via 3270 or Linux:">
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="resources/css/retype.css?v=3.4.1.748114234369" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.4.1.748114234369" rel="stylesheet">
 
-    <script data-cfasync="false" src="resources/js/config.js?v=3.4.1.748114234369" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="resources/js/retype.js?v=3.4.1" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="resources/js/lunr.js?v=3.4.1.748114234369" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.4.1.748114234369" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/retype.js?v=3.4.1" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.4.1.748114234369" data-turbo-eval="false" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -49,10 +49,10 @@
                 <!-- Logo -->
                 <div class="flex items-center justify-between h-full py-2 md:w-75">
                     <div class="flex items-center px-2 md:px-6">
-                        <a id="docs-site-logo" href="" class="flex items-center leading-snug text-xl">
+                        <a id="docs-site-logo" href="../../" class="flex items-center leading-snug text-xl">
                             <span class="w-10 mr-2 grow-0 shrink-0 overflow-hidden">
-                                <img class="max-h-10 dark:hidden md:inline-block" src="static/vmbear.jpg">
-                                <img class="max-h-10 hidden dark:inline-block" src="static/vmbear.jpg">
+                                <img class="max-h-10 dark:hidden md:inline-block" src="../../static/vmbear.jpg">
+                                <img class="max-h-10 hidden dark:inline-block" src="../../static/vmbear.jpg">
                             </span>
                             <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">z/VM Bootcamp</span>
                         </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">Manual</span>
@@ -167,13 +167,88 @@
                                 <!-- Rendered if sidebar right is enabled -->
                                 <div id="docs-sidebar-right-toggle"></div>
                                 <!-- Page content  -->
-<doc-anchor-target id="welcome" class="break-words">
+<doc-anchor-target id="how-to-link-a-disk-from-another-linux" class="break-words">
     <h1>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#welcome">#</doc-anchor-trigger>
-        <span>Welcome</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#how-to-link-a-disk-from-another-linux">#</doc-anchor-trigger>
+        <span>How to link a disk from another Linux</span>
     </h1>
 </doc-anchor-target>
-<p>Hi!</p>
+<div class="easylist"><p>&amp; To link a disk as Read-write from another server you need to make sure
+that this server is down. You can check via 3270 or Linux:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">linux1:~ # vmcp q linux2
+HCPCQU045E LINUX2 not logged on
+Error: non-zero CP response for command 'Q LINUX2': #45</code></pre>
+</doc-codeblock></div>
+<p>&amp; To link the disk we need to know the password of it, if you don&#x27;t know
+the password you can check its directory</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; DIRM FOR LINUX2 GET</code></pre>
+</doc-codeblock></div>
+<p>&amp; Check the &quot;MULTIPLE&quot; password and unlock the directory again. If the
+password is not set, set it.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; DIRM FOR LINUX2 UNLOCK</code></pre>
+</doc-codeblock></div>
+<p>&amp; You can link the disk using vmcp:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">linux1:~ # vmcp link linux2 100 1100 mr multi</code></pre>
+</doc-codeblock></div>
+<p>&amp; To check execute:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">linux1:~ # vmcp q dasd</code></pre>
+</doc-codeblock></div>
+<p>&amp; As soon as you link the disk, enable it</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">linux1:~ # chccwdev -e 1100
+Setting device 0.0.1100 online
+Done</code></pre>
+</doc-codeblock></div>
+<p>&amp; Check the dasd name using lsdasd:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">linux1:~ # lsdasd 
+Bus-ID     Status      Name      Device  Type  BlkSz  Size      Blocks
+==============================================================================
+0.0.0100   active      dasda     94:0    ECKD  4096   1125MB    288000
+0.0.0101   active      dasdb     94:4    ECKD  4096   457MB     117000
+0.0.0102   active      dasdc     94:8    ECKD  4096   4230MB    1082880
+0.0.0103   active      dasdd     94:12   ECKD  4096   457MB     117000
+0.0.0104   active      dasde     94:16   ECKD  4096   562MB     144000
+0.0.0105   active      dasdf     94:20   ECKD  4096   562MB     144000
+0.0.1100   active      dasdg     94:24   ECKD  4096   1125MB    288000
+
+
+&amp; In this case dasdg. Mount it on /mnt:
+
+\begin{minted}{REXX}
+mount /dev/dasdg1 /mnt/</code></pre>
+</doc-codeblock></div>
+<p>&amp; List /mnt</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">linux1:~ # ls /mnt
+bin  boot  dev  etc  home  lib  lib64  lost+found  media  mnt  opt  proc  root  sbin  srv  success  sys  tmp  usr  var
+linux1:~ # </code></pre>
+</doc-codeblock></div>
+<p>&amp; As you can see all files from &quot;root&quot; filesystem of LINUX2 are
+available, edit whatever you need and to free the disk again follow the
+steps below:</p>
+<p>&amp;&amp; umount the filesystem</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">linux1:~ # umount /mnt</code></pre>
+</doc-codeblock></div>
+<p>&amp;&amp; Deactivate the disk:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">linux1:~ # chccwdev -d 0.0.1100</code></pre>
+</doc-codeblock></div>
+<p>&amp;&amp; Detach the disk</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">linux1:~ # vmcp det 1100</code></pre>
+</doc-codeblock></div>
+<p>&amp; Activate LINUX2 again</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">===&gt; XAUTOLOG LINUX2</code></pre>
+</doc-codeblock></div>
+</div>
 
                                 
                                 <!-- Required only on API pages -->
@@ -183,13 +258,20 @@
                             
                                 <nav class="flex mt-14">
                                     <div class="w-1/2">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../pt-br/terminal-server-iucv/">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                            <span>
+                                                <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Anterior</span>
+                                                <span class="block mt-1">Terminal Server using IUCV</span>
+                                            </span>
+                                        </a>
                                     </div>
                             
                                     <div class="w-1/2">
-                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l rounded-r-lg transition-colors duration-150 relative hover:z-5" href="en/">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../pt-br/references/">
                                             <span>
                                                 <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Próximo</span>
-                                                <span class="block mt-1">English version</span>
+                                                <span class="block mt-1">References</span>
                                             </span>
                                             <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                                         </a>
@@ -233,6 +315,6 @@
 
     <div id="docs-overlay-target"></div>
 
-    <script data-cfasync="false">window.__DOCS__ = { "title": "Welcome", isRoot: true, level: 0, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+    <script data-cfasync="false">window.__DOCS__ = { "title": "How to link a disk from another Linux", level: 2, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
 </body>
 </html>

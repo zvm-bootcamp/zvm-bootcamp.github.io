@@ -1,6 +1,6 @@
 ---
 order: 99
-icon: rocket
+icon: ":rocket:"
 ---
 
 # Ambiente do Workshop
@@ -13,7 +13,7 @@ O instrutor abordará isso usando a apresentação.
 ## Sua Máquina Virtual
 
 ![z/VM de segundo nível no início do
-workshop](imgs/workshop1.png){#fig:zvm2nd}
+workshop](/imgs/workshop1.png){#fig:zvm2nd}
 
 A figura [1.1](#fig:zvm2nd){reference-type="ref"
 reference="fig:zvm2nd"} representa os recursos do seu z/VM de 2º nível. 
@@ -23,7 +23,7 @@ seu ambiente z/VM. **Alerta de Spoiler** na figura
 reference="fig:zvm2ndcomplete"}.
 
 ![z/VM de segundo nível no final do
-workshop](imgs/workshop-linux.png){#fig:zvm2ndcomplete}
+workshop](/imgs/workshop-linux.png){#fig:zvm2ndcomplete}
 
 ## Acesse seu z/VM
 
@@ -44,10 +44,10 @@ Conecte-se ao sistema z/VM de primeiro nível, conhecido como ZVMDEMO.
 Inicie o cliente TN3270:
 
 
-![Clique em "Parâmetros de Link..."](imgs/3270-1.png){#fig:32701}
+![Clique em "Parâmetros de Link..."](/imgs/3270-1.png){#fig:32701}
 
 ![Preencha o IP primário e marque
-"Auto-reconectar"](imgs/3270-2.png){#fig:32702}
+"Auto-reconectar"](/imgs/3270-2.png){#fig:32702}
 
 Depois de configurar o endereço IP, você deve ver a tela de login.
 

@@ -4,9 +4,11 @@ url: https://zvm-bootcamp.github.io
 branding:
   title: z/VM Bootcamp
   label: Manual
+  logo: static/vmbear.jpg
 locale: pt-BR
 links:
 - text: z/VM Cheat Sheet
   link: https://titosoft.github.io/z/vm/zvm-cheatsheet/
+  target: blank
 footer:
   copyright: "Please share with the z community."

@@ -4,22 +4,39 @@ icon: terminal
 ---
 # CMS
 
-## Introdução
+## Introduction
 
-Assim como você pode interagir com Linux ou UNIX® através de um shell bash ou Korn (shell Unix popular), você pode interagir com o z/VM através do CMS. Da mesma forma que um shell, você pode usar o CMS para editar arquivos, executar EXECs (arquivos executáveis semelhantes a scripts) ou programas, modificar o ambiente da máquina virtual, ou modificar o próprio z/VM. O CMS é para o z/VM como um shell é para o Linux ou UNIX.
+Just as you can interact with Linux or UNIX® through a bash or Korn
+shell (popular Unix shell), you can interact with z/VM through CMS. Like
+a shell, you can use CMS to edit files, run EXECs (script-like
+executable files) or programs, modify the virtual machine environment,
+or modify z/VM itself. CMS is to z/VM as a shell is to Linux or UNIX.
 
 ## HELP
 
-O z/VM fornece ajuda online através do sistema de Ajuda do CMS. O comando HELP é como o comando man no Linux. Você pode encontrar descrições completas dos comandos z/VM usando o comando HELP.
+z/VM provides online help through the CMS Help system. The HELP command
+is like the man command in Linux. You can find full descriptions of z/VM
+commands by using the HELP command.
 
-## Minidisks e modo de acesso CMS
+## Minidisks and CMS access mode
 
-O CMS, como outros sistemas operacionais rodando em uma máquina virtual, pode acessar minidisks para armazenar e recuperar arquivos. Para o CMS, cada minidisk tem um modo de acesso representado por uma letra alfabética que determina como o CMS busca por arquivos. No Linux, variáveis de caminho definindo diretórios determinam a ordem de busca por arquivos. O CMS busca arquivos entre minidisks baseado na ordem alfabética do modo de acesso. Primeiro, o CMS procura no minidisk A, depois no minidisk B, e assim por diante. O minidisk 191 tem um lugar especial no CMS. Um minidisk 191 para um usuário CMS é como o diretório de arquivos principal para um usuário Linux. O CMS sempre tenta acessar o minidisk 191 de um usuário como modo de acesso A. O minidisk 191 do CMS é frequentemente chamado de "A-disk".
+CMS, like other operating systems running in a virtual machine, can
+access minidisks to store and retrieve files. For CMS, each minidisk has
+an access mode represented by an alphabetic letter that determines how
+CMS searches for files. In Linux, path variables defining directories
+determine the search order for files. CMS searches for files among
+minidisks based on the alphabetical order of the access mode. First, CMS
+looks on the A minidisk, then the B minidisk, and so forth. The 191
+minidisk holds a special place in CMS. A 191 minidisk to a CMS user is
+like the home file directory for a Linux user. CMS always tries to
+access a user's 191 minidisk as access mode A. The CMS 191 minidisk is
+often called the "A-disk".
 
-## Arquivos CMS
+## CMS Files
 
-Arquivos CMS possuem um nome de arquivo, tipo de arquivo e modo de arquivo. Nomes e tipos de arquivos podem ter até 8 caracteres de comprimento. O modo de arquivo corresponde ao modo de acesso do minidisk. Exemplos:
-
+CMS files have a file name, file type, and file mode. File names and
+file types can be up to 8 characters long. The file mode corresponds to
+the access mode of the minidisk. Examples:
 
 ```
 PROFILE  EXEC    A1
@@ -27,16 +44,30 @@ MYDOC    LISTING A1
 DNFPFS   LISTPS  B1
 ```
 
-Por convenção, alguns tipos de arquivos têm significados especiais. Por exemplo, EXEC é o tipo de arquivo para um arquivo que contém declarações executáveis, LISTING é o tipo de arquivo para arquivos de texto e LISTPS é o tipo de arquivo para arquivos PostScript. Para visualizar e manipular arquivos, use o comando FILELIST (ou comando LISTFILE). FILELIST é semelhante ao comando dir no Linux.
+By convention, some file types have special meanings. For example, EXEC
+is the file type for a file that contains executable statements, LISTING
+is the file type for text files, and LISTPS is the file type for
+PostScript files. To view and manipulate files, use the FILELIST command
+(Or LISTFILE command). FILELIST is similar to the dir command in Linux.
 
 ## PROFILE EXEC
 
-O PROFILE EXEC é um arquivo executável especial análogo ao .profile (ou .bash_profile) no Linux e UNIX. Toda vez que um usuário CMS faz login, o CMS executa o PROFILE EXEC que reside no minidisk 191, modo de arquivo A. Você pode usar o PROFILE EXEC para configurar o ambiente da sua máquina virtual; por exemplo, acessar discos, configurar teclas PF especiais ou até mesmo carregar outro sistema operacional em sua máquina virtual.
+The PROFILE EXEC is a special executable file analogous to the .profile
+(or .bash_profile) in Linux and UNIX. Every time a CMS user logs on, CMS
+runs the PROFILE EXEC residing on the 191 minidisk, file mode A. You can
+use the PROFILE EXEC to set up your virtual machine environment; for
+instance, access disks, set up special PF keys, or even load another
+operating system in your virtual machine.
 
-Pode haver momentos em que você não deseja que o PROFILE EXEC seja executado ao fazer login. Por exemplo, suponha que seu PROFILE EXEC carrega automaticamente o Linux. Se você acabou de desligar o Linux e deseja iniciar o CMS, mas impedir que o Linux seja carregado novamente, você pode impedir que o CMS execute o PROFILE EXEC emitindo **access (noprof**. Ao carregar (IPL) o CMS, você vê uma linha identificadora exibida e o CMS pausa com VM READ no canto inferior direito da tela.
+There can be times when you do not want the PROFILE EXEC to execute when
+you log on. For example, assume your PROFILE EXEC automatically loads
+Linux. If you have just shut down Linux and want to start CMS, but
+prevent Linux from being loaded again, you can prevent CMS from
+executing the PROFILE EXEC by issuing **access (noprof**. When you IPL
+(load) CMS, you see an identifier line displayed and CMS pauses with VM
+READ in the lower right corner of the display.
 
-Exemplo (fazendo login com o parâmetro NOPROF)
-
+Example (logging with NOPROF parameter)
 
 ```
 z/VM ONLINE                                                                    
@@ -65,18 +96,20 @@ z/VM ONLINE
                                                             RUNNING   ZVMWSXX   
 ```
 
-## O editor de arquivos CMS XEDIT
+## The CMS file editor XEDIT
 
-O CMS fornece um editor de arquivos chamado XEDIT, que não é apenas um editor de tela cheia, mas também uma poderosa ferramenta de programação. O XEDIT possui funções semelhantes ao vi no Linux.
+CMS provides a file editor called XEDIT, which is a not only a
+full-screen editor, but a powerful programming tool. XEDIT has functions
+similar to vi in Linux.
 
-## Exercícios
+## Exercises
 
 ### HELP
 
-Faça login como MAINT. Pressione a tecla enter até ver o estado RUNNING no canto inferior direito da tela.
+Logon as MAINT. Press the enter key until you see the RUNNING state on
+the lower right hand corner of the screen.
 
-Para ver uma lista dos comandos CMS:
-
+To see a list of the CMS commands:
 
 ```
 ===> help 

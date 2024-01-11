@@ -3,7 +3,7 @@ output: .retype
 url: https://zvm-bootcamp.github.io
 branding:
   title: z/VM Bootcamp
-  label: Manual
+  label: Workshop
   logo: static/vmbear.jpg
 locale: pt-BR
 links:

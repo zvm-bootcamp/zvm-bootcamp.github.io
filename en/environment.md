@@ -1,5 +1,6 @@
 ---
-order: 95
+order: 96
+icon: ":rocket:"
 ---
 
 # Workshop Environment
@@ -12,7 +13,7 @@ The instructor will cover it using the presentation.
 ## Your Virtual Machine
 
 ![Second level z/VM at the beginning of the
-workshop](imgs/workshop1.png){#fig:zvm2nd}
+workshop](/imgs/workshop1.png){#fig:zvm2nd}
 
 
 The figure [1.1](#fig:zvm2nd){reference-type="ref"
@@ -23,7 +24,7 @@ your z/VM environment. **Spoiler Alert** on figure
 reference="fig:zvm2ndcomplete"}.
 
 ![Second level z/VM at the end of the
-workshop](imgs/workshop-linux.png){#fig:zvm2ndcomplete}
+workshop](/imgs/workshop-linux.png){#fig:zvm2ndcomplete}
 
 ## Access your z/VM
 

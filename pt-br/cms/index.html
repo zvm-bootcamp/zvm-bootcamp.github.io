@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.758314885209">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.760224288570">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -30,11 +30,11 @@
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../resources/css/retype.css?v=3.5.0.758314885209" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.5.0.760224288570" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.758314885209" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.760224288570" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.758314885209" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.760224288570" data-turbo-eval="false" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -200,20 +200,20 @@
         <span>Arquivos CMS</span>
     </h2>
 </doc-anchor-target>
-<p>Arquivos CMS possuem um nome de arquivo, tipo de arquivo e modo de arquivo. Nomes e tipos de arquivos podem ter até 8 caracteres de comprimento. O modo de arquivo corresponde ao modo de acesso do minidisk. Exemplos:</p>
+<p>Arquivos CMS possuem um nome de arquivo (file name), tipo de arquivo (file type) e modo de arquivo (file mode). Nomes e tipos de arquivos podem ter até 8 caracteres de comprimento. O file mode corresponde ao modo de acesso do minidisk. Exemplos:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">PROFILE  EXEC    A1
 MYDOC    LISTING A1
 DNFPFS   LISTPS  B1</code></pre>
 </doc-codeblock></div>
-<p>Por convenção, alguns tipos de arquivos têm significados especiais. Por exemplo, EXEC é o tipo de arquivo para um arquivo que contém declarações executáveis, LISTING é o tipo de arquivo para arquivos de texto e LISTPS é o tipo de arquivo para arquivos PostScript. Para visualizar e manipular arquivos, use o comando FILELIST (ou comando LISTFILE). FILELIST é semelhante ao comando dir no Linux.</p>
+<p>Por convenção, alguns tipos de arquivos têm significados especiais. Por exemplo, EXEC é o file type para um arquivo que contém declarações executáveis, LISTING é o file type para arquivos de texto e LISTPS é o file type para arquivos PostScript. Para visualizar e manipular arquivos, use o comando FILELIST (ou comando LISTFILE). FILELIST é semelhante ao comando dir no Linux.</p>
 <doc-anchor-target id="profile-exec">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#profile-exec">#</doc-anchor-trigger>
         <span>PROFILE EXEC</span>
     </h2>
 </doc-anchor-target>
-<p>O PROFILE EXEC é um arquivo executável especial análogo ao .profile (ou .bash_profile) no Linux e UNIX. Toda vez que um usuário CMS faz login, o CMS executa o PROFILE EXEC que reside no minidisk 191, modo de arquivo A. Você pode usar o PROFILE EXEC para configurar o ambiente da sua máquina virtual; por exemplo, acessar discos, configurar teclas PF especiais ou até mesmo carregar outro sistema operacional em sua máquina virtual.</p>
+<p>O PROFILE EXEC é um arquivo executável especial análogo ao .profile (ou .bash_profile) no Linux e UNIX. Toda vez que um usuário CMS faz login, o CMS executa o PROFILE EXEC que reside no minidisk 191, file mode A. Você pode usar o PROFILE EXEC para configurar o ambiente da sua máquina virtual; por exemplo, acessar discos, configurar teclas PF especiais ou até mesmo carregar outro sistema operacional em sua máquina virtual.</p>
 <p>Pode haver momentos em que você não deseja que o PROFILE EXEC seja executado ao fazer login. Por exemplo, suponha que seu PROFILE EXEC carrega automaticamente o Linux. Se você acabou de desligar o Linux e deseja iniciar o CMS, mas impedir que o Linux seja carregado novamente, você pode impedir que o CMS execute o PROFILE EXEC emitindo <strong>access (noprof</strong>. Ao carregar (IPL) o CMS, você vê uma linha identificadora exibida e o CMS pausa com VM READ no canto inferior direito da tela.</p>
 <p>Exemplo (fazendo login com o parâmetro NOPROF)</p>
 <div class="codeblock-wrapper"><doc-codeblock>
@@ -266,38 +266,32 @@ DNFPFS   LISTPS  B1</code></pre>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; help </code></pre>
 </doc-codeblock></div>
-<p>Place cursor on &quot;CMS&quot; and press the ENTER key</p>
-<p>What you see here is a subset of the CMS commands available in z/VM.</p>
-<p>Display helps text for the QUERY command. You may have to scroll down
-(F8) to find it.</p>
-<p>Place cursor on &quot;Query&quot; and press the ENTER key</p>
-<p>The bottom of the screen lists the PF Keys for additional options that
-are available for the selected command. To see related information for
-this command:</p>
-<p>Press the F11 key</p>
-<p>When you are done browsing, exit the help utility.</p>
-<p>Press the F3 key repeatedly until you return to &quot;RUNNING&quot; state</p>
-<p>Another way to go directly to the menu of CMS commands is with the
-following help command:</p>
+<p>Coloque o cursor em &quot;CMS&quot; e pressione a tecla ENTER</p>
+<p>O que você vê aqui é um subconjunto dos comandos CMS disponíveis no z/VM.</p>
+<p>Exiba o texto de ajuda para o comando QUERY. Você pode ter que rolar para baixo (F8) para encontrá-lo.</p>
+<p>Coloque o cursor em &quot;Query&quot; e pressione a tecla ENTER</p>
+<p>A parte inferior da tela lista as teclas PF para opções adicionais que estão disponíveis para o comando selecionado. Para ver informações relacionadas a este comando:</p>
+<p>Pressione a tecla F11</p>
+<p>Quando terminar de navegar, saia da utilidade de ajuda.</p>
+<p>Pressione a tecla F3 repetidamente até retornar ao estado &quot;RUNNING&quot;</p>
+<p>Outra maneira de ir diretamente para o menu de comandos CMS é com o seguinte comando de ajuda:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; help cms menu </code></pre>
 </doc-codeblock></div>
-<p>Exit the help facility and return to the READY prompt: Press the F3 key
-repeatedly until you return to &quot;RUNNING&quot; state</p>
+<p>Saia da tela de ajuda e retorne ao prompt READY: Pressione a tecla F3 repetidamente até retornar ao estado &quot;RUNNING&quot;</p>
 <doc-anchor-target id="query">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#query">#</doc-anchor-trigger>
         <span>QUERY</span>
     </h3>
 </doc-anchor-target>
-<p>The CMS QUERY command is used to display information about your virtual
-machine. You can get information about:</p>
-<div class="easylist"><p>&amp; The operation of your virtual machine. &amp; The status of your files and
-file pool directories. &amp; Information about how your virtual machine is
-set up.</p>
-</div>
-<p>Use the QUERY ACCESSED command to display the status of your accessed
-disks. Note that the 191 disk is accessed as &quot;A&quot;.</p>
+<p>O comando QUERY do CMS é usado para exibir informações sobre sua máquina virtual. Você pode obter informações sobre:</p>
+<ul>
+<li>A operação da sua máquina virtual.</li>
+<li>O status dos seus arquivos e diretórios de pool de arquivos.</li>
+<li>Informações sobre como sua máquina virtual está configurada.</li>
+</ul>
+<p>Use o comando QUERY ACCESSED para exibir o status dos seus discos acessados. Note que o disco 191 é acessado como &quot;A&quot;.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; q accessed</code></pre>
 </doc-codeblock></div>
@@ -317,13 +311,12 @@ S      R/O       696  190   MNT190
 Y/S    R/O      1123  19E   MNT19E          
 Ready; T=0.01/0.01 18:42:54                 </code></pre>
 </doc-codeblock></div>
-<p>Use the QUERY IMPCP command to find out the implied CP function setting
-for your virtual machine.</p>
+<p>Use o comando QUERY IMPCP para descobrir a configuração da função CP implícita para sua máquina virtual.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; q impcp</code></pre>
 </doc-codeblock></div>
-<p><em>For the MAINT virtual machine, the IMPCP function is set to</em></p>
-<p>You will learn more about this function in a moment.</p>
+<p><em>Para a máquina virtual MAINT, a função IMPCP está configurada para:</em> ____</p>
+<p>Você aprenderá mais sobre essa função em um momento.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">set impcp off              
 Ready; T=0.01/0.01 14:52:34
@@ -343,19 +336,19 @@ Ready; T=0.01/0.01 14:52:44</code></pre>
         <span>ACCESS</span>
     </h3>
 </doc-anchor-target>
-<p>The ACCESS command is used to:</p>
-<div class="easylist"><p>&amp; Identify a minidisk to CMS. &amp; Make a list of the files on the
-specified minidisk or directory available to your virtual machine. &amp;
-Establish a file mode letter for the files on a minidisk or in a
-directory.</p>
-</div>
-<p>Use the ACCESS command to access the 191 minidisk as &quot;Z&quot;.</p>
+<p>O comando ACCESS é usado para:</p>
+<ul>
+<li>Identificar um minidisk para o CMS.</li>
+<li>Tornar uma lista dos arquivos no minidisk especificado ou diretório disponível para sua máquina virtual.</li>
+<li>Estabelecer uma letra de file mode para os arquivos em um minidisk ou em um diretório.</li>
+</ul>
+<p>Use o comando ACCESS para acessar o minidisk 191 como &quot;Z&quot;.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; access 191 z</code></pre>
 </doc-codeblock></div>
-<p>What happened to the A-disk?</p>
-<p>What implications does this change have?</p>
-<p>Re-access the 191 minidisk as &quot;A&quot;. What is the command? ===&gt;</p>
+<p>O que aconteceu com o A-disk?</p>
+<p>Quais implicações essa mudança tem?</p>
+<p>Reacesso ao minidisk 191 como &quot;A&quot;. Qual é o comando? ===&gt;</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">q disk                                                                          
 LABEL  VDEV M  STAT   CYL TYPE BLKSZ   FILES  BLKS USED-(%) BLKS LEFT  BLK TOTAL
@@ -389,76 +382,65 @@ Ready; T=0.01/0.01 14:53:46
         <span>COPYFILE</span>
     </h3>
 </doc-anchor-target>
-<p>The COPYFILE command is used to copy and modify files on CMS minidisks.
-You can:</p>
-<div class="easylist"><p>&amp; Combine two or more files into a single file. &amp; Copy multiple input
-files into multiple output files. &amp; Change file characteristics (such as
-file mode number and record format) and/or modify file contents.</p>
-</div>
-<p>Logon as MAINT Copy the file PROFILE EXEC A to a new file called PROFILE
-EXECSAVE A.</p>
+<p>O comando COPYFILE é usado para copiar e modificar arquivos nos minidisks CMS. Você pode:</p>
+<ul>
+<li>Combinar dois ou mais arquivos em um único arquivo.</li>
+<li>Copiar múltiplos arquivos de entrada em múltiplos arquivos de saída.</li>
+<li>Mudar características do arquivo (como número de file mode e formato de registro) e/ou modificar conteúdos do arquivo.</li>
+</ul>
+<p>Faça login como MAINT Copie o arquivo PROFILE EXEC A para um novo arquivo chamado PROFILE EXECSAVE A.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; copy profile exec a = execsave =</code></pre>
 </doc-codeblock></div>
-<p>What do the &quot;=&quot; signs mean?</p>
+<p>O que os sinais &quot;=&quot; significam?</p>
 <doc-anchor-target id="cp">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#cp">#</doc-anchor-trigger>
         <span>CP</span>
     </h3>
 </doc-anchor-target>
-<p>There are several ways to issue CP commands in CMS depending on the
-setting of the implied CP (IMPCP) option:</p>
-<div class="easylist"><p>&amp; If IMPCP is set to ON, CMS will try to interpret an &quot;unknown&quot; command
-as a CP command. &amp; If IMPCP is set to OFF, you must precede any CP
-commands with &quot;CP&quot;</p>
-</div>
-<p>Or you can precede any CP command with &quot;#CP&quot; to directly send the
-command to the control program.</p>
-<p>Find your current IMPCP option setting:</p>
+<p>Há várias maneiras de emitir comandos CP no CMS dependendo da configuração da opção CP implícita (IMPCP):</p>
+<ul>
+<li>Se IMPCP estiver configurado para ON, o CMS tentará interpretar um comando &quot;desconhecido&quot; como um comando CP.</li>
+<li>Se IMPCP estiver configurado para OFF, você deve preceder quaisquer comandos CP com &quot;CP&quot;</li>
+</ul>
+<p>Ou você pode preceder qualquer comando CP com &quot;#CP&quot; para enviar o comando diretamente ao programa de controle.</p>
+<p>Descubra sua configuração de opção IMPCP atual:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; q impcp</code></pre>
 </doc-codeblock></div>
-<p>It should say &#x27;ON&#x27;. This is the default. It means if CMS does not
-recognize a command, it will send to CP for processing. Try a CP command
-(while you are in CMS):</p>
+<p>Deveria dizer &#x27;ON&#x27;. Este é o padrão. Significa que, se o CMS não reconhecer um comando, ele será enviado ao CP para processamento. Tente um comando CP (enquanto você está no CMS):</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; q dasd</code></pre>
 </doc-codeblock></div>
-<p>Sure enough, the command works and you see a list of DASDs currently
-attached to your virtual machine. Next set the IMPCP option to off:</p>
+<p>Com certeza, o comando funciona e você vê uma lista de DASDs atualmente anexados à sua máquina virtual. Em seguida, defina a opção IMPCP para off:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; set impcp off</code></pre>
 </doc-codeblock></div>
-<p>Try the same CP command:</p>
+<p>Tente o mesmo comando CP:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; q dasd</code></pre>
 </doc-codeblock></div>
-<p>This time, the command failed. With the IMPCP function turned off, CMS
-did not redirect the unknown command to CP for processing.</p>
-<p>You are currently running in the CMS environment. To enter CP mode,
-type:</p>
+<p>Desta vez, o comando falhou. Com a função IMPCP desligada, o CMS não redirecionou o comando desconhecido para o CP para processamento.</p>
+<p>Você está atualmente executando no ambiente CMS. Para entrar no modo CP, digite:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; CP</code></pre>
 </doc-codeblock></div>
-<p>The console status in the lower right hand corner of the screen now
-indicates &quot;CP READ&quot;.</p>
-<p>Try the same CP command:</p>
+<p>O status do console no canto inferior direito da tela agora indica &quot;CP READ&quot;.</p>
+<p>Tente o mesmo comando CP:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; q dasd</code></pre>
 </doc-codeblock></div>
-<p>To return to CMS, type:</p>
+<p>Para retornar ao CMS, digite:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">===&gt; begin (or 'b' for short) </code></pre>
+<pre class="language-none"><code v-pre class="language-none">===&gt; begin (ou somente 'b' para um atalho) </code></pre>
 </doc-codeblock></div>
-<p>The status in the lower right hand corner of the console returns to
-&quot;RUNNING&quot;.</p>
-<p>8. Another way to issue CP command is to prefix it with &#x27;#CP&#x27;. Try
-this:</p>
+<p>O status no canto inferior direito do console retorna para &quot;RUNNING&quot;.</p>
+<p>Outra maneira de emitir comando CP é prefixá-lo com &#x27;#CP&#x27;. Tente isso:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; #cp q dasd </code></pre>
 </doc-codeblock></div>
-<p>9. Reset the IMPCP option back to ON:</p>
+<p>Redefina a opção IMPCP de volta para ON:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; set impcp on</code></pre>
 </doc-codeblock></div>
@@ -468,17 +450,15 @@ this:</p>
         <span>FILELIST</span>
     </h3>
 </doc-anchor-target>
-<p>The FILELIST command is used to display a list of information about CMS
-files residing on accessed disks. In the FILELIST environment,
-information is displayed under the control of XEDIT. You can use XEDIT
-subcommands to manipulate the list itself. You can also issue CMS
-commands against the files directly from the displayed list.</p>
-<p>1. Logoff as MAINT</p>
-<p>2. Logon as MAINT630</p>
-<p>3. Display a list of files on your A-disk.</p>
+<p>O comando FILELIST é usado para exibir uma lista de informações sobre arquivos CMS residindo em discos acessados. No ambiente FILELIST, as informações são exibidas sob o controle do XEDIT. Você pode usar subcomandos XEDIT paramanipular a própria lista. Você também pode emitir comandos CMS diretamente contra os arquivos a partir da lista exibida.</p>
+<ol>
+<li>Faça logout como MAINT</li>
+<li>Faça login como MAINT630</li>
+<li>Exiba uma lista de arquivos no seu A-disk.</li>
+</ol>
 <doc-panel id="filel-a">
     <template #title>filel * * a</template>
-<p>The files are sorted by date and time, newest to oldest.</p>
+<p>Os arquivos são classificados por data e hora, do mais novo para o mais antigo.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">MAINT630 FILELIST A0  V 169  Trunc=169 Size=27 Line=1 Col=1 Alt=9              
 Cmd   Filename Filetype Fm Format Lrecl    Records     Blocks   Date     Time   
@@ -513,18 +493,14 @@ Cmd   Filename Filetype Fm Format Lrecl    Records     Blocks   Date     Time
 ====&gt;                                                                           
                                                             X E D I T  1 File   </code></pre>
 </doc-codeblock></div>
-<p>Copy the PROFILE EXEC file to PROFILE EXECBKP. Press the TAB key to
-advance the cursor to the CMD column of the PROFILE EXEC file</p>
-<p>Type &quot;COPY / = EXECBKP =&quot; and press the ENTER key</p>
-<p>The command can be read as &quot;copy the current file (/) to a file with the
-same file name of PROFILE (=), a file type of EXECBKP and the same file
-mode of A (=)&quot;.</p>
-<p>Update the FILELIST display and you should see the new copy of the
-profile.</p>
+<p>Copie o arquivo PROFILE EXEC para PROFILE EXECBKP. Pressione a tecla TAB para avançar o cursor para a coluna CMD do arquivo PROFILE EXEC</p>
+<p>Digite &quot;COPY / = EXECBKP =&quot; e pressione a tecla ENTER</p>
+<p>O comando pode ser lido como &quot;copie o arquivo atual (/) para um arquivo com o mesmo file name PROFILE (=), um file type EXECBKP e o mesmo file mode A (=)&quot;.</p>
+<p>Atualize a exibição FILELIST e você deve ver a nova cópia do perfil.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; Press the F2 key </code></pre>
 </doc-codeblock></div>
-<p>Exit FILELIST.</p>
+<p>Saia do FILELIST.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; Press the F3 key</code></pre>
 </doc-codeblock></div>
@@ -534,56 +510,58 @@ profile.</p>
         <span>XEDIT</span>
     </h3>
 </doc-anchor-target>
-<doc-anchor-target id="configure-the-xedit-profile">
+<doc-anchor-target id="configure-o-perfil-xedit">
     <h4>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#configure-the-xedit-profile">#</doc-anchor-trigger>
-        <span>Configure the XEDIT PROFILE</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#configure-o-perfil-xedit">#</doc-anchor-trigger>
+        <span>Configure o PERFIL XEDIT</span>
     </h4>
 </doc-anchor-target>
-<p>The XEDIT command looks for the file XEDIT PROFILE configuration file
-when it is invoked. Not all CMS virtual machines have a copy of this
-file, so XEDIT sessions look and behave differently. The MAINT 191 (A)
-disk has a PROFILE XEDIT so when you are editing files on MAINT, the
-values in this profile are usually in effect.</p>
-<p>To configure the XEDIT profile on the SSI cluster, perform the following
-steps:</p>
-<div class="easylist"><p>&amp; Log on to <strong>MAINT</strong> if you are not already. &amp; One default setting that
-can be dangerous, especially if you use F12 to retrieve commands, is
-that PF12 is set to the <strong>FILE</strong> subcommand. Sometimes you might not
-want to save your changes with the stroke of one key. It is recommended
-that you set PF12 to the ? subcommand, which has the effect of a
-retrieve key:</p>
+<p>O comando XEDIT procura pelo arquivo de configuração PERFIL XEDIT quando é invocado. Nem todas as máquinas virtuais CMS têm uma cópia deste arquivo, então as sessões XEDIT parecem e se comportam de maneira diferente. O disco MAINT 191 (A) tem um PERFIL XEDIT então quando você está editando arquivos no MAINT, os valores neste perfil geralmente estão em vigor.</p>
+<p>Para configurar o perfil XEDIT no cluster SSI, execute os seguintes passos:</p>
+<ol>
+<li>Faça login no MAINT se você ainda não fez.</li>
+<li>Uma configuração padrão que pode ser perigosa, especialmente se você usar F12 para recuperar comandos, é que PF12 está configurado para o subcomando FILE. Às vezes você pode não querer salvar suas alterações com o toque de uma tecla. É recomendado que você configure PF12 para o subcomando ?, que tem o efeito de uma tecla de recuperação:</li>
+</ol>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">==&gt; copy profile xedit a profile xediorig a (oldd
 ==&gt; x profile xedit</code></pre>
 </doc-codeblock></div>
-<p><strong>Before:</strong></p>
+<p><strong>Antes:</strong></p>
 <p>SET PF12 FILE</p>
-<p><strong>After:</strong></p>
+<p><strong>Depois:</strong></p>
 <p>SET PF12 ?</p>
-<p>&amp; Save your changes with the FILE subcommand. &amp; Make the modified file
-available to other virtual machines by copying it to the MAINT 19E disk
-with file mode suffix 2: &amp;&amp; Release the current 19E disk:</p>
+<ol start="3">
+<li><p>Salve suas alterações com o subcomando FILE.</p>
+</li>
+<li><p>Torne o arquivo modificado disponível para outras máquinas virtuais copiando-o para o disco MAINT 19E com o sufixo de file mode 2:</p>
+<p>4.1 Libere o disco 19E atual:</p>
+</li>
+</ol>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">==&gt; rel 19e</code></pre>
 </doc-codeblock></div>
-<p>&amp;&amp; Link to the MAINT 19E disk read/write:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">  4.2 Link o disco MAINT 19E com acesso de leitura/escrita:</code></pre>
+</doc-codeblock></div>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">==&gt; link * 19e 19e mr
 DASD 019E LINKED R/W; R/O BY 10 USERS</code></pre>
 </doc-codeblock></div>
-<p>&amp;&amp; Access the disk as file mode F:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">  4.3 Accesse o disco como file mode F:</code></pre>
+</doc-codeblock></div>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">==&gt; acc 19e f</code></pre>
 </doc-codeblock></div>
-<p>&amp;&amp; Copy it to the MAINT 19E disk (F) with file mode suffix 2 (because
-the MAINT 19E disk is commonly accessed with a file mode suffix of 2,
-files will not be seen by other virtual machines unless they have this
-file mode suffix):</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">  4.4 Copie para o disco MAINT 19E (F) com o sufixo de file mode 2 (porque o disco MAINT 19E é comumente acessado com um sufixo de file mode de 2, arquivos não serão vistos por outras máquinas virtuais a menos que tenham este sufixo de file mode):</code></pre>
+</doc-codeblock></div>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">==&gt; copy profile xedit a = = f2</code></pre>
 </doc-codeblock></div>
-<p>&amp;&amp; Save the CMS named saved segment with the following commands:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">  4.5 Salve o segmento nomeado do CMS com os seguintes comandos:</code></pre>
+</doc-codeblock></div>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">==&gt; acc 193 g
 ==&gt; sampnss cms
@@ -591,51 +569,63 @@ HCPNSD440I The Named Saved System (NSS) CMS was successfully defined in fileid 0
 ==&gt; ipl 190 parm savesys cms
 HCPNSS440I Named Saved System (NSS) CMS was successfully saved in fileid 0002.</code></pre>
 </doc-codeblock></div>
-</div>
-<p>The same XEDIT PROFILE should now be accessible to all virtual machines
-in the z/VM system.</p>
-<doc-anchor-target id="creating-an-exec">
+<div><p>O mesmo PERFIL XEDIT agora deve ser acessível a todas as máquinas virtuais no sistema z/VM.</p>
+<doc-anchor-target id="criando-uma-exec">
     <h4>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#creating-an-exec">#</doc-anchor-trigger>
-        <span>Creating an EXEC</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#criando-uma-exec">#</doc-anchor-trigger>
+        <span>Criando uma EXEC</span>
     </h4>
 </doc-anchor-target>
-<p>Let&#x27;s create a simple REXX EXEC file with an edit session by using the
-XEDIT command.</p>
-<p>1. Logoff MAINT630 2. Logon as MAINT 3. Start an XEDIT session and
-create a new file HELLO EXEC A.</p>
+<p>Vamos criar um arquivo EXEC REXX simples com uma sessão de edição usando o comando XEDIT.</p>
+<ol>
+<li>Faça logoff do MAINT630</li>
+<li>Faça logon como MAINT</li>
+<li>Inicie uma sessão XEDIT e crie um novo arquivo HELLO EXEC A.</li>
+</ol>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; xedit hello exec</code></pre>
 </doc-codeblock></div>
-<p>4. Enter Input mode and press Enter:</p>
+<ol start="4">
+<li>Entre no modo de entrada e pressione Enter:</li>
+</ol>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; i</code></pre>
 </doc-codeblock></div>
-<p>5. Input the following text. Refer to the XEDIT quick reference guide
-if you need help.</p>
+<ol start="5">
+<li>Insira o seguinte texto. Consulte o guia de referência rápida do XEDIT se precisar de ajuda.</li>
+</ol>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">/* A sample REXX exec */
 say 'Welcome to the z/VM and Linux on z Workshop'
 say 'Hello World'</code></pre>
 </doc-codeblock></div>
-<p>6. Return to Edit mode:</p>
-<p>Press the Enter key twice</p>
-<p>7. File your changes and exit the file.</p>
+<ol start="6">
+<li>Retorne ao modo de Edição:</li>
+</ol>
+<p>Pressione a tecla ENTER duas vezes</p>
+<ol start="7">
+<li>Salve suas alterações e saia do arquivo.</li>
+</ol>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; file</code></pre>
 </doc-codeblock></div>
-<p>8. An REXX EXEC is similar to a Unix/Linux script. Let&#x27;s run the exec
-and see what happens:</p>
+<ol start="8">
+<li>Um EXEC REXX é similar a um script Unix/Linux. Vamos executar o exec e ver o que acontece:</li>
+</ol>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; hello</code></pre>
 </doc-codeblock></div>
-<p>9. Now update the HELLO EXEC file:</p>
+<ol start="9">
+<li>Agora atualize o arquivo HELLO EXEC:</li>
+</ol>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; x hello exec </code></pre>
 </doc-codeblock></div>
-<p>10. Insert a new line:</p>
-<p>Type an &#x27;i&#x27; on the line number 3</p>
-<p>Enter the text &#x27;q time&#x27;</p>
+<ol start="10">
+<li>Insira uma nova linha:</li>
+</ol>
+<p>Digite um &#x27;i&#x27; na linha número 3</p>
+<p>Entre com o texto &#x27;q time&#x27;</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">00000 * * * Top of File * * *                             
 00001 /* A sample REXX exec */                            
@@ -643,30 +633,36 @@ and see what happens:</p>
 00003 'query time'                                        
 00004 * * * End of File * * *    </code></pre>
 </doc-codeblock></div>
-<p>11. Execute the file again. You have successfully created an executable
-file to execute commands and output messages!</p>
+<ol start="11">
+<li>Execute o arquivo novamente. Você criou com sucesso um arquivo executável para executar comandos e exibir mensagens!</li>
+</ol>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; hello</code></pre>
 </doc-codeblock></div>
-<p>Next, modify the PROFILE EXEC file so that you will gain access to a
-shared utility disk which contains useful scripts for the workshop.</p>
-<p>1. Edit the &quot;PROFILE EXEC&quot; file.</p>
+<p>Próximo passo, modifique o arquivo PROFILE EXEC para que você tenha acesso a um disco de utilidades compartilhado que contém scripts úteis para o workshop.</p>
+<ol>
+<li>Edite o arquivo &quot;PROFILE EXEC&quot;.</li>
+</ol>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; x profile exec </code></pre>
 </doc-codeblock></div>
-<p>2. Add the following statements (in upper case) after the following
-line &#x27;ACCESS 551 E&#x27;:</p>
+<ol start="2">
+<li>Adicione as seguintes declarações (em maiúsculas) após a linha &#x27;ACCESS 551 E&#x27;:</li>
+</ol>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">'CP ATTACH 0192 *'
 'ACCESS 0192 Z'</code></pre>
 </doc-codeblock></div>
-<p>10. File your changes and exit the file.</p>
+<ol start="10">
+<li>Salve suas mudanças e saia do arquivo.</li>
+</ol>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; file
 ===&gt; profile</code></pre>
 </doc-codeblock></div>
-<p>11. Execute the profile to pick up the changes. You should see a
-message tell you that the device 192 is attached.</p>
+<ol start="11">
+<li>Execute o profile para aplicar as alterações. Você deverá ver uma mensagem informando que o dispositivo 192 está anexado.</li>
+</ol>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">Ready; T=0.01/0.01 14:25:42                                                     
 profile                                                                         
@@ -690,6 +686,7 @@ PRESS ENTER TO CONTINUE
                                                                                 
                                                           VM READ   ZVMWSXX   </code></pre>
 </doc-codeblock></div>
+</div>
 </doc-panel>
 
                                 

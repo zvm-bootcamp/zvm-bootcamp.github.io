@@ -18,7 +18,7 @@ O CMS, como outros sistemas operacionais rodando em uma máquina virtual, pode a
 
 ## Arquivos CMS
 
-Arquivos CMS possuem um nome de arquivo, tipo de arquivo e modo de arquivo. Nomes e tipos de arquivos podem ter até 8 caracteres de comprimento. O modo de arquivo corresponde ao modo de acesso do minidisk. Exemplos:
+Arquivos CMS possuem um nome de arquivo (file name), tipo de arquivo (file type) e modo de arquivo (file mode). Nomes e tipos de arquivos podem ter até 8 caracteres de comprimento. O file mode corresponde ao modo de acesso do minidisk. Exemplos:
 
 
 ```
@@ -27,11 +27,11 @@ MYDOC    LISTING A1
 DNFPFS   LISTPS  B1
 ```
 
-Por convenção, alguns tipos de arquivos têm significados especiais. Por exemplo, EXEC é o tipo de arquivo para um arquivo que contém declarações executáveis, LISTING é o tipo de arquivo para arquivos de texto e LISTPS é o tipo de arquivo para arquivos PostScript. Para visualizar e manipular arquivos, use o comando FILELIST (ou comando LISTFILE). FILELIST é semelhante ao comando dir no Linux.
+Por convenção, alguns tipos de arquivos têm significados especiais. Por exemplo, EXEC é o file type para um arquivo que contém declarações executáveis, LISTING é o file type para arquivos de texto e LISTPS é o file type para arquivos PostScript. Para visualizar e manipular arquivos, use o comando FILELIST (ou comando LISTFILE). FILELIST é semelhante ao comando dir no Linux.
 
 ## PROFILE EXEC
 
-O PROFILE EXEC é um arquivo executável especial análogo ao .profile (ou .bash_profile) no Linux e UNIX. Toda vez que um usuário CMS faz login, o CMS executa o PROFILE EXEC que reside no minidisk 191, modo de arquivo A. Você pode usar o PROFILE EXEC para configurar o ambiente da sua máquina virtual; por exemplo, acessar discos, configurar teclas PF especiais ou até mesmo carregar outro sistema operacional em sua máquina virtual.
+O PROFILE EXEC é um arquivo executável especial análogo ao .profile (ou .bash_profile) no Linux e UNIX. Toda vez que um usuário CMS faz login, o CMS executa o PROFILE EXEC que reside no minidisk 191, file mode A. Você pode usar o PROFILE EXEC para configurar o ambiente da sua máquina virtual; por exemplo, acessar discos, configurar teclas PF especiais ou até mesmo carregar outro sistema operacional em sua máquina virtual.
 
 Pode haver momentos em que você não deseja que o PROFILE EXEC seja executado ao fazer login. Por exemplo, suponha que seu PROFILE EXEC carrega automaticamente o Linux. Se você acabou de desligar o Linux e deseja iniciar o CMS, mas impedir que o Linux seja carregado novamente, você pode impedir que o CMS execute o PROFILE EXEC emitindo **access (noprof**. Ao carregar (IPL) o CMS, você vê uma linha identificadora exibida e o CMS pausa com VM READ no canto inferior direito da tela.
 
@@ -82,48 +82,39 @@ Para ver uma lista dos comandos CMS:
 ===> help 
 ```
 
-Place cursor on "CMS" and press the ENTER key
+Coloque o cursor em "CMS" e pressione a tecla ENTER
 
-What you see here is a subset of the CMS commands available in z/VM.
+O que você vê aqui é um subconjunto dos comandos CMS disponíveis no z/VM.
 
-Display helps text for the QUERY command. You may have to scroll down
-(F8) to find it.
+Exiba o texto de ajuda para o comando QUERY. Você pode ter que rolar para baixo (F8) para encontrá-lo.
 
-Place cursor on "Query" and press the ENTER key
+Coloque o cursor em "Query" e pressione a tecla ENTER
 
-The bottom of the screen lists the PF Keys for additional options that
-are available for the selected command. To see related information for
-this command:
+A parte inferior da tela lista as teclas PF para opções adicionais que estão disponíveis para o comando selecionado. Para ver informações relacionadas a este comando:
 
-Press the F11 key
+Pressione a tecla F11
 
-When you are done browsing, exit the help utility.
+Quando terminar de navegar, saia da utilidade de ajuda.
 
-Press the F3 key repeatedly until you return to "RUNNING" state
+Pressione a tecla F3 repetidamente até retornar ao estado "RUNNING"
 
-Another way to go directly to the menu of CMS commands is with the
-following help command:
+Outra maneira de ir diretamente para o menu de comandos CMS é com o seguinte comando de ajuda:
 
 ```
 ===> help cms menu 
 ```
 
-Exit the help facility and return to the READY prompt: Press the F3 key
-repeatedly until you return to "RUNNING" state
+Saia da tela de ajuda e retorne ao prompt READY: Pressione a tecla F3 repetidamente até retornar ao estado "RUNNING"
 
 ### QUERY
 
-The CMS QUERY command is used to display information about your virtual
-machine. You can get information about:
+O comando QUERY do CMS é usado para exibir informações sobre sua máquina virtual. Você pode obter informações sobre:
 
-::: easylist
-& The operation of your virtual machine. & The status of your files and
-file pool directories. & Information about how your virtual machine is
-set up.
-:::
+- A operação da sua máquina virtual.
+- O status dos seus arquivos e diretórios de pool de arquivos.
+- Informações sobre como sua máquina virtual está configurada.
 
-Use the QUERY ACCESSED command to display the status of your accessed
-disks. Note that the 191 disk is accessed as "A".
+Use o comando QUERY ACCESSED para exibir o status dos seus discos acessados. Note que o disco 191 é acessado como "A".
 
 ```
 ===> q accessed
@@ -146,16 +137,15 @@ Y/S    R/O      1123  19E   MNT19E
 Ready; T=0.01/0.01 18:42:54                 
 ```
 
-Use the QUERY IMPCP command to find out the implied CP function setting
-for your virtual machine.
+Use o comando QUERY IMPCP para descobrir a configuração da função CP implícita para sua máquina virtual.
 
 ```
 ===> q impcp
 ```
 
-*For the MAINT virtual machine, the IMPCP function is set to*
+*Para a máquina virtual MAINT, a função IMPCP está configurada para:* ____
 
-You will learn more about this function in a moment.
+Você aprenderá mais sobre essa função em um momento.
 
 ```
 set impcp off              
@@ -173,26 +163,23 @@ Ready; T=0.01/0.01 14:52:44
 
 ### ACCESS
 
-The ACCESS command is used to:
+O comando ACCESS é usado para:
 
-::: easylist
-& Identify a minidisk to CMS. & Make a list of the files on the
-specified minidisk or directory available to your virtual machine. &
-Establish a file mode letter for the files on a minidisk or in a
-directory.
-:::
+- Identificar um minidisk para o CMS.
+- Tornar uma lista dos arquivos no minidisk especificado ou diretório disponível para sua máquina virtual.
+- Estabelecer uma letra de file mode para os arquivos em um minidisk ou em um diretório.
 
-Use the ACCESS command to access the 191 minidisk as "Z".
+Use o comando ACCESS para acessar o minidisk 191 como "Z".
 
 ```
 ===> access 191 z
 ```
 
-What happened to the A-disk?
+O que aconteceu com o A-disk?
 
-What implications does this change have?
+Quais implicações essa mudança tem?
 
-Re-access the 191 minidisk as "A". What is the command? ===\>
+Reacesso ao minidisk 191 como "A". Qual é o comando? ===>
 
 ```
 q disk                                                                          
@@ -224,101 +211,84 @@ Ready; T=0.01/0.01 14:53:46
 
 ### COPYFILE
 
-The COPYFILE command is used to copy and modify files on CMS minidisks.
-You can:
+O comando COPYFILE é usado para copiar e modificar arquivos nos minidisks CMS. Você pode:
 
-::: easylist
-& Combine two or more files into a single file. & Copy multiple input
-files into multiple output files. & Change file characteristics (such as
-file mode number and record format) and/or modify file contents.
-:::
+- Combinar dois ou mais arquivos em um único arquivo.
+- Copiar múltiplos arquivos de entrada em múltiplos arquivos de saída.
+- Mudar características do arquivo (como número de file mode e formato de registro) e/ou modificar conteúdos do arquivo.
 
-Logon as MAINT Copy the file PROFILE EXEC A to a new file called PROFILE
-EXECSAVE A.
+Faça login como MAINT Copie o arquivo PROFILE EXEC A para um novo arquivo chamado PROFILE EXECSAVE A.
 
 ```
 ===> copy profile exec a = execsave =
 ```
 
-What do the "=" signs mean?
+O que os sinais "=" significam?
 
 ### CP
 
-There are several ways to issue CP commands in CMS depending on the
-setting of the implied CP (IMPCP) option:
+Há várias maneiras de emitir comandos CP no CMS dependendo da configuração da opção CP implícita (IMPCP):
 
-::: easylist
-& If IMPCP is set to ON, CMS will try to interpret an "unknown" command
-as a CP command. & If IMPCP is set to OFF, you must precede any CP
-commands with "CP"
-:::
+- Se IMPCP estiver configurado para ON, o CMS tentará interpretar um comando "desconhecido" como um comando CP.
+- Se IMPCP estiver configurado para OFF, você deve preceder quaisquer comandos CP com "CP"
 
-Or you can precede any CP command with "#CP" to directly send the
-command to the control program.
+Ou você pode preceder qualquer comando CP com "#CP" para enviar o comando diretamente ao programa de controle.
 
-Find your current IMPCP option setting:
+Descubra sua configuração de opção IMPCP atual:
 
 ```
 ===> q impcp
 ```
 
-It should say 'ON'. This is the default. It means if CMS does not
-recognize a command, it will send to CP for processing. Try a CP command
-(while you are in CMS):
+Deveria dizer 'ON'. Este é o padrão. Significa que, se o CMS não reconhecer um comando, ele será enviado ao CP para processamento. Tente um comando CP (enquanto você está no CMS):
 
 ```
 ===> q dasd
 ```
 
-Sure enough, the command works and you see a list of DASDs currently
-attached to your virtual machine. Next set the IMPCP option to off:
+Com certeza, o comando funciona e você vê uma lista de DASDs atualmente anexados à sua máquina virtual. Em seguida, defina a opção IMPCP para off:
 
 ```
 ===> set impcp off
 ```
 
-Try the same CP command:
+Tente o mesmo comando CP:
 
 ```
 ===> q dasd
 ```
 
-This time, the command failed. With the IMPCP function turned off, CMS
-did not redirect the unknown command to CP for processing.
+Desta vez, o comando falhou. Com a função IMPCP desligada, o CMS não redirecionou o comando desconhecido para o CP para processamento.
 
-You are currently running in the CMS environment. To enter CP mode,
-type:
+Você está atualmente executando no ambiente CMS. Para entrar no modo CP, digite:
 
 ```
 ===> CP
 ```
 
-The console status in the lower right hand corner of the screen now
-indicates "CP READ".
+O status do console no canto inferior direito da tela agora indica "CP READ".
 
-Try the same CP command:
+Tente o mesmo comando CP:
 
 ```
 ===> q dasd
 ```
 
-To return to CMS, type:
+Para retornar ao CMS, digite:
 
 ```
-===> begin (or 'b' for short) 
+===> begin (ou somente 'b' para um atalho) 
 ```
 
-The status in the lower right hand corner of the console returns to
-"RUNNING".
+O status no canto inferior direito do console retorna para "RUNNING".
 
-8\. Another way to issue CP command is to prefix it with '#CP'. Try
-this:
+Outra maneira de emitir comando CP é prefixá-lo com '#CP'. Tente isso:
 
 ```
 ===> #cp q dasd 
 ```
 
-9\. Reset the IMPCP option back to ON:
+Redefina a opção IMPCP de volta para ON:
 
 ```
 ===> set impcp on
@@ -326,21 +296,15 @@ this:
 
 ### FILELIST
 
-The FILELIST command is used to display a list of information about CMS
-files residing on accessed disks. In the FILELIST environment,
-information is displayed under the control of XEDIT. You can use XEDIT
-subcommands to manipulate the list itself. You can also issue CMS
-commands against the files directly from the displayed list.
+O comando FILELIST é usado para exibir uma lista de informações sobre arquivos CMS residindo em discos acessados. No ambiente FILELIST, as informações são exibidas sob o controle do XEDIT. Você pode usar subcomandos XEDIT paramanipular a própria lista. Você também pode emitir comandos CMS diretamente contra os arquivos a partir da lista exibida.
 
-1\. Logoff as MAINT
-
-2\. Logon as MAINT630
-
-3\. Display a list of files on your A-disk.
+1. Faça logout como MAINT
+2. Faça login como MAINT630
+3. Exiba uma lista de arquivos no seu A-disk.
 
 ===\> filel \* \* a
 
-The files are sorted by date and time, newest to oldest.
+Os arquivos são classificados por data e hora, do mais novo para o mais antigo.
 
 ```
 MAINT630 FILELIST A0  V 169  Trunc=169 Size=27 Line=1 Col=1 Alt=9              
@@ -377,23 +341,19 @@ Cmd   Filename Filetype Fm Format Lrecl    Records     Blocks   Date     Time
                                                             X E D I T  1 File   
 ```
 
-Copy the PROFILE EXEC file to PROFILE EXECBKP. Press the TAB key to
-advance the cursor to the CMD column of the PROFILE EXEC file
+Copie o arquivo PROFILE EXEC para PROFILE EXECBKP. Pressione a tecla TAB para avançar o cursor para a coluna CMD do arquivo PROFILE EXEC
 
-Type "COPY / = EXECBKP =" and press the ENTER key
+Digite "COPY / = EXECBKP =" e pressione a tecla ENTER
 
-The command can be read as "copy the current file (/) to a file with the
-same file name of PROFILE (=), a file type of EXECBKP and the same file
-mode of A (=)".
+O comando pode ser lido como "copie o arquivo atual (/) para um arquivo com o mesmo file name PROFILE (=), um file type EXECBKP e o mesmo file mode A (=)".
 
-Update the FILELIST display and you should see the new copy of the
-profile.
+Atualize a exibição FILELIST e você deve ver a nova cópia do perfil.
 
 ```
 ===> Press the F2 key 
 ```
 
-Exit FILELIST.
+Saia do FILELIST.
 
 ```
 ===> Press the F3 key
@@ -401,69 +361,59 @@ Exit FILELIST.
 
 ### XEDIT
 
-#### Configure the XEDIT PROFILE
+#### Configure o PERFIL XEDIT
 
-The XEDIT command looks for the file XEDIT PROFILE configuration file
-when it is invoked. Not all CMS virtual machines have a copy of this
-file, so XEDIT sessions look and behave differently. The MAINT 191 (A)
-disk has a PROFILE XEDIT so when you are editing files on MAINT, the
-values in this profile are usually in effect.
+O comando XEDIT procura pelo arquivo de configuração PERFIL XEDIT quando é invocado. Nem todas as máquinas virtuais CMS têm uma cópia deste arquivo, então as sessões XEDIT parecem e se comportam de maneira diferente. O disco MAINT 191 (A) tem um PERFIL XEDIT então quando você está editando arquivos no MAINT, os valores neste perfil geralmente estão em vigor.
 
-To configure the XEDIT profile on the SSI cluster, perform the following
-steps:
+Para configurar o perfil XEDIT no cluster SSI, execute os seguintes passos:
 
-::: easylist
-& Log on to **MAINT** if you are not already. & One default setting that
-can be dangerous, especially if you use F12 to retrieve commands, is
-that PF12 is set to the **FILE** subcommand. Sometimes you might not
-want to save your changes with the stroke of one key. It is recommended
-that you set PF12 to the ? subcommand, which has the effect of a
-retrieve key:
+
+1. Faça login no MAINT se você ainda não fez. 
+2. Uma configuração padrão que pode ser perigosa, especialmente se você usar F12 para recuperar comandos, é que PF12 está configurado para o subcomando FILE. Às vezes você pode não querer salvar suas alterações com o toque de uma tecla. É recomendado que você configure PF12 para o subcomando ?, que tem o efeito de uma tecla de recuperação:
+ 
 
 ```
 ==> copy profile xedit a profile xediorig a (oldd
 ==> x profile xedit
 ```
 
-**Before:**
+**Antes:**
 
 SET PF12 FILE
 
-**After:**
+**Depois:**
 
 SET PF12 ?
 
-& Save your changes with the FILE subcommand. & Make the modified file
-available to other virtual machines by copying it to the MAINT 19E disk
-with file mode suffix 2: && Release the current 19E disk:
+3. Salve suas alterações com o subcomando FILE. 
+4. Torne o arquivo modificado disponível para outras máquinas virtuais copiando-o para o disco MAINT 19E com o sufixo de file mode 2: 
+
+      4.1 Libere o disco 19E atual:
 
 ```
 ==> rel 19e
 ```
 
-&& Link to the MAINT 19E disk read/write:
+      4.2 Link o disco MAINT 19E com acesso de leitura/escrita:
 
 ```
 ==> link * 19e 19e mr
 DASD 019E LINKED R/W; R/O BY 10 USERS
 ```
 
-&& Access the disk as file mode F:
+      4.3 Accesse o disco como file mode F:
 
 ```
 ==> acc 19e f
 ```
 
-&& Copy it to the MAINT 19E disk (F) with file mode suffix 2 (because
-the MAINT 19E disk is commonly accessed with a file mode suffix of 2,
-files will not be seen by other virtual machines unless they have this
-file mode suffix):
+      4.4 Copie para o disco MAINT 19E (F) com o sufixo de file mode 2 (porque o disco MAINT 19E é comumente acessado com um sufixo de file mode de 2, arquivos não serão vistos por outras máquinas virtuais a menos que tenham este sufixo de file mode):
 
 ```
 ==> copy profile xedit a = = f2
 ```
 
-&& Save the CMS named saved segment with the following commands:
+      4.5 Salve o segmento nomeado do CMS com os seguintes comandos:
 
 ```
 ==> acc 193 g
@@ -474,29 +424,28 @@ HCPNSS440I Named Saved System (NSS) CMS was successfully saved in fileid 0002.
 ```
 :::
 
-The same XEDIT PROFILE should now be accessible to all virtual machines
-in the z/VM system.
+O mesmo PERFIL XEDIT agora deve ser acessível a todas as máquinas virtuais no sistema z/VM.
 
-#### Creating an EXEC
+#### Criando uma EXEC
 
-Let's create a simple REXX EXEC file with an edit session by using the
-XEDIT command.
+Vamos criar um arquivo EXEC REXX simples com uma sessão de edição usando o comando XEDIT.
 
-1\. Logoff MAINT630 2. Logon as MAINT 3. Start an XEDIT session and
-create a new file HELLO EXEC A.
+1. Faça logoff do MAINT630
+2. Faça logon como MAINT
+3. Inicie uma sessão XEDIT e crie um novo arquivo HELLO EXEC A.
 
 ```
 ===> xedit hello exec
 ```
 
-4\. Enter Input mode and press Enter:
+4. Entre no modo de entrada e pressione Enter:
 
 ```
 ===> i
 ```
 
-5\. Input the following text. Refer to the XEDIT quick reference guide
-if you need help.
+5. Insira o seguinte texto. Consulte o guia de referência rápida do XEDIT se precisar de ajuda.
+
 
 ```
 /* A sample REXX exec */
@@ -504,34 +453,35 @@ say 'Welcome to the z/VM and Linux on z Workshop'
 say 'Hello World'
 ```
 
-6\. Return to Edit mode:
+6. Retorne ao modo de Edição:
 
-Press the Enter key twice
+Pressione a tecla ENTER duas vezes
 
-7\. File your changes and exit the file.
+7. Salve suas alterações e saia do arquivo.
+
 
 ```
 ===> file
 ```
 
-8\. An REXX EXEC is similar to a Unix/Linux script. Let's run the exec
-and see what happens:
+8. Um EXEC REXX é similar a um script Unix/Linux. Vamos executar o exec e ver o que acontece:
+
 
 ```
 ===> hello
 ```
 
-9\. Now update the HELLO EXEC file:
+9. Agora atualize o arquivo HELLO EXEC:
 
 ```
 ===> x hello exec 
 ```
 
-10\. Insert a new line:
+10. Insira uma nova linha:
 
-Type an 'i' on the line number 3
+Digite um 'i' na linha número 3
 
-Enter the text 'q time'
+Entre com o texto 'q time'
 
 ```
 00000 * * * Top of File * * *                             
@@ -541,39 +491,35 @@ Enter the text 'q time'
 00004 * * * End of File * * *    
 ```
 
-11\. Execute the file again. You have successfully created an executable
-file to execute commands and output messages!
+11. Execute o arquivo novamente. Você criou com sucesso um arquivo executável para executar comandos e exibir mensagens!
 
 ```
 ===> hello
 ```
 
-Next, modify the PROFILE EXEC file so that you will gain access to a
-shared utility disk which contains useful scripts for the workshop.
+Próximo passo, modifique o arquivo PROFILE EXEC para que você tenha acesso a um disco de utilidades compartilhado que contém scripts úteis para o workshop.
 
-1\. Edit the "PROFILE EXEC" file.
+1. Edite o arquivo "PROFILE EXEC".
 
 ```
 ===> x profile exec 
 ```
 
-2\. Add the following statements (in upper case) after the following
-line 'ACCESS 551 E':
+2. Adicione as seguintes declarações (em maiúsculas) após a linha 'ACCESS 551 E':
 
 ```
 'CP ATTACH 0192 *'
 'ACCESS 0192 Z'
 ```
 
-10\. File your changes and exit the file.
+10. Salve suas mudanças e saia do arquivo.
 
 ```
 ===> file
 ===> profile
 ```
 
-11\. Execute the profile to pick up the changes. You should see a
-message tell you that the device 192 is attached.
+11. Execute o profile para aplicar as alterações. Você deverá ver uma mensagem informando que o dispositivo 192 está anexado.
 
 ```
 Ready; T=0.01/0.01 14:25:42                                                     

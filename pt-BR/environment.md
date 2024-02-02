@@ -439,8 +439,8 @@ z/VM ONLINE
 ```
 
 !!! warning
-Attention It is important to ***disconnect***, **not** ***log off***
-your system. Logging off from the system is equivalent to turning off
-the computer, thus crashing your z/VM system.
+Atenção É importante ***disconnect***, **não** ***log off***
+do seu sistema. Fazer log off do sistema é equivalente a desligar
+o computador, provocando a queda do seu sistema z/VM.
 !!!
 

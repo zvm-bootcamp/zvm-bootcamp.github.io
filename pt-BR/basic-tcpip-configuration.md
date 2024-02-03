@@ -2,149 +2,89 @@
 order: 75
 icon: ":link:"
 ---
-# Basic TCP/IP Configuration
+# Configuração Básica de TCP/IP
 
-## TCPIP Service Machines
+## Máquinas de Serviço TCPIP
 
-This section describes the virtual machines that are necessary to
-provide basic and optional TCP/IP services. The virtual machines listed
-here comprise a set of "default" TCP/IP virtual machines that are
-defined as part of the z/VM system when it is installed.
+Esta seção descreve as máquinas virtuais que são necessárias para fornecer serviços básicos e opcionais de TCP/IP. As máquinas virtuais listadas aqui compõem um conjunto de máquinas virtuais TCP/IP "padrão" que são definidas como parte do sistema z/VM quando ele é instalado.
 
-While various TCP/IP virtual machines have specific definition
-requirements, all TCP/IP servers must maintain links to the following
-minidisks, to allow for correct operation:
+Embora várias máquinas virtuais TCP/IP tenham requisitos específicos de definição, todos os servidores TCP/IP devem manter links para os seguintes minidisks, para permitir a operação correta:
 
-::: {#tab:tcpip}
-  **Minidisk**   **Description**
-  -------------- -------------------------------------------
-  TCPMAINT 592   Client-code disk
-  TCPMAINT 591   Server-code disk
-  TCPMAINT 198   Configuration file, or customization disk
 
-  : TCPIP Service Machines
-:::
+| Minidisk      | Descrição                         |
+| ------------- | --------------------------------- |
+| TCPMAINT 592  | Disco de código do cliente        |
+| TCPMAINT 591  | Disco de código do servidor       |
+| TCPMAINT 198  | Arquivo de configuração ou disco de personalização |
 
-## Required Virtual Machines
 
-The following virtual machines are required to provide basic TCP/IP
-services:
+## Máquinas Virtuais Necessárias
 
-::: {#tab:tcpip2}
-  **Machine**   **Function**
-  ------------- -----------------------------------------------------------------------------------------------------------------------------------
-  6VMTCP30      Maintains the TCP/IP system. Installation and service resources are owned by this user ID.
-  TCPIP         Provides TCP/IP communication services. The Telnet server is implemented as a "internal client" within the TCPIP virtual machine.
-  TCPMAINT      Owns TCP/IP production resources --- the 198, 591, and 592 disks.
+As seguintes máquinas virtuais são necessárias para fornecer serviços básicos de TCP/IP:
 
-  : Required Virtual Machines
-:::
 
-## Optional Virtual Machines
+| Máquina    | Função                                                                                      |
+|------------|-----------------------------------------------------------------------------------------------|
+| 6VMTCP30   | Mantém o sistema TCP/IP. Os recursos de instalação e serviço são de propriedade deste ID de usuário.   |
+| TCPIP      | Fornece serviços de comunicação TCP/IP. O servidor Telnet é implementado como um "cliente interno" dentro da máquina virtual TCPIP. |
+| TCPMAINT   | Possui recursos de produção TCP/IP --- os discos 198, 591 e 592.                              |
 
-There are many optional virtual machines that you can setup to perform
-TCP/IP server functions. Some of these servers include FTPSERVE, IMAP,
-PORTMAP, NAMESRV, SSLSERV, SMTP, etc.
+## Máquinas Virtuais Opcionais
 
-## Configuration files
+Existem muitas máquinas virtuais opcionais que você pode configurar para desempenhar funções de servidor TCP/IP. Alguns desses servidores incluem FTPSERVE, IMAP, PORTMAP, NAMESRV, SSLSERV, SMTP, etc.
 
-This section lists the various TCP/IP configuration files which are
-necessary to provide basic TCP/IP services for most environments.
+## Arquivos de Configuração
 
-The first file, IBM DTCPARMS, contains server configuration definitions.
-The next three files, PROFILE TCPIP, HOSTS LOCAL, and ETC HOSTS, are
-configuration files for the TCPIP server virtual machine. The next two
-files, TCPIP DATA and ETC SERVICES, need to be accessible to all TCP/IP
-servers, applications, and users; these files contain information that
-is (or may be) referenced by all users. ETC GATEWAYS contains routing
-information for distant networks and hosts.
+Esta seção lista os vários arquivos de configuração TCP/IP que são necessários para fornecer serviços básicos TCP/IP para a maioria dos ambientes.
 
-### The DTCPARMS files
+O primeiro arquivo, IBM DTCPARMS, contém definições de configuração do servidor. Os próximos três arquivos, PROFILE TCPIP, HOSTS LOCAL e ETC HOSTS, são arquivos de configuração para o servidor virtual TCPIP. Os próximos dois arquivos, TCPIP DATA e ETC SERVICES, precisam estar acessíveis a todos os servidores, aplicações e usuários TCP/IP; esses arquivos contêm informações que são (ou podem ser) referenciadas por todos os usuários. ETC GATEWAYS contém informações de roteamento para redes e hosts distantes.
 
-Configuration of each server is controlled by a set of files with a file
-type of DTCPARMS. These files may contain two types of information:
+### Os arquivos DTCPARMS
 
-::: easylist
-& Server class names that define the application protocols available for
-all server virtual machines. & Individual server user IDs and their
-associated server class, as well as the operational characteristics of
-the server (security, devices, parameters, etc.).
-:::
+A configuração de cada servidor é controlada por um conjunto de arquivos com um tipo de arquivo de DTCPARMS. Estes arquivos podem conter dois tipos de informações:
 
-The TCP/IP server initialization program searches for server definitions
-in a hierarchical fashion. The following table lists the DTCPARMS files
-in the order that they are searched, along with a description of each
-file.
+- Nomes de classes de servidores que definem os protocolos de aplicação disponíveis para todas as máquinas virtuais servidoras. & IDs de usuários individuais do servidor e sua classe de servidor associada, bem como as características operacionais do servidor (segurança, dispositivos, parâmetros, etc.).
 
-::: {#tab:tcpip3}
-  **File**          **Purpose**
-  ----------------- -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  userid DTCPARMS   Can be used for servers that do not require configuration by the TCP/IP administrator, such as a test server. Such a file might commonly reside on a server disk or directory accessed at file mode A.
-  nodeid DTCPARMS   Useful for shared-DASD configurations. The node ID used is the node ID returned by the CMS IDENTIFY command. This file should be maintained on the TCPMAINT 198 disk.
-  SYSTEM DTCPARMS   Most customized server configurations should be maintained in this file. This file should be maintained on the TCPMAINT 198 disk.
-  IBM DTCPARMS      Server classes provided by IBM, as well as the default server configurations, are supplied by this file. This file resides on the TCPMAINT 591 disk and should never be modified, because it can be replaced when service is applied, or when a new release is installed. All modifications required for your installation should be placed in SYSTEM DTCPARMS (or, nodeID DTCPARMS, as warranted).
+O programa de inicialização do servidor TCP/IP procura por definições de servidor de forma hierárquica. A tabela a seguir lista os arquivos DTCPARMS na ordem em que são pesquisados, juntamente com uma descrição de cada arquivo.
 
-  : The DTCPARMS files
-:::
+| Arquivo          | Propósito                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+|------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| userid DTCPARMS  | Pode ser usado para servidores que não requerem configuração pelo administrador TCP/IP, como um servidor de teste. Tal arquivo pode residir comumente em um disco ou diretório do servidor acessado em modo de arquivo A.                                                                                                                                                                                                                                                                      |
+| nodeid DTCPARMS  | Útil para configurações com DASD compartilhado. O ID do nó usado é o ID do nó retornado pelo comando IDENTIFY do CMS. Este arquivo deve ser mantido no disco TCPMAINT 198.                                                                                                                                                                                                                                                                                                                      |
+| SYSTEM DTCPARMS  | A maioria das configurações de servidor personalizadas deve ser mantida neste arquivo. Este arquivo deve ser mantido no disco TCPMAINT 198.                                                                                                                                                                                                                                                                                                                                                    |
+| IBM DTCPARMS     | Classes de servidores fornecidas pela IBM, bem como as configurações padrão do servidor, são fornecidas por este arquivo. Este arquivo reside no disco TCPMAINT 591 e nunca deve ser modificado, pois pode ser substituído quando o serviço é aplicado, ou quando uma nova versão é instalada. Todas as modificações necessárias para sua instalação devem ser colocadas em SYSTEM DTCPARMS (ou, nodeID DTCPARMS, conforme necessário). |
 
-### The TCPIP DATA File
+### O Arquivo TCPIP DATA
 
-The TCPIP DATA file defines system parameters used by TCP/IP client
-applications. It is used to specify configuration information for single
-or multiple host systems. It also allows you to specify:
+O arquivo TCPIP DATA define parâmetros do sistema usados por aplicações cliente TCP/IP. É usado para especificar informações de configuração para sistemas host únicos ou múltiplos. Também permite que você especifique:
 
-::: easylist
-& Host name of the VM host & User ID of the TCPIP virtual machine &
-Domain origin of the host & Output trace & Name server specifications
-:::
+- Nome do host do host VM & ID do usuário da máquina virtual TCPIP & Origem do domínio do host & Rastreamento de saída & Especificações do servidor de nomes
 
-A sample TCP/IP DATA file is shipped as TCPIP SDATA on the TCPMAINT 592
-disk.
+Um arquivo de amostra TCP/IP DATA é enviado como TCPIP SDATA no disco TCPMAINT 592.
 
-### The ETC HOSTS Files
+### Os Arquivos ETC HOSTS
 
-The local host files contain information needed for local host name
-resolution. Any domain name or IP address specified in this file is
-accessible for use on your network. Local host files are used to create
-the site table, which enables name resolution and reverse name
-resolution without using a domain name server.
+Os arquivos host locais contêm informações necessárias para a resolução de nomes de host locais. Qualquer nome de domínio ou endereço IP especificado neste arquivo é acessível para uso em sua rede. Arquivos host locais são usados para criar a tabela do site, que permite a resolução de nomes e a resolução de nomes inversa sem usar um servidor de nomes de domínio.
 
-TCP/IP for z/VM offers two local host files for domain name resolution
-and reverse name resolution. The old HOSTS LOCAL file (which supports
-IPv4 only), and the preferred ETC HOSTS file (which supports both IPv4
-and IPv6).
+O TCP/IP para z/VM oferece dois arquivos host locais para resolução de nomes de domínio e resolução de nomes inversa. O antigo arquivo HOSTS LOCAL (que suporta apenas IPv4) e o preferido arquivo ETC HOSTS (que suporta tanto IPv4 quanto IPv6).
 
-The ETC HOSTS file does not require additional processing to create the
-site tables used for name resolution. The site tables are created
-dynamically by the resolver when the ETC HOSTS file is used. Use of the
-HOSTS LOCAL file requires that you run the MAKESITE command to create
-the site tables. Whenever changes are made to the HOSTS LOCAL file, you
-must run the MAKESITE command to recreate the site tables.
+O arquivo ETC HOSTS não requer processamento adicional para criar as tabelas do site usadas para resolução de nomes. As tabelas do site são criadas dinamicamente pelo resolvedor quando o arquivo ETC HOSTS é usado. O uso do arquivo HOSTS LOCAL requer que você execute o comando MAKESITE para criar as tabelas do site. Sempre que alterações são feitas no arquivo HOSTS LOCAL, você deve executar o comando MAKESITE para recriar as tabelas do site.
 
-A sample file, ETCHOSTS SAMPLE, is supplied with the TCP/IP distribution
-tapes on the.
+Um arquivo de amostra, ETCHOSTS SAMPLE, é fornecido com as fitas de distribuição TCP/IP no.
 
-### The TCPIP server profile file
+### O arquivo de PROFILE do servidor TCPIP
 
-When the TCPIP virtual machine is started, TCP/IP operation and
-configuration parameters are read from an initial configuration file.
-TCP/IP searches for an initial configuration file in the following order
-and uses the first file present in that order:
+Quando a máquina virtual TCPIP é iniciada, os parâmetros de operação e configuração do TCP/IP são lidos de um arquivo de configuração inicial. O TCP/IP procura por um arquivo de configuração inicial na seguinte ordem e usa o primeiro arquivo presente nessa ordem:
 
-::: easylist
-& userid TCPIP, where userid is the user ID of the of the TCP/IP server
-& node_name TCPIP, where node_name is the system node name returned by
-the CMS IDENTIFY command & PROFILE TCPIP
-:::
+- userid TCPIP, onde userid é o ID do usuário do servidor TCP/IP
+- node_name TCPIP, onde node_name é o nome do nó do sistema retornado pelo comando IDENTIFY do CMS & PROFILE TCPIP
 
-This file is used to customize your system, specify system operation,
-Telnet, and network parameters. If no file is found, TCP/IP uses server
-default values.
+Este arquivo é usado para personalizar seu sistema, especificar a operação do sistema, parâmetros de Telnet e de rede. Se nenhum arquivo for encontrado, o TCP/IP usa valores padrão do servidor.
 
-A sample initial configuration file is provided as PROFILE STCPIP on the
-TCPMAINT 591 disk.
+Um arquivo de configuração inicial de amostra é fornecido como PROFILE STCPIP no disco TCPMAINT 591.
 
-## Exercises
+
+## Exercícios
 
 ### IPWIZARD
 
@@ -152,23 +92,24 @@ You can initially configure TCP/IP via the IPWIZARD command which is
 generally used just once. After IPWIZARD creates the initial
 configuration files, they are typically maintained manually.
 
-::: easylist
-& Log on as MAINT. & The IPWIZARD command is on the MAINT 193 disk.
-Issue the ACCESS command so you will pick up IPWIZARD from that
-minidisk.
+
+- Faça login como MAINT.
+- O comando IPWIZARD está no disco MAINT 193.
+Emita o comando ACCESS para que você possa acessar o IPWIZARD a partir desse minidisco.
+
 
 ```
 ==> acc 193 g
 ```
 
-& Invoke the IPWIZARD.
+- Invoque o IPWIZARD.
 
 ```
 ==> ipwizard
 ```
 
-& At the '\*\*\* z/VM TCP/IP Configuration Wizard \*\*\*' panel. Fill in
-the following data:
+- No painel '\*\*\* z/VM TCP/IP Configuration Wizard \*\*\*'. Preencha os seguintes dados:
+
 
 ```
     *** z/VM TCP/IP Configuration Wizard ***                 
@@ -177,24 +118,25 @@ The items that follow describe your z/VM host
                                                                              
 User ID of VM TCP/IP Stack Virtual Machine:   TCPIP___                       
                                                                              
-Host Name:     (*| \textcolor{red}{ZVMWSxx} |*) (your group name) ___________                                          
-Domain Name:   (*| \textcolor{red}{mycompany.com} |*)_________                      
+Host Name:     ZVMWSxx (your group name) ___________                                          
+Domain Name:   mycompany.com_________                      
                                                                              
-Gateway IP Address:  (*|\textcolor{red}{YOUR\_GW\_ADDR}|*)_______________________                 
+Gateway IP Address:  YOUR_GW_ADDR_______________________                 
                                                                              
 DNS Addresses:                                                               
-1) (*|\textcolor{red}{YOUR\_DNS}|*)_______                                                           
+1) YOUR_DNS_______                                                           
 2) _______________                                                           
 3) _______________                          
        PF1 = HELP   PF3 = QUIT   PF8 = Continue   ENTER = Refresh    
 ```
 
-& Continue with next step.
+- Continue com o próximo passo.
 
-**Press the F8 key**
+**Pressione F8**
 
-& At the '\*\*\* General Interface Configuration Panel \*\*\*' panel.
-Fill in the following data:
+- No painel '\*\*\* General Interface Configuration Panel \*\*\*'.
+Preencha os seguintes dados:
+
 
 ```
                   *** General Interface Configuration Panel ***             
@@ -216,13 +158,11 @@ Interface Type (Select one): (*|\textcolor{red}{Ask the layer to the instructor 
 PF1 = HELP  PF3 = QUIT  PF7 = Backward  PF8 = Continue  ENTER = Refresh   
 ```
 
-& Continue with next step.
+- Continue com o próximo passo.
 
-**Press the PF8 key**
+**Pressione F8**
 
-& At the '\*\*\* QDIO Interface Configuration Panel \*\*\*' panel. Fill
-in the following data:
-
+- No painel '\*\*\* QDIO Interface Configuration Panel \*\*\*'. Preencha os seguintes dados:
 ```
                    *** QDIO Interface Configuration Panel ***                
                                                                              
@@ -243,16 +183,17 @@ Port Number (optional):  __
  PF1 = HELP  PF3 = QUIT  PF5 = Process  PF7 = Backward  ENTER = Refresh      
 ```
 
-& Start the network configuration.
+- Inicie a configuração da rede.
 
-**Press the PF5 key to Process**
+**Pressione a tecla PF5 para Processar**
 
-& The TCP/IP stack (TCPIP) must be restarted as part of this procedure.
-Would you like to restart TCPIP and continue?
+- A pilha TCP/IP (TCPIP) deve ser reiniciada como parte deste procedimento.
+Você gostaria de reiniciar o TCPIP e continuar?
 
-**Enter '1' for Yes**
+**Digite '1' para Sim**
 
-& The TCP/IP configuration is complete when you see these messages:
+- A configuração do TCP/IP está completa quando você vê estas mensagens:
+
 
 ```
 Successfully PINGed Interface (172.24.200.222)                    
@@ -267,24 +208,24 @@ DMSVML2061I TCPIP 592 released
 Ready; T=0.15/0.23 23:50:42      
 ```
 
-& At this point, your z/VM system should be on the network. Go to a DOS
-prompt (or Linux session) and try to ping your z/VM system.
+- Neste ponto, seu sistema z/VM deve estar na rede. Vá para um prompt do DOS (ou sessão Linux) e tente fazer ping no seu sistema z/VM.
+
 
 ```
 # ping <your ip>
 ```
-:::
 
-### Viewing TCP/IP configuration files
 
-Let's learn what the IPWIZARD did for you.
+### Visualizando arquivos de configuração TCP/IP
 
-::: easylist
-& Logon to the TCPMAINT virtual machine
+Vamos aprender o que o IPWIZARD fez por você.
 
-**Logoff of MAINT**
+- Faça login na máquina virtual TCPMAINT
 
-**Logon to TCPMAINT**
+**Desconecte-se de MAINT**
+
+**Faça login em TCPMAINT**
+
 
 ```
 LOGON TCPMAINT                                          
@@ -306,8 +247,9 @@ Profile..: Setup complete
 Ready; T=0.01/0.01 10:19:32        
 ```
 
-& List the CMS disks that are accessed via the QUERY DISK command. Note
-that the TCPMAINT 198 disk is accessed as your disk:
+- Liste os discos CMS que são acessados através do comando QUERY DISK. Note
+que o disco TCPMAINT 198 é acessado como seu disco:
+
 
 ```
 ===> q disk
@@ -326,8 +268,9 @@ MNT191 120  Z   R/O   175 3390 4096        7         24-01      31476      31500
 Ready; T=0.01/0.01 10:24:34                                                     
 ```
 
-& This is an important disk for TCP/IP configuration files. List all the
-files on this disk. What is the command?
+- Este é um disco importante para arquivos de configuração TCP/IP. Liste todos os
+arquivos neste disco. Qual é o comando?
+
 
 ===\>
 
@@ -352,16 +295,16 @@ Cmd   Filename Filetype Fm Format Lrecl    Records     Blocks   Date     Time
 ====>                                                                           
                                                             X E D I T  1 File   
 ```
-:::
+
 
 #### PROFILE TCPIP
 
-::: easylist
-& Look at the file PROFILE TCPIP. You can type an **X**, which is a
-synonym for **X**EDIT right in the FILELIST command next to the file you
-want to edit. & Search for the string DEVICE. You should see many of the
-values that you typed into the IPWIZARD. Following is an example file
-for **ZVMWSXX**:
+- Olhe para o arquivo PROFILE TCPIP. Você pode digitar um **X**, que é um
+sinônimo para **X**EDIT diretamente no comando FILELIST ao lado do arquivo que
+você quer editar. & Procure pela string DEVICE. Você deve ver muitos dos
+valores que digitou no IPWIZARD. A seguir, um exemplo de arquivo
+para **ZVMWSXX**:
+
 
 ```
 ===> /device
@@ -399,17 +342,17 @@ PROFILE  TCPIP    D1  V 80  Trunc=80 Size=55 Line=37 Col=1 Alt=0
 ====>                                                                           
 ```
 
-& Exit this file, enter:
+- Exit this file, enter:
 
 ```
  ===> qq
 ```
-:::
+
 
 #### SYSTEM DTCPARMS
 
-::: easylist
-& Now look at the file SYSTEM DTCPARMS. & You should see the following:
+- Agora olhe para o arquivo SYSTEM DTCPARMS. & Você deve ver o seguinte:
+
 
 ```
 SYSTEM   DTCPARMS D1  V 80  Trunc=80 Size=7 Line=0 Col=1 Alt=0                 
@@ -430,53 +373,46 @@ SYSTEM   DTCPARMS D1  V 80  Trunc=80 Size=7 Line=0 Col=1 Alt=0
 ====>                                                                           
 ```
 
-This file is how the OSA devices 800, 801 and 802 are attached to the
-TCPIP service machine.
+Este arquivo é como os dispositivos OSA 800, 801 e 802 são anexados à
+máquina de serviço TCPIP.
 
-& Exit this file:
+- Saia deste arquivo:
 
-**Press the F3 key (or type qq)**
+**Pressione a tecla F3 (ou digite qq)**
 
-& If you are still in FILELIST mode, exit and return to RUNNING mode.
+- Se você ainda está no modo FILELIST, saia e retorne ao modo RUNNING.
 
-**Press the F3 key**
-:::
+**Pressione a tecla F3**
 
-### Renaming the PROFILE TCPIP file
+### Renomeando o arquivo PROFILE TCPIP
 
-One change that is recommended is to rename your main configuration
-file, PROFILE TCPIP. It is possible that applying service to z/VM can
-overwrite the PROFILE TCPIP file.
+Uma mudança que é recomendada é renomear seu arquivo de configuração principal, PROFILE TCPIP. É possível que a aplicação de serviço ao z/VM possa sobrescrever o arquivo PROFILE TCPIP.
 
-::: easylist
-& Use the RENAME command to change the file:
+- Use o comando RENAME para mudar o arquivo:
+
 
 ```
 ===> rename profile tcpip d zvmwsxx = d
 ```
 
-& Now you should test this change. You can do this by forcing the TCPIP
-user ID off the system (logging it off) and then logging on
-interactively and watching it come back up. This is analogous to a Linux
-"service network restart" command. Be careful when you do this. If you
-are using the network to get to your system, you will immediately lose
-the connection.
+- Agora você deve testar essa mudança. Você pode fazer isso forçando o ID de usuário TCPIP a sair do sistema (logoff) e, em seguida, fazendo login interativamente e observando-o voltar. Isso é análogo a um comando "service network restart" no Linux. Tenha cuidado ao fazer isso. Se você estiver usando a rede para acessar seu sistema, você perderá imediatamente a conexão.
+
 
 ```
 ===> force tcpip
 ```
 
-& Now logon to TCPIP and start the TCP/IP stack.
+- Agora faça login em TCPIP e inicie a pilha TCP/IP.
 
 ```
 ===> logoff TCPMAINT
 ===> logon TCPIP
 ```
 
-Press **Enter** to run the PROFILE EXEC
+Pressione **Enter** para executar o PROFILE EXEC
 
-Press **Enter** again to start the TCP/IP stack. Note that your renamed
-profile is used:
+Pressione **Enter** novamente para iniciar a pilha TCP/IP. Observe que seu PROFILE renomeado é utilizado:
+
 
 ```
 LOGON TCPIP                                                                     
@@ -562,90 +498,73 @@ DTCTCP001I z/VM TCP/IP Level 630
                                                             RUNNING   ZVMWS01   
 ```
 
-& Now should you LOGOFF of TCPIP or DISCONNECT?
+- Agora você deve DESLOGAR do TCPIP ou DESCONECTAR?
 
 ===\>
 
-The former will kill the stack while the latter will allow it to run. A
-VM service machine is analogous to a Linux daemon. Use the #CP DISC
-command. The #CP *punches through* to the CP level.
-:::
+O primeiro encerrará a pilha enquanto o último permitirá que ela continue funcionando. Uma máquina de serviço VM é análoga a um daemon Linux. Use o comando #CP DISC. O #CP **executa no nível CP**.
 
-### Verify the TCPIP setup
+### Verifique a configuração do TCPIP
 
-If all went well, your z/VM should now be on the network. Let's try a
-few things to verify the configuration is correct.
+Se tudo correu bem, seu z/VM agora deve estar na rede. Vamos tentar algumas coisas para verificar se a configuração está correta.
 
-::: easylist
-& Start a TN3270 session and connect directly to you z/VM system. You
-now have the ability to log on to more than one virtual machine at a
-time. & Log on as TCPMAINT. & Use the NETSTAT command to display
-information about your network. Display the device information. You
-should see information about the QDIO1 device.
+- Inicie uma sessão TN3270 e conecte-se diretamente ao seu sistema z/VM. Agora você tem a capacidade de fazer login em mais de uma máquina virtual por vez. & Faça login como TCPMAINT. & Use o comando NETSTAT para exibir informações sobre sua rede. Exiba as informações do dispositivo. Você deve ver informações sobre o dispositivo QDIO1.
 
 ```
 ===> netstat dev
 ```
 
-Display the gateway information. You should see information about the
-gateway.
+Exiba as informações do gateway. Você deve ver informações sobre o gateway.
 
 ```
 ===> netstat gate
 ```
 
-& Ping the gateway (first hop).
+- Faça ping no gateway (primeiro salto).
 
 ```
 ===> ping GATEWAYIP
 ```
 
-& Tracing routes through a network is sometimes necessary to help debug
-connectivity issues. Try the TRACERTE command and trace the route to
-another IP:
+- Traçar rotas através de uma rede às vezes é necessário para ajudar a depurar
+problemas de conectividade. Tente o comando TRACERTE e trace a rota para
+outro IP:
+
 
 ```
 ===> tracerte ANOTHERIP
 ```
 
-& Log off the TCPMAINT virtual machine.
+- Dê Log off da TCPMAINT.
 
 ```
 ===> logoff 
 ```
-:::
 
-### Create a ETC HOSTS file
 
-The local host files contain information needed for local host name
-resolution. Any domain name or IP address specified in this file is
-accessible for use on your network. Local host files are used to create
-the site table, which enables name resolution and reverse name
-resolution without using a domain name server.
+### Criar um arquivo ETC HOSTS
 
-A sample file, ETCHOSTS SAMPLE, is supplied with the z/VM system
-deliverable on the TCPMAINT 592 disk. You can use this file as a guide
-for creating a customized ETC HOSTS file, that should reside on this
-same minidisk (TCPMAINT 592). Because each site is unique, the
-statements within the ETC HOSTS file must be customized for your
-installation.
+Os arquivos host locais contêm informações necessárias para a resolução de nomes de host locais. Qualquer nome de domínio ou endereço IP especificado neste arquivo é acessível para uso em sua rede. Arquivos host locais são usados para criar a tabela do site, que permite a resolução de nomes e a resolução inversa de nomes sem usar um servidor de nomes de domínio.
 
-::: easylist
-& Log on as TCPMAINT.
+Um arquivo de amostra, ETCHOSTS SAMPLE, é fornecido com o sistema z/VM na entrega do disco TCPMAINT 592. Você pode usar este arquivo como um guia para criar um arquivo ETC HOSTS personalizado, que deve residir neste mesmo minidisco (TCPMAINT 592). Como cada site é único, as declarações dentro do arquivo ETC HOSTS devem ser personalizadas para sua instalação.
 
-& Identify disk 592 file mode
+- Faça login como TCPMAINT.
+
+- Identifique o file mode do disco 592
+
 
 ```
 ===> q disk
 ```
 
-& Copy the sample file from disk 592 to ETC HOSTS
+- Copie o arquivo de exemplo do disco 592 para ETC HOSTS
 
 ```
 ===> copy ETCHOSTS SAMPLE f ETC HOSTS =
 ```
 
-& Edit the file and add the IP from another student
+- Edite o arquivo e adicione o IP de outro estudante
+
 
 ```
 00046 # -----------------------------------------------------------------------
@@ -660,7 +579,8 @@ installation.
 00055 # -----------------------------------------------------------------------
 ```
 
-& Test it pinging the z/VM using its name:
+- Teste fazendo ping no z/VM usando seu nome:
+
 
 ```
 ===> ping zvmwsxxx
@@ -673,25 +593,25 @@ Ping Level 630: Pinging host ZVMWSXX (172.24.200.222).
 PING: Ping #1 response took 0.003 seconds. Successes so far 1.
 Ready; T=0.08/0.17 19:41:26
 ```
-:::
 
-### Configure AUTOLOG1's PROFILE EXEC {#sec:autologtcpip}
 
-When z/VM IPLs, normally the AUTOLOG1 virtual machine is logged on
-(unless the NOAUTOLOG parameter is specified at IPL). Its PROFILE EXEC
-is run when CMS IPLs. Using this file, perform the following tasks:
+### Configurar o PROFILE EXEC do AUTOLOG1
 
-::: easylist
-& Limit minidisk cache in main storage and turn it off in expanded
-storage with the SET MDC command. & Start virtual machines that should
-be started using the XAUTOLOG command
-:::
+Quando o z/VM é inicializado, normalmente a máquina virtual AUTOLOG1 é logada
+(a menos que o parâmetro NOAUTOLOG seja especificado na IPL). Seu PROFILE EXEC
+é executado quando o CMS é inicializado. Usando este arquivo, execute as seguintes tarefas:
 
-::: easylist
-& Log on to AUTOLOG1.
 
-& Before pressing Enter at the VM READ prompt, type **acc (noprof** so
-that the PROFILE EXEC is not run:
+- Limite o cache do minidisk na memória principal e desative-o na memória expandida
+com o comando SET MDC. & Inicie as máquinas virtuais que devem ser iniciadas usando o comando XAUTOLOG
+
+
+
+- Faça login no AUTOLOG1.
+
+- Antes de pressionar Enter no prompt VM READ, digite **acc (noprof** para
+que o PROFILE EXEC não seja executado:
+
 
 ```
 LOGON AUTOLOG1
@@ -705,14 +625,15 @@ z/VM V6.3.0
 ==> acc (noprof
 ```
 
-& Make a copy of the original PROFILE EXEC
+- Faça uma cópia do PERFIL EXEC original
 
 ```
 ==> copy profile exec a = execorig =
 ```
 
-Edit the PROFILE EXEC and add the following three lines below the
-Customer processing comment:
+Edite o PERFIL EXEC e adicione as seguintes três linhas abaixo do
+comentário de processamento do cliente:
+
 
 ```
 ==> x profile exec
@@ -730,9 +651,10 @@ Customer processing comment:
 ====> file
 ```
 
-& The TCPIP VM should start automatically during the IPL.
-:::
+- A VM TCPIP deve iniciar automaticamente durante a IPL.
 
-This is our actual environment after the changes:
+
+Este é o nosso ambiente atual após as mudanças:
+
 
 ![Environment with TCPIP](/imgs/workshop-tcpip.png){#fig:workshoptcpip}

@@ -2,134 +2,50 @@
 order: 80
 icon: ":globe_with_meridians:"
 ---
-# Network Concepts
+# Conceitos de Rede
 
-The physical network in System z consists of devices known as Open
-Systems Adapters (OSAs). Several varieties are available, such as the
-OSA-Express4S and OSA-Express5S. These are capable of handling up to 640
-TCP/IP stacks simultaneously, including HiperSockets for inter-LPAR
-communication. An IBM System zEC12 provides up to 96 OSA-Express5S ports
-for external network communications. The Open Systems Adapter supports
-both copper and fiber Ethernet connections at speeds of up to 10 Gb.
+A rede física no System z consiste em dispositivos conhecidos como Adaptadores de Sistemas Abertos (OSAs). Várias variedades estão disponíveis, como o OSA-Express4S e o OSA-Express5S. Eles são capazes de lidar com até 640 pilhas TCP/IP simultaneamente, incluindo HiperSockets para comunicação inter-LPAR. Um IBM System zEC12 fornece até 96 portas OSA-Express5S para comunicações de rede externa. O Adaptador de Sistemas Abertos suporta conexões Ethernet de cobre e fibra em velocidades de até 10 Gb.
 
-As might be expected, the z/VM feature to access the Internet Protocol
-network is TCP/IP for z/VM. OSA-Express devices can be virtualized
-through a virtual switch (VSWITCH) device to many Linux guests. It is
-available using special z/VM machines known as VSWITCH controllers. Each
-Linux guest connects using a virtual device controlled by the qeth
-module to a virtual switch system in a z/VM LPAR.
+Como era de se esperar, o recurso z/VM para acessar a rede de Protocolo de Internet é o TCP/IP para z/VM. Os dispositivos OSA-Express podem ser virtualizados por meio de um dispositivo de switch virtual (VSWITCH) para muitos convidados Linux. Ele está disponível usando máquinas z/VM especiais conhecidas como controladores VSWITCH. Cada convidado Linux se conecta usando um dispositivo virtual controlado pelo módulo qeth a um sistema de switch virtual em um LPAR z/VM.
 
-An important benefit of the VSWITCH system is that it can be set up with
-redundant OSA devices that provide a failover network system on z/VM
+Um benefício importante do sistema VSWITCH é que ele pode ser configurado com dispositivos OSA redundantes que fornecem um sistema de rede de failover no z/VM.
 
-HiperSockets provide high-speed interconnectivity among guests running
-on a System z. This technology does not require any special physical
-device configurations or cabling. The guests simply communicate with one
-anot her internally via the in-memory capabilities of the PR/SM
-hypervisor. HiperSockets, however, are not intended to be used for
-sophisticated networking and should not be used for external traffic.
+HiperSockets fornecem interconectividade de alta velocidade entre convidados em execução em um System z. Essa tecnologia não requer nenhuma configuração ou cabeamento físico especial. Os convidados simplesmente se comunicam internamente por meio das capacidades em memória do hipervisor PR/SM. No entanto, os HiperSockets não são destinados a serem usados para redes sofisticadas e não devem ser usados para tráfego externo.
 
-Both OSA-Express and HiperSockets use the Queue Direct I/O (QDIO)
-mechanism to transfer data. This mechanism improves the response time
-using system memory queues to manage the data queue and transfer between
-z/VM and the network device
+Tanto o OSA-Express quanto os HiperSockets usam o mecanismo de E/S Direta de Fila (QDIO) para transferir dados. Esse mecanismo melhora o tempo de resposta usando filas de memória do sistema para gerenciar a fila de dados e a transferência entre z/VM e o dispositivo de rede.
 
-## Network Facilities
+## Recursos de Rede
 
-On the Mainframe, quite a number of different network devices are
-available for use. Many of these come from a historical background, and
-should not be used for new implementations. They commonly stay, however,
-to continue the support of previous installations on newer hardware.
-Linux on System z can operate using all common network interfaces but
-for new installations, there are recommended methods for operation
-depending on the use case.
+No Mainframe, há uma série de dispositivos de rede diferentes disponíveis para uso. Muitos deles têm origem histórica e não devem ser usados para novas implementações. No entanto, eles continuam sendo usados para dar suporte a instalações anteriores em hardware mais recente. O Linux no System z pode operar usando todas as interfaces de rede comuns, mas para novas instalações, existem métodos recomendados para operação, dependendo do caso de uso.
 
-The following are some technologies that you will find in the System z
-wo rld that are not used or even seen on x86 systems. This section
-clarifies some new facilities that you are going to find when you are
-migrating from x86 to System z. We provide some brief information that
-you can use to start your network planning. In each subsection, you can
-find a reference for more detailed information.
+A seguir, estão algumas tecnologias que você encontrará no mundo do System z que não são usadas ou nem mesmo vistas em sistemas x86. Esta seção esclarece algumas novas funcionalidades que você encontrará ao migrar do x86 para o System z. Fornecemos algumas informações breves que você pode usar para iniciar seu planejamento de rede. Em cada subseção, você pode encontrar uma referência para obter informações mais detalhadas.
 
-### The Open Systems Adapter (OSA)
+### O Adaptador de Sistemas Abertos (OSA)
 
-The Open Systems Adapter (OSA) is a hardware network controller. It is
-installed in a Mainframe I/O cage and provides connectivity to clients
-on local area networks (LANs) or wide area networks (WANs). It ca n be
-directly attached on Linux but will typically be attached to virtual
-switches (read more in the "Virtual switch" section below). You can find
-more technical information about OSA cards on IBM zEnterprise EC12
-Technical Guide, SG24-8049.
+O Adaptador de Sistemas Abertos (OSA) é um controlador de rede de hardware. Ele é instalado em uma gaiola de E/S do Mainframe e fornece conectividade para clientes em redes locais (LANs) ou redes de longa distância (WANs). Ele pode ser conectado diretamente ao Linux, mas geralmente é conectado a switches virtuais (leia mais na seção "Switch virtual" abaixo). Você pode encontrar mais informações técnicas sobre os cartões OSA no "IBM zEnterprise EC12 Technical Guide", SG24-8049.
 
-### OSA with Link Agregation
+### OSA com Agregação de Links
 
-You can aggregate multiple physical OSA cards in to a single logical
-link, which is called a link aggregation group (LAG). This configuration
-increases the bandwidth and provides nondisruptive failover. How to co
-nfigure it is well described on Advanced Networking Concepts Applied
-Using Linux on IBM System z, SG24-7995.
+Você pode agregar vários cartões OSA físicos em um único link lógico, chamado de grupo de agregação de links (LAG). Essa configuração aumenta a largura de banda e fornece failover sem interrupções. Como configurar isso é bem descrito no livro "Advanced Networking Concepts Applied Using Linux on IBM System z", SG24-7995.
 
 ### HiperSockets
 
-HiperSockets is a microcode implementation that emulates a Logical Link
-Control Layer of an OSA interface. HiperSockets provides near zero
-latency at memory speed communications between servers running in
-different LPARs. When connecting a Linux guest to an IBM z/OS system on
-the Mainframe, the HiperSockets network in Layer 3 mode is the method to
-use. HiperSockets must be configured in the I/O configuration of the
-Mainframe. HiperSockets do not provide external connections. If an
-external connection is required, either a HiperSockets bridge must be
-implemented by using a VSWITCH, or a Linux guest must be set up as a
-router.
+HiperSockets é uma implementação de microcódigo que emula uma Camada de Controle de Link Lógico de uma interface OSA. HiperSockets fornece comunicação com latência próxima de zero e velocidade de memória entre servidores em execução em diferentes LPARs. Ao conectar um convidado Linux a um sistema IBM z/OS no Mainframe, a rede HiperSockets no modo de Camada 3 é o método a ser usado. Os HiperSockets devem ser configurados na configuração de E/S do Mainframe. Os HiperSockets não fornecem conexões externas. Se uma conexão externa for necessária, é necessário implementar uma ponte HiperSockets usando um VSWITCH ou configurar um convidado Linux como roteador.
 
-HiperSockets provide a very fast connection between LPARs. They provide
-an easy way to connect many Linux servers to a z/OS system in the same
-Mainframe. This direct connection without involving real hardware is an
-important factor to simplify setups with many Linux systems that must be
-connected to z/OS. Some benefits are explained in Set up Linux on IBM
-System z for Production, SG24-8137.
+HiperSockets fornecem uma conexão muito rápida entre LPARs. Eles fornecem uma maneira fácil de conectar muitos servidores Linux a um sistema z/OS no mesmo Mainframe. Essa conexão direta, sem envolver hardware real, é um fator importante para simplificar configurações com muitos sistemas Linux que precisam ser conectados ao z/OS. Alguns benefícios são explicados no livro "Set up Linux on IBM System z for Production", SG24-8137.
 
-### Virtual Switch
+### Switch Virtual
 
-A virtual switch (VSWITCH) is a software program that enables one
-virtual host to communicate with another virtual host within a computer
-system. Virtual switches typically emulate functions of a physical
-Ethernet switch. In Linux on System z, a VSWITCH provides direct
-attachment of z/VM guests to the local physical network segment. The
-VSWITCH allows IP network architects and network administrators to treat
-z/VM guests as a server in the network.
+Um switch virtual (VSWITCH) é um programa de software que permite que um host virtual se comunique com outro host virtual dentro de um sistema de computador. Switches virtuais normalmente emulam as funções de um switch Ethernet físico. No Linux no System z, um VSWITCH fornece conexão direta de convidados z/VM ao segmento de rede física local. O VSWITCH permite que arquitetos de rede IP e administradores de rede tratem os convidados z/VM como um servidor na rede.
 
-The switched network inside a z/VM Operating System commonly is
-implemented with a VSWITCH. When running the VSWITCH as Layer 2, it
-behaves similar to a real switch just between virtual machines.
+A rede comutada dentro de um Sistema Operacional z/VM geralmente é implementada com um VSWITCH. Ao executar o VSWITCH como Camada 2, ele se comporta de maneira semelhante a um switch real entre máquinas virtuais.
 
-The actual speed of a connection with a VSWITCH depends on a number of
-different variables. The type of traffic is as important as the real
-underlying hardware and the maximum transmission unit (MTU), which is
-the maximum size (in bytes) of one packet of data that can be
-transferred in a network. Common to all of those solutions is that the
-VSWITCH is faster than a real switch connected to the Mainframe would
-be.
+A velocidade real de uma conexão com um VSWITCH depende de várias variáveis diferentes. O tipo de tráfego é tão importante quanto o hardware subjacente real e a unidade máxima de transmissão (MTU), que é o tamanho máximo (em bytes) de um pacote de dados que pode ser transferido em uma rede. Comum a todas essas soluções é que o VSWITCH é mais rápido do que um switch real conectado ao Mainframe seria.
 
-VSWITCHes do not need a connection to an OSA card to operate. They can
-also provide purely virtual networks. This also simplifies the setup of
-private interconnects between guest systems. When creating private
-interconnects in an SSI with LGR enabled, the use of dedicated VLANs
-with external interface is recommended. This is necessary to accomplish
-the private connection between guests that run on different nodes in the
-SSI.
+Os VSWITCHes não precisam de uma conexão com um cartão OSA para operar. Eles também podem fornecer redes puramente virtuais. Isso também simplifica a configuração de interconexões privadas entre sistemas convidados. Ao criar interconexões privadas em um SSI com LGR habilitado, é recomendado o uso de VLANs dedicadas com interface externa. Isso é necessário para realizar a conexão privada entre convidados que são executados em nós diferentes no SSI.
 
-Implementing VLANs also helps if different guests run in different
-security zones of a network. It is easy to configure network interfaces
-to Linux guests that provide only selected VLANs to the guest. These can
-be configured either as tagged VLANs or as single untagged VLAN on an
-interface.
+A implementação de VLANs também ajuda se diferentes convidados forem executados em zonas de segurança de uma rede. É fácil configurar interfaces de rede para convidados Linux que fornecem apenas VLANs selecionadas ao convidado. Elas podem ser configuradas como VLANs marcadas ou como uma única VLAN não marcada em uma interface.
 
-The VSWITCH infrastructure provides two basic configuration options. One
-configures user-based access, the other configures port-based access.
-From the possibilities, both are equivalent, just the configurations
-differs.
+A infraestrutura VSWITCH oferece duas opções básicas de configuração. Uma configura o acesso baseado em usuário, a outra configura o acesso baseado em porta. Das possibilidades, ambas são equivalentes, apenas as configurações diferem.
 
-You can read more about VSWITCH benefits on Set up Linux on IBM System z
-for Production, SG24-8137, and technical information about Advanced
-Networking Concepts Applied Using Linux on IBM System z, SG24-7995.
+Você pode ler mais sobre os benefícios do VSWITCH no livro "Set up Linux on IBM System z for Production", SG24-8137, e obter informações técnicas sobre "Advanced Networking Concepts Applied Using Linux on IBM System z", SG24-7995.

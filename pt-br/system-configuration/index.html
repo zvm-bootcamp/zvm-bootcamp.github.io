@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.760224288570">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.760235536748">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -11,7 +11,7 @@
     <!-- Primary Meta Tags -->
     <title>System Configuration</title>
     <meta name="title" content="System Configuration">
-    <meta name="description" content="As a system programmer, you should become familiar with the SYSTEM CONFIG file.">
+    <meta name="description" content="Como programador de sistema, você deve se familiarizar com o arquivo SYSTEM CONFIG.">
 
     <!-- Canonical -->
     <link rel="canonical" href="https://zvm-bootcamp.github.io/pt-br/system-configuration/">
@@ -20,23 +20,23 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://zvm-bootcamp.github.io/pt-br/system-configuration/">
     <meta property="og:title" content="System Configuration">
-    <meta property="og:description" content="As a system programmer, you should become familiar with the SYSTEM CONFIG file.">
+    <meta property="og:description" content="Como programador de sistema, você deve se familiarizar com o arquivo SYSTEM CONFIG.">
     <meta property="og:image" content="https://zvm-bootcamp.github.io/imgs/workshop-pagespool.png">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://zvm-bootcamp.github.io/pt-br/system-configuration/">
     <meta property="twitter:title" content="System Configuration">
-    <meta property="twitter:description" content="As a system programmer, you should become familiar with the SYSTEM CONFIG file.">
+    <meta property="twitter:description" content="Como programador de sistema, você deve se familiarizar com o arquivo SYSTEM CONFIG.">
     <meta property="twitter:image" content="https://zvm-bootcamp.github.io/imgs/workshop-pagespool.png">
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../resources/css/retype.css?v=3.5.0.760224288570" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.5.0.760235536748" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.760224288570" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.760235536748" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.760224288570" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.760235536748" data-turbo-eval="false" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -175,42 +175,27 @@
         <span>System Configuration</span>
     </h1>
 </doc-anchor-target>
-<p>As a system programmer, you should become familiar with the SYSTEM
-CONFIG file.</p>
-<p>The SYSTEM CONFIG file contains the primary system definitions used when
-CP is booted (IPLed). All of the information needed to configure CP
-statically comes from this file. In an SSI cluster, all members use the
-same SYSTEM CONFIG file; however, you can specify that certain
-configuration statements apply only to specific members by qualifying
-the statements with a system identifier. This topic has examples of this
-specifying method.</p>
-<p>The SYSTEM CONFIG file resides on a special CMS-formatted minidisk (CF0)
-belonging to the PMAINT user ID. Minidisks containing such objects are
-called parm disks because when allocated those disks are given a special
-record category type called &quot;PARM&quot;. There can be more than one parm disk
-allocated in a z/VM system for backup and recovery.</p>
-<p>Related information: &quot;Using Configuration Files&quot; in z/VM: CP Planning
-and Administration, SC24-6178-09.</p>
-<doc-anchor-target id="exercises">
+<p>Como programador de sistema, você deve se familiarizar com o arquivo SYSTEM CONFIG.</p>
+<p>O arquivo SYSTEM CONFIG contém as definições primárias do sistema usadas quando o CP é inicializado (IPLed). Todas as informações necessárias para configurar o CP estaticamente vêm deste arquivo. Em um cluster SSI, todos os membros usam o mesmo arquivo SYSTEM CONFIG; no entanto, você pode especificar que determinadas declarações de configuração se apliquem apenas a membros específicos, qualificando as declarações com um identificador de sistema. Este tópico tem exemplos desse método de especificação.</p>
+<p>O arquivo SYSTEM CONFIG reside em um minidisco especial formatado em CMS (CF0) pertencente ao ID de usuário PMAINT. Minidiscos que contêm esses objetos são chamados de discos de parâmetro porque, quando alocados, esses discos recebem um tipo de categoria de registro especial chamado &quot;PARM&quot;. Pode haver mais de um disco de parâmetro alocado em um sistema z/VM para backup e recuperação.</p>
+<p>Informações relacionadas: &quot;Using Configuration Files&quot; in z/VM: CP Planning and Administration, SC24-6178-09.</p>
+<doc-anchor-target id="exercícios">
     <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#exercises">#</doc-anchor-trigger>
-        <span>Exercises</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#exercícios">#</doc-anchor-trigger>
+        <span>Exercícios</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="system-parameter-disks">
+<doc-anchor-target id="discos-de-parâmetro-do-sistema">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#system-parameter-disks">#</doc-anchor-trigger>
-        <span>System parameter disks</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#discos-de-parâmetro-do-sistema">#</doc-anchor-trigger>
+        <span>Discos de parâmetro do sistema</span>
     </h3>
 </doc-anchor-target>
-<p>The SYSTEM CONFIG file is located on a system&#x27;s parameter disk. Before
-you begin updating the SYSTEM CONFIG file, you must access the parm disk
-(In this case, the PMAINT&#x27;s CF0).</p>
-<p>MAINT&#x27;s CF1, and CF3 minidisks are traditionally used as the system&#x27;s
-parameter disks. Use the QUERY CPDISK command to query what system
-parameter disks are in use with your system:</p>
-<div class="easylist"><p>&amp; Logon as MAINT &amp; Enter the following command and press Enter</p>
-</div>
+<p>O arquivo SYSTEM CONFIG está localizado em um disco de parâmetro do sistema. Antes de começar a atualizar o arquivo SYSTEM CONFIG, você deve acessar o disco de parâmetro (Neste caso, o CF0 do usuário PMAINT).</p>
+<p>Os minidiscos CF1 e CF3 do usuário MAINT são tradicionalmente usados como discos de parâmetro do sistema. Use o comando QUERY CPDISK para verificar quais discos de parâmetro do sistema estão em uso no seu sistema:</p>
+<ul>
+<li>Faça login como MAINT e digite o seguinte comando e pressione Enter</li>
+</ul>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; q cpdisk</code></pre>
 </doc-codeblock></div>
@@ -222,15 +207,16 @@ Label  Userid   Vdev Mode Stat Vol-ID Rdev Type   StartLoc     EndLoc
 MNTCF1 MAINT    0CF1  A   R/O  AB1RES 6205 CKD          39        158
 MNTCF3 MAINT    0CF3  C   R/O  AB1RES 6205 CKD         160        279</code></pre>
 </doc-codeblock></div>
-<doc-anchor-target id="steps-for-accessing-the-parm-disk-and-creating-a-backup-for-system-config">
+<doc-anchor-target id="passos-para-acessar-o-disco-de-parâmetro-e-criar-um-backup-para-o-arquivo-system-config">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#steps-for-accessing-the-parm-disk-and-creating-a-backup-for-system-config">#</doc-anchor-trigger>
-        <span>Steps for accessing the parm disk and creating a backup for SYSTEM CONFIG</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#passos-para-acessar-o-disco-de-parâmetro-e-criar-um-backup-para-o-arquivo-system-config">#</doc-anchor-trigger>
+        <span>Passos para acessar o disco de parâmetro e criar um backup para o arquivo SYSTEM CONFIG</span>
     </h3>
 </doc-anchor-target>
-<p>Perform these steps to access the CF0 parm disk:</p>
-<div class="easylist"><p>&amp; Logon as MAINT &amp; Access the parm disk (PMAINT&#x27;s CF0). Type these
-commands and press the Enter key after each command:</p>
+<p>Realize os seguintes passos para acessar o disco de parâmetro CF0:</p>
+<ul>
+<li>Faça login como MAINT e acesse o disco de parâmetro (CF0 do usuário PMAINT). Digite esses comandos e pressione Enter após cada comando:</li>
+</ul>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; link pmaint cf0 cf0 mr
 
@@ -265,7 +251,9 @@ Ready; T=0.01/0.01 08:30:39
                                                                                 
                                                             RUNNING   ZVMWSXX   </code></pre>
 </doc-codeblock></div>
-<p>&amp; As a preferred practice, create a backup of SYSTEM CONFIG:</p>
+<ul>
+<li>Como prática recomendada, faça um backup do arquivo SYSTEM CONFIG:</li>
+</ul>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; copy system config x system configbk x </code></pre>
 </doc-codeblock></div>
@@ -279,57 +267,50 @@ SYSTEM   CONFIG   X1
 SYSTEM   CONFIGBK X1                    
 Ready; T=0.01/0.01 08:32:59      </code></pre>
 </doc-codeblock></div>
-</div>
-<p>You know you are done when you have access to the CF0 disk and have
-created a backup of SYSTEM CONFIG on the parm disk.</p>
-<doc-anchor-target id="edit-the-system-config-file">
+<div><p>Você sabe que terminou quando tiver acesso ao disco CF0 e tiver criado um backup do arquivo SYSTEM CONFIG no disco de parâmetro.</p>
+<doc-anchor-target id="editar-o-arquivo-system-config">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#edit-the-system-config-file">#</doc-anchor-trigger>
-        <span>Edit the SYSTEM CONFIG file</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#editar-o-arquivo-system-config">#</doc-anchor-trigger>
+        <span>Editar o arquivo SYSTEM CONFIG</span>
     </h3>
 </doc-anchor-target>
-<p>After you linked in &quot;Multiple Write Mode&quot;, you can edit the SYSTEM
-CONFIG file with XEDIT editor.</p>
-<p>Before you begin updating the SYSTEM CONFIG file, we will create a small
-REXX that will automate the access to SYSTEM CONFIG disk. From MAINT use
-XEDIT to create a new file called GETCF0 EXEC A:</p>
+<p>Após vincular em &quot;Multiple Write Mode&quot;, você pode editar o arquivo
+SYSTEM CONFIG com o editor XEDIT.</p>
+<p>Antes de começar a atualizar o arquivo SYSTEM CONFIG, vamos criar um pequeno
+REXX que automatizará o acesso ao disco SYSTEM CONFIG. A partir do usuário MAINT,
+use o XEDIT para criar um novo arquivo chamado GETCF0 EXEC A:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; xedit getcf0 exec a</code></pre>
 </doc-codeblock></div>
-<p>Add the follow content:</p>
+<p>Adicione o seguinte conteúdo:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">/* REXX will link PMAINT CF0 */
 
 'LINK PMAINT CF0 CF0 MR'
 'ACCESS CF0 X'</code></pre>
 </doc-codeblock></div>
-<p>Execute a script &quot;GETCF0&quot; which will access the parm disk as the &quot;X&quot;
-disk.</p>
-<doc-anchor-target id="steps-for-updating-the-cp-owned-volume-list">
+<p>Execute um script &quot;GETCF0&quot; que acessará o disco de parâmetro como o disco &quot;X&quot;.</p>
+<doc-anchor-target id="etapas-para-atualizar-a-lista-de-volumes-de-propriedade-do-cp-cp-owned">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#steps-for-updating-the-cp-owned-volume-list">#</doc-anchor-trigger>
-        <span>Steps for updating the CP-owned volume list</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#etapas-para-atualizar-a-lista-de-volumes-de-propriedade-do-cp-cp-owned">#</doc-anchor-trigger>
+        <span>Etapas para atualizar a lista de volumes de propriedade do CP (CP-owned)</span>
     </h3>
 </doc-anchor-target>
-<p>The CP-owned volume list is the place where you specify the labels of
-paging, spooling, and temporary disk volumes that CP should
-automatically attach to the system during IPL. These volumes contain the
-system data for your z/VM system. All other volumes on the system are
-considered user volumes.</p>
-<p><strong>Before you begin:</strong> You need to format and allocate your paging,
-spooling, temporary disk or Perm Volumes. You need to access to the parm
-disk.</p>
-<p>Perform these steps to update the CP-owned volume list:</p>
-<div class="easylist"><p>&amp; Logon as MAINT &amp; Edit the SYSTEM CONFIG file. Type any of these two
-commands to get access and edit the file, and press the Enter key:</p>
+<p>A lista de volumes CP-owned é o local onde você especifica os rótulos dos volumes de paginação, spooling e disco temporário que o CP deve anexar automaticamente ao sistema durante o IPL. Esses volumes contêm os dados do sistema para o seu sistema z/VM. Todos os outros volumes no sistema são considerados volumes de usuário.</p>
+<p><strong>Antes de começar:</strong> Você precisa formatar e alocar seus volumes de paginação, spooling, disco temporário ou volumes permanentes. Você precisa ter acesso ao disco de parâmetro.</p>
+<p>Realize os seguintes passos para atualizar a lista de volumes de propriedade do CP:</p>
+<ul>
+<li>Faça login como MAINT</li>
+<li>Edite o arquivo SYSTEM CONFIG. Digite um dos dois comandos a seguir para obter acesso e editar o arquivo, e pressione a tecla Enter:</li>
+</ul>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; xedit system config x</code></pre>
 </doc-codeblock></div>
-<p>Or</p>
+<p>Ou</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; filel * * x (go to the CMD column of the file, type x and press enter)</code></pre>
 </doc-codeblock></div>
-<p>You will see a file like the following:</p>
+<p>Você verá um arquivo como o seguinte:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">SYSTEM   CONFIG   X1  F 80  Trunc=80 Size=376 Line=0 Col=1 Alt=0               
                                                                                 
@@ -375,13 +356,17 @@ commands to get access and edit the file, and press the Enter key:</p>
 00039   ZVMWSXX:     System_Residence,                                          
 ====&gt;                                                                           </code></pre>
 </doc-codeblock></div>
-<p>&amp; Find the string &quot;DUMP &amp; SPOOL VOLUMES&quot;. At the XEDIT command line,
-type this command and press the Enter key:</p>
+<ul>
+<li>Localize a string &quot;VOLUMES DE DESPEJO E SPOOL&quot;. Na linha de comando do XEDIT,
+digite o seguinte comando e pressione Enter:</li>
+</ul>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; /dump/ &amp; /spool/ &amp; /volume/</code></pre>
 </doc-codeblock></div>
-<p>&amp; Add additional Spool volumes to slots in <strong>ascending</strong> order (slots
-11, 12, and so forth).</p>
+<ul>
+<li>Adicione volumes de Spool adicionais nos slots em <strong>ordem crescente</strong> (slots
+11, 12 e assim por diante).</li>
+</ul>
 <p>Duplicate the following line:</p>
 <div class="bclogo"><p>Duplicating a line on XEDIT To duplicate a line in XEDIT place a double
 quote (&quot;) in the line number and press enter, example:</p>
@@ -397,9 +382,8 @@ quote (&quot;) in the line number and press enter, example:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">00082     CP_Owned   Slot  10  M01S01</code></pre>
 </doc-codeblock></div>
-<p>Add the Spool volume previously formatted (M01S02) <strong>below the M01S01
-line</strong>.</p>
-<p>You should now see something like the following:</p>
+<p>Adicione o volume de Spool previamente formatado (M01S02) <strong>abaixo da linha M01S01</strong>.</p>
+<p>Agora você deve ver algo como o seguinte:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">00072 /*                                           DUMP &amp; SPOOL VOLUMES     */
 00073 /* Dump and spool volumes begin with slot 10 and are assigned in      */
@@ -414,21 +398,21 @@ line</strong>.</p>
 00082     CP_Owned   Slot  10  M01S01
 00083     CP_Owned   (*|\textcolor{red}{Slot  11}|*)  (*|\textcolor{red}{M01S02}|*)</code></pre>
 </doc-codeblock></div>
-<p>&amp; To add the PAGE volume, find the string &quot;PAGE &amp; TDISK VOLUMES&quot; (Tip:
-you may be able to see this section just below the SPOOL section). At
-the XEDIT command line, type this command and press the Enter key:</p>
+<ul>
+<li>Para adicionar o volume PAGE, localize a string &quot;VOLUMES DE PÁGINA E TDISK&quot; (Dica: você pode encontrar esta seção logo abaixo da seção de SPOOL). Na linha de comando do XEDIT, digite o seguinte comando e pressione Enter:</li>
+</ul>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; /page/ &amp; /tdisk/ &amp; /volume/</code></pre>
 </doc-codeblock></div>
-<p>&amp; Add additional Page volumes to slots in <strong>descending</strong> order (slots
-254, 253, and so forth).</p>
-<p>Duplicate the following line:</p>
+<ul>
+<li>Adicione volumes de Página adicionais nos slots em <strong>ordem decrescente</strong> (slots 254, 253 e assim por diante).</li>
+</ul>
+<p>Duplicar a linha a seguir:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">00095     CP_Owned   Slot 255  M01P01</code></pre>
 </doc-codeblock></div>
-<p>Add the Page volume previously formatted (M01P02) <strong>above the M01P01
-line</strong>.</p>
-<p>You should now see something like the following:</p>
+<p>Adicione o volume de Página previamente formatado (M01P02) <strong>acima da linha M01P01</strong>.</p>
+<p>Agora você deve ver algo como o seguinte:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">SYSTEM   CONFIG   Z1  F 80  Trunc=80 Size=280 Line=85 Col=1 Alt=2              
                                                                                 
@@ -442,7 +426,7 @@ line</strong>.</p>
 00092 /* by CPFMTXA OWNER.                                                  */  
 00093 /**********************************************************************/  
 00094                                                                           
-00095     CP_Owned   (*|\textcolor{red}{Slot 254}|*)   (*| \textcolor{red}{M01P02} |*)                                           
+00095     CP_Owned   Slot 254  M01P02                                      
 00096     CP_Owned   Slot 255  M01P01                                           
 00097                                                                           
 00098 /**********************************************************************/  
@@ -463,69 +447,51 @@ line</strong>.</p>
 00113 /**********************************************************************/  
 ====&gt;                         </code></pre>
 </doc-codeblock></div>
-<p>&amp; Save the file. At the XEDIT command line, type this command and press
-the Enter key:</p>
+<ul>
+<li>Salve o arquivo. Na linha de comando do XEDIT, digite este comando e pressione a tecla Enter:</li>
+</ul>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; save</code></pre>
 </doc-codeblock></div>
-<div><doc-anchor-target id="steps-for-updating-the-user-volume-list">
+<div><doc-anchor-target id="passos-para-atualizar-a-lista-de-volumes-do-usuário">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#steps-for-updating-the-user-volume-list">#</doc-anchor-trigger>
-        <span>Steps for updating the user volume list</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#passos-para-atualizar-a-lista-de-volumes-do-usuário">#</doc-anchor-trigger>
+        <span>Passos para atualizar a lista de volumes do usuário</span>
     </h3>
 </doc-anchor-target>
-<p>Just as there is a list of DASD volumes that CP should automatically
-attach to the system during IPL for access to CP system areas, there is
-a list of DASD volumes that CP should automatically attach to the system
-for user minidisk definitions.</p>
-<p>Because all minidisks are managed by CP, all volumes that house
-minidisks must be attached to the z/VM system. CP must control the
-volumes so it can reorient channel programs initiated by a guest
-operating system. The guest perceives its disks as starting at cylinder
-0, but the true location of the guest&#x27;s minidisk starts at an offset of
-real cylinder 0.</p>
-<p>Unless you qualify user volume statements with a system name, the user
-volumes are attached to all members in the SSI cluster.</p>
-<p>If no user volumes are attached to the system at IPL time, the real
-devices housing minidisks need to be attached <strong>manually</strong>. Otherwise,
-virtual machines will have no disks. To avoid manual attachment, you can
-tell CP to look for DASD volume labels and attach those devices at IPL
-time.</p>
-<p>The <strong>USER_VOLUME_LIST</strong> statement directs CP to attach specific user
-DASD volumes at z/VM load (IPL) time. The <strong>USER_VOLUME_INCLUDE</strong>
-statement allows you to create a general volume identifier and to
-include all volumes that match the general identifier.</p>
-<p>Example: If all your Linux user volumes have a volume identifier
-starting with LNX, you can add this statement:</p>
+<p>Assim como existe uma lista de volumes DASD que o CP deve anexar automaticamente ao sistema durante o IPL para acesso às áreas do sistema CP, existe uma lista de volumes DASD que o CP deve anexar automaticamente ao sistema para definições de minidiscos do usuário.</p>
+<p>Como todos os minidiscos são gerenciados pelo CP, todos os volumes que abrigam minidiscos devem ser anexados ao sistema z/VM. O CP deve controlar os volumes para poder reorientar programas de canal iniciados por um sistema operacional convidado. O convidado percebe seus discos como começando no cilindro 0, mas a verdadeira localização do minidisco do convidado começa em um deslocamento do cilindro real 0.</p>
+<p>A menos que você qualifique as declarações de volume do usuário com um nome de sistema, os volumes do usuário são anexados a todos os membros do cluster SSI.</p>
+<p>Se nenhum volume do usuário estiver anexado ao sistema no momento do IPL, os dispositivos reais que abrigam os minidiscos precisam ser anexados manualmente. Caso contrário, as máquinas virtuais não terão discos. Para evitar a anexação manual, você pode instruir o CP a procurar rótulos de volume DASD e anexar esses dispositivos durante o IPL.</p>
+<p>A declaração USER_VOLUME_LIST direciona o CP a anexar volumes DASD do usuário específicos durante o carregamento (IPL) do z/VM. A declaração USER_VOLUME_INCLUDE permite que você crie um identificador de volume geral e inclua todos os volumes que correspondem ao identificador geral.</p>
+<p>Exemplo: Se todos os seus volumes do usuário Linux têm um identificador de volume que começa com LNX, você pode adicionar esta declaração:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">02109          User_Volume_Include LNX*</code></pre>
 </doc-codeblock></div>
-<p>If a volume is normally attached to the system using a
-USER_VOLUME_INCLUDE statement, CP does not notify the operator if the
-volume is not mounted. If a user volume is necessary for normal system
-operation, specify it with a USER_VOLUME_LIST statement so that the
-operator is notified during system initialization if the volume is not
-mounted.</p>
-<p><strong>Before you begin:</strong> You need to format and allocate the user volumes
-you need. You need to access to the parm disk.</p>
-<div class="easylist"><p>&amp; If not already doing so, you must edit the SYSTEM CONFIG file. Type
-this command and press the Enter key:</p>
+<p>Se um volume é normalmente anexado ao sistema usando uma declaração USER_VOLUME_INCLUDE, o CP não notifica o operador se o volume não estiver montado. Se um volume do usuário for necessário para a operação normal do sistema, especifique-o com uma declaração USER_VOLUME_LIST para que o operador seja notificado durante a inicialização do sistema se o volume não estiver montado.</p>
+<p><strong>Antes de começar:</strong> Você precisa formatar e alocar os volumes do usuário necessários. Você precisa ter acesso ao disco de parâmetros.</p>
+<ul>
+<li>Se ainda não estiver fazendo isso, você deve editar o arquivo de SYSTEM CONFIG. Digite este comando e pressione a tecla Enter:</li>
+</ul>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; xedit system config x</code></pre>
 </doc-codeblock></div>
-<p>Perform these steps to update the user volume list:</p>
-<p>&amp; Find the string &quot;User_Volume_List&quot; in the section titled &quot;User volumes
-for local minidisks.&quot; At the XEDIT command line, type this command and
-press the Enter key:</p>
+<p>Siga estes passos para atualizar a lista de volumes do usuário:</p>
+<ul>
+<li>Encontre a string &quot;User_Volume_List&quot; na seção intitulada &quot;User volumes for local minidisks.&quot;. Na linha de comando do XEDIT, digite este comando e
+pressione a tecla Enter:</li>
+</ul>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; /user_volume_list</code></pre>
 </doc-codeblock></div>
-<p>&amp; For shared user volumes, update the User_Volume_List statements in the
-&quot;Shared User Volumes&quot; section.</p>
-<p>&amp; Include the LNX301, LNX302 and LNX303 volumes on this list (We will
-use a wildcard LNX*)</p>
-<p>&amp; In the prefix area for the last USER_VOLUME_LIST statement, type &quot;i2&quot;
-and press the Enter key. For instance:</p>
+<ul>
+<li><p>Para volumes de usuário compartilhados, atualize as declarações User_Volume_List na seção &quot;Shared User Volumes&quot;.</p>
+</li>
+<li><p>Inclua os volumes LNX301, LNX302 e LNX303 nesta lista (usaremos o caractere curinga LNX*)</p>
+</li>
+<li><p>Na área de prefixo para a última declaração USER_VOLUME_LIST, digite &quot;i2&quot; e pressione a tecla Enter. Por exemplo:</p>
+</li>
+</ul>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">00099 /*                          User_Volume_List                          */
 00100 /**********************************************************************/
@@ -543,10 +509,10 @@ and press the Enter key. For instance:</p>
 00112 /* User volumes for local minidisks                                   */
 00113 /**********************************************************************/</code></pre>
 </doc-codeblock></div>
-<p>&amp; Add a User_Volume_Include statement. If you followed the instructions
-from the last chapter you probably have volumes named LNX301, LNX302 and
-LNX303, so it makes sense to use LNX* wildcard for our volumes.
-Example:</p>
+<ul>
+<li>Adicione uma declaração User_Volume_Include. Se você seguiu as instruções do último capítulo, provavelmente possui volumes chamados LNX301, LNX302 e LNX303, então faz sentido usar o caractere curinga LNX* para nossos volumes.
+Exemplo:</li>
+</ul>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">00099 /*                          User_Volume_List                          */
 00100 /**********************************************************************/
@@ -565,65 +531,43 @@ Example:</p>
 00113 /* User volumes for local minidisks                                   */
 00114 /**********************************************************************/</code></pre>
 </doc-codeblock></div>
-<p>&amp; When you finish the User_Volume_List statements, press the Enter key.
-&amp; Save the file. At the XEDIT command line, type this command and press
-the Enter key:</p>
+<ul>
+<li>Ao terminar as declarações User_Volume_List, pressione a tecla Enter.</li>
+<li>Salve o arquivo. Na linha de comando do XEDIT, digite este comando e pressione a tecla Enter:</li>
+</ul>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; save</code></pre>
 </doc-codeblock></div>
-<p>Question: Is there another way to add those LNX* disks to the User
-Volume List?</p>
-<p>R:</p>
-</div>
-</div>
-<doc-anchor-target id="steps-for-updating-the-features-statement">
+<p>Pergunta: Existe outra maneira de adicionar esses discos LNX* à lista de volumes do usuário?</p>
+<doc-anchor-target id="passos-para-atualizar-a-declaração-de-features">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#steps-for-updating-the-features-statement">#</doc-anchor-trigger>
-        <span>Steps for updating the FEATURES statement</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#passos-para-atualizar-a-declaração-de-features">#</doc-anchor-trigger>
+        <span>Passos para atualizar a declaração de FEATURES</span>
     </h3>
 </doc-anchor-target>
-<p>The FEATURES statement in SYSTEM CONFIG allows you to modify attributes
-associated with the running system at IPL time. In this procedure, you
-will modify some of the features.</p>
-<div class="easylist"><p>&amp; The <strong>Auto_Warm_IPL</strong> feature causes CP to bypass prompting for start
-options, provided the previous system shutdown was successful. The
-feature allows for a fully automated startup of z/VM.</p>
-<p>&amp; The <strong>Clear_TDisk</strong> feature causes CP to erase temporary disks fully
-(that is, overwrite the entire temporary disk with zeros) after those
-disks are detached. The feature prevents another user who might define
-an identically sized temporary disk from accessing data written by the
-previous user.</p>
-<p>&amp; The <strong>Retrieve</strong> defines the default and maximum number of retrieve
-buffers allowed per user on your system. Retrieve buffers create a
-command history, from which users can retrieve commands previously
-issued. Command retrieval is usually assigned to a program function key
-such as PF12 (F12). The assignment is through the CP SET command, SET
-PF12 RETRIEVE. By pressing PF12, a command is retrieved and written back
-into the command area on the terminal screen. You probably do not need
-to change these settings.</p>
-<p>&amp; The <strong>Passwords_on_Cmds</strong> feature allows users to use passwords when
-using the CP AUTOLOG, LINK, or LOGON commands.</p>
-<p>&amp; The <strong>Disconnect_timeout</strong> feature controls whether and when a virtual
-machine is logged off after it has been forced to disconnect. You will
-turn this feature off, so that any virtual machine that has been forced
-to disconnect will not be logged off.</p>
-<p id="sec:signalshutdown" label="sec:signalshutdown">&amp; The <strong>ShutdownTime</strong> and <strong>Signal ShutdownTime</strong> features enable a
-virtual machine to register with CP to receive a shutdown signal when
-z/VM is shutting down. CP waits to shut itself down until the time
-interval (in seconds) is exceeded, or all of the virtual machines
-enabled for the signal shutdown have reported a successful shutdown.
-Some Linux distributions support this function, which allows Linux to
-shut down cleanly before z/VM shuts down. []</p>
-<p><strong>Note:</strong> Unless you qualify the features with a system name, these
-features will be the same for all members in your SSI cluster.</p>
-</div>
-<p>Procedure: Find the line containing the text &quot;Features Statement&quot;, it is
-a section. At the XEDIT command line, type this command and press the
-Enter key:</p>
+<p>A declaração FEATURES em SYSTEM CONFIG permite que você modifique atributos
+associados ao sistema em execução no momento do IPL. Neste procedimento, você
+irá modificar alguns dos recursos.</p>
+<ul>
+<li><p>O recurso <strong>Auto_Warm_IPL</strong> faz com que o CP ignore a solicitação de opções de inicialização, desde que o desligamento anterior do sistema tenha sido bem-sucedido. O recurso permite uma inicialização totalmente automatizada do z/VM.</p>
+</li>
+<li><p>O recurso <strong>Clear_TDisk</strong> faz com que o CP apague completamente os discos temporários (ou seja, sobrescreva todo o disco temporário com zeros) após esses discos serem desanexados. O recurso impede que outro usuário que defina um disco temporário com o mesmo tamanho acesse dados gravados pelo usuário anterior.</p>
+</li>
+<li><p>O recurso <strong>Retrieve</strong> define o número padrão e máximo de buffers de recuperação permitidos por usuário em seu sistema. Os buffers de recuperação criam um histórico de comandos, dos quais os usuários podem recuperar comandos previamente emitidos. A recuperação de comando geralmente é atribuída a uma tecla de função do programa, como PF12 (F12). A atribuição é feita por meio do comando CP SET, SET PF12 RETRIEVE. Ao pressionar PF12, um comando é recuperado e escrito de volta na área de comando na tela do terminal. Provavelmente, você não precisa alterar essas configurações.</p>
+</li>
+<li><p>O recurso <strong>Passwords_on_Cmds</strong> permite que os usuários usem senhas ao usar os comandos CP AUTOLOG, LINK ou LOGON.</p>
+</li>
+<li><p>O recurso <strong>Disconnect_timeout</strong> controla se e quando uma máquina virtual é desconectada após ser forçada a desconectar. Você desativará esse recurso, para que qualquer máquina virtual que tenha sido forçada a desconectar não seja desconectada.</p>
+</li>
+<li><p>Os recursos <strong>ShutdownTime</strong> e <strong>Signal ShutdownTime</strong> permitem que uma máquina virtual se registre no CP para receber um sinal de desligamento quando o z/VM está sendo desligado. O CP aguarda para desligar-se até que o intervalo de tempo (em segundos) seja excedido ou todas as máquinas virtuais habilitadas para o sinal de desligamento tenham relatado um desligamento bem-sucedido. Algumas distribuições Linux suportam essa função, o que permite que o Linux seja desligado corretamente antes do desligamento do z/VM.</p>
+</li>
+</ul>
+<p><strong>Observação:</strong> A menos que você qualifique os recursos com um nome de sistema, esses recursos serão os mesmos para todos os membros em seu cluster SSI.</p>
+<p>Procedimento: Encontre a linha que contém o texto &quot;Features Statement&quot;, é uma seção. Na linha de comando do XEDIT, digite este comando e pressione a tecla Enter:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; /Features Statement</code></pre>
 </doc-codeblock></div>
-<p>You will see something like this:</p>
+<p>Você verá algo como isto:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">00146 /*                         Features Statement                         */
 00147 /**********************************************************************/
@@ -643,7 +587,7 @@ Enter key:</p>
 00161      Logon    yes ,                /* ... and LOGON does, too        */
 00162    Vdisk Userlim 144000 blocks     /* Maximum vdisk allowed per user */</code></pre>
 </doc-codeblock></div>
-<p>and we will modify to something like this:</p>
+<p>e vamos modificar para algo como isto:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">00148 /*                         Features Statement                         */
 00149 /**********************************************************************/
@@ -671,25 +615,24 @@ Enter key:</p>
 00171
 </code></pre>
 </doc-codeblock></div>
-<p>On the next section we will setup the devices to start up online.</p>
-<doc-anchor-target id="set-up-control-access-to-devices-at-startup">
+<p>Na próxima seção, configuraremos os dispositivos para iniciar online.</p>
+<doc-anchor-target id="configurar-o-acesso-de-controle-aos-dispositivos-durante-a-inicialização">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#set-up-control-access-to-devices-at-startup">#</doc-anchor-trigger>
-        <span>Set up control access to devices at startup</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#configurar-o-acesso-de-controle-aos-dispositivos-durante-a-inicialização">#</doc-anchor-trigger>
+        <span>Configurar o acesso de controle aos dispositivos durante a inicialização</span>
     </h3>
 </doc-anchor-target>
-<p>Sometimes your z/VM system might have access to devices that you do not
-want to be varied online during IPL. For instance, the devices might
-duplicate labels of devices used by your production system, or might be
-in use by other LPARs or systems. You can specify ranges of devices that
-z/VM should not vary online during IPL.</p>
-<p>Find the section titled &quot;Status of Devices&quot;. At the XEDIT command line,
-type this command and press the Enter key:</p>
+<p>Às vezes, seu sistema z/VM pode ter acesso a dispositivos que você não
+deseja que sejam iniciados online durante o IPL. Por exemplo, os dispositivos podem
+duplicar rótulos de dispositivos usados pelo seu sistema de produção ou podem estar
+sendo usados por outros LPARs ou sistemas. Você pode especificar intervalos de dispositivos
+que o z/VM não deve iniciar online durante o IPL.</p>
+<p>Encontre a seção intitulada &quot;Status of Devices&quot;. Na linha de comando do XEDIT,
+digite este comando e pressione a tecla Enter:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; /status of devices</code></pre>
 </doc-codeblock></div>
-<p>On the line with the string &quot;Devices&quot;, type i in the prefix area and
-press the Enter key:</p>
+<p>Na linha com a palavra &quot;Devices&quot;, digite i na área de prefixo e pressione a tecla Enter:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">SYSTEM   CONFIG   Z1  F 80  Trunc=80 Size=286 Line=190 Col=1 Alt=2           
                                                                               
@@ -705,22 +648,20 @@ press the Enter key:</p>
 00199 /**********************************************************************/
 00200      </code></pre>
 </doc-codeblock></div>
-<p>Type the following line, then press the Enter key:</p>
+<p>Digite a seguinte linha e pressione a tecla Enter:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; Offline_at_IPL 0000-FFFF,</code></pre>
 </doc-codeblock></div>
-<p>Type over the device range on the ONLINE_AT_IPL statement with a device
-range specific for your system.</p>
+<p>Digite um intervalo de dispositivos no comando ONLINE_AT_IPL com um intervalo de dispositivos específico para o seu sistema.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; Online_at_IPL 0009,   /* Console device */</code></pre>
 </doc-codeblock></div>
-<p>Add a new ONLINE_AT_IPL statement for each device range. Use the i
-prefix command to add lines.</p>
+<p>Adicione uma nova declaração ONLINE_AT_IPL para cada intervalo de dispositivos. Use o comando de prefixo &quot;i&quot; para adicionar linhas.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; Online_at_IPL 0200-0700,  /* PERM,PAGE,SPOOL */
 ===&gt; Online_at_IPL 0800-0808,  /* OSAs */</code></pre>
 </doc-codeblock></div>
-<p>The result:</p>
+<p>O resultado:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">SYSTEM   CONFIG   Z1  F 80  Trunc=80 Size=289 Line=187 Col=1 Alt=0           
                                                                               
@@ -736,36 +677,18 @@ prefix command to add lines.</p>
 00200    Sensed           0000-FFFF                                           
 00201                                                                                            </code></pre>
 </doc-codeblock></div>
-<doc-anchor-target id="set-addresses-for-consoles">
+<doc-anchor-target id="definir-endereços-para-consoles">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#set-addresses-for-consoles">#</doc-anchor-trigger>
-        <span>Set addresses for consoles</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#definir-endereços-para-consoles">#</doc-anchor-trigger>
+        <span>Definir endereços para consoles</span>
     </h3>
 </doc-anchor-target>
-<p>During the first IPL of your z/VM system, you needed to specify a load
-parameter so you could communicate with the Stand-Alone Program Loader
-(SAPL). The reason is the new z/VM system did not know which device
-addresses to use to display messages and prompts. The installation
-system includes default device addresses for use as the system operator
-console and emergency messages console, but these addresses rarely
-correspond to your production hardware configuration. So you will not
-need to use the SAPL each time you IPL z/VM, you need to supply the
-address of your IPL console and your emergency messages console on the
-Operator_Consoles statement. During IPL, CP tries each device on the
-Operator_Consoles statement (from left to right) until it finds an
-active device. If no devices on the list are active, CP loads a disabled
-wait state and terminates. The emergency message console is used as an
-additional console during failures. Define the emergency console with
-the Emergency_Message_Console statement.</p>
-<p>Find the section titled &quot;Console Definitions&quot;.</p>
+<p>Durante o primeiro IPL do seu sistema z/VM, você precisou especificar um parâmetro de carga para poder se comunicar com o Stand-Alone Program Loader (SAPL). O motivo é que o novo sistema z/VM não sabia quais endereços de dispositivo usar para exibir mensagens e prompts. O sistema de instalação inclui endereços de dispositivo padrão para uso como console do operador do sistema e console de mensagens de emergência, mas esses endereços raramente correspondem à configuração de hardware de produção. Portanto, para não precisar usar o SAPL toda vez que você IPL o z/VM, você precisa fornecer o endereço do seu console IPL e do seu console de mensagens de emergência na declaração Operator_Consoles. Durante o IPL, o CP tenta cada dispositivo na declaração Operator_Consoles (da esquerda para a direita) até encontrar um dispositivo ativo. Se nenhum dispositivo da lista estiver ativo, o CP carrega um estado de espera desabilitado e termina. O console de mensagens de emergência é usado como um console adicional durante falhas. Defina o console de emergência com a declaração Emergency_Message_Console.</p>
+<p>Encontre a seção intitulada &quot;Console Definitions&quot;.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; /console </code></pre>
 </doc-codeblock></div>
-<p>Set <strong>0009</strong> as the first device on the <strong>Operator_Consoles</strong> and the
-<strong>Emergency_Message_Consoles</strong> statement. This will tell z/VM to open
-operator communications with device <strong>0009</strong> which is the device address
-of the virtual console. This will alleviate the need for passing load
-parameters at the next boot.</p>
+<p>Defina <strong>0009</strong> como o primeiro dispositivo nas declarações <strong>Operator_Consoles</strong> e <strong>Emergency_Message_Consoles</strong>. Isso dirá ao z/VM para abrir a comunicação com o operador usando o dispositivo <strong>0009</strong>, que é o endereço do console virtual. Isso eliminará a necessidade de passar parâmetros de carga no próximo boot.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">00200 /**********************************************************************/
 00201 /*                     Console Definitions                            */
@@ -777,37 +700,37 @@ parameters at the next boot.</p>
 00207                               System_Console                            
 00208                                                                         </code></pre>
 </doc-codeblock></div>
-<p>Save all the changes you have made so far and exit the SYSTEM CONFIG
-file.</p>
+<p>Salve todas as alterações que você fez até agora e saia do arquivo de SYSTEM CONFIG.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; file</code></pre>
 </doc-codeblock></div>
-<doc-anchor-target id="steps-for-checking-the-syntax-of-the-system-config-file">
+<doc-anchor-target id="etapas-para-verificar-a-sintaxe-do-arquivo-de-configuração-do-sistema">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#steps-for-checking-the-syntax-of-the-system-config-file">#</doc-anchor-trigger>
-        <span>Steps for checking the syntax of the SYSTEM CONFIG file</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#etapas-para-verificar-a-sintaxe-do-arquivo-de-configuração-do-sistema">#</doc-anchor-trigger>
+        <span>Etapas para verificar a sintaxe do arquivo de CONFIGURAÇÃO DO SISTEMA</span>
     </h3>
 </doc-anchor-target>
-<p>Since the SYSTEM CONFIG file contains very important data, extreme care
-must be taken to ensure its contents are correct. The system may not
-start correctly if this file contains errors. Fixing the errors can be
-cumbersome. z/VM provides a utility, CPSYNTAX, in the 193 minidisk to
-check the syntax of the SYSTEM CONFIG file.</p>
-<p><strong>Procedure</strong></p>
-<div class="easylist"><p>&amp; Logon as MAINT &amp; To gain access to the CPSYNTAX command, access the
-193 disk as F. From the command line, type the following command and
-press the Enter key:</p>
+<p>Como o arquivo de CONFIGURAÇÃO DO SISTEMA contém dados muito importantes, é necessário ter muito cuidado para garantir que seu conteúdo esteja correto. O sistema pode não iniciar corretamente se esse arquivo contiver erros. Corrigir os erros pode ser complicado. O z/VM fornece uma ferramenta, CPSYNTAX, no minidisco 193 para verificar a sintaxe do arquivo de CONFIGURAÇÃO DO SISTEMA.</p>
+<p><strong>Procedimento</strong></p>
+<ul>
+<li>Faça login como MAINT &amp; Para acessar o comando CPSYNTAX, acesse o
+disco 193 como F. Na linha de comando, digite o seguinte comando e
+pressione a tecla Enter:</li>
+</ul>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; access 193 f</code></pre>
 </doc-codeblock></div>
-<p>&amp; Run the CPSYNTAX command. From the command line, type this command and
-press the Enter key:</p>
+<ul>
+<li>Execute o comando CPSYNTAX. Na linha de comando, digite este comando e
+pressione a tecla Enter:</li>
+</ul>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; cpsyntax system config x</code></pre>
 </doc-codeblock></div>
-<p>&amp; Check for a zero return code. If you do not get a zero return code,
-modify the SYSTEM CONFIG file and rerun the CPSYNTAX utility. Example of
-a non-zero return code:</p>
+<ul>
+<li>Verifique se o código de retorno é zero. Se não for zero,
+modifique o arquivo de SYSTEM CONFIG e execute novamente a utilidade CPSYNTAX. Exemplo de um código de retorno diferente de zero:</li>
+</ul>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">acc 193 f                                                                       
 Ready; T=0.01/0.01 17:14:17                                                     
@@ -826,8 +749,9 @@ Ready(00008); T=0.37/0.38 17:14:46
                                                                                 
                                                             RUNNING   ZVMWSXX  </code></pre>
 </doc-codeblock></div>
-<p>&amp; Lets create a FREECF0 EXEC on your MAINT &quot;A-disk&quot;, it will release the
-cf0 disk for us on future updates:</p>
+<ul>
+<li>Vamos criar um EXEC chamado FREECF0 no seu &quot;disco A&quot; de MAINT, ele irá liberar o disco cf0 para nós em futuras atualizações:</li>
+</ul>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; x freecf0 exec</code></pre>
 </doc-codeblock></div>
@@ -838,39 +762,40 @@ cf0 disk for us on future updates:</p>
 00003 'CP DETACH CF0'        
 00004 * * * End of File * * *</code></pre>
 </doc-codeblock></div>
-<p>&amp; Execute the script &quot;FREECF0&quot; to release and detach the parm disk CF0.</p>
+<ul>
+<li>Execute o script &quot;FREECF0&quot; para liberar e desanexar o disco de parâmetro CF0.</li>
+</ul>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; freecf0</code></pre>
 </doc-codeblock></div>
 </div>
-<doc-anchor-target id="restart-zvm-and-verify-changes">
+<doc-anchor-target id="reinicie-o-zvm-e-verifique-as-alterações">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#restart-zvm-and-verify-changes">#</doc-anchor-trigger>
-        <span>Restart z/VM and verify changes</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#reinicie-o-zvm-e-verifique-as-alterações">#</doc-anchor-trigger>
+        <span>Reinicie o z/VM e verifique as alterações</span>
     </h3>
 </doc-anchor-target>
-<p>In this exercise, you will learn to use some new CP/CMS commands to
-verify the changes you have made to the system.</p>
-<div class="easylist"><p>&amp; Shutdown and IPL your z/VM</p>
+<p>Neste exercício, você aprenderá a usar alguns novos comandos CP/CMS para verificar as alterações que você fez no sistema.</p>
+<ul>
+<li>Desligue e reinicie o seu z/VM</li>
+</ul>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; shutdown reipl</code></pre>
 </doc-codeblock></div>
-<p>When the system shuts down and re-IPLs, you will see a number of IPL
-messages. z/VM restores the system to the same state as it was prior to
-shutdown (for instance, with OPERATOR disconnected).</p>
-<p>Press the Pause key if the console status is &quot;MORE...&quot;</p>
-<p>To get a z/VM logo, press the Enter key.</p>
-<p>Log on as MAINT (password WD5JU8QP)</p>
-<p>Press the Enter Key to go from &quot;VM READ&quot; to &quot;RUNNING&quot; State.</p>
-<p>&amp; Check paging and spooling space</p>
-<p>Use the QUERY ALLOC to display the number of cylinders or pages that are
-allocated, in use, and available for DASD volumes attached to the
-system.</p>
-<p>Display the allocation information for paging space.</p>
+<p>Quando o sistema é desligado e reiniciado, você verá uma série de mensagens de IPL. O z/VM restaura o sistema para o mesmo estado em que estava antes do desligamento (por exemplo, com o OPERATOR desconectado).</p>
+<p>Pressione a tecla Pause se o status do console for &quot;MORE...&quot;</p>
+<p>Para obter um logotipo do z/VM, pressione a tecla Enter.</p>
+<p>Faça login como MAINT (senha WD5JU8QP)</p>
+<p>Pressione a tecla Enter para ir do estado &quot;VM READ&quot; para o estado &quot;RUNNING&quot;.</p>
+<ul>
+<li>Verifique o espaço de paginação e spooling</li>
+</ul>
+<p>Use o comando QUERY ALLOC para exibir o número de cilindros ou páginas alocados, em uso e disponíveis para os volumes DASD conectados ao sistema.</p>
+<p>Exiba as informações de alocação para o espaço de paginação.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; query alloc page</code></pre>
 </doc-codeblock></div>
-<p>The output should show that the system now have two paging volumes.</p>
+<p>A saída deve mostrar que o sistema agora possui dois volumes de paginação.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">q alloc page                                                
                 EXTENT     EXTENT  TOTAL  PAGES   HIGH    % 
@@ -883,12 +808,11 @@ SUMMARY                            1026K     24          1%
 USABLE                             1026K     24          1% 
 Ready; T=0.01/0.01 11:14:41                                                              </code></pre>
 </doc-codeblock></div>
-<p>Display the allocation information for spooling space.</p>
+<p>Exiba as informações de alocação para o espaço de spooling.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; query alloc spool</code></pre>
 </doc-codeblock></div>
-<p>If you added another disk for spool, the output should show that the
-system now have two spool volumes.</p>
+<p>Se você adicionou outro disco para spool, a saída deve mostrar que o sistema agora possui dois volumes de spool.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">query alloc spool                                          
                 EXTENT     EXTENT  TOTAL  PAGES   HIGH    %
@@ -901,8 +825,10 @@ SUMMARY                            1026K   9020          1%
 USABLE                             1026K   9020          1%
 Ready; T=0.01/0.01 11:15:20   </code></pre>
 </doc-codeblock></div>
-<p>&amp; Check the system identifier Use the IDENTIFY command to display
-information about your user ID and node</p>
+<ul>
+<li>Verifique o identificador do sistema. Use o comando IDENTIFY para exibir
+informações sobre o seu ID de usuário e nó.</li>
+</ul>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; id</code></pre>
 </doc-codeblock></div>
@@ -911,11 +837,12 @@ information about your user ID and node</p>
 MAINT    AT ZVMWSXX  VIA *        09/13/13 11:18:27 EDT      FRIDAY
 Ready; T=0.01/0.01 11:18:27  </code></pre>
 </doc-codeblock></div>
-<p>Your system identifier should be ZVMWSxx. The system identifier is also
-displayed at the lower right hand corner of your console.</p>
-<p>&amp; Check the user volume list</p>
-<p>Use the QUERY DASD command to display a list of the DASDs that are
-attached to the system.</p>
+<p>Seu identificador de sistema deve ser ZVMWSxx. O identificador de sistema também é exibido no canto inferior direito do console.</p>
+<ul>
+<li>Verifique a lista de volumes de usuário</li>
+</ul>
+<p>Use o comando QUERY DASD para exibir uma lista dos DASDs que estão
+anexados ao sistema.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">q dasd                         
 DASD 0200 CP OWNED  M01RES   89
@@ -935,8 +862,10 @@ DASD (*|\textcolor{red}{0303}|*) CP SYSTEM (*|\textcolor{red}{LNX303}|*)   0
 DASD (*|\textcolor{red}{0304}|*) CP OWNED  (*|\textcolor{red}{M01S02}|*)   0 
 Ready; T=0.01/0.01 11:19:21    </code></pre>
 </doc-codeblock></div>
-<p>&amp; Check features Use the QUERY RETRIEVE command to display the setting
-of the retrieve key buffer limits.</p>
+<ul>
+<li>Verifique recursos Use o comando QUERY RETRIEVE para exibir a configuração
+dos limites do buffer de chave de recuperação.</li>
+</ul>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; q ret</code></pre>
 </doc-codeblock></div>
@@ -945,11 +874,11 @@ of the retrieve key buffer limits.</p>
 99 buffers available.  Maximum of 255 buffers may be selected.
 Ready; T=0.01/0.01 12:27:53      </code></pre>
 </doc-codeblock></div>
-<p>A maximum of 99 commands can now be stored and retrieved from the
-retrieve key buffer. The retrieve keys (PF11 and PF12) are defined in
-the PROFILE EXEC file.</p>
-<p>&amp; Check offline devices</p>
-<p>Once again, use the QUERY DASD command to display any offline devices.</p>
+<p>Agora é possível armazenar e recuperar um máximo de 99 comandos no buffer de chave de recuperação. As teclas de recuperação (PF11 e PF12) são definidas no arquivo PROFILE EXEC.</p>
+<ul>
+<li>Verificar dispositivos offline</li>
+</ul>
+<p>Mais uma vez, use o comando QUERY DASD para exibir quaisquer dispositivos offline.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; query dasd offline</code></pre>
 </doc-codeblock></div>
@@ -958,8 +887,7 @@ the PROFILE EXEC file.</p>
 An offline DASD was not found. 
 Ready; T=0.01/0.01 12:29:29</code></pre>
 </doc-codeblock></div>
-</div>
-<p>This is our actual environment after the changes:</p>
+<div><p>Este é o nosso ambiente atual após as alterações:</p>
 <p><figure class="content-center">
     <img src="../../imgs/workshop-pagespool.png" alt="Environment with extra PAGE and
 SPOOL" id="fig:workshoppagespool">
@@ -967,6 +895,7 @@ SPOOL" id="fig:workshoppagespool">
 SPOOL</figcaption>
 </figure>
 </p>
+</div>
 
                                 
                                 <!-- Required only on API pages -->
@@ -989,7 +918,7 @@ SPOOL</figcaption>
                                         <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../pt-br/network-concepts/">
                                             <span>
                                                 <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Próximo</span>
-                                                <span class="block mt-1">Network Concepts</span>
+                                                <span class="block mt-1">Conceitos de Rede</span>
                                             </span>
                                             <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                                         </a>

@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.760224288570">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.760235536748">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
 
     <!-- Primary Meta Tags -->
-    <title>Basic TCP/IP Configuration</title>
-    <meta name="title" content="Basic TCP/IP Configuration">
-    <meta name="description" content="This section describes the virtual machines that are necessary to provide basic and optional TCP/IP services. The virtual machines listed">
+    <title>Configura&#231;&#227;o B&#225;sica de TCP/IP</title>
+    <meta name="title" content="Configuração Básica de TCP/IP">
+    <meta name="description" content="Esta seção descreve as máquinas virtuais que são necessárias para fornecer serviços básicos e opcionais de TCP/IP.">
 
     <!-- Canonical -->
     <link rel="canonical" href="https://zvm-bootcamp.github.io/pt-br/basic-tcpip-configuration/">
@@ -19,24 +19,24 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://zvm-bootcamp.github.io/pt-br/basic-tcpip-configuration/">
-    <meta property="og:title" content="Basic TCP/IP Configuration">
-    <meta property="og:description" content="This section describes the virtual machines that are necessary to provide basic and optional TCP/IP services. The virtual machines listed">
+    <meta property="og:title" content="Configuração Básica de TCP/IP">
+    <meta property="og:description" content="Esta seção descreve as máquinas virtuais que são necessárias para fornecer serviços básicos e opcionais de TCP/IP.">
     <meta property="og:image" content="https://zvm-bootcamp.github.io/imgs/workshop-tcpip.png">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://zvm-bootcamp.github.io/pt-br/basic-tcpip-configuration/">
-    <meta property="twitter:title" content="Basic TCP/IP Configuration">
-    <meta property="twitter:description" content="This section describes the virtual machines that are necessary to provide basic and optional TCP/IP services. The virtual machines listed">
+    <meta property="twitter:title" content="Configuração Básica de TCP/IP">
+    <meta property="twitter:description" content="Esta seção descreve as máquinas virtuais que são necessárias para fornecer serviços básicos e opcionais de TCP/IP.">
     <meta property="twitter:image" content="https://zvm-bootcamp.github.io/imgs/workshop-tcpip.png">
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../resources/css/retype.css?v=3.5.0.760224288570" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.5.0.760235536748" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.760224288570" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.760235536748" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.760224288570" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.760235536748" data-turbo-eval="false" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -169,162 +169,167 @@
                                 <!-- Rendered if sidebar right is enabled -->
                                 <div id="docs-sidebar-right-toggle"></div>
                                 <!-- Page content  -->
-<doc-anchor-target id="basic-tcpip-configuration" class="break-words">
+<doc-anchor-target id="configuração-básica-de-tcpip" class="break-words">
     <h1>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#basic-tcpip-configuration">#</doc-anchor-trigger>
-        <span>Basic TCP/IP Configuration</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#configuração-básica-de-tcpip">#</doc-anchor-trigger>
+        <span>Configuração Básica de TCP/IP</span>
     </h1>
 </doc-anchor-target>
-<doc-anchor-target id="tcpip-service-machines">
+<doc-anchor-target id="máquinas-de-serviço-tcpip">
     <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#tcpip-service-machines">#</doc-anchor-trigger>
-        <span>TCPIP Service Machines</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#máquinas-de-serviço-tcpip">#</doc-anchor-trigger>
+        <span>Máquinas de Serviço TCPIP</span>
     </h2>
 </doc-anchor-target>
-<p>This section describes the virtual machines that are necessary to
-provide basic and optional TCP/IP services. The virtual machines listed
-here comprise a set of &quot;default&quot; TCP/IP virtual machines that are
-defined as part of the z/VM system when it is installed.</p>
-<p>While various TCP/IP virtual machines have specific definition
-requirements, all TCP/IP servers must maintain links to the following
-minidisks, to allow for correct operation:</p>
-<div id="tab:tcpip"><p><strong>Minidisk</strong>   <strong>Description</strong></p>
-<hr>
-<dl>
-<dt>TCPMAINT 592   Client-code disk</dt>
-<dt>TCPMAINT 591   Server-code disk</dt>
-<dt>TCPMAINT 198   Configuration file, or customization disk</dt>
-<dd>TCPIP Service Machines</dd>
-</dl>
+<p>Esta seção descreve as máquinas virtuais que são necessárias para fornecer serviços básicos e opcionais de TCP/IP. As máquinas virtuais listadas aqui compõem um conjunto de máquinas virtuais TCP/IP &quot;padrão&quot; que são definidas como parte do sistema z/VM quando ele é instalado.</p>
+<p>Embora várias máquinas virtuais TCP/IP tenham requisitos específicos de definição, todos os servidores TCP/IP devem manter links para os seguintes minidisks, para permitir a operação correta:</p>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Minidisk</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TCPMAINT 592</td>
+<td>Disco de código do cliente</td>
+</tr>
+<tr>
+<td>TCPMAINT 591</td>
+<td>Disco de código do servidor</td>
+</tr>
+<tr>
+<td>TCPMAINT 198</td>
+<td>Arquivo de configuração ou disco de personalização</td>
+</tr>
+</tbody>
+</table>
 </div>
-<doc-anchor-target id="required-virtual-machines">
+<doc-anchor-target id="máquinas-virtuais-necessárias">
     <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#required-virtual-machines">#</doc-anchor-trigger>
-        <span>Required Virtual Machines</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#máquinas-virtuais-necessárias">#</doc-anchor-trigger>
+        <span>Máquinas Virtuais Necessárias</span>
     </h2>
 </doc-anchor-target>
-<p>The following virtual machines are required to provide basic TCP/IP
-services:</p>
-<div id="tab:tcpip2"><p><strong>Machine</strong>   <strong>Function</strong></p>
-<hr>
-<dl>
-<dt>6VMTCP30      Maintains the TCP/IP system. Installation and service resources are owned by this user ID.</dt>
-<dt>TCPIP         Provides TCP/IP communication services. The Telnet server is implemented as a &quot;internal client&quot; within the TCPIP virtual machine.</dt>
-<dt>TCPMAINT      Owns TCP/IP production resources --- the 198, 591, and 592 disks.</dt>
-<dd>Required Virtual Machines</dd>
-</dl>
+<p>As seguintes máquinas virtuais são necessárias para fornecer serviços básicos de TCP/IP:</p>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Máquina</th>
+<th>Função</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>6VMTCP30</td>
+<td>Mantém o sistema TCP/IP. Os recursos de instalação e serviço são de propriedade deste ID de usuário.</td>
+</tr>
+<tr>
+<td>TCPIP</td>
+<td>Fornece serviços de comunicação TCP/IP. O servidor Telnet é implementado como um &quot;cliente interno&quot; dentro da máquina virtual TCPIP.</td>
+</tr>
+<tr>
+<td>TCPMAINT</td>
+<td>Possui recursos de produção TCP/IP --- os discos 198, 591 e 592.</td>
+</tr>
+</tbody>
+</table>
 </div>
-<doc-anchor-target id="optional-virtual-machines">
+<doc-anchor-target id="máquinas-virtuais-opcionais">
     <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#optional-virtual-machines">#</doc-anchor-trigger>
-        <span>Optional Virtual Machines</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#máquinas-virtuais-opcionais">#</doc-anchor-trigger>
+        <span>Máquinas Virtuais Opcionais</span>
     </h2>
 </doc-anchor-target>
-<p>There are many optional virtual machines that you can setup to perform
-TCP/IP server functions. Some of these servers include FTPSERVE, IMAP,
-PORTMAP, NAMESRV, SSLSERV, SMTP, etc.</p>
-<doc-anchor-target id="configuration-files">
+<p>Existem muitas máquinas virtuais opcionais que você pode configurar para desempenhar funções de servidor TCP/IP. Alguns desses servidores incluem FTPSERVE, IMAP, PORTMAP, NAMESRV, SSLSERV, SMTP, etc.</p>
+<doc-anchor-target id="arquivos-de-configuração">
     <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#configuration-files">#</doc-anchor-trigger>
-        <span>Configuration files</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#arquivos-de-configuração">#</doc-anchor-trigger>
+        <span>Arquivos de Configuração</span>
     </h2>
 </doc-anchor-target>
-<p>This section lists the various TCP/IP configuration files which are
-necessary to provide basic TCP/IP services for most environments.</p>
-<p>The first file, IBM DTCPARMS, contains server configuration definitions.
-The next three files, PROFILE TCPIP, HOSTS LOCAL, and ETC HOSTS, are
-configuration files for the TCPIP server virtual machine. The next two
-files, TCPIP DATA and ETC SERVICES, need to be accessible to all TCP/IP
-servers, applications, and users; these files contain information that
-is (or may be) referenced by all users. ETC GATEWAYS contains routing
-information for distant networks and hosts.</p>
-<doc-anchor-target id="the-dtcparms-files">
+<p>Esta seção lista os vários arquivos de configuração TCP/IP que são necessários para fornecer serviços básicos TCP/IP para a maioria dos ambientes.</p>
+<p>O primeiro arquivo, IBM DTCPARMS, contém definições de configuração do servidor. Os próximos três arquivos, PROFILE TCPIP, HOSTS LOCAL e ETC HOSTS, são arquivos de configuração para o servidor virtual TCPIP. Os próximos dois arquivos, TCPIP DATA e ETC SERVICES, precisam estar acessíveis a todos os servidores, aplicações e usuários TCP/IP; esses arquivos contêm informações que são (ou podem ser) referenciadas por todos os usuários. ETC GATEWAYS contém informações de roteamento para redes e hosts distantes.</p>
+<doc-anchor-target id="os-arquivos-dtcparms">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#the-dtcparms-files">#</doc-anchor-trigger>
-        <span>The DTCPARMS files</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#os-arquivos-dtcparms">#</doc-anchor-trigger>
+        <span>Os arquivos DTCPARMS</span>
     </h3>
 </doc-anchor-target>
-<p>Configuration of each server is controlled by a set of files with a file
-type of DTCPARMS. These files may contain two types of information:</p>
-<div class="easylist"><p>&amp; Server class names that define the application protocols available for
-all server virtual machines. &amp; Individual server user IDs and their
-associated server class, as well as the operational characteristics of
-the server (security, devices, parameters, etc.).</p>
+<p>A configuração de cada servidor é controlada por um conjunto de arquivos com um tipo de arquivo de DTCPARMS. Estes arquivos podem conter dois tipos de informações:</p>
+<ul>
+<li>Nomes de classes de servidores que definem os protocolos de aplicação disponíveis para todas as máquinas virtuais servidoras. &amp; IDs de usuários individuais do servidor e sua classe de servidor associada, bem como as características operacionais do servidor (segurança, dispositivos, parâmetros, etc.).</li>
+</ul>
+<p>O programa de inicialização do servidor TCP/IP procura por definições de servidor de forma hierárquica. A tabela a seguir lista os arquivos DTCPARMS na ordem em que são pesquisados, juntamente com uma descrição de cada arquivo.</p>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Arquivo</th>
+<th>Propósito</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>userid DTCPARMS</td>
+<td>Pode ser usado para servidores que não requerem configuração pelo administrador TCP/IP, como um servidor de teste. Tal arquivo pode residir comumente em um disco ou diretório do servidor acessado em modo de arquivo A.</td>
+</tr>
+<tr>
+<td>nodeid DTCPARMS</td>
+<td>Útil para configurações com DASD compartilhado. O ID do nó usado é o ID do nó retornado pelo comando IDENTIFY do CMS. Este arquivo deve ser mantido no disco TCPMAINT 198.</td>
+</tr>
+<tr>
+<td>SYSTEM DTCPARMS</td>
+<td>A maioria das configurações de servidor personalizadas deve ser mantida neste arquivo. Este arquivo deve ser mantido no disco TCPMAINT 198.</td>
+</tr>
+<tr>
+<td>IBM DTCPARMS</td>
+<td>Classes de servidores fornecidas pela IBM, bem como as configurações padrão do servidor, são fornecidas por este arquivo. Este arquivo reside no disco TCPMAINT 591 e nunca deve ser modificado, pois pode ser substituído quando o serviço é aplicado, ou quando uma nova versão é instalada. Todas as modificações necessárias para sua instalação devem ser colocadas em SYSTEM DTCPARMS (ou, nodeID DTCPARMS, conforme necessário).</td>
+</tr>
+</tbody>
+</table>
 </div>
-<p>The TCP/IP server initialization program searches for server definitions
-in a hierarchical fashion. The following table lists the DTCPARMS files
-in the order that they are searched, along with a description of each
-file.</p>
-<div id="tab:tcpip3"><p><strong>File</strong>          <strong>Purpose</strong></p>
-<hr>
-<dl>
-<dt>userid DTCPARMS   Can be used for servers that do not require configuration by the TCP/IP administrator, such as a test server. Such a file might commonly reside on a server disk or directory accessed at file mode A.</dt>
-<dt>nodeid DTCPARMS   Useful for shared-DASD configurations. The node ID used is the node ID returned by the CMS IDENTIFY command. This file should be maintained on the TCPMAINT 198 disk.</dt>
-<dt>SYSTEM DTCPARMS   Most customized server configurations should be maintained in this file. This file should be maintained on the TCPMAINT 198 disk.</dt>
-<dt>IBM DTCPARMS      Server classes provided by IBM, as well as the default server configurations, are supplied by this file. This file resides on the TCPMAINT 591 disk and should never be modified, because it can be replaced when service is applied, or when a new release is installed. All modifications required for your installation should be placed in SYSTEM DTCPARMS (or, nodeID DTCPARMS, as warranted).</dt>
-<dd>The DTCPARMS files</dd>
-</dl>
-</div>
-<doc-anchor-target id="the-tcpip-data-file">
+<doc-anchor-target id="o-arquivo-tcpip-data">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#the-tcpip-data-file">#</doc-anchor-trigger>
-        <span>The TCPIP DATA File</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#o-arquivo-tcpip-data">#</doc-anchor-trigger>
+        <span>O Arquivo TCPIP DATA</span>
     </h3>
 </doc-anchor-target>
-<p>The TCPIP DATA file defines system parameters used by TCP/IP client
-applications. It is used to specify configuration information for single
-or multiple host systems. It also allows you to specify:</p>
-<div class="easylist"><p>&amp; Host name of the VM host &amp; User ID of the TCPIP virtual machine &amp;
-Domain origin of the host &amp; Output trace &amp; Name server specifications</p>
-</div>
-<p>A sample TCP/IP DATA file is shipped as TCPIP SDATA on the TCPMAINT 592
-disk.</p>
-<doc-anchor-target id="the-etc-hosts-files">
+<p>O arquivo TCPIP DATA define parâmetros do sistema usados por aplicações cliente TCP/IP. É usado para especificar informações de configuração para sistemas host únicos ou múltiplos. Também permite que você especifique:</p>
+<ul>
+<li>Nome do host do host VM &amp; ID do usuário da máquina virtual TCPIP &amp; Origem do domínio do host &amp; Rastreamento de saída &amp; Especificações do servidor de nomes</li>
+</ul>
+<p>Um arquivo de amostra TCP/IP DATA é enviado como TCPIP SDATA no disco TCPMAINT 592.</p>
+<doc-anchor-target id="os-arquivos-etc-hosts">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#the-etc-hosts-files">#</doc-anchor-trigger>
-        <span>The ETC HOSTS Files</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#os-arquivos-etc-hosts">#</doc-anchor-trigger>
+        <span>Os Arquivos ETC HOSTS</span>
     </h3>
 </doc-anchor-target>
-<p>The local host files contain information needed for local host name
-resolution. Any domain name or IP address specified in this file is
-accessible for use on your network. Local host files are used to create
-the site table, which enables name resolution and reverse name
-resolution without using a domain name server.</p>
-<p>TCP/IP for z/VM offers two local host files for domain name resolution
-and reverse name resolution. The old HOSTS LOCAL file (which supports
-IPv4 only), and the preferred ETC HOSTS file (which supports both IPv4
-and IPv6).</p>
-<p>The ETC HOSTS file does not require additional processing to create the
-site tables used for name resolution. The site tables are created
-dynamically by the resolver when the ETC HOSTS file is used. Use of the
-HOSTS LOCAL file requires that you run the MAKESITE command to create
-the site tables. Whenever changes are made to the HOSTS LOCAL file, you
-must run the MAKESITE command to recreate the site tables.</p>
-<p>A sample file, ETCHOSTS SAMPLE, is supplied with the TCP/IP distribution
-tapes on the.</p>
-<doc-anchor-target id="the-tcpip-server-profile-file">
+<p>Os arquivos host locais contêm informações necessárias para a resolução de nomes de host locais. Qualquer nome de domínio ou endereço IP especificado neste arquivo é acessível para uso em sua rede. Arquivos host locais são usados para criar a tabela do site, que permite a resolução de nomes e a resolução de nomes inversa sem usar um servidor de nomes de domínio.</p>
+<p>O TCP/IP para z/VM oferece dois arquivos host locais para resolução de nomes de domínio e resolução de nomes inversa. O antigo arquivo HOSTS LOCAL (que suporta apenas IPv4) e o preferido arquivo ETC HOSTS (que suporta tanto IPv4 quanto IPv6).</p>
+<p>O arquivo ETC HOSTS não requer processamento adicional para criar as tabelas do site usadas para resolução de nomes. As tabelas do site são criadas dinamicamente pelo resolvedor quando o arquivo ETC HOSTS é usado. O uso do arquivo HOSTS LOCAL requer que você execute o comando MAKESITE para criar as tabelas do site. Sempre que alterações são feitas no arquivo HOSTS LOCAL, você deve executar o comando MAKESITE para recriar as tabelas do site.</p>
+<p>Um arquivo de amostra, ETCHOSTS SAMPLE, é fornecido com as fitas de distribuição TCP/IP no.</p>
+<doc-anchor-target id="o-arquivo-de-profile-do-servidor-tcpip">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#the-tcpip-server-profile-file">#</doc-anchor-trigger>
-        <span>The TCPIP server profile file</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#o-arquivo-de-profile-do-servidor-tcpip">#</doc-anchor-trigger>
+        <span>O arquivo de PROFILE do servidor TCPIP</span>
     </h3>
 </doc-anchor-target>
-<p>When the TCPIP virtual machine is started, TCP/IP operation and
-configuration parameters are read from an initial configuration file.
-TCP/IP searches for an initial configuration file in the following order
-and uses the first file present in that order:</p>
-<div class="easylist"><p>&amp; userid TCPIP, where userid is the user ID of the of the TCP/IP server
-&amp; node_name TCPIP, where node_name is the system node name returned by
-the CMS IDENTIFY command &amp; PROFILE TCPIP</p>
-</div>
-<p>This file is used to customize your system, specify system operation,
-Telnet, and network parameters. If no file is found, TCP/IP uses server
-default values.</p>
-<p>A sample initial configuration file is provided as PROFILE STCPIP on the
-TCPMAINT 591 disk.</p>
-<doc-anchor-target id="exercises">
+<p>Quando a máquina virtual TCPIP é iniciada, os parâmetros de operação e configuração do TCP/IP são lidos de um arquivo de configuração inicial. O TCP/IP procura por um arquivo de configuração inicial na seguinte ordem e usa o primeiro arquivo presente nessa ordem:</p>
+<ul>
+<li>userid TCPIP, onde userid é o ID do usuário do servidor TCP/IP</li>
+<li>node_name TCPIP, onde node_name é o nome do nó do sistema retornado pelo comando IDENTIFY do CMS &amp; PROFILE TCPIP</li>
+</ul>
+<p>Este arquivo é usado para personalizar seu sistema, especificar a operação do sistema, parâmetros de Telnet e de rede. Se nenhum arquivo for encontrado, o TCP/IP usa valores padrão do servidor.</p>
+<p>Um arquivo de configuração inicial de amostra é fornecido como PROFILE STCPIP no disco TCPMAINT 591.</p>
+<doc-anchor-target id="exercícios">
     <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#exercises">#</doc-anchor-trigger>
-        <span>Exercises</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#exercícios">#</doc-anchor-trigger>
+        <span>Exercícios</span>
     </h2>
 </doc-anchor-target>
 <doc-anchor-target id="ipwizard">
@@ -336,18 +341,23 @@ TCPMAINT 591 disk.</p>
 <p>You can initially configure TCP/IP via the IPWIZARD command which is
 generally used just once. After IPWIZARD creates the initial
 configuration files, they are typically maintained manually.</p>
-<div class="easylist"><p>&amp; Log on as MAINT. &amp; The IPWIZARD command is on the MAINT 193 disk.
-Issue the ACCESS command so you will pick up IPWIZARD from that
-minidisk.</p>
+<ul>
+<li>Faça login como MAINT.</li>
+<li>O comando IPWIZARD está no disco MAINT 193.
+Emita o comando ACCESS para que você possa acessar o IPWIZARD a partir desse minidisco.</li>
+</ul>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">==&gt; acc 193 g</code></pre>
 </doc-codeblock></div>
-<p>&amp; Invoke the IPWIZARD.</p>
+<ul>
+<li>Invoque o IPWIZARD.</li>
+</ul>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">==&gt; ipwizard</code></pre>
 </doc-codeblock></div>
-<p>&amp; At the &#x27;*** z/VM TCP/IP Configuration Wizard ***&#x27; panel. Fill in
-the following data:</p>
+<ul>
+<li>No painel &#x27;*** z/VM TCP/IP Configuration Wizard ***&#x27;. Preencha os seguintes dados:</li>
+</ul>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">    *** z/VM TCP/IP Configuration Wizard ***                 
                                                                              
@@ -355,21 +365,25 @@ The items that follow describe your z/VM host
                                                                              
 User ID of VM TCP/IP Stack Virtual Machine:   TCPIP___                       
                                                                              
-Host Name:     (*| \textcolor{red}{ZVMWSxx} |*) (your group name) ___________                                          
-Domain Name:   (*| \textcolor{red}{mycompany.com} |*)_________                      
+Host Name:     ZVMWSxx (your group name) ___________                                          
+Domain Name:   mycompany.com_________                      
                                                                              
-Gateway IP Address:  (*|\textcolor{red}{YOUR\_GW\_ADDR}|*)_______________________                 
+Gateway IP Address:  YOUR_GW_ADDR_______________________                 
                                                                              
 DNS Addresses:                                                               
-1) (*|\textcolor{red}{YOUR\_DNS}|*)_______                                                           
+1) YOUR_DNS_______                                                           
 2) _______________                                                           
 3) _______________                          
        PF1 = HELP   PF3 = QUIT   PF8 = Continue   ENTER = Refresh    </code></pre>
 </doc-codeblock></div>
-<p>&amp; Continue with next step.</p>
-<p><strong>Press the F8 key</strong></p>
-<p>&amp; At the &#x27;*** General Interface Configuration Panel ***&#x27; panel.
-Fill in the following data:</p>
+<ul>
+<li>Continue com o próximo passo.</li>
+</ul>
+<p><strong>Pressione F8</strong></p>
+<ul>
+<li>No painel &#x27;*** General Interface Configuration Panel ***&#x27;.
+Preencha os seguintes dados:</li>
+</ul>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">                  *** General Interface Configuration Panel ***             
                                                                             
@@ -389,10 +403,13 @@ Interface Type (Select one): (*|\textcolor{red}{Ask the layer to the instructor 
                                                                             
 PF1 = HELP  PF3 = QUIT  PF7 = Backward  PF8 = Continue  ENTER = Refresh   </code></pre>
 </doc-codeblock></div>
-<p>&amp; Continue with next step.</p>
-<p><strong>Press the PF8 key</strong></p>
-<p>&amp; At the &#x27;*** QDIO Interface Configuration Panel ***&#x27; panel. Fill
-in the following data:</p>
+<ul>
+<li>Continue com o próximo passo.</li>
+</ul>
+<p><strong>Pressione F8</strong></p>
+<ul>
+<li>No painel &#x27;*** QDIO Interface Configuration Panel ***&#x27;. Preencha os seguintes dados:</li>
+</ul>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">                   *** QDIO Interface Configuration Panel ***                
                                                                              
@@ -412,12 +429,18 @@ Port Number (optional):  __
                                                                              
  PF1 = HELP  PF3 = QUIT  PF5 = Process  PF7 = Backward  ENTER = Refresh      </code></pre>
 </doc-codeblock></div>
-<p>&amp; Start the network configuration.</p>
-<p><strong>Press the PF5 key to Process</strong></p>
-<p>&amp; The TCP/IP stack (TCPIP) must be restarted as part of this procedure.
-Would you like to restart TCPIP and continue?</p>
-<p><strong>Enter &#x27;1&#x27; for Yes</strong></p>
-<p>&amp; The TCP/IP configuration is complete when you see these messages:</p>
+<ul>
+<li>Inicie a configuração da rede.</li>
+</ul>
+<p><strong>Pressione a tecla PF5 para Processar</strong></p>
+<ul>
+<li>A pilha TCP/IP (TCPIP) deve ser reiniciada como parte deste procedimento.
+Você gostaria de reiniciar o TCPIP e continuar?</li>
+</ul>
+<p><strong>Digite &#x27;1&#x27; para Sim</strong></p>
+<ul>
+<li>A configuração do TCP/IP está completa quando você vê estas mensagens:</li>
+</ul>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">Successfully PINGed Interface (172.24.200.222)                    
 Successfully PINGed Gateway (172.24.200.1)                        
@@ -430,22 +453,24 @@ DTCIPW2520I File SYSTEM DTCPARMS created on TCPIP 198
 DMSVML2061I TCPIP 592 released                                    
 Ready; T=0.15/0.23 23:50:42      </code></pre>
 </doc-codeblock></div>
-<p>&amp; At this point, your z/VM system should be on the network. Go to a DOS
-prompt (or Linux session) and try to ping your z/VM system.</p>
+<ul>
+<li>Neste ponto, seu sistema z/VM deve estar na rede. Vá para um prompt do DOS (ou sessão Linux) e tente fazer ping no seu sistema z/VM.</li>
+</ul>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none"># ping &lt;your ip&gt;</code></pre>
 </doc-codeblock></div>
-</div>
-<doc-anchor-target id="viewing-tcpip-configuration-files">
+<doc-anchor-target id="visualizando-arquivos-de-configuração-tcpip">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#viewing-tcpip-configuration-files">#</doc-anchor-trigger>
-        <span>Viewing TCP/IP configuration files</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#visualizando-arquivos-de-configuração-tcpip">#</doc-anchor-trigger>
+        <span>Visualizando arquivos de configuração TCP/IP</span>
     </h3>
 </doc-anchor-target>
-<p>Let&#x27;s learn what the IPWIZARD did for you.</p>
-<div class="easylist"><p>&amp; Logon to the TCPMAINT virtual machine</p>
-<p><strong>Logoff of MAINT</strong></p>
-<p><strong>Logon to TCPMAINT</strong></p>
+<p>Vamos aprender o que o IPWIZARD fez por você.</p>
+<ul>
+<li>Faça login na máquina virtual TCPMAINT</li>
+</ul>
+<p><strong>Desconecte-se de MAINT</strong></p>
+<p><strong>Faça login em TCPMAINT</strong></p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">LOGON TCPMAINT                                          
 z/VM Version 6 Release 3.0, Service Level 1301 (64-bit),
@@ -465,8 +490,10 @@ DMSACC724I 191 replaces A (191)
 Profile..: Setup complete                               
 Ready; T=0.01/0.01 10:19:32        </code></pre>
 </doc-codeblock></div>
-<p>&amp; List the CMS disks that are accessed via the QUERY DISK command. Note
-that the TCPMAINT 198 disk is accessed as your disk:</p>
+<ul>
+<li>Liste os discos CMS que são acessados através do comando QUERY DISK. Note
+que o disco TCPMAINT 198 é acessado como seu disco:</li>
+</ul>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; q disk</code></pre>
 </doc-codeblock></div>
@@ -482,8 +509,10 @@ MNT19E 19E  Y/S R/O   500 3390 4096     1123      30403-34      59597      90000
 MNT191 120  Z   R/O   175 3390 4096        7         24-01      31476      31500
 Ready; T=0.01/0.01 10:24:34                                                     </code></pre>
 </doc-codeblock></div>
-<p>&amp; This is an important disk for TCP/IP configuration files. List all the
-files on this disk. What is the command?</p>
+<ul>
+<li>Este é um disco importante para arquivos de configuração TCP/IP. Liste todos os
+arquivos neste disco. Qual é o comando?</li>
+</ul>
 <p>===&gt;</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">TCPMAINT FILELIST A0  V 169  Trunc=169 Size=2 Line=1 Col=1 Alt=0               
@@ -506,18 +535,19 @@ Cmd   Filename Filetype Fm Format Lrecl    Records     Blocks   Date     Time
 ====&gt;                                                                           
                                                             X E D I T  1 File   </code></pre>
 </doc-codeblock></div>
-</div>
 <doc-anchor-target id="profile-tcpip">
     <h4>
         <doc-anchor-trigger class="header-anchor-trigger" to="#profile-tcpip">#</doc-anchor-trigger>
         <span>PROFILE TCPIP</span>
     </h4>
 </doc-anchor-target>
-<div class="easylist"><p>&amp; Look at the file PROFILE TCPIP. You can type an <strong>X</strong>, which is a
-synonym for <strong>X</strong>EDIT right in the FILELIST command next to the file you
-want to edit. &amp; Search for the string DEVICE. You should see many of the
-values that you typed into the IPWIZARD. Following is an example file
-for <strong>ZVMWSXX</strong>:</p>
+<ul>
+<li>Olhe para o arquivo PROFILE TCPIP. Você pode digitar um <strong>X</strong>, que é um
+sinônimo para <strong>X</strong>EDIT diretamente no comando FILELIST ao lado do arquivo que
+você quer editar. &amp; Procure pela string DEVICE. Você deve ver muitos dos
+valores que digitou no IPWIZARD. A seguir, um exemplo de arquivo
+para <strong>ZVMWSXX</strong>:</li>
+</ul>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; /device</code></pre>
 </doc-codeblock></div>
@@ -552,18 +582,21 @@ for <strong>ZVMWSXX</strong>:</p>
                                                                                 
 ====&gt;                                                                           </code></pre>
 </doc-codeblock></div>
-<p>&amp; Exit this file, enter:</p>
+<ul>
+<li>Exit this file, enter:</li>
+</ul>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none"> ===&gt; qq</code></pre>
 </doc-codeblock></div>
-</div>
 <doc-anchor-target id="system-dtcparms">
     <h4>
         <doc-anchor-trigger class="header-anchor-trigger" to="#system-dtcparms">#</doc-anchor-trigger>
         <span>SYSTEM DTCPARMS</span>
     </h4>
 </doc-anchor-target>
-<div class="easylist"><p>&amp; Now look at the file SYSTEM DTCPARMS. &amp; You should see the following:</p>
+<ul>
+<li>Agora olhe para o arquivo SYSTEM DTCPARMS. &amp; Você deve ver o seguinte:</li>
+</ul>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">SYSTEM   DTCPARMS D1  V 80  Trunc=80 Size=7 Line=0 Col=1 Alt=0                 
                                                                                 
@@ -582,43 +615,44 @@ for <strong>ZVMWSXX</strong>:</p>
                                                                                 
 ====&gt;                                                                           </code></pre>
 </doc-codeblock></div>
-<p>This file is how the OSA devices 800, 801 and 802 are attached to the
-TCPIP service machine.</p>
-<p>&amp; Exit this file:</p>
-<p><strong>Press the F3 key (or type qq)</strong></p>
-<p>&amp; If you are still in FILELIST mode, exit and return to RUNNING mode.</p>
-<p><strong>Press the F3 key</strong></p>
-</div>
-<doc-anchor-target id="renaming-the-profile-tcpip-file">
+<p>Este arquivo é como os dispositivos OSA 800, 801 e 802 são anexados à
+máquina de serviço TCPIP.</p>
+<ul>
+<li>Saia deste arquivo:</li>
+</ul>
+<p><strong>Pressione a tecla F3 (ou digite qq)</strong></p>
+<ul>
+<li>Se você ainda está no modo FILELIST, saia e retorne ao modo RUNNING.</li>
+</ul>
+<p><strong>Pressione a tecla F3</strong></p>
+<doc-anchor-target id="renomeando-o-arquivo-profile-tcpip">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#renaming-the-profile-tcpip-file">#</doc-anchor-trigger>
-        <span>Renaming the PROFILE TCPIP file</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#renomeando-o-arquivo-profile-tcpip">#</doc-anchor-trigger>
+        <span>Renomeando o arquivo PROFILE TCPIP</span>
     </h3>
 </doc-anchor-target>
-<p>One change that is recommended is to rename your main configuration
-file, PROFILE TCPIP. It is possible that applying service to z/VM can
-overwrite the PROFILE TCPIP file.</p>
-<div class="easylist"><p>&amp; Use the RENAME command to change the file:</p>
+<p>Uma mudança que é recomendada é renomear seu arquivo de configuração principal, PROFILE TCPIP. É possível que a aplicação de serviço ao z/VM possa sobrescrever o arquivo PROFILE TCPIP.</p>
+<ul>
+<li>Use o comando RENAME para mudar o arquivo:</li>
+</ul>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; rename profile tcpip d zvmwsxx = d</code></pre>
 </doc-codeblock></div>
-<p>&amp; Now you should test this change. You can do this by forcing the TCPIP
-user ID off the system (logging it off) and then logging on
-interactively and watching it come back up. This is analogous to a Linux
-&quot;service network restart&quot; command. Be careful when you do this. If you
-are using the network to get to your system, you will immediately lose
-the connection.</p>
+<ul>
+<li>Agora você deve testar essa mudança. Você pode fazer isso forçando o ID de usuário TCPIP a sair do sistema (logoff) e, em seguida, fazendo login interativamente e observando-o voltar. Isso é análogo a um comando &quot;service network restart&quot; no Linux. Tenha cuidado ao fazer isso. Se você estiver usando a rede para acessar seu sistema, você perderá imediatamente a conexão.</li>
+</ul>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; force tcpip</code></pre>
 </doc-codeblock></div>
-<p>&amp; Now logon to TCPIP and start the TCP/IP stack.</p>
+<ul>
+<li>Agora faça login em TCPIP e inicie a pilha TCP/IP.</li>
+</ul>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; logoff TCPMAINT
 ===&gt; logon TCPIP</code></pre>
 </doc-codeblock></div>
-<p>Press <strong>Enter</strong> to run the PROFILE EXEC</p>
-<p>Press <strong>Enter</strong> again to start the TCP/IP stack. Note that your renamed
-profile is used:</p>
+<p>Pressione <strong>Enter</strong> para executar o PROFILE EXEC</p>
+<p>Pressione <strong>Enter</strong> novamente para iniciar a pilha TCP/IP. Observe que seu PROFILE renomeado é utilizado:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">LOGON TCPIP                                                                     
 z/VM Version 6 Release 3.0, Service Level 1301 (64-bit),                        
@@ -700,75 +734,74 @@ DTCTCP001I z/VM TCP/IP Level 630
                                                                                 
                                                             RUNNING   ZVMWS01   </code></pre>
 </doc-codeblock></div>
-<p>&amp; Now should you LOGOFF of TCPIP or DISCONNECT?</p>
+<ul>
+<li>Agora você deve DESLOGAR do TCPIP ou DESCONECTAR?</li>
+</ul>
 <p>===&gt;</p>
-<p>The former will kill the stack while the latter will allow it to run. A
-VM service machine is analogous to a Linux daemon. Use the #CP DISC
-command. The #CP <em>punches through</em> to the CP level.</p>
-</div>
-<doc-anchor-target id="verify-the-tcpip-setup">
+<p>O primeiro encerrará a pilha enquanto o último permitirá que ela continue funcionando. Uma máquina de serviço VM é análoga a um daemon Linux. Use o comando #CP DISC. O #CP <strong>executa no nível CP</strong>.</p>
+<doc-anchor-target id="verifique-a-configuração-do-tcpip">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#verify-the-tcpip-setup">#</doc-anchor-trigger>
-        <span>Verify the TCPIP setup</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#verifique-a-configuração-do-tcpip">#</doc-anchor-trigger>
+        <span>Verifique a configuração do TCPIP</span>
     </h3>
 </doc-anchor-target>
-<p>If all went well, your z/VM should now be on the network. Let&#x27;s try a
-few things to verify the configuration is correct.</p>
-<div class="easylist"><p>&amp; Start a TN3270 session and connect directly to you z/VM system. You
-now have the ability to log on to more than one virtual machine at a
-time. &amp; Log on as TCPMAINT. &amp; Use the NETSTAT command to display
-information about your network. Display the device information. You
-should see information about the QDIO1 device.</p>
+<p>Se tudo correu bem, seu z/VM agora deve estar na rede. Vamos tentar algumas coisas para verificar se a configuração está correta.</p>
+<ul>
+<li>Inicie uma sessão TN3270 e conecte-se diretamente ao seu sistema z/VM. Agora você tem a capacidade de fazer login em mais de uma máquina virtual por vez. &amp; Faça login como TCPMAINT. &amp; Use o comando NETSTAT para exibir informações sobre sua rede. Exiba as informações do dispositivo. Você deve ver informações sobre o dispositivo QDIO1.</li>
+</ul>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; netstat dev</code></pre>
 </doc-codeblock></div>
-<p>Display the gateway information. You should see information about the
-gateway.</p>
+<p>Exiba as informações do gateway. Você deve ver informações sobre o gateway.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; netstat gate</code></pre>
 </doc-codeblock></div>
-<p>&amp; Ping the gateway (first hop).</p>
+<ul>
+<li>Faça ping no gateway (primeiro salto).</li>
+</ul>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; ping GATEWAYIP</code></pre>
 </doc-codeblock></div>
-<p>&amp; Tracing routes through a network is sometimes necessary to help debug
-connectivity issues. Try the TRACERTE command and trace the route to
-another IP:</p>
+<ul>
+<li>Traçar rotas através de uma rede às vezes é necessário para ajudar a depurar
+problemas de conectividade. Tente o comando TRACERTE e trace a rota para
+outro IP:</li>
+</ul>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; tracerte ANOTHERIP</code></pre>
 </doc-codeblock></div>
-<p>&amp; Log off the TCPMAINT virtual machine.</p>
+<ul>
+<li>Dê Log off da TCPMAINT.</li>
+</ul>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; logoff </code></pre>
 </doc-codeblock></div>
-</div>
-<doc-anchor-target id="create-a-etc-hosts-file">
+<doc-anchor-target id="criar-um-arquivo-etc-hosts">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#create-a-etc-hosts-file">#</doc-anchor-trigger>
-        <span>Create a ETC HOSTS file</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#criar-um-arquivo-etc-hosts">#</doc-anchor-trigger>
+        <span>Criar um arquivo ETC HOSTS</span>
     </h3>
 </doc-anchor-target>
-<p>The local host files contain information needed for local host name
-resolution. Any domain name or IP address specified in this file is
-accessible for use on your network. Local host files are used to create
-the site table, which enables name resolution and reverse name
-resolution without using a domain name server.</p>
-<p>A sample file, ETCHOSTS SAMPLE, is supplied with the z/VM system
-deliverable on the TCPMAINT 592 disk. You can use this file as a guide
-for creating a customized ETC HOSTS file, that should reside on this
-same minidisk (TCPMAINT 592). Because each site is unique, the
-statements within the ETC HOSTS file must be customized for your
-installation.</p>
-<div class="easylist"><p>&amp; Log on as TCPMAINT.</p>
-<p>&amp; Identify disk 592 file mode</p>
+<p>Os arquivos host locais contêm informações necessárias para a resolução de nomes de host locais. Qualquer nome de domínio ou endereço IP especificado neste arquivo é acessível para uso em sua rede. Arquivos host locais são usados para criar a tabela do site, que permite a resolução de nomes e a resolução inversa de nomes sem usar um servidor de nomes de domínio.</p>
+<p>Um arquivo de amostra, ETCHOSTS SAMPLE, é fornecido com o sistema z/VM na entrega do disco TCPMAINT 592. Você pode usar este arquivo como um guia para criar um arquivo ETC HOSTS personalizado, que deve residir neste mesmo minidisco (TCPMAINT 592). Como cada site é único, as declarações dentro do arquivo ETC HOSTS devem ser personalizadas para sua instalação.</p>
+<ul>
+<li><p>Faça login como TCPMAINT.</p>
+</li>
+<li><p>Identifique o file mode do disco 592</p>
+</li>
+</ul>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; q disk</code></pre>
 </doc-codeblock></div>
-<p>&amp; Copy the sample file from disk 592 to ETC HOSTS</p>
+<ul>
+<li>Copie o arquivo de exemplo do disco 592 para ETC HOSTS</li>
+</ul>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; copy ETCHOSTS SAMPLE f ETC HOSTS =</code></pre>
 </doc-codeblock></div>
-<p>&amp; Edit the file and add the IP from another student</p>
+<ul>
+<li>Edite o arquivo e adicione o IP de outro estudante</li>
+</ul>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">00046 # -----------------------------------------------------------------------
 00047 # Local Host Loopback Address (IPv4 format)
@@ -781,7 +814,9 @@ installation.</p>
 00054 # Special IPv6 Addresses
 00055 # -----------------------------------------------------------------------</code></pre>
 </doc-codeblock></div>
-<p>&amp; Test it pinging the z/VM using its name:</p>
+<ul>
+<li>Teste fazendo ping no z/VM usando seu nome:</li>
+</ul>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; ping zvmwsxxx</code></pre>
 </doc-codeblock></div>
@@ -792,23 +827,25 @@ Ping Level 630: Pinging host ZVMWSXX (172.24.200.222).
 PING: Ping #1 response took 0.003 seconds. Successes so far 1.
 Ready; T=0.08/0.17 19:41:26</code></pre>
 </doc-codeblock></div>
-</div>
-<doc-anchor-target id="sec:autologtcpip">
+<doc-anchor-target id="configurar-o-profile-exec-do-autolog1">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#sec:autologtcpip">#</doc-anchor-trigger>
-        <span>Configure AUTOLOG1&#x27;s PROFILE EXEC</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#configurar-o-profile-exec-do-autolog1">#</doc-anchor-trigger>
+        <span>Configurar o PROFILE EXEC do AUTOLOG1</span>
     </h3>
 </doc-anchor-target>
-<p>When z/VM IPLs, normally the AUTOLOG1 virtual machine is logged on
-(unless the NOAUTOLOG parameter is specified at IPL). Its PROFILE EXEC
-is run when CMS IPLs. Using this file, perform the following tasks:</p>
-<div class="easylist"><p>&amp; Limit minidisk cache in main storage and turn it off in expanded
-storage with the SET MDC command. &amp; Start virtual machines that should
-be started using the XAUTOLOG command</p>
-</div>
-<div class="easylist"><p>&amp; Log on to AUTOLOG1.</p>
-<p>&amp; Before pressing Enter at the VM READ prompt, type <strong>acc (noprof</strong> so
-that the PROFILE EXEC is not run:</p>
+<p>Quando o z/VM é inicializado, normalmente a máquina virtual AUTOLOG1 é logada
+(a menos que o parâmetro NOAUTOLOG seja especificado na IPL). Seu PROFILE EXEC
+é executado quando o CMS é inicializado. Usando este arquivo, execute as seguintes tarefas:</p>
+<ul>
+<li><p>Limite o cache do minidisk na memória principal e desative-o na memória expandida
+com o comando SET MDC. &amp; Inicie as máquinas virtuais que devem ser iniciadas usando o comando XAUTOLOG</p>
+</li>
+<li><p>Faça login no AUTOLOG1.</p>
+</li>
+<li><p>Antes de pressionar Enter no prompt VM READ, digite <strong>acc (noprof</strong> para
+que o PROFILE EXEC não seja executado:</p>
+</li>
+</ul>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">LOGON AUTOLOG1
 z/VM Version 6 Release 3.0, Service Level 1201 (64-bit),
@@ -820,12 +857,14 @@ z/VM V6.3.0
 2013-06-24 16:58
 ==&gt; acc (noprof</code></pre>
 </doc-codeblock></div>
-<p>&amp; Make a copy of the original PROFILE EXEC</p>
+<ul>
+<li>Faça uma cópia do PERFIL EXEC original</li>
+</ul>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">==&gt; copy profile exec a = execorig =</code></pre>
 </doc-codeblock></div>
-<p>Edit the PROFILE EXEC and add the following three lines below the
-Customer processing comment:</p>
+<p>Edite o PERFIL EXEC e adicione as seguintes três linhas abaixo do
+comentário de processamento do cliente:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">==&gt; x profile exec
 ====&gt; /customer</code></pre>
@@ -840,9 +879,10 @@ Customer processing comment:</p>
 ...
 ====&gt; file</code></pre>
 </doc-codeblock></div>
-<p>&amp; The TCPIP VM should start automatically during the IPL.</p>
-</div>
-<p>This is our actual environment after the changes:</p>
+<ul>
+<li>A VM TCPIP deve iniciar automaticamente durante a IPL.</li>
+</ul>
+<p>Este é o nosso ambiente atual após as mudanças:</p>
 <p><figure class="content-center">
     <img src="../../imgs/workshop-tcpip.png" alt="Environment with TCPIP" id="fig:workshoptcpip">
     <figcaption class="caption">Environment with TCPIP</figcaption>
@@ -861,7 +901,7 @@ Customer processing comment:</p>
                                             <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                                             <span>
                                                 <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Anterior</span>
-                                                <span class="block mt-1">Network Concepts</span>
+                                                <span class="block mt-1">Conceitos de Rede</span>
                                             </span>
                                         </a>
                                     </div>
@@ -914,6 +954,6 @@ Customer processing comment:</p>
 
     <div id="docs-overlay-target"></div>
 
-    <script data-cfasync="false">window.__DOCS__ = { "title": "Basic TCP/IP Configuration", level: 2, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+    <script data-cfasync="false">window.__DOCS__ = { "title": "Configuração Básica de TCP/IP", level: 2, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
 </body>
 </html>

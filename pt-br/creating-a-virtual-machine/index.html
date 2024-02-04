@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.760387399271">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.760393139270">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
 
     <!-- Primary Meta Tags -->
-    <title>Creating a Virtual Machine</title>
-    <meta name="title" content="Creating a Virtual Machine">
-    <meta name="description" content="The z/VM user directory specifies the configuration and operating characteristics of virtual machines. A z/VM user directory exists in two">
+    <title>Criando uma M&#225;quina Virtual</title>
+    <meta name="title" content="Criando uma Máquina Virtual">
+    <meta name="description" content="O diretório de usuário z/VM especifica a configuração e as características operacionais das máquinas virtuais.">
 
     <!-- Canonical -->
     <link rel="canonical" href="https://zvm-bootcamp.github.io/pt-br/creating-a-virtual-machine/">
@@ -19,24 +19,25 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://zvm-bootcamp.github.io/pt-br/creating-a-virtual-machine/">
-    <meta property="og:title" content="Creating a Virtual Machine">
-    <meta property="og:description" content="The z/VM user directory specifies the configuration and operating characteristics of virtual machines. A z/VM user directory exists in two">
+    <meta property="og:title" content="Criando uma Máquina Virtual">
+    <meta property="og:description" content="O diretório de usuário z/VM especifica a configuração e as características operacionais das máquinas virtuais.">
     <meta property="og:image" content="https://zvm-bootcamp.github.io/imgs/userdir.png">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://zvm-bootcamp.github.io/pt-br/creating-a-virtual-machine/">
-    <meta property="twitter:title" content="Creating a Virtual Machine">
-    <meta property="twitter:description" content="The z/VM user directory specifies the configuration and operating characteristics of virtual machines. A z/VM user directory exists in two">
+    <meta property="twitter:title" content="Criando uma Máquina Virtual">
+    <meta property="twitter:description" content="O diretório de usuário z/VM especifica a configuração e as características operacionais das máquinas virtuais.">
     <meta property="twitter:image" content="https://zvm-bootcamp.github.io/imgs/userdir.png">
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../resources/css/retype.css?v=3.5.0.760387399271" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.5.0.760393139270" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.760387399271" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.760393139270" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.760387399271" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.760393139270" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.5.0.760393139270" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -169,65 +170,42 @@
                                 <!-- Rendered if sidebar right is enabled -->
                                 <div id="docs-sidebar-right-toggle"></div>
                                 <!-- Page content  -->
-<doc-anchor-target id="creating-a-virtual-machine" class="break-words">
+<doc-anchor-target id="criando-uma-máquina-virtual" class="break-words">
     <h1>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#creating-a-virtual-machine">#</doc-anchor-trigger>
-        <span>Creating a Virtual Machine</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#criando-uma-máquina-virtual">#</doc-anchor-trigger>
+        <span>Criando uma Máquina Virtual</span>
     </h1>
 </doc-anchor-target>
-<p>The z/VM user directory specifies the configuration and operating
-characteristics of virtual machines. A z/VM user directory exists in two
-forms: a source form that consists of one or more CMS files, and an
-object form, created from the source, on a CP-formatted disk. Each
-virtual machine has a directory entry. Here is a sample directory entry:</p>
+<p>O diretório de usuário z/VM especifica a configuração e as características operacionais das máquinas virtuais. Um diretório de usuário z/VM existe em duas formas: uma forma de origem que consiste em um ou mais arquivos CMS, e uma forma de objeto, criada a partir da origem, em um disco formatado CP. Cada máquina virtual tem uma entrada de diretório. Aqui está um exemplo de entrada de diretório:</p>
 <p><figure class="content-center">
-    <img src="../../imgs/userdir.png" alt="User Directory example" id="fig:userdir">
-    <figcaption class="caption">User Directory example</figcaption>
+    <img src="../../imgs/userdir.png" alt="Exemplo de Diretório de Usuário">
+    <figcaption class="caption">Exemplo de Diretório de Usuário</figcaption>
 </figure>
 </p>
-<p>The sample on figure <doc-anchor-trigger to="#fig:userdir" reference-type="ref" reference="fig:userdir">9.1</doc-anchor-trigger> is a simple Linux guest. This chapter will
-guide you to build a more complex guest using other directory statements
-like PROFILE and DIRMAINT as a tool to manage those entries.</p>
-<p>An entry begins with one of the following statements: GLOBALDEFS (global
-definitions entry), PROFILE (profile entry), USER (user entry), IDENTITY
-(identity entry), or SUBCONFIG (subconfiguration entry). For our
-workshop the most important entries are <strong>PROFILE</strong> and <strong>USER</strong>, anyway
-the others entries are also explained.</p>
-<doc-anchor-target id="directory-definition">
+<p>O exemplo na figura acima é um simples convidado Linux. Este capítulo irá guiá-lo para construir um convidado mais complexo usando outras declarações de diretório como PROFILE e DIRMAINT como ferramenta para gerenciar essas entradas.</p>
+<p>Uma entrada começa com uma das seguintes declarações: GLOBALDEFS (entrada de definições globais), PROFILE (entrada de perfil), USER (entrada de usuário), IDENTITY (entrada de identidade), ou SUBCONFIG (entrada de subconfiguração). Para nosso workshop, as entradas mais importantes são <strong>PROFILE</strong> e <strong>USER</strong>, de qualquer forma, as outras entradas também são explicadas.</p>
+<doc-anchor-target id="definição-de-diretório">
     <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#directory-definition">#</doc-anchor-trigger>
-        <span>DIRECTORY definition</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#definição-de-diretório">#</doc-anchor-trigger>
+        <span>Definição de DIRETÓRIO</span>
     </h2>
 </doc-anchor-target>
-<p>The DIRECTORY Definition consists of one or more DIRECTORY control
-statements that define the output of object directories. The DIRECTORY
-statement defines to CP the device on which you have allocated space for
-the directory. (These devices must also be a CP_owned volume). The user
-directory itself is managed by DIRMAINT.</p>
-<p>The following DIRECTORY definition simply says DASD volume M01RES has
-directory space allocated on it for the object directory. It is a 3390
-device type, and 123 is the virtual device number which contains the
-directory.</p>
+<p>A Definição de DIRETÓRIO consiste em uma ou mais declarações de controle de DIRETÓRIO que definem a saída dos diretórios de objeto. A declaração de DIRETÓRIO define para o CP o dispositivo no qual você alocou espaço para o diretório. (Estes dispositivos também devem ser um volume CP_owned). O diretório de usuário em si é gerenciado pelo DIRMAINT.</p>
+<p>A seguinte definição de DIRETÓRIO simplesmente diz que o volume DASD M01RES tem espaço de diretório alocado nele para o diretório de objeto. É um tipo de dispositivo 3390, e 123 é o número do dispositivo virtual que contém o diretório.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">DIRECTORY 123 3390 M01RES</code></pre>
 </doc-codeblock></div>
-<p>You can query DIRECTORY definitions info executing:</p>
+<p>Você pode consultar informações das definições de DIRETÓRIO executando:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">DIRM DIRECTORY ?</code></pre>
 </doc-codeblock></div>
-<doc-anchor-target id="global-definition">
+<doc-anchor-target id="definição-global">
     <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#global-definition">#</doc-anchor-trigger>
-        <span>GLOBAL definition</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#definição-global">#</doc-anchor-trigger>
+        <span>Definição GLOBAL</span>
     </h2>
 </doc-anchor-target>
-<p>The Global Definition section begins with the GLOBALDEFS directory
-control statement. It also includes directory control statements that
-define global settings to be used across all user definitions. This is
-an optional statement. If specified it must directly precede all PROFILE
-and USER definitions. There can be only one GLOBALDEFS directory control
-statement specified. The user directory that came with the installed
-system contains the following Globaldefs:</p>
+<p>A seção de Definição Global começa com a declaração de controle de diretório GLOBALDEFS. Ela também inclui declarações de controle de diretório que definem configurações globais a serem usadas em todas as definições de usuário. Esta é uma declaração opcional. Se especificada, deve preceder diretamente todas as definições PROFILE e USER. Só pode haver uma declaração de controle de diretório GLOBALDEFS especificada. O diretório de usuário que acompanha o sistema instalado contém os seguintes Globaldefs:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">00026 *                                                              
 00027 GLOBALDEFS                                                     
@@ -242,18 +220,14 @@ system contains the following Globaldefs:</p>
 00036 *                                                              
 00037 ***************************************************************</code></pre>
 </doc-codeblock></div>
-<doc-anchor-target id="profile-definitions">
+<doc-anchor-target id="definições-de-profile">
     <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#profile-definitions">#</doc-anchor-trigger>
-        <span>PROFILE definitions</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#definições-de-profile">#</doc-anchor-trigger>
+        <span>Definições de PROFILE</span>
     </h2>
 </doc-anchor-target>
-<p>Each PROFILE definition begins with a PROFILE directory control
-statement and consolidates other directory control statements that are
-commonly used across multiple users. When PROFILE is specified it must
-follow the last DIRECTORY statement, the global definition section (if
-any), and precede the USER statements.</p>
-<p>This is an example of profile:</p>
+<p>Cada definição de PROFILE começa com uma declaração de controle de diretório PROFILE e consolida outras declarações de controle de diretório que são comumente usadas em vários usuários. Quando PROFILE é especificado, ele deve seguir a última declaração de DIRETÓRIO, a seção de definição global (se houver) e preceder as declarações de USER.</p>
+<p>Este é um exemplo de perfil:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">PROFILE IBMDFLT           
   SPOOL 000C 2540 READER *
@@ -266,19 +240,15 @@ any), and precede the USER statements.</p>
  LINK MAINT 0402 0402 RR  
  LINK MAINT 0401 0401 RR   </code></pre>
 </doc-codeblock></div>
-<doc-anchor-target id="user-definitions">
+<doc-anchor-target id="definições-de-user">
     <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#user-definitions">#</doc-anchor-trigger>
-        <span>USER definitions</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#definições-de-user">#</doc-anchor-trigger>
+        <span>Definições de USER</span>
     </h2>
 </doc-anchor-target>
-<p>User definitions (virtual machine definitions or guests) begin with a
-USER directory control statement and define an individual virtual
-machine.</p>
-<p>The USER statement starts each virtual machine&#x27;s directory entry. It
-also defines a user ID and password, a logon and maximum virtual storage
-size, and command privileges.</p>
-<p>Here is one example of user definitions, in this case the PMAINT user:</p>
+<p>Definições de usuário (definições de máquina virtual) começam com uma declaração de controle de diretório USER e definem uma máquina virtual individual.</p>
+<p>A declaração USER inicia a entrada de diretório de cada máquina virtual. Ela também define um ID de usuário e senha, um logon e tamanho máximo de armazenamento virtual, e privilégios de comando.</p>
+<p>Aqui está um exemplo de definições de usuário, neste caso o usuário PMAINT:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">USER PMAINT   WD5JU8QP  128M 1000M G
  AUTOLOG AUTOLOG1 OP1 MAINT         
@@ -300,90 +270,124 @@ size, and command privileges.</p>
  SPOOL 00D 2540 PUNCH  A            
  SPOOL 00E 1403 A               </code></pre>
 </doc-codeblock></div>
-<p>The above directory control statement defines a virtual machine called
-PMAINT, whose password is &#x27;WD5JU8QP&#x27;. When PMAINT logs on it is
-allocated 128 Megabytes of virtual storage. It is allowed a maximum of
-1000 Megabytes of virtual storage, and it is a class G, or general user.</p>
-<p>The following table contains a description of different command classes:</p>
-<div id="tab:privclasses"><p><strong>Class</strong>   <strong>User and Function</strong></p>
-<hr>
-<dl>
-<dt>A           System Operator: The class A user controls the z/VM system. The system operator is responsible for the availability of the z/VM system and its resources. In addition, the system operator controls system accounting, broadcast messages, virtual machine performance options, and other options that affect the overall performance of z/VM.Note: The class A user who is automatically logged on during CP initialization is designated as the primary system operator.</dt>
-<dt>B           System Resource Operator: The class B user controls all the real resources of the z/VM system, except those controlled by the system operator and the spooling operator.</dt>
-<dt>C           System Programmer: The class C user updates or changes system-wide parameters of the z/VM system.</dt>
-<dt>D           Spooling Operator: The class D user controls spool files and the system&#x27;s real reader, printer, and punch equipment allocated to spooling use.</dt>
-<dt>E           System Analyst: The class E user examines and saves system operation data in specified z/VM storage areas.</dt>
-<dt>F           Service Representative: The class F user obtains, and examines in detail, data about input and output devices connected to the z/VM system. This privilege class is reserved for IBM use only.</dt>
-<dt>G           General User: The class G user controls functions associated with a particular virtual machine.</dt>
-<dt>Any         Commands belonging to class &quot;Any&quot; are available to any user, regardless of the user&#x27;s privilege class. These commands are primarily those used to gain access to, or relinquish access from, the z/VM system.</dt>
-<dt>H           Reserved for IBM use.</dt>
-<dt>I - Z - 6   These classes are reserved for redefinition by each installation for its own use (using MODIFY statements or commands).</dt>
-<dd>Privilege Classes</dd>
-</dl>
+<p>A declaração de controle de diretório acima define uma máquina virtual chamada PMAINT, cuja senha é &#x27;WD5JU8QP&#x27;. Quando PMAINT faz login, são alocados 128 Megabytes de armazenamento virtual. É permitido um máximo de 1000 Megabytes de armazenamento virtual, e ela é da classe G, ou usuário geral.</p>
+<p>A tabela a seguir contém uma descrição de diferentes classes de comando:</p>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Classe</th>
+<th>Usuário e Função</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Operador do Sistema: O usuário da classe A controla o sistema z/VM. O operador do sistema é responsável pela disponibilidade do sistema z/VM e seus recursos. Além disso, o operador do sistema controla a contabilidade do sistema, mensagens de transmissão, opções de desempenho de máquina virtual e outras opções que afetam o desempenho geral do z/VM. Nota: O usuário da classe A que é automaticamente logado durante a inicialização do CP é designado como o operador principal do sistema.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Operador de Recursos do Sistema: O usuário da classe B controla todos os recursos reais do sistema z/VM, exceto aqueles controlados pelo operador do sistema e pelo operador de spooling.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Programador do Sistema: O usuário da classe C atualiza ou muda parâmetros de todo o sistema do z/VM.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Operador de Spooling: O usuário da classe D controla arquivos de spool e os equipamentos reais de leitor, impressora e perfurador do sistema alocados para uso de spooling.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>Analista de Sistema: O usuário da classe E examina e salva dados de operação do sistema em áreas de armazenamento z/VM especificadas.</td>
+</tr>
+<tr>
+<td>F</td>
+<td>Representante de Serviço: O usuário da classe F obtém e examina em detalhes dados sobre dispositivos de entrada e saída conectados ao sistema z/VM. Esta classe de privilégio é reservada apenas para uso da IBM.</td>
+</tr>
+<tr>
+<td>G</td>
+<td>Usuário Geral: O usuário da classe G controla funções associadas a uma máquina virtual particular.</td>
+</tr>
+<tr>
+<td>Qualquer</td>
+<td>Comandos pertencentes à classe &quot;Qualquer&quot; estão disponíveis para qualquer usuário, independentemente da classe de privilégio do usuário. Esses comandos são principalmente aqueles usados para ganhar acesso ou renunciar ao acesso do sistema z/VM.</td>
+</tr>
+<tr>
+<td>H</td>
+<td>Reservado para uso da IBM.</td>
+</tr>
+<tr>
+<td>I - Z - 6</td>
+<td>Essas classes são reservadas para redefinição por cada instalação para seu próprio uso (usando declarações ou comandos MODIFY).</td>
+</tr>
+</tbody>
+</table>
 </div>
-<doc-anchor-target id="creating-a-simple-cms-user">
+<doc-anchor-target id="criando-um-usuário-cms-simples">
     <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#creating-a-simple-cms-user">#</doc-anchor-trigger>
-        <span>Creating a simple CMS user</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#criando-um-usuário-cms-simples">#</doc-anchor-trigger>
+        <span>Criando um usuário CMS simples</span>
     </h2>
 </doc-anchor-target>
-<p>This section will provide you instruction to create a CMS VM. In the
-first step we will not even have disks on this VM and we will learn how
-to add minidisks and how to resize it. This machine will be used to host
-some files that will be used on next chapter
-(<doc-anchor-trigger to="#chap:installinglinux" reference-type="ref" reference="chap:installinglinux">10</doc-anchor-trigger> - ).</p>
-<doc-anchor-target id="how-to-create-a-new-vm">
+<p>Esta seção fornecerá instruções para criar uma VM CMS. No primeiro passo, nem mesmo teremos discos nesta VM e aprenderemos como adicionar minidisks e redimensioná-los. Esta máquina será usada para hospedar alguns arquivos que serão usados na próxima seção.</p>
+<doc-anchor-target id="como-criar-uma-nova-vm">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#how-to-create-a-new-vm">#</doc-anchor-trigger>
-        <span>How to create a new VM</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#como-criar-uma-nova-vm">#</doc-anchor-trigger>
+        <span>Como criar uma nova VM</span>
     </h3>
 </doc-anchor-target>
-<p>Our objective is to create a new VM called <em>VMTOOLS</em>. There is a special
-file type called <em>DIRECT</em>. We are going to create a new file called
-VMTOOLS DIRECT that will host the directory statements needed to run our
-CMS VM.</p>
-<div class="easylist"><p>&amp; Logged as MAINT</p>
-<p>&amp; Create a file called VMTOOLS DIRECT</p>
+<p>Nosso objetivo é criar uma nova VM chamada <em>VMTOOLS</em>. Existe um tipo especial de arquivo chamado <em>DIRECT</em>. Vamos criar um novo arquivo chamado VMTOOLS DIRECT que hospedará as declarações de diretório necessárias para executar nossa VM CMS.</p>
+<ul>
+<li><p>Logado como MAINT</p>
+</li>
+<li><p>Crie um arquivo chamado VMTOOLS DIRECT</p>
+</li>
+</ul>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">X VMTOOLS DIRECT A</code></pre>
 </doc-codeblock></div>
-<p>&amp; Input the following content:</p>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">(*|\textcolor{blue}{USER VMTOOLS WORK2016 64M 64M G}|*)
-(*|\textcolor{green}{IPL CMS}|*)
-(*|\textcolor{red}{SPOOL 000C 2540 READER *}|*)
-(*|\textcolor{red}{SPOOL 000D 2540 PUNCH A}|*)
-(*|\textcolor{red}{SPOOL 000E 1403 A}|*)
-(*|\textcolor{red}{CONSOLE 009 3215 T}|*)
-(*|\textcolor{green}{LINK MAINT 0190 0190 RR}|*)
-(*|\textcolor{green}{LINK MAINT 019D 019D RR}|*)
-(*|\textcolor{green}{LINK MAINT 019E 019E RR}|*)</code></pre>
+<ul>
+<li>Insira o seguinte conteudo:</li>
+</ul>
+<div class="codeblock-wrapper"><doc-codeblock line-numbers>
+<pre class="language-javascript"><code v-pre class="language-javascript">USER VMTOOLS WORK2016 64M 64M G
+IPL CMS
+SPOOL 000C 2540 READER *
+SPOOL 000D 2540 PUNCH A
+SPOOL 000E 1403 A
+CONSOLE 009 3215 T
+LINK MAINT 0190 0190 RR
+LINK MAINT 019D 019D RR
+LINK MAINT 019E 019E RR</code></pre>
 </doc-codeblock></div>
-<p>The blue line defines the name, password, amount of memory and privilege
-class of our new VM</p>
-<p>The green lines are related to CMS. We are linking disks that are
-required to IPL CMS in our VM</p>
-<p>The red lines are related to some standard devices, like Reader, Punch,
-Printer and Console.</p>
-<p>&amp; Save the file and quit</p>
+<p>A linha 1 define o nome, senha, quantidade de memória e classe de privilégio da nossa nova VM.</p>
+<p>As linhas 2, 7, 8, 9 estão relacionadas ao CMS. Estamos vinculando discos que são necessários para o IPL do CMS em nossa VM.</p>
+<p>As linhas 3, 4, 5, 6 estão relacionadas a alguns dispositivos padrão, como READER, PUNCH, PRINTER e CONSOLE.</p>
+<ul>
+<li>Salve o arquivo e saia</li>
+</ul>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">====&gt; FILE</code></pre>
 </doc-codeblock></div>
-<p>&amp; To add our new VM to the directory we are going to use DIRM ADD
-command:</p>
+<ul>
+<li>Para adicionar nossa nova VM ao diretório, vamos usar o comando DIRM ADD:</li>
+</ul>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">DIRM ADD VMTOOLS</code></pre>
 </doc-codeblock></div>
-<p>&amp; If you got RC = 0, we are good, otherwise there is a typo in your
-VMTOOLS DIRECT file, fix the error and try again.</p>
-</div>
-<doc-anchor-target id="how-to-add-a-minidisk">
+<ul>
+<li>Se você obteve RC = 0, estamos bem, caso contrário, há um erro de digitação no seu arquivo DIRECT VMTOOLS, corrija o erro e tente novamente.</li>
+</ul>
+<doc-anchor-target id="como-adicionar-um-minidisco">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#how-to-add-a-minidisk">#</doc-anchor-trigger>
-        <span>How to add a minidisk</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#como-adicionar-um-minidisco">#</doc-anchor-trigger>
+        <span>Como adicionar um minidisco</span>
     </h3>
 </doc-anchor-target>
-<div class="easylist"><p>&amp; Try to login in your new VM and you will see a message:</p>
+<ul>
+<li>Tente fazer login na sua nova VM e você verá uma mensagem:</li>
+</ul>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">z/VM Version 6 Release 3.0, Service Level 1501 (64-bit), 
 built on IBM Virtualization Technology
@@ -395,107 +399,161 @@ z/VM V6.3.0    2015-06-18 16:09
 DMSACP113S A(191) not attached or invalid device address
 Ready; T=0.03/0.03 13:30:16</code></pre>
 </doc-codeblock></div>
-<p>&amp; Ops! We don&#x27;t have an &quot;A-disk&quot; to our VM... we need to create it.</p>
-<p>&amp; Logoff from VMTOOLS</p>
-<p>&amp; Logon on MAINT</p>
-<p>&amp; Execute:</p>
+<ul>
+<li><p>Ops! Não temos um &quot;Disco-A&quot; para nossa VM... precisamos criá-lo.</p>
+</li>
+<li><p>Deslogue de VMTOOLS</p>
+</li>
+<li><p>Faça login em MAINT</p>
+</li>
+<li><p>Execute:</p>
+</li>
+</ul>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">DIRM FOR VMTOOLS AMD</code></pre>
 </doc-codeblock></div>
-<p>&amp; It will show a PANEL that need to be filled like this one (The
-passwords are in blank but you can set as: READ WRITE MULTI):</p>
+<ul>
+<li>Será exibido um PAINEL que precisa ser preenchido como este (As senhas estão em branco, mas você pode definir como: READ WRITE MULTI):</li>
+</ul>
 <p><figure class="content-center">
-    <img src="../../imgs/dasdamd.png" alt="DASD AMD" id="fig:dasdamd">
+    <img src="../../imgs/dasdamd.png" alt="DASD AMD">
     <figcaption class="caption">DASD AMD</figcaption>
 </figure>
 </p>
-<p>&amp; We are creating a new minidisk 191, from our LINUX GROUP, with 5
-cylinders. The label is VMT191.</p>
-<p>&amp; The expected result is:</p>
+<ul>
+<li><p>Estamos criando um novo minidisco 191, do nosso GRUPO LINUX, com 5 cilindros. O rótulo é VMT191.</p>
+</li>
+<li><p>O resultado esperado é:</p>
+</li>
+</ul>
 <p><figure class="content-center">
-    <img src="../../imgs/dasdamdresult.png" alt="DASD AMD result" id="fig:dasdamdresult">
-    <figcaption class="caption">DASD AMD result</figcaption>
+    <img src="../../imgs/dasdamdresult.png" alt="Resultado DASD AMD">
+    <figcaption class="caption">Resultado DASD AMD</figcaption>
 </figure>
 </p>
-<p>&amp; If you want to check how different is your VMTOOLS directory execute:</p>
+<ul>
+<li>Se você quiser verificar quão diferente está o diretório da sua VMTOOLS execute:</li>
+</ul>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">DIRM FOR VMTOOLS REView</code></pre>
 </doc-codeblock></div>
-<p>&amp; RECEIVE &lt;n&gt; (REP</p>
-<p>Where &lt;n&gt; is the reader id that will show at the begging of the
-response.</p>
+<ul>
+<li>RECEIVE &lt;n&gt; (REP</li>
+</ul>
+<p>Onde &lt;n&gt; é o id do leitor que aparecerá no início da resposta.response.</p>
 <p><figure class="content-center">
-    <img src="../../imgs/receivefile.png" alt="Reader ID" id="fig:receivefile">
+    <img src="../../imgs/receivefile.png" alt="Reader ID">
     <figcaption class="caption">Reader ID</figcaption>
 </figure>
 </p>
-<p>&amp; You can open using XEDIT and you will see the new MDISK statement at
-the bottom</p>
+<ul>
+<li>Você pode abrir usando XEDIT e verá a nova declaração MDISK no final</li>
+</ul>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">X VMTOOLS DIRECT</code></pre>
 </doc-codeblock></div>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">MDISK 0191 3390 0001 5 LNX301 MR XXXXXXXX XXXXXXXX XXXXXXXX</code></pre>
 </doc-codeblock></div>
-</div>
-<doc-anchor-target id="how-to-change-minidisk-size">
+<doc-anchor-target id="como-mudar-o-tamanho-do-minidisco">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#how-to-change-minidisk-size">#</doc-anchor-trigger>
-        <span>How to change minidisk size</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#como-mudar-o-tamanho-do-minidisco">#</doc-anchor-trigger>
+        <span>Como mudar o tamanho do minidisco</span>
     </h3>
 </doc-anchor-target>
-<div class="easylist"><p>&amp; Execute</p>
+<ul>
+<li>Execute:</li>
+</ul>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">DIRM FOR VMTOOLS CMD</code></pre>
 </doc-codeblock></div>
-<p>&amp; DIRM FOR VMTOOLS CMD will open a panel</p>
-<p>&amp; We are going to increase the size of 191 minidisk from 5 cyl to 10 cyl</p>
-<p>&amp; Follow the panel:</p>
+<ul>
+<li><p>DIRM FOR VMTOOLS CMD abrirá um painel</p>
+</li>
+<li><p>Vamos aumentar o tamanho do minidisco 191 de 5 cil para 10 cil</p>
+</li>
+<li><p>Siga o painel:</p>
+</li>
+</ul>
 <p><figure class="content-center">
-    <img src="../../imgs/dasdcmd.png" alt="DASD CMD" id="fig:dasdcmd">
+    <img src="../../imgs/dasdcmd.png" alt="DASD CMD">
     <figcaption class="caption">DASD CMD</figcaption>
 </figure>
 </p>
-<p>&amp; Press F5 to submit.</p>
-</div>
-<doc-anchor-target id="exercise-1">
+<ul>
+<li>Pressione F5 para enviar.</li>
+</ul>
+<doc-anchor-target id="exercício">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#exercise-1">#</doc-anchor-trigger>
-        <span>Exercise</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#exercício">#</doc-anchor-trigger>
+        <span>Exercício</span>
     </h3>
 </doc-anchor-target>
-<p>Add a new minidisk:</p>
-<div class="easylist"><p>&amp; Address: 192 &amp; Device type: 3390 &amp; On AUTOG: &amp;&amp; Size: 300 &amp;&amp; Grpname:
-LINUX &amp; Link Mode: MR &amp; Label: LNX192 &amp; Passwords: &amp;&amp; READ WRITE MULTI</p>
-</div>
-<doc-anchor-target id="ftp-files-to-vmtools-192">
+<p>Adicione um novo minidisco:</p>
+<ul>
+<li>Address: 192</li>
+<li>Device type: 3390</li>
+<li>On AUTOG:
+<ul>
+<li>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">Size: 300</code></pre>
+</doc-codeblock></div>
+</li>
+<li>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">Grpname: LINUX </code></pre>
+</doc-codeblock></div>
+</li>
+<li>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">Link Mode: MR </code></pre>
+</doc-codeblock></div>
+</li>
+<li>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">Label: LNX192 </code></pre>
+</doc-codeblock></div>
+</li>
+<li>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">Passwords: READ WRITE MULTI</code></pre>
+</doc-codeblock></div>
+</li>
+</ul>
+</li>
+</ul>
+<doc-anchor-target id="transferir-arquivos-via-ftp-para-vmtools-192">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#ftp-files-to-vmtools-192">#</doc-anchor-trigger>
-        <span>FTP files to VMTOOLS 192</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#transferir-arquivos-via-ftp-para-vmtools-192">#</doc-anchor-trigger>
+        <span>Transferir arquivos via FTP para VMTOOLS 192</span>
     </h3>
 </doc-anchor-target>
-<p>During the class the instruction will teach you how to FTP files to our
-new minidisk 192. These files are essential to the Linux installation.
-These steps are not documented here because it depends on your
-environment.</p>
-<p>These instructions are present in the slide deck.</p>
-<doc-anchor-target id="creating-our-linux-profile">
+<p>Durante a aula, o instrutor ensinará como transferir arquivos via FTP para nosso novo minidisco 192. Esses arquivos são essenciais para a instalação do Linux. Estes passos não estão documentados aqui porque dependem do seu ambiente.</p>
+<p>Estas instruções estão presentes no conjunto de slides.</p>
+<doc-anchor-target id="criando-nosso-perfil-linux">
     <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#creating-our-linux-profile">#</doc-anchor-trigger>
-        <span>Creating our Linux Profile</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#criando-nosso-perfil-linux">#</doc-anchor-trigger>
+        <span>Criando nosso Perfil Linux</span>
     </h2>
 </doc-anchor-target>
-<p>On this section a profile to be included by Linux virtual machines will
-be created.</p>
-<div class="easylist"><p>&amp; Log on as MAINT. &amp; Create the user directory source file.</p>
+<p>Nesta seção, será criado um perfil para ser incluído pelas máquinas virtuais Linux.</p>
+<ul>
+<li>Faça login como MAINT.</li>
+<li>Crie o arquivo fonte do diretório do usuário.</li>
+</ul>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; x LINDFLT DIRECT</code></pre>
 </doc-codeblock></div>
-<p>&amp; In XEDIT tipe &quot;INPUT&quot; to enable input mode</p>
+<ul>
+<li>Em XEDIT digite &quot;INPUT&quot; para habilitar o modo de entrada</li>
+</ul>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; INPUT</code></pre>
 </doc-codeblock></div>
-<p>&amp; Paste de following content</p>
+<ul>
+<li>Cole o seguinte conteúdo</li>
+</ul>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">PROFILE LINDFLT
 COMMAND CP SET PF12 RETRIEVE
@@ -517,31 +575,53 @@ LINK MAINT 019E 019E RR
 LINK VMTOOLS 192 191 RR
 LINK TCPMAINT 592 592 RR </code></pre>
 </doc-codeblock></div>
-<p>&amp; Hit ENTER two times to exit input mode.</p>
-<div class="bclogo"><p>Explanation</p>
-<div class="easylist"><p>&amp; PROFILE LINDFLT - Define the profile named LINDFLT &amp; COMMAND CP SET
-PF12 RETRIEVE - Enable F12 to retrieve commands &amp; COMMAND CP SET PF11
-RETRIEVE FORWARD - Enable F11 to &amp; COMMAND SET VSWITCH VSW1 GRANT
-&amp;USERID - Grant access to VSW1 &amp; COMMAND DEFINE NIC 600 TYPE QDIO -
-Define a network card on vaddr 600 &amp; COMMAND COUPLE 600 TO SYSTEM VSW1 -
-Couple the NIC to VSW1 &amp; IPL CMS - When the user ID is logged on, IPL
-CMS &amp; MACH ESA 2 -The machine architecture is ESA with a maximum of 4
-CPUs. &amp; OPTION APPLMON - To enable Linux guest for data gathering &amp; CPU
-00 BASE - CPU 00 is the base and the only CPU set for now &amp; SPOOL 000C
-2540 READER * - Definition of a virtual reader &amp; SPOOL 000D 2540 PUNCH
-A - Definition of a virtual punch &amp; SPOOL 000E 1403 A - Definition of a
-virtual printer &amp; CONSOLE 009 3215 T - Definition of a console &amp; LINK
-MAINT 0190 0190 RR - Link to MAINT&#x27;s 190 minidisk with read access &amp;
-LINK MAINT 019D 019D RR - Link to MAINT&#x27;s 19D minidisk with read access
-&amp; LINK MAINT 019E 019E RR - Link to MAINT&#x27;s 19E minidisk with read
-access &amp; LINK VMTOOLS 192 191 RR - Link to VMTOOLS 192 minidisk as 191
-with read access &amp; LINK TCPMAINT 592 592 RR - Link to TCPMAINT&#x27;s 592
-minidisk with read access. This is where the ftp utility is located.</p>
+<ul>
+<li>Pressione ENTER duas vezes para sair do modo de entrada.</li>
+</ul>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-500 dark:bg-blue-400"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-500 dark:text-blue-400" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+            <h5>Explanation</h5>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">PROFILE LINDFLT - Define the profile named LINDFLT 
+COMMAND CP SET
+PF12 RETRIEVE - Enable F12 to retrieve commands 
+COMMAND CP SET PF11
+RETRIEVE FORWARD - Enable F11 to 
+COMMAND SET VSWITCH VSW1 GRANT &amp;USERID - Grant access to VSW1 
+COMMAND DEFINE NIC 600 TYPE QDIO - Define a network card on vaddr 600 
+COMMAND COUPLE 600 TO SYSTEM VSW1 - Couple the NIC to VSW1 
+IPL CMS - When the user ID is logged on, IPL CMS 
+MACH ESA 2 - The machine architecture is ESA with a maximum of 4 CPUs. 
+OPTION APPLMON - To enable Linux guest for data gathering 
+CPU 00 BASE - CPU 00 is the base and the only CPU set for now 
+SPOOL 000C 2540 READER \* - Definition of a virtual reader 
+SPOOL 000D 2540 PUNCH A - Definition of a virtual punch 
+SPOOL 000E 1403 A - Definition of a virtual printer 
+CONSOLE 009 3215 T - Definition of a console 
+LINK MAINT 0190 0190 RR - Link to MAINT's 190 minidisk with read access 
+LINK MAINT 019D 019D RR - Link to MAINT's 19D minidisk with read access
+LINK MAINT 019E 019E RR - Link to MAINT's 19E minidisk with read access 
+LINK VMTOOLS 192 191 RR - Link to VMTOOLS 192 minidisk as 191 with read access 
+LINK TCPMAINT 592 592 RR - Link to TCPMAINT's 592 minidisk with read access. This is where the ftp utility is located.</code></pre>
+</doc-codeblock></div>
+        </div>
+    </div>
 </div>
-</div>
-</div>
-<div><p>&amp; Save and quit XEDIT using &quot;file&quot; command.</p>
-<p>To add our new profile to z/VM directory use DIRM ADD:</p>
+<ul>
+<li>Salve e saia do XEDIT usando o comando &quot;file&quot;.</li>
+</ul>
+<p>Para adicionar nosso novo perfil ao diretório z/VM, use DIRM ADD:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">DIRM ADD LINDFLT</code></pre>
 </doc-codeblock></div>
@@ -578,29 +658,34 @@ Ready; T=0.01/0.01 14:37:31
 
                                                             RUNNING   ZVMWSXX </code></pre>
 </doc-codeblock></div>
-</div>
-<doc-anchor-target id="create-the-linux1-virtual-machine">
+<doc-anchor-target id="criar-a-máquina-virtual-linux1">
     <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#create-the-linux1-virtual-machine">#</doc-anchor-trigger>
-        <span>Create the LINUX1 virtual machine</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#criar-a-máquina-virtual-linux1">#</doc-anchor-trigger>
+        <span>Criar a máquina virtual LINUX1</span>
     </h2>
 </doc-anchor-target>
-<p>To create a Linux image we will use a DASD 3390-09 (10016 cyl) as base.
-DIRMAINT has a feature called PROTODIRs that we can use to create
-directory template for our Linux.</p>
-<div class="easylist"><p>&amp; First, grab a copy of LINUX PROTODIR</p>
+<p>Para criar uma imagem Linux, usaremos um DASD 3390-09 (10016 cil) como base. O DIRMAINT possui um recurso chamado PROTODIRs que podemos usar para criar um modelo de diretório para nosso Linux.</p>
+<ul>
+<li>Primeiro, pegue uma cópia do PROTODIR LINUX</li>
+</ul>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; DIRM SEND LINUX PROTODIR</code></pre>
 </doc-codeblock></div>
-<p>&amp; <strong>Receive</strong> a file called LINUX PROTODIR and edit it</p>
+<ul>
+<li><strong>Receba</strong> um arquivo chamado LINUX PROTODIR e edite-o</li>
+</ul>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">X LINUX PROTODIR</code></pre>
 </doc-codeblock></div>
-<p>&amp; In XEDIT tipe &quot;INPUT&quot; to enable input mode</p>
+<ul>
+<li>No XEDIT digite &quot;INPUT&quot; para habilitar o modo de entrada</li>
+</ul>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; INPUT</code></pre>
 </doc-codeblock></div>
-<p>&amp; Paste de following content</p>
+<ul>
+<li>Em XEDIT digite &quot;INPUT&quot; para habilitar o modo de entrada</li>
+</ul>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">USER LINUX NOLOG 1G 1G G
 INCLUDE LINDFLT       
@@ -610,8 +695,12 @@ MDISK 0102 3390 AUTOG 6016 LINUX MR READ WRITE MULTIPLE
 MDISK 0103 3390 AUTOG 800 LINUX MR READ WRITE MULTIPLE
 MDISK 0104 3390 AUTOG 800 LINUX MR READ WRITE MULTIPLE</code></pre>
 </doc-codeblock></div>
-<p>&amp; Save and close the file</p>
-<p>&amp; Apply the LINUX PROTODIR changes using the following command</p>
+<ul>
+<li><p>Salve e feche o arquivo</p>
+</li>
+<li><p>Aplique as mudanças do LINUX PROTODIR usando o seguinte comando</p>
+</li>
+</ul>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; DIRM FILE LINUX PROTODIR</code></pre>
 </doc-codeblock></div>
@@ -625,36 +714,37 @@ Ready; T=0.12/0.14 13:34:17
  DVHRCV3821I File LINUX PROTODIR E2 has been received; RC = 0.
  DVHREQ2289I Your FILE request for MAINT at * has completed; with RC = 0.</code></pre>
 </doc-codeblock></div>
-<p id="step:createlinux" label="step:createlinux">&amp; Create the virtual machine definition for LINUX1. []</p>
+<ul>
+<li>Crie a definição da máquina virtual para LINUX1.</li>
+</ul>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; dirm add linux1 like linux pw zcloud</code></pre>
 </doc-codeblock></div>
-<p>&amp; If you receive RC = 0, you should be able to query your new VM:</p>
+<ul>
+<li>Se você receber RC = 0, você deve ser capaz de consultar sua nova VM:</li>
+</ul>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">q linux1
 HCPCQU045E LINUX1 not logged on
 Ready(00045); T=0.01/0.01 13:36:33</code></pre>
 </doc-codeblock></div>
-<p>&amp; If you receive &quot;Invalid option - LINUX1&quot; response, something wrong
-occured on step
-<doc-anchor-trigger to="#step:createlinux" reference-type="ref" reference="step:createlinux">[step:createlinux]</doc-anchor-trigger></p>
+<ul>
+<li>Se você receber a resposta &quot;Invalid option - LINUX1&quot;, algo deu errado no passo acima</li>
+</ul>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">q linux1
 HCPCQV003E Invalid option - LINUX1
 Ready(00003); T=0.01/0.01 13:38:31</code></pre>
 </doc-codeblock></div>
-<doc-anchor-target id="sec:createlinux2">
+<doc-anchor-target id="exercício-1">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#sec:createlinux2">#</doc-anchor-trigger>
-        <span>Exercise</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#exercício-1">#</doc-anchor-trigger>
+        <span>Exercício</span>
     </h3>
 </doc-anchor-target>
-<div class="easylist"><p>&amp; Create LINUX2 VM. This VM will be used on chapter
-<doc-anchor-trigger to="#cap:clonelinux" reference-type="ref" reference="cap:clonelinux">11</doc-anchor-trigger>
-()</p>
-</div>
-</div>
-<div></div>
+<ul>
+<li>Crie a VM LINUX2. Esta VM será usada no próximo capítulo</li>
+</ul>
 
                                 
                                 <!-- Required only on API pages -->
@@ -721,6 +811,6 @@ Ready(00003); T=0.01/0.01 13:38:31</code></pre>
 
     <div id="docs-overlay-target"></div>
 
-    <script data-cfasync="false">window.__DOCS__ = { "title": "Creating a Virtual Machine", level: 2, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+    <script data-cfasync="false">window.__DOCS__ = { "title": "Criando uma Máquina Virtual", level: 2, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
 </body>
 </html>

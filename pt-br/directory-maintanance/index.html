@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.760387399271">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.760393139270">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -11,7 +11,7 @@
     <!-- Primary Meta Tags -->
     <title>Directory Maintanace</title>
     <meta name="title" content="Directory Maintanace">
-    <meta name="description" content="Before create our first virtual machine (VM), we are going to learn about DIRMAINT.">
+    <meta name="description" content="Antes de criar nossa primeira máquina virtual (VM), vamos aprender sobre DIRMAINT.">
 
     <!-- Canonical -->
     <link rel="canonical" href="https://zvm-bootcamp.github.io/pt-br/directory-maintanance/">
@@ -20,23 +20,23 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://zvm-bootcamp.github.io/pt-br/directory-maintanance/">
     <meta property="og:title" content="Directory Maintanace">
-    <meta property="og:description" content="Before create our first virtual machine (VM), we are going to learn about DIRMAINT.">
+    <meta property="og:description" content="Antes de criar nossa primeira máquina virtual (VM), vamos aprender sobre DIRMAINT.">
     <meta property="og:image" content="https://zvm-bootcamp.github.io/imgs/workshop-dirmaint.png">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://zvm-bootcamp.github.io/pt-br/directory-maintanance/">
     <meta property="twitter:title" content="Directory Maintanace">
-    <meta property="twitter:description" content="Before create our first virtual machine (VM), we are going to learn about DIRMAINT.">
+    <meta property="twitter:description" content="Antes de criar nossa primeira máquina virtual (VM), vamos aprender sobre DIRMAINT.">
     <meta property="twitter:image" content="https://zvm-bootcamp.github.io/imgs/workshop-dirmaint.png">
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../resources/css/retype.css?v=3.5.0.760387399271" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.5.0.760393139270" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.760387399271" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.760393139270" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.760387399271" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.760393139270" data-turbo-eval="false" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -169,80 +169,70 @@
                                 <!-- Rendered if sidebar right is enabled -->
                                 <div id="docs-sidebar-right-toggle"></div>
                                 <!-- Page content  -->
-<doc-anchor-target id="cap:DIRMAINT" class="break-words">
+<doc-anchor-target id="directory-maintanace" class="break-words">
     <h1>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#cap:DIRMAINT">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#directory-maintanace">#</doc-anchor-trigger>
         <span>Directory Maintanace</span>
     </h1>
 </doc-anchor-target>
-<p>Before create our first virtual machine (VM), we are going to learn
-about DIRMAINT.</p>
+<p>Antes de criar nossa primeira máquina virtual (VM), vamos aprender
+sobre DIRMAINT.</p>
 <doc-anchor-target id="dirmaint">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#dirmaint">#</doc-anchor-trigger>
         <span>DIRMAINT</span>
     </h2>
 </doc-anchor-target>
-<p>IBM Directory Maintenance z/VM (DirMaint) is a Conversational Monitor
-System (CMS) application that helps you manage your VM directory.
-Directory management is simplified by DirMaint&#x27;s command interface and
-automated facilities. DirMaint&#x27;s directory statement-like commands are
-used to add, delete or alter the directory. DirMaint&#x27;s error checking
-ensures that only valid changes are made to the directory, and that only
-authorized personnel are able to make the requested changes. Any
-transaction requiring the allocation or deallocation of minidisk extents
-can be handled automatically. All user-initiated transactions are
-password controlled, and are recorded for auditing purposes.</p>
-<p>Features:</p>
-<div class="easylist"><p>&amp; Automated control of the z/VM user directory through a command
-interface &amp; Auditing and controls for access to the directory &amp; Error
-checking &amp; Automated facilities for minidisk allocation, deallocation,
-and copying. &amp; The ability to work in conjunction with external security
-managers, such as RACF.</p>
-</div>
-<p>There are individual Dirmaint commands for each directory statement.</p>
-<p>The general format of a DirMaint command is:</p>
+<p>IBM Directory Maintenance z/VM (DirMaint) é uma aplicação do Conversational Monitor
+System (CMS) que ajuda você a gerenciar seu diretório VM.
+A gestão de diretórios é simplificada pela interface de comando e pelas
+facilidades automatizadas do DirMaint. Os comandos do DirMaint, que se assemelham a declarações de diretório, são
+usados para adicionar, deletar ou alterar o diretório. A verificação de erros do DirMaint
+garante que apenas mudanças válidas sejam feitas no diretório, e que apenas
+pessoal autorizado seja capaz de fazer as mudanças solicitadas. Qualquer
+transação que requer a alocação ou desalocação de extensões de minidiscos
+pode ser tratada automaticamente. Todas as transações iniciadas pelo usuário são
+controladas por senha e são registradas para fins de auditoria.</p>
+<p>Características:</p>
+<ul>
+<li>Controle automatizado do diretório de usuários z/VM através de uma interface de comando</li>
+<li>Auditoria e controles de acesso ao diretório</li>
+<li>Verificação de erros &amp; Facilidades automatizadas para alocação, desalocação e cópia de minidiscos.</li>
+<li>A capacidade de trabalhar em conjunto com gerentes de segurança externos, como RACF.</li>
+</ul>
+<p>Existem comandos DirMaint individuais para cada declaração de diretório.</p>
+<p>O formato geral de um comando DirMaint é:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">DIRMaint [ prefix ] command [ cmd_options ]</code></pre>
 </doc-codeblock></div>
-<p>Where:</p>
-<p><em>DIRMaint</em> is the name of the DirMaint EXEC.</p>
-<p><em>prefix</em> is an optional command prefix keyword and any operands required
-for that keyword.</p>
-<p><em>command</em> is the DirMaint command.</p>
-<p><em>cmd_options</em> are any options to be passed to command.</p>
-<p>Example:</p>
+<p>Onde:</p>
+<p><em>DIRMaint</em> é o nome do EXEC DirMaint.</p>
+<p><em>prefixo</em> é um prefixo de comando opcional e quaisquer operandos necessários para essa palavra-chave.</p>
+<p><em>comando</em> é o comando DirMaint.</p>
+<p><em>opcoes_cmd</em> são quaisquer opções a serem passadas para o comando.</p>
+<p>Exemplo:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">DIRM for linux1 REView</code></pre>
 </doc-codeblock></div>
-<p>The DirMaint command provides the interface between the command issuer
-and the DirMaint service machine. The issuer types the DirMaint command
-followed by a command operand. The DirMaint command routes the command
-to the DirMaint service machine where the service machine does
-validation checking, and either processes the request or rejects it with
-an appropriate message. The request sent to the service machine may
-include prefix keywords.</p>
-<p>The DirMaint command may be abbreviated to <strong>DIRM</strong>.</p>
+<p>O comando DirMaint fornece a interface entre o emissor do comando e a máquina de serviço DirMaint. O emissor digita o comando DirMaint seguido por um operando de comando. O comando DirMaint encaminha o comando para a máquina de serviço DirMaint onde a máquina de serviço faz a verificação de validação, e processa a solicitação ou a rejeita com uma mensagem apropriada. A solicitação enviada para a máquina de serviço pode incluir palavras-chave prefixadas.</p>
+<p>O comando DirMaint pode ser abreviado para <strong>DIRM</strong>.</p>
 <doc-anchor-target id="extent-control">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#extent-control">#</doc-anchor-trigger>
-        <span>Extent control</span>
+        <span>Extent Control</span>
     </h2>
 </doc-anchor-target>
-<p>The EXTENT CONTROL file defines any volume that is being used for
-minidisk allocation and provides a template, or layout, of how the space
-should be used. In addition, it also contains system and device default
-values used during allocation operations.</p>
-<p>This file can be updated dynamically with the DIRM DASD command.</p>
-<p>To check how the EXTENT CONTROL file looks like you can use:</p>
+<p>O arquivo EXTENT CONTROL define qualquer volume que está sendo usado para alocação de minidiscos e fornece um modelo, ou layout, de como o espaço deve ser usado. Além disso, também contém valores padrão do sistema e do dispositivo usados durante operações de alocação.</p>
+<p>Este arquivo pode ser atualizado dinamicamente com o comando DIRM DASD.</p>
+<p>Para verificar como o arquivo EXTENT CONTROL se parece, você pode usar:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; DIRM SEND EXTENT CONTROL</code></pre>
 </doc-codeblock></div>
-<p>Receive the file and check the content:</p>
+<p>Receba o arquivo e verifique o conteúdo:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; X EXTENT CONTROL</code></pre>
 </doc-codeblock></div>
-<p>You will see something like this file:</p>
+<p>Você verá algo como este arquivo:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">* ********************************************************************
 :REGIONS.
@@ -283,39 +273,28 @@ values used during allocation operations.</p>
   *DASDType Max-Size
 :END.</code></pre>
 </doc-codeblock></div>
-<p>Each section has a special function:</p>
-<div class="easylist"><p>&amp; REGIONS: Defines an area or region on your DASD volume for use during
-DirMaint automatic allocation. &amp; GROUPS: Defines a grouping of regions
-for use during DirMaint automatic allocation. &amp; EXCLUDE: Defines users
-or user/device combinations that should be considered as excluded by the
-DirMaint DASD subsystem. &amp; AUTOBLOCK: Defines blocking factors and
-device architectures for various device types. These supplement or
-override the IBM supplied definitions in the AUTOBLK DATADVH file. &amp;
-DEFAULTS: Defines the default maximum size for various DASD devices.
-These supplement or override the IBM supplied definitions in the DEFAULT
-DATADVH file. &amp; END: Defines the ending tag for all sections.</p>
-</div>
-<p><strong>We are not going to edit this file manually</strong>, we are going to use
-DIRMAINT commands to avoid errors and typos. You can close the file
-using &quot;QQUIT&quot;.</p>
-<doc-anchor-target id="adding-disks-to-extent-control">
+<p>Cada seção tem uma função especial:</p>
+<ul>
+<li>REGIONS: Define uma área ou região no seu volume DASD para uso durante a alocação automática do DirMaint.</li>
+<li>GROUPS: Define um agrupamento de regiões para uso durante a alocação automática do DirMaint.</li>
+<li>EXCLUDE: Define usuários ou combinações usuário/dispositivo que devem ser considerados como excluídos pelo subsistema DASD do DirMaint.</li>
+<li>AUTOBLOCK: Define fatores de bloqueio e arquiteturas de dispositivos para vários tipos de dispositivos. Estes complementam ou substituem as definições fornecidas pela IBM no arquivo AUTOBLK DATADVH.</li>
+<li>DEFAULTS: Define o tamanho máximo padrão para vários dispositivos DASD. Estes complementam ou substituem as definições fornecidas pela IBM no arquivo DEFAULT DATADVH.</li>
+<li>END: Define a tag de encerramento para todas as seções.</li>
+</ul>
+<p><strong>Nós não vamos editar este arquivo manualmente</strong>, vamos usar comandos DIRMAINT para evitar erros e typos. Você pode fechar o arquivo usando &quot;QQUIT&quot;.</p>
+<doc-anchor-target id="adicionando-discos-ao-extent-control">
     <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#adding-disks-to-extent-control">#</doc-anchor-trigger>
-        <span>Adding disks to Extent control</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#adicionando-discos-ao-extent-control">#</doc-anchor-trigger>
+        <span>Adicionando discos ao EXTENT CONTROL</span>
     </h2>
 </doc-anchor-target>
-<p>Assuming that you have executed
-<doc-anchor-trigger to="#sec:formatdisks" reference-type="ref" reference="sec:formatdisks">2.11.6.2</doc-anchor-trigger>, you have disks 301, 302 and 303 formatted
-as PERM. These 3 disks will be used to create our VMs, but first we need
-to assign them to DIRMAINT. We are going to create REGIONS (using all
-cylinders available) and POOLs of disks. We are going to use the label
-of each disk as the name of the REGION, ex: LNX301, LNX302 and LNX303.</p>
-<p>The DIRMAINT command that add disks to EXTENT CONTROL is:</p>
+<p>Assumindo que você executou a formatação em uma sessão anterior, você tem os discos 301, 302 e 303 formatados como PERM. Esses 3 discos serão usados para criar nossas VMs, mas primeiro precisamos atribuí-los ao DIRMAINT. Vamos criar REGIONS (usando todos os cilindros disponíveis) e POOLs de discos. Vamos usar o rótulo de cada disco como o nome da REGION, ex: LNX301, LNX302 e LNX303.</p>
+<p>O comando DIRMAINT que adiciona discos ao EXTENT CONTROL é:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; DIRM DASD</code></pre>
 </doc-codeblock></div>
-<p>If you type DIRM DASD logged as maint the following panel will open for
-you:</p>
+<p>Se você digitar DIRM DASD logado como maint, o seguinte painel abrirá para você:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none"> --------------------------------DirMaint DASD--------------------------------
  Add, delete or query DASD statement associated with Group, Region &amp; Volume.
@@ -343,11 +322,24 @@ you:</p>
 5741-A07 (c) Copyright IBM Corporation 1979, 2011.
    1= Help     2= Prefix Operands      3= Quit     5=Submit      12=Cursor</code></pre>
 </doc-codeblock></div>
-<p>We will assign DASD 301 (LNX301) to the new region LNX301. The panel
-below is an example:</p>
-<div class="bclogo"><p>Device Types You need to ask the instructor what is the device type for
-your PERM disks. The example below uses 3390-09, but there are others
-like 3390-03 and 3390-27.</p>
+<p>Vamos atribuir o DASD 301 (LNX301) à nova região LNX301. O painel abaixo é um exemplo:</p>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-500 dark:bg-blue-400"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-500 dark:text-blue-400" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+            <h5>Nota</h5>
+<p>Tipos de Dispositivos Você precisa perguntar ao instrutor qual é o tipo de dispositivo para seus discos PERM. O exemplo abaixo usa 3390-09, mas existem outros como 3390-03 e 3390-27.</p>
+        </div>
+    </div>
 </div>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">  --------------------------------DirMaint DASD--------------------------------
@@ -377,23 +369,20 @@ like 3390-03 and 3390-27.</p>
  5741-A07 (c) Copyright IBM Corporation 1979, 2011.
     1= Help     2= Prefix Operands      3= Quit     (*|\textcolor{red}{5=Submit}|*)      12=Cursor</code></pre>
 </doc-codeblock></div>
-<p>When you get it filled as needed press <strong>F5</strong> to submit your request or
-F3 to cancel it.</p>
-<p>The same result above could be accomplished using the following command
-line (to avoid the panel):</p>
+<p>Quando você preencher conforme necessário, pressione <strong>F5</strong> para enviar sua solicitação ou F3 para cancelá-la.</p>
+<p>O mesmo resultado acima poderia ser alcançado usando a seguinte linha de comando (para evitar o painel):</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; DIRM DASD ADD REGION LNX301 LNX301 3390-09 END 1</code></pre>
 </doc-codeblock></div>
-<p>To apply the changes to EXTENT CONTROL:</p>
+<p>Para aplicar as alterações ao CONTROLE DE EXTENSÃO:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; DIRM RLDE</code></pre>
 </doc-codeblock></div>
-<p>If you need to query information about a specific region you can
-execute:</p>
+<p>Se você precisar consultar informações sobre uma região específica, você pode executar:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; DIRM DASD QUERY REGION LNX301</code></pre>
 </doc-codeblock></div>
-<p>It will provide, depending the disk type, the following output:</p>
+<p>Isso fornecerá, dependendo do tipo de disco, o seguinte resultado:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">DIRM DASD QUERY REGION LNX301
 DVHXMT1191I Your DASD request has been sent for processing to DIRMAINT
@@ -416,35 +405,37 @@ Ready; T=0.01/0.01 13:02:04
  DVHDSD3558W that name.
  DVHREQ2289I Your DASD request for MAINT at * has completed; with RC = 0.</code></pre>
 </doc-codeblock></div>
-<doc-anchor-target id="exercise">
+<doc-anchor-target id="exercício">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#exercise">#</doc-anchor-trigger>
-        <span>Exercise</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#exercício">#</doc-anchor-trigger>
+        <span>Exercício</span>
     </h3>
 </doc-anchor-target>
-<div class="easylist"><p>&amp; Add LNX302 and LNX303 to EXTENT CONTROL using DIRM DASD command. &amp;&amp;
-Add LNX302 using the panel &amp;&amp; Add LNX303 using the command line &amp;&amp; Check
-both using DIRM DASD QUERY command. &amp;&amp; Apply the changes using DIRM RLDE</p>
-</div>
-<doc-anchor-target id="creating-a-pool-of-disks">
+<ul>
+<li>Adicione LNX302 e LNX303 ao EXTENT CONTROL usando o comando DIRM DASD.
+<ul>
+<li>Adicione LNX302 usando o painel</li>
+<li>Adicione LNX303 usando a linha de comando</li>
+<li>Verifique ambos usando o comando DIRM DASD QUERY.</li>
+<li>Aplique as alterações usando DIRM RLDE</li>
+</ul>
+</li>
+</ul>
+<doc-anchor-target id="criando-um-pool-de-discos">
     <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#creating-a-pool-of-disks">#</doc-anchor-trigger>
-        <span>Creating a pool of disks</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#criando-um-pool-de-discos">#</doc-anchor-trigger>
+        <span>Criando um pool de discos</span>
     </h2>
 </doc-anchor-target>
-<p>We have assigned LNX301, LNX302 and LNX303 to DIRMAINT. This setup allow
-us to assing disks to a VM using the REGION name, but we didn&#x27;t group
-them yet. These groups of disks are called POOLs, and it is another
-abstraction that can be used to assign disks to a VM.</p>
-<p>Using the same DIRM DASD panel we can create our new POOL, lets call it
-&quot;LINUX&quot;:</p>
+<p>Atribuímos LNX301, LNX302 e LNX303 ao DIRMAINT. Esta configuração nos permite atribuir discos a uma VM usando o nome da REGION, mas ainda não os agrupamos. Esses grupos de discos são chamados de POOLs, e é outra abstração que pode ser usada para atribuir discos a uma VM.</p>
+<p>Usando o mesmo painel DIRM DASD, podemos criar nosso novo POOL, vamos chamá-lo de &quot;LINUX&quot;:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">  --------------------------------DirMaint DASD--------------------------------
   Add, delete or query DASD statement associated with Group, Region &amp; Volume.
-  Select one:   (*|\textcolor{red}{x}|*) Add  _ Delete          _ Query  or _ FREExt  or _ USEDext
+  Select one:   x Add  _ Delete          _ Query  or _ FREExt  or _ USEDext
   Select one of the following for Add:
-   Group  GroupName  ==&gt; (*|\textcolor{red}{LINUX}|*)     (*|\textcolor{red}{X}|*) (LINEAR) (or) _ (ROTATING) (Optional)
-          Region1    ==&gt; (*|\textcolor{red}{LNX301}|*)    Region2 ==&gt; (*|\textcolor{red}{LNX302}|*)     Region3 ==&gt; (*|\textcolor{red}{LNX303}|*)  
+   Group  GroupName  ==&gt; LINUX     X (LINEAR) (or) _ (ROTATING) (Optional)
+          Region1    ==&gt; LNX301    Region2 ==&gt; LNX302     Region3 ==&gt; LNX303  
    Region RegionName ==&gt;           Volid   ==&gt;        Device Type ==&gt;         
      Optionally you can fill one or all of the following:
       Size =&gt;            Start =&gt;            Comments =&gt;                       
@@ -466,22 +457,20 @@ abstraction that can be used to assign disks to a VM.</p>
  5741-A07 (c) Copyright IBM Corporation 1979, 2011.
     1= Help     2= Prefix Operands      3= Quit     (*|\textcolor{red}{5=Submit}|*)      12=Cursor</code></pre>
 </doc-codeblock></div>
-<p>When you get it filled as needed press <strong>F5</strong> to submit your request or
-F3 to cancel it.</p>
-<p>The same result above could be accomplished using the following command
-line (to avoid the panel):</p>
+<p>Quando você preencher conforme necessário, pressione <strong>F5</strong> para enviar sua solicitação ou F3 para cancelá-la.</p>
+<p>O mesmo resultado acima poderia ser alcançado usando a seguinte linha de comando (para evitar o painel):</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">DIRM DASD ADD GROUP LINUX LNX301 LNX302 LNX303</code></pre>
 </doc-codeblock></div>
-<p>To apply the changes to EXTENT CONTROL:</p>
+<p>Para aplicar as alterações ao EXTENT CONTROL:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; DIRM RLDE</code></pre>
 </doc-codeblock></div>
-<p>You can query your new group information using the following commad:</p>
+<p>Você pode consultar as informações do seu novo grupo usando o seguinte comando:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">DIRM DASD QUERY GROUP LINUX</code></pre>
 </doc-codeblock></div>
-<p>It will provide the following output:</p>
+<p>Isso fornecerá o seguinte resultado:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">DIRM DASD QUERY GROUP LINUX
 DVHXMT1191I Your DASD request has been sent for processing to DIRMAINT
@@ -494,7 +483,7 @@ Ready; T=0.01/0.01 14:13:19
 </doc-codeblock></div>
 <p><figure class="content-center">
     <img src="../../imgs/workshop-dirmaint.png" alt="Our Environment with
-DIRMAINT" id="fig:workshopdirmaint">
+DIRMAINT">
     <figcaption class="caption">Our Environment with
 DIRMAINT</figcaption>
 </figure>
@@ -521,7 +510,7 @@ DIRMAINT</figcaption>
                                         <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../pt-br/creating-a-virtual-machine/">
                                             <span>
                                                 <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Próximo</span>
-                                                <span class="block mt-1">Creating a Virtual Machine</span>
+                                                <span class="block mt-1">Criando uma Máquina Virtual</span>
                                             </span>
                                             <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                                         </a>

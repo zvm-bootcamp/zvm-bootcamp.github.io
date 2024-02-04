@@ -2,50 +2,44 @@
 order: 70
 icon: server
 ---
-# Virtual Switch
+# Switch Virtual
 
-### Setting up a virtual switch (VSWITCH) with failover
+### Configurando um switch virtual (VSWITCH) com failover
 
-In this exercise, we will setup the Virtual Switch to use two
-controllers and two separate sets of OSA devices. If the primary
-controller fails, the backup controller will take over. Likewise, if the
-primary OSA fails, traffic will be switched to use the backup OSA
-devices.
+Neste exercício, iremos configurar o Switch Virtual para usar dois controladores e dois conjuntos separados de dispositivos OSA. Se o controlador primário falhar, o controlador de backup assumirá. Da mesma forma, se o OSA primário falhar, o tráfego será alternado para usar os dispositivos OSA de backup.
 
-The high-level steps in the process are in the sections that follow:
+Os passos de alto nível no processo estão nas seções a seguir:
 
-::: easylist
-& Define a VSWITCH & Shutdown and re-IPL z/VM
-:::
 
-Define the Virtual Switch in the SYSTEM CONFIG file to ensure the
-Virtual Switch is defined on IPL. Use the MODIFY VSWITCH statement to
-authorize a z/VM user to attach to the Virtual Switch.
+- Defina um VSWITCH & Desligue e re-IPL z/VM
 
-::: easylist
-& Log on as MAINT. & Display a list of available OSA devices. You should
-see devices 803-805 and 806-808 free.
+Defina o Switch Virtual no arquivo SYSTEM CONFIG para garantir que o Switch Virtual seja definido no IPL. Use a declaração MODIFY VSWITCH para autorizar um usuário z/VM a se conectar ao Switch Virtual.
+
+- Faça login como MAINT. 
+- Exiba uma lista de dispositivos OSA disponíveis. Você deve
+ver os dispositivos 803-805 e 806-808 livres.
 
 ```
 ===> q osa free
 ```
 
-Now you can execute the GETCF0 script to get write access to the primary
-parm disk.
+Agora você pode executar o script GETCF0 para obter acesso de escrita ao disco parm primário.
+
 
 ```
 ===> getcf0
 ```
 
-& Edit the SYSTEM CONFIG file.
+- Edite o arquivo SYSTEM CONFIG.
+
 
 ```
 ===> x system config x 
 ```
 
-& Add the following statements to the end of the file to:
+- Adicione as seguintes declarações ao final do arquivo para:
 
-(Change the X in macprefix to your student number)
+(Altere o X em macprefix para o número do seu aluno)
 
 ```
 /* define vswitch named VSW1 and set MAC address prefix to 02-00-0X */
@@ -53,62 +47,64 @@ DEFINE VSWITCH VSW1 RDEV 803 806
 VMLAN MACPREFIX 0200(*|\textcolor{red}{XX}|*)
 ```
 
-& Save the changes end exit the file.
+- Salve as alterações e saia do arquivo.
 
 ```
 ===> file
 ```
 
-& Check the syntax by using the CPSYNTAX command.
+- Verifique a sintaxe usando o comando CPSYNTAX.
 
 ```
 ===> access 193 f
 ===> cpsyntax system config 
 ```
 
-& Execute the script to release write access to the primary parm disk.
+- Execute o script para liberar o acesso de escrita ao disco parm primário.
 
 ```
 ===> freecf0 
 ```
-:::
 
-### Test VSWITCH configuration
+### Teste a configuração do VSWITCH
 
-Restart the z/VM system and verify the changes you have made in the
-networking section.
+Reinicie o sistema z/VM e verifique as alterações que você fez na
+seção de rede.
 
-::: easylist
-& Shutdown and re-ipl your z/VM system.
+
+- Desligue e faça o re-ipl do seu sistema z/VM.
 
 ```
 ===> shutdown reipl 
 ```
 
-& Log on as MAINT.
+- Faça login como MAINT.
 
-& Display the VSWITCH:
+- Exiba o VSWITCH:
+
 
 ```
 ===> q vswitch 
 ```
 
-Is the VSWITCH VSW1 defined?
+O VSWITCH VSW1 está definido?
 
-& To see the status of the VSWITCH controllers, issue the command:
+- Para ver o status dos controladores do VSWITCH, emita o comando:
+
 
 ```
 ===> q controller
 ```
 
-Which controller is your primary?
-:::
+Qual controlador é o seu primário?
 
-If any of the above commands indicated you have problems in your setup,
-review your work and try again. You will test the failover capability of
-the VSWITCH in a later exercise.
 
-This is our actual environment after the changes:
+Se algum dos comandos acima indicou que você tem problemas na sua configuração,
+revise seu trabalho e tente novamente. Você testará a capacidade de failover do
+VSWITCH em um exercício posterior.
+
+Este é o nosso ambiente atual após as alterações:
+
 
 ![Environment with TCPIP and
 VSWITCH](/imgs/workshop-vswitch.png){#fig:workshopvswitch}

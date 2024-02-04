@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.760235536748">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.760387399271">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
 
     <!-- Primary Meta Tags -->
-    <title>Virtual Switch</title>
-    <meta name="title" content="Virtual Switch">
-    <meta name="description" content="In this exercise, we will setup the Virtual Switch to use two controllers and two separate sets of OSA devices. If the primary">
+    <title>Switch Virtual</title>
+    <meta name="title" content="Switch Virtual">
+    <meta name="description" content="Neste exercício, iremos configurar o Switch Virtual para usar dois controladores e dois conjuntos separados de dispositivos OSA.">
 
     <!-- Canonical -->
     <link rel="canonical" href="https://zvm-bootcamp.github.io/pt-br/virtual-switch/">
@@ -19,24 +19,24 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://zvm-bootcamp.github.io/pt-br/virtual-switch/">
-    <meta property="og:title" content="Virtual Switch">
-    <meta property="og:description" content="In this exercise, we will setup the Virtual Switch to use two controllers and two separate sets of OSA devices. If the primary">
+    <meta property="og:title" content="Switch Virtual">
+    <meta property="og:description" content="Neste exercício, iremos configurar o Switch Virtual para usar dois controladores e dois conjuntos separados de dispositivos OSA.">
     <meta property="og:image" content="https://zvm-bootcamp.github.io/imgs/workshop-vswitch.png">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://zvm-bootcamp.github.io/pt-br/virtual-switch/">
-    <meta property="twitter:title" content="Virtual Switch">
-    <meta property="twitter:description" content="In this exercise, we will setup the Virtual Switch to use two controllers and two separate sets of OSA devices. If the primary">
+    <meta property="twitter:title" content="Switch Virtual">
+    <meta property="twitter:description" content="Neste exercício, iremos configurar o Switch Virtual para usar dois controladores e dois conjuntos separados de dispositivos OSA.">
     <meta property="twitter:image" content="https://zvm-bootcamp.github.io/imgs/workshop-vswitch.png">
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../resources/css/retype.css?v=3.5.0.760235536748" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.5.0.760387399271" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.760235536748" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.760387399271" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.760235536748" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.760387399271" data-turbo-eval="false" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -169,92 +169,105 @@
                                 <!-- Rendered if sidebar right is enabled -->
                                 <div id="docs-sidebar-right-toggle"></div>
                                 <!-- Page content  -->
-<doc-anchor-target id="virtual-switch" class="break-words">
+<doc-anchor-target id="switch-virtual" class="break-words">
     <h1>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#virtual-switch">#</doc-anchor-trigger>
-        <span>Virtual Switch</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#switch-virtual">#</doc-anchor-trigger>
+        <span>Switch Virtual</span>
     </h1>
 </doc-anchor-target>
-<doc-anchor-target id="setting-up-a-virtual-switch-vswitch-with-failover">
+<doc-anchor-target id="configurando-um-switch-virtual-vswitch-com-failover">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#setting-up-a-virtual-switch-vswitch-with-failover">#</doc-anchor-trigger>
-        <span>Setting up a virtual switch (VSWITCH) with failover</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#configurando-um-switch-virtual-vswitch-com-failover">#</doc-anchor-trigger>
+        <span>Configurando um switch virtual (VSWITCH) com failover</span>
     </h3>
 </doc-anchor-target>
-<p>In this exercise, we will setup the Virtual Switch to use two
-controllers and two separate sets of OSA devices. If the primary
-controller fails, the backup controller will take over. Likewise, if the
-primary OSA fails, traffic will be switched to use the backup OSA
-devices.</p>
-<p>The high-level steps in the process are in the sections that follow:</p>
-<div class="easylist"><p>&amp; Define a VSWITCH &amp; Shutdown and re-IPL z/VM</p>
-</div>
-<p>Define the Virtual Switch in the SYSTEM CONFIG file to ensure the
-Virtual Switch is defined on IPL. Use the MODIFY VSWITCH statement to
-authorize a z/VM user to attach to the Virtual Switch.</p>
-<div class="easylist"><p>&amp; Log on as MAINT. &amp; Display a list of available OSA devices. You should
-see devices 803-805 and 806-808 free.</p>
+<p>Neste exercício, iremos configurar o Switch Virtual para usar dois controladores e dois conjuntos separados de dispositivos OSA. Se o controlador primário falhar, o controlador de backup assumirá. Da mesma forma, se o OSA primário falhar, o tráfego será alternado para usar os dispositivos OSA de backup.</p>
+<p>Os passos de alto nível no processo estão nas seções a seguir:</p>
+<ul>
+<li>Defina um VSWITCH &amp; Desligue e re-IPL z/VM</li>
+</ul>
+<p>Defina o Switch Virtual no arquivo SYSTEM CONFIG para garantir que o Switch Virtual seja definido no IPL. Use a declaração MODIFY VSWITCH para autorizar um usuário z/VM a se conectar ao Switch Virtual.</p>
+<ul>
+<li>Faça login como MAINT.</li>
+<li>Exiba uma lista de dispositivos OSA disponíveis. Você deve
+ver os dispositivos 803-805 e 806-808 livres.</li>
+</ul>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; q osa free</code></pre>
 </doc-codeblock></div>
-<p>Now you can execute the GETCF0 script to get write access to the primary
-parm disk.</p>
+<p>Agora você pode executar o script GETCF0 para obter acesso de escrita ao disco parm primário.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; getcf0</code></pre>
 </doc-codeblock></div>
-<p>&amp; Edit the SYSTEM CONFIG file.</p>
+<ul>
+<li>Edite o arquivo SYSTEM CONFIG.</li>
+</ul>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; x system config x </code></pre>
 </doc-codeblock></div>
-<p>&amp; Add the following statements to the end of the file to:</p>
-<p>(Change the X in macprefix to your student number)</p>
+<ul>
+<li>Adicione as seguintes declarações ao final do arquivo para:</li>
+</ul>
+<p>(Altere o X em macprefix para o número do seu aluno)</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">/* define vswitch named VSW1 and set MAC address prefix to 02-00-0X */
 DEFINE VSWITCH VSW1 RDEV 803 806 
 VMLAN MACPREFIX 0200(*|\textcolor{red}{XX}|*)</code></pre>
 </doc-codeblock></div>
-<p>&amp; Save the changes end exit the file.</p>
+<ul>
+<li>Salve as alterações e saia do arquivo.</li>
+</ul>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; file</code></pre>
 </doc-codeblock></div>
-<p>&amp; Check the syntax by using the CPSYNTAX command.</p>
+<ul>
+<li>Verifique a sintaxe usando o comando CPSYNTAX.</li>
+</ul>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; access 193 f
 ===&gt; cpsyntax system config </code></pre>
 </doc-codeblock></div>
-<p>&amp; Execute the script to release write access to the primary parm disk.</p>
+<ul>
+<li>Execute o script para liberar o acesso de escrita ao disco parm primário.</li>
+</ul>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; freecf0 </code></pre>
 </doc-codeblock></div>
-</div>
-<doc-anchor-target id="test-vswitch-configuration">
+<doc-anchor-target id="teste-a-configuração-do-vswitch">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#test-vswitch-configuration">#</doc-anchor-trigger>
-        <span>Test VSWITCH configuration</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#teste-a-configuração-do-vswitch">#</doc-anchor-trigger>
+        <span>Teste a configuração do VSWITCH</span>
     </h3>
 </doc-anchor-target>
-<p>Restart the z/VM system and verify the changes you have made in the
-networking section.</p>
-<div class="easylist"><p>&amp; Shutdown and re-ipl your z/VM system.</p>
+<p>Reinicie o sistema z/VM e verifique as alterações que você fez na
+seção de rede.</p>
+<ul>
+<li>Desligue e faça o re-ipl do seu sistema z/VM.</li>
+</ul>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; shutdown reipl </code></pre>
 </doc-codeblock></div>
-<p>&amp; Log on as MAINT.</p>
-<p>&amp; Display the VSWITCH:</p>
+<ul>
+<li><p>Faça login como MAINT.</p>
+</li>
+<li><p>Exiba o VSWITCH:</p>
+</li>
+</ul>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; q vswitch </code></pre>
 </doc-codeblock></div>
-<p>Is the VSWITCH VSW1 defined?</p>
-<p>&amp; To see the status of the VSWITCH controllers, issue the command:</p>
+<p>O VSWITCH VSW1 está definido?</p>
+<ul>
+<li>Para ver o status dos controladores do VSWITCH, emita o comando:</li>
+</ul>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">===&gt; q controller</code></pre>
 </doc-codeblock></div>
-<p>Which controller is your primary?</p>
-</div>
-<p>If any of the above commands indicated you have problems in your setup,
-review your work and try again. You will test the failover capability of
-the VSWITCH in a later exercise.</p>
-<p>This is our actual environment after the changes:</p>
+<p>Qual controlador é o seu primário?</p>
+<p>Se algum dos comandos acima indicou que você tem problemas na sua configuração,
+revise seu trabalho e tente novamente. Você testará a capacidade de failover do
+VSWITCH em um exercício posterior.</p>
+<p>Este é o nosso ambiente atual após as alterações:</p>
 <p><figure class="content-center">
     <img src="../../imgs/workshop-vswitch.png" alt="Environment with TCPIP and
 VSWITCH" id="fig:workshopvswitch">
@@ -328,6 +341,6 @@ VSWITCH</figcaption>
 
     <div id="docs-overlay-target"></div>
 
-    <script data-cfasync="false">window.__DOCS__ = { "title": "Virtual Switch", level: 2, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+    <script data-cfasync="false">window.__DOCS__ = { "title": "Switch Virtual", level: 2, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
 </body>
 </html>

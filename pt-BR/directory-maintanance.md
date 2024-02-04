@@ -2,91 +2,80 @@
 order: 65
 icon: list-unordered
 ---
-# Directory Maintanace {#cap:DIRMAINT}
+# Directory Maintanace
 
-Before create our first virtual machine (VM), we are going to learn
-about DIRMAINT.
+Antes de criar nossa primeira máquina virtual (VM), vamos aprender
+sobre DIRMAINT.
 
 ## DIRMAINT
 
-IBM Directory Maintenance z/VM (DirMaint) is a Conversational Monitor
-System (CMS) application that helps you manage your VM directory.
-Directory management is simplified by DirMaint's command interface and
-automated facilities. DirMaint's directory statement-like commands are
-used to add, delete or alter the directory. DirMaint's error checking
-ensures that only valid changes are made to the directory, and that only
-authorized personnel are able to make the requested changes. Any
-transaction requiring the allocation or deallocation of minidisk extents
-can be handled automatically. All user-initiated transactions are
-password controlled, and are recorded for auditing purposes.
+IBM Directory Maintenance z/VM (DirMaint) é uma aplicação do Conversational Monitor
+System (CMS) que ajuda você a gerenciar seu diretório VM.
+A gestão de diretórios é simplificada pela interface de comando e pelas
+facilidades automatizadas do DirMaint. Os comandos do DirMaint, que se assemelham a declarações de diretório, são
+usados para adicionar, deletar ou alterar o diretório. A verificação de erros do DirMaint
+garante que apenas mudanças válidas sejam feitas no diretório, e que apenas
+pessoal autorizado seja capaz de fazer as mudanças solicitadas. Qualquer
+transação que requer a alocação ou desalocação de extensões de minidiscos
+pode ser tratada automaticamente. Todas as transações iniciadas pelo usuário são
+controladas por senha e são registradas para fins de auditoria.
 
-Features:
+Características:
 
-::: easylist
-& Automated control of the z/VM user directory through a command
-interface & Auditing and controls for access to the directory & Error
-checking & Automated facilities for minidisk allocation, deallocation,
-and copying. & The ability to work in conjunction with external security
-managers, such as RACF.
-:::
+- Controle automatizado do diretório de usuários z/VM através de uma interface de comando 
+- Auditoria e controles de acesso ao diretório 
+- Verificação de erros & Facilidades automatizadas para alocação, desalocação e cópia de minidiscos. 
+- A capacidade de trabalhar em conjunto com gerentes de segurança externos, como RACF.
 
-There are individual Dirmaint commands for each directory statement.
+Existem comandos DirMaint individuais para cada declaração de diretório.
 
-The general format of a DirMaint command is:
+O formato geral de um comando DirMaint é:
 
 ```
 DIRMaint [ prefix ] command [ cmd_options ]
 ```
 
-Where:
+Onde:
 
-*DIRMaint* is the name of the DirMaint EXEC.
+*DIRMaint* é o nome do EXEC DirMaint.
 
-*prefix* is an optional command prefix keyword and any operands required
-for that keyword.
+*prefixo* é um prefixo de comando opcional e quaisquer operandos necessários para essa palavra-chave.
 
-*command* is the DirMaint command.
+*comando* é o comando DirMaint.
 
-*cmd_options* are any options to be passed to command.
+*opcoes_cmd* são quaisquer opções a serem passadas para o comando.
 
-Example:
+Exemplo:
+
 
 ```
 DIRM for linux1 REView
 ```
 
-The DirMaint command provides the interface between the command issuer
-and the DirMaint service machine. The issuer types the DirMaint command
-followed by a command operand. The DirMaint command routes the command
-to the DirMaint service machine where the service machine does
-validation checking, and either processes the request or rejects it with
-an appropriate message. The request sent to the service machine may
-include prefix keywords.
 
-The DirMaint command may be abbreviated to **DIRM**.
+O comando DirMaint fornece a interface entre o emissor do comando e a máquina de serviço DirMaint. O emissor digita o comando DirMaint seguido por um operando de comando. O comando DirMaint encaminha o comando para a máquina de serviço DirMaint onde a máquina de serviço faz a verificação de validação, e processa a solicitação ou a rejeita com uma mensagem apropriada. A solicitação enviada para a máquina de serviço pode incluir palavras-chave prefixadas.
 
-## Extent control
+O comando DirMaint pode ser abreviado para **DIRM**.
 
-The EXTENT CONTROL file defines any volume that is being used for
-minidisk allocation and provides a template, or layout, of how the space
-should be used. In addition, it also contains system and device default
-values used during allocation operations.
+## Extent Control
 
-This file can be updated dynamically with the DIRM DASD command.
+O arquivo EXTENT CONTROL define qualquer volume que está sendo usado para alocação de minidiscos e fornece um modelo, ou layout, de como o espaço deve ser usado. Além disso, também contém valores padrão do sistema e do dispositivo usados durante operações de alocação.
 
-To check how the EXTENT CONTROL file looks like you can use:
+Este arquivo pode ser atualizado dinamicamente com o comando DIRM DASD.
+
+Para verificar como o arquivo EXTENT CONTROL se parece, você pode usar:
 
 ```
 ===> DIRM SEND EXTENT CONTROL
 ```
 
-Receive the file and check the content:
+Receba o arquivo e verifique o conteúdo:
 
 ```
 ===> X EXTENT CONTROL
 ```
 
-You will see something like this file:
+Você verá algo como este arquivo:
 
 ```
 * ********************************************************************
@@ -129,43 +118,28 @@ You will see something like this file:
 :END.
 ```
 
-Each section has a special function:
+Cada seção tem uma função especial:
 
-::: easylist
-& REGIONS: Defines an area or region on your DASD volume for use during
-DirMaint automatic allocation. & GROUPS: Defines a grouping of regions
-for use during DirMaint automatic allocation. & EXCLUDE: Defines users
-or user/device combinations that should be considered as excluded by the
-DirMaint DASD subsystem. & AUTOBLOCK: Defines blocking factors and
-device architectures for various device types. These supplement or
-override the IBM supplied definitions in the AUTOBLK DATADVH file. &
-DEFAULTS: Defines the default maximum size for various DASD devices.
-These supplement or override the IBM supplied definitions in the DEFAULT
-DATADVH file. & END: Defines the ending tag for all sections.
-:::
+- REGIONS: Define uma área ou região no seu volume DASD para uso durante a alocação automática do DirMaint. 
+- GROUPS: Define um agrupamento de regiões para uso durante a alocação automática do DirMaint. 
+- EXCLUDE: Define usuários ou combinações usuário/dispositivo que devem ser considerados como excluídos pelo subsistema DASD do DirMaint. 
+- AUTOBLOCK: Define fatores de bloqueio e arquiteturas de dispositivos para vários tipos de dispositivos. Estes complementam ou substituem as definições fornecidas pela IBM no arquivo AUTOBLK DATADVH. 
+- DEFAULTS: Define o tamanho máximo padrão para vários dispositivos DASD. Estes complementam ou substituem as definições fornecidas pela IBM no arquivo DEFAULT DATADVH. 
+- END: Define a tag de encerramento para todas as seções.
 
-**We are not going to edit this file manually**, we are going to use
-DIRMAINT commands to avoid errors and typos. You can close the file
-using "QQUIT".
+**Nós não vamos editar este arquivo manualmente**, vamos usar comandos DIRMAINT para evitar erros e typos. Você pode fechar o arquivo usando "QQUIT".
 
-## Adding disks to Extent control
+## Adicionando discos ao EXTENT CONTROL
 
-Assuming that you have executed
-[2.11.6.2](#sec:formatdisks){reference-type="ref"
-reference="sec:formatdisks"}, you have disks 301, 302 and 303 formatted
-as PERM. These 3 disks will be used to create our VMs, but first we need
-to assign them to DIRMAINT. We are going to create REGIONS (using all
-cylinders available) and POOLs of disks. We are going to use the label
-of each disk as the name of the REGION, ex: LNX301, LNX302 and LNX303.
+Assumindo que você executou a formatação em uma sessão anterior, você tem os discos 301, 302 e 303 formatados como PERM. Esses 3 discos serão usados para criar nossas VMs, mas primeiro precisamos atribuí-los ao DIRMAINT. Vamos criar REGIONS (usando todos os cilindros disponíveis) e POOLs de discos. Vamos usar o rótulo de cada disco como o nome da REGION, ex: LNX301, LNX302 e LNX303.
 
-The DIRMAINT command that add disks to EXTENT CONTROL is:
+O comando DIRMAINT que adiciona discos ao EXTENT CONTROL é:
 
 ```
 ===> DIRM DASD
 ```
 
-If you type DIRM DASD logged as maint the following panel will open for
-you:
+Se você digitar DIRM DASD logado como maint, o seguinte painel abrirá para você:
 
 ```
  --------------------------------DirMaint DASD--------------------------------
@@ -195,14 +169,13 @@ you:
    1= Help     2= Prefix Operands      3= Quit     5=Submit      12=Cursor
 ```
 
-We will assign DASD 301 (LNX301) to the new region LNX301. The panel
-below is an example:
+Vamos atribuir o DASD 301 (LNX301) à nova região LNX301. O painel abaixo é um exemplo:
 
-::: bclogo
-Device Types You need to ask the instructor what is the device type for
-your PERM disks. The example below uses 3390-09, but there are others
-like 3390-03 and 3390-27.
-:::
+!!! Nota
+Tipos de Dispositivos Você precisa perguntar ao instrutor qual é o tipo de dispositivo para seus discos PERM. O exemplo abaixo usa 3390-09, mas existem outros como 3390-03 e 3390-27.
+!!!
+
+
 
 ```
   --------------------------------DirMaint DASD--------------------------------
@@ -233,30 +206,34 @@ like 3390-03 and 3390-27.
     1= Help     2= Prefix Operands      3= Quit     (*|\textcolor{red}{5=Submit}|*)      12=Cursor
 ```
 
-When you get it filled as needed press **F5** to submit your request or
-F3 to cancel it.
+Quando você preencher conforme necessário, pressione **F5** para enviar sua solicitação ou F3 para cancelá-la.
 
-The same result above could be accomplished using the following command
-line (to avoid the panel):
+O mesmo resultado acima poderia ser alcançado usando a seguinte linha de comando (para evitar o painel):
+
 
 ```
 ===> DIRM DASD ADD REGION LNX301 LNX301 3390-09 END 1
 ```
 
-To apply the changes to EXTENT CONTROL:
+
+Para aplicar as alterações ao CONTROLE DE EXTENSÃO:
+
 
 ```
 ===> DIRM RLDE
 ```
 
-If you need to query information about a specific region you can
-execute:
+
+Se você precisar consultar informações sobre uma região específica, você pode executar:
+
+
 
 ```
 ===> DIRM DASD QUERY REGION LNX301
 ```
 
-It will provide, depending the disk type, the following output:
+
+Isso fornecerá, dependendo do tipo de disco, o seguinte resultado:
 
 ```
 DIRM DASD QUERY REGION LNX301
@@ -283,31 +260,28 @@ Ready; T=0.01/0.01 13:02:04
  DVHREQ2289I Your DASD request for MAINT at * has completed; with RC = 0.
 ```
 
-### Exercise {#exercise}
+### Exercício
 
-::: easylist
-& Add LNX302 and LNX303 to EXTENT CONTROL using DIRM DASD command. &&
-Add LNX302 using the panel && Add LNX303 using the command line && Check
-both using DIRM DASD QUERY command. && Apply the changes using DIRM RLDE
-:::
+- Adicione LNX302 e LNX303 ao EXTENT CONTROL usando o comando DIRM DASD.
+  - Adicione LNX302 usando o painel
+  - Adicione LNX303 usando a linha de comando
+  - Verifique ambos usando o comando DIRM DASD QUERY.
+  - Aplique as alterações usando DIRM RLDE
 
-## Creating a pool of disks
+## Criando um pool de discos
 
-We have assigned LNX301, LNX302 and LNX303 to DIRMAINT. This setup allow
-us to assing disks to a VM using the REGION name, but we didn't group
-them yet. These groups of disks are called POOLs, and it is another
-abstraction that can be used to assign disks to a VM.
+Atribuímos LNX301, LNX302 e LNX303 ao DIRMAINT. Esta configuração nos permite atribuir discos a uma VM usando o nome da REGION, mas ainda não os agrupamos. Esses grupos de discos são chamados de POOLs, e é outra abstração que pode ser usada para atribuir discos a uma VM.
 
-Using the same DIRM DASD panel we can create our new POOL, lets call it
-"LINUX":
+Usando o mesmo painel DIRM DASD, podemos criar nosso novo POOL, vamos chamá-lo de "LINUX":
+
 
 ```
   --------------------------------DirMaint DASD--------------------------------
   Add, delete or query DASD statement associated with Group, Region & Volume.
-  Select one:   (*|\textcolor{red}{x}|*) Add  _ Delete          _ Query  or _ FREExt  or _ USEDext
+  Select one:   x Add  _ Delete          _ Query  or _ FREExt  or _ USEDext
   Select one of the following for Add:
-   Group  GroupName  ==> (*|\textcolor{red}{LINUX}|*)     (*|\textcolor{red}{X}|*) (LINEAR) (or) _ (ROTATING) (Optional)
-          Region1    ==> (*|\textcolor{red}{LNX301}|*)    Region2 ==> (*|\textcolor{red}{LNX302}|*)     Region3 ==> (*|\textcolor{red}{LNX303}|*)  
+   Group  GroupName  ==> LINUX     X (LINEAR) (or) _ (ROTATING) (Optional)
+          Region1    ==> LNX301    Region2 ==> LNX302     Region3 ==> LNX303  
    Region RegionName ==>           Volid   ==>        Device Type ==>         
      Optionally you can fill one or all of the following:
       Size =>            Start =>            Comments =>                       
@@ -330,29 +304,29 @@ Using the same DIRM DASD panel we can create our new POOL, lets call it
     1= Help     2= Prefix Operands      3= Quit     (*|\textcolor{red}{5=Submit}|*)      12=Cursor
 ```
 
-When you get it filled as needed press **F5** to submit your request or
-F3 to cancel it.
+Quando você preencher conforme necessário, pressione **F5** para enviar sua solicitação ou F3 para cancelá-la.
 
-The same result above could be accomplished using the following command
-line (to avoid the panel):
+O mesmo resultado acima poderia ser alcançado usando a seguinte linha de comando (para evitar o painel):
+
 
 ```
 DIRM DASD ADD GROUP LINUX LNX301 LNX302 LNX303
 ```
 
-To apply the changes to EXTENT CONTROL:
+Para aplicar as alterações ao EXTENT CONTROL:
+
 
 ```
 ===> DIRM RLDE
 ```
 
-You can query your new group information using the following commad:
+Você pode consultar as informações do seu novo grupo usando o seguinte comando:
 
 ```
 DIRM DASD QUERY GROUP LINUX
 ```
 
-It will provide the following output:
+Isso fornecerá o seguinte resultado:
 
 ```
 DIRM DASD QUERY GROUP LINUX
@@ -366,4 +340,4 @@ Ready; T=0.01/0.01 14:13:19
 ```
 
 ![Our Environment with
-DIRMAINT](/imgs/workshop-dirmaint.png){#fig:workshopdirmaint}
+DIRMAINT](/imgs/workshop-dirmaint.png)

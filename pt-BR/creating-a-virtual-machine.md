@@ -2,59 +2,36 @@
 order: 60
 icon: ":desktop_computer:"
 ---
-# Creating a Virtual Machine
+# Criando uma Máquina Virtual
 
-The z/VM user directory specifies the configuration and operating
-characteristics of virtual machines. A z/VM user directory exists in two
-forms: a source form that consists of one or more CMS files, and an
-object form, created from the source, on a CP-formatted disk. Each
-virtual machine has a directory entry. Here is a sample directory entry:
+O diretório de usuário z/VM especifica a configuração e as características operacionais das máquinas virtuais. Um diretório de usuário z/VM existe em duas formas: uma forma de origem que consiste em um ou mais arquivos CMS, e uma forma de objeto, criada a partir da origem, em um disco formatado CP. Cada máquina virtual tem uma entrada de diretório. Aqui está um exemplo de entrada de diretório:
 
-![User Directory example](/imgs/userdir.png){#fig:userdir}
+![Exemplo de Diretório de Usuário](/imgs/userdir.png)
 
-The sample on figure [9.1](#fig:userdir){reference-type="ref"
-reference="fig:userdir"} is a simple Linux guest. This chapter will
-guide you to build a more complex guest using other directory statements
-like PROFILE and DIRMAINT as a tool to manage those entries.
+O exemplo na figura acima é um simples convidado Linux. Este capítulo irá guiá-lo para construir um convidado mais complexo usando outras declarações de diretório como PROFILE e DIRMAINT como ferramenta para gerenciar essas entradas.
 
-An entry begins with one of the following statements: GLOBALDEFS (global
-definitions entry), PROFILE (profile entry), USER (user entry), IDENTITY
-(identity entry), or SUBCONFIG (subconfiguration entry). For our
-workshop the most important entries are **PROFILE** and **USER**, anyway
-the others entries are also explained.
+Uma entrada começa com uma das seguintes declarações: GLOBALDEFS (entrada de definições globais), PROFILE (entrada de perfil), USER (entrada de usuário), IDENTITY (entrada de identidade), ou SUBCONFIG (entrada de subconfiguração). Para nosso workshop, as entradas mais importantes são **PROFILE** e **USER**, de qualquer forma, as outras entradas também são explicadas.
 
-## DIRECTORY definition
+## Definição de DIRETÓRIO
 
-The DIRECTORY Definition consists of one or more DIRECTORY control
-statements that define the output of object directories. The DIRECTORY
-statement defines to CP the device on which you have allocated space for
-the directory. (These devices must also be a CP_owned volume). The user
-directory itself is managed by DIRMAINT.
+A Definição de DIRETÓRIO consiste em uma ou mais declarações de controle de DIRETÓRIO que definem a saída dos diretórios de objeto. A declaração de DIRETÓRIO define para o CP o dispositivo no qual você alocou espaço para o diretório. (Estes dispositivos também devem ser um volume CP_owned). O diretório de usuário em si é gerenciado pelo DIRMAINT.
 
-The following DIRECTORY definition simply says DASD volume M01RES has
-directory space allocated on it for the object directory. It is a 3390
-device type, and 123 is the virtual device number which contains the
-directory.
+A seguinte definição de DIRETÓRIO simplesmente diz que o volume DASD M01RES tem espaço de diretório alocado nele para o diretório de objeto. É um tipo de dispositivo 3390, e 123 é o número do dispositivo virtual que contém o diretório.
+
 
 ```
 DIRECTORY 123 3390 M01RES
 ```
 
-You can query DIRECTORY definitions info executing:
+Você pode consultar informações das definições de DIRETÓRIO executando:
 
 ```
 DIRM DIRECTORY ?
 ```
 
-## GLOBAL definition
+## Definição GLOBAL
 
-The Global Definition section begins with the GLOBALDEFS directory
-control statement. It also includes directory control statements that
-define global settings to be used across all user definitions. This is
-an optional statement. If specified it must directly precede all PROFILE
-and USER definitions. There can be only one GLOBALDEFS directory control
-statement specified. The user directory that came with the installed
-system contains the following Globaldefs:
+A seção de Definição Global começa com a declaração de controle de diretório GLOBALDEFS. Ela também inclui declarações de controle de diretório que definem configurações globais a serem usadas em todas as definições de usuário. Esta é uma declaração opcional. Se especificada, deve preceder diretamente todas as definições PROFILE e USER. Só pode haver uma declaração de controle de diretório GLOBALDEFS especificada. O diretório de usuário que acompanha o sistema instalado contém os seguintes Globaldefs:
 
 ```
 00026 *                                                              
@@ -71,15 +48,12 @@ system contains the following Globaldefs:
 00037 ***************************************************************
 ```
 
-## PROFILE definitions
+## Definições de PROFILE
 
-Each PROFILE definition begins with a PROFILE directory control
-statement and consolidates other directory control statements that are
-commonly used across multiple users. When PROFILE is specified it must
-follow the last DIRECTORY statement, the global definition section (if
-any), and precede the USER statements.
+Cada definição de PROFILE começa com uma declaração de controle de diretório PROFILE e consolida outras declarações de controle de diretório que são comumente usadas em vários usuários. Quando PROFILE é especificado, ele deve seguir a última declaração de DIRETÓRIO, a seção de definição global (se houver) e preceder as declarações de USER.
 
-This is an example of profile:
+Este é um exemplo de perfil:
+
 
 ```
 PROFILE IBMDFLT           
@@ -94,17 +68,14 @@ PROFILE IBMDFLT
  LINK MAINT 0401 0401 RR   
 ```
 
-## USER definitions
+## Definições de USER
 
-User definitions (virtual machine definitions or guests) begin with a
-USER directory control statement and define an individual virtual
-machine.
+Definições de usuário (definições de máquina virtual) começam com uma declaração de controle de diretório USER e definem uma máquina virtual individual.
 
-The USER statement starts each virtual machine's directory entry. It
-also defines a user ID and password, a logon and maximum virtual storage
-size, and command privileges.
+A declaração USER inicia a entrada de diretório de cada máquina virtual. Ela também define um ID de usuário e senha, um logon e tamanho máximo de armazenamento virtual, e privilégios de comando.
 
-Here is one example of user definitions, in this case the PMAINT user:
+Aqui está um exemplo de definições de usuário, neste caso o usuário PMAINT:
+
 
 ```
 USER PMAINT   WD5JU8QP  128M 1000M G
@@ -128,99 +99,81 @@ USER PMAINT   WD5JU8QP  128M 1000M G
  SPOOL 00E 1403 A               
 ```
 
-The above directory control statement defines a virtual machine called
-PMAINT, whose password is 'WD5JU8QP'. When PMAINT logs on it is
-allocated 128 Megabytes of virtual storage. It is allowed a maximum of
-1000 Megabytes of virtual storage, and it is a class G, or general user.
+A declaração de controle de diretório acima define uma máquina virtual chamada PMAINT, cuja senha é 'WD5JU8QP'. Quando PMAINT faz login, são alocados 128 Megabytes de armazenamento virtual. É permitido um máximo de 1000 Megabytes de armazenamento virtual, e ela é da classe G, ou usuário geral.
 
-The following table contains a description of different command classes:
+A tabela a seguir contém uma descrição de diferentes classes de comando:
 
-::: {#tab:privclasses}
-  **Class**   **User and Function**
-  ----------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  A           System Operator: The class A user controls the z/VM system. The system operator is responsible for the availability of the z/VM system and its resources. In addition, the system operator controls system accounting, broadcast messages, virtual machine performance options, and other options that affect the overall performance of z/VM.Note: The class A user who is automatically logged on during CP initialization is designated as the primary system operator.
-  B           System Resource Operator: The class B user controls all the real resources of the z/VM system, except those controlled by the system operator and the spooling operator.
-  C           System Programmer: The class C user updates or changes system-wide parameters of the z/VM system.
-  D           Spooling Operator: The class D user controls spool files and the system's real reader, printer, and punch equipment allocated to spooling use.
-  E           System Analyst: The class E user examines and saves system operation data in specified z/VM storage areas.
-  F           Service Representative: The class F user obtains, and examines in detail, data about input and output devices connected to the z/VM system. This privilege class is reserved for IBM use only.
-  G           General User: The class G user controls functions associated with a particular virtual machine.
-  Any         Commands belonging to class "Any" are available to any user, regardless of the user's privilege class. These commands are primarily those used to gain access to, or relinquish access from, the z/VM system.
-  H           Reserved for IBM use.
-  I - Z - 6   These classes are reserved for redefinition by each installation for its own use (using MODIFY statements or commands).
 
-  : Privilege Classes
-:::
+| Classe | Usuário e Função                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+|--------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| A      | Operador do Sistema: O usuário da classe A controla o sistema z/VM. O operador do sistema é responsável pela disponibilidade do sistema z/VM e seus recursos. Além disso, o operador do sistema controla a contabilidade do sistema, mensagens de transmissão, opções de desempenho de máquina virtual e outras opções que afetam o desempenho geral do z/VM. Nota: O usuário da classe A que é automaticamente logado durante a inicialização do CP é designado como o operador principal do sistema. |
+| B      | Operador de Recursos do Sistema: O usuário da classe B controla todos os recursos reais do sistema z/VM, exceto aqueles controlados pelo operador do sistema e pelo operador de spooling.                                                                                                                                                                                                                                                                                                                                          |
+| C      | Programador do Sistema: O usuário da classe C atualiza ou muda parâmetros de todo o sistema do z/VM.                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| D      | Operador de Spooling: O usuário da classe D controla arquivos de spool e os equipamentos reais de leitor, impressora e perfurador do sistema alocados para uso de spooling.                                                                                                                                                                                                                                                                                                                                                        |
+| E      | Analista de Sistema: O usuário da classe E examina e salva dados de operação do sistema em áreas de armazenamento z/VM especificadas.                                                                                                                                                                                                                                                                                                                                                                                               |
+| F      | Representante de Serviço: O usuário da classe F obtém e examina em detalhes dados sobre dispositivos de entrada e saída conectados ao sistema z/VM. Esta classe de privilégio é reservada apenas para uso da IBM.                                                                                                                                                                                                                                                                                                               |
+| G      | Usuário Geral: O usuário da classe G controla funções associadas a uma máquina virtual particular.                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| Qualquer | Comandos pertencentes à classe "Qualquer" estão disponíveis para qualquer usuário, independentemente da classe de privilégio do usuário. Esses comandos são principalmente aqueles usados para ganhar acesso ou renunciar ao acesso do sistema z/VM.                                                                                                                                                                                                                                                                                |
+| H      | Reservado para uso da IBM.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| I - Z - 6 | Essas classes são reservadas para redefinição por cada instalação para seu próprio uso (usando declarações ou comandos MODIFY).
 
-## Creating a simple CMS user
+## Criando um usuário CMS simples
 
-This section will provide you instruction to create a CMS VM. In the
-first step we will not even have disks on this VM and we will learn how
-to add minidisks and how to resize it. This machine will be used to host
-some files that will be used on next chapter
-([10](#chap:installinglinux){reference-type="ref"
-reference="chap:installinglinux"} - ).
+Esta seção fornecerá instruções para criar uma VM CMS. No primeiro passo, nem mesmo teremos discos nesta VM e aprenderemos como adicionar minidisks e redimensioná-los. Esta máquina será usada para hospedar alguns arquivos que serão usados na próxima seção.
 
-### How to create a new VM
+### Como criar uma nova VM
 
-Our objective is to create a new VM called *VMTOOLS*. There is a special
-file type called *DIRECT*. We are going to create a new file called
-VMTOOLS DIRECT that will host the directory statements needed to run our
-CMS VM.
+Nosso objetivo é criar uma nova VM chamada *VMTOOLS*. Existe um tipo especial de arquivo chamado *DIRECT*. Vamos criar um novo arquivo chamado VMTOOLS DIRECT que hospedará as declarações de diretório necessárias para executar nossa VM CMS.
 
-::: easylist
-& Logged as MAINT
 
-& Create a file called VMTOOLS DIRECT
+- Logado como MAINT
+
+- Crie um arquivo chamado VMTOOLS DIRECT
 
 ```
 X VMTOOLS DIRECT A
 ```
 
-& Input the following content:
+- Insira o seguinte conteudo:
 
+```js #
+USER VMTOOLS WORK2016 64M 64M G
+IPL CMS
+SPOOL 000C 2540 READER *
+SPOOL 000D 2540 PUNCH A
+SPOOL 000E 1403 A
+CONSOLE 009 3215 T
+LINK MAINT 0190 0190 RR
+LINK MAINT 019D 019D RR
+LINK MAINT 019E 019E RR
 ```
-(*|\textcolor{blue}{USER VMTOOLS WORK2016 64M 64M G}|*)
-(*|\textcolor{green}{IPL CMS}|*)
-(*|\textcolor{red}{SPOOL 000C 2540 READER *}|*)
-(*|\textcolor{red}{SPOOL 000D 2540 PUNCH A}|*)
-(*|\textcolor{red}{SPOOL 000E 1403 A}|*)
-(*|\textcolor{red}{CONSOLE 009 3215 T}|*)
-(*|\textcolor{green}{LINK MAINT 0190 0190 RR}|*)
-(*|\textcolor{green}{LINK MAINT 019D 019D RR}|*)
-(*|\textcolor{green}{LINK MAINT 019E 019E RR}|*)
-```
 
-The blue line defines the name, password, amount of memory and privilege
-class of our new VM
+A linha 1 define o nome, senha, quantidade de memória e classe de privilégio da nossa nova VM.
 
-The green lines are related to CMS. We are linking disks that are
-required to IPL CMS in our VM
+As linhas 2, 7, 8, 9 estão relacionadas ao CMS. Estamos vinculando discos que são necessários para o IPL do CMS em nossa VM.
 
-The red lines are related to some standard devices, like Reader, Punch,
-Printer and Console.
+As linhas 3, 4, 5, 6 estão relacionadas a alguns dispositivos padrão, como READER, PUNCH, PRINTER e CONSOLE.
 
-& Save the file and quit
+- Salve o arquivo e saia
 
 ```
 ====> FILE
 ```
 
-& To add our new VM to the directory we are going to use DIRM ADD
-command:
+- Para adicionar nossa nova VM ao diretório, vamos usar o comando DIRM ADD:
+
 
 ```
 DIRM ADD VMTOOLS
 ```
 
-& If you got RC = 0, we are good, otherwise there is a typo in your
-VMTOOLS DIRECT file, fix the error and try again.
-:::
 
-### How to add a minidisk
+- Se você obteve RC = 0, estamos bem, caso contrário, há um erro de digitação no seu arquivo DIRECT VMTOOLS, corrija o erro e tente novamente.
 
-::: easylist
-& Try to login in your new VM and you will see a message:
+### Como adicionar um minidisco
+
+- Tente fazer login na sua nova VM e você verá uma mensagem:
+
 
 ```
 z/VM Version 6 Release 3.0, Service Level 1501 (64-bit), 
@@ -234,45 +187,42 @@ DMSACP113S A(191) not attached or invalid device address
 Ready; T=0.03/0.03 13:30:16
 ```
 
-& Ops! We don't have an \"A-disk\" to our VM\... we need to create it.
+- Ops! Não temos um "Disco-A" para nossa VM... precisamos criá-lo.
 
-& Logoff from VMTOOLS
+- Deslogue de VMTOOLS
 
-& Logon on MAINT
+- Faça login em MAINT
 
-& Execute:
+- Execute:
 
 ```
 DIRM FOR VMTOOLS AMD
 ```
 
-& It will show a PANEL that need to be filled like this one (The
-passwords are in blank but you can set as: READ WRITE MULTI):
+- Será exibido um PAINEL que precisa ser preenchido como este (As senhas estão em branco, mas você pode definir como: READ WRITE MULTI):
 
-![DASD AMD](/imgs/dasdamd.png){#fig:dasdamd}
+![DASD AMD](/imgs/dasdamd.png)
 
-& We are creating a new minidisk 191, from our LINUX GROUP, with 5
-cylinders. The label is VMT191.
+- Estamos criando um novo minidisco 191, do nosso GRUPO LINUX, com 5 cilindros. O rótulo é VMT191.
 
-& The expected result is:
+- O resultado esperado é:
 
-![DASD AMD result](/imgs/dasdamdresult.png){#fig:dasdamdresult}
+![Resultado DASD AMD](/imgs/dasdamdresult.png)
 
-& If you want to check how different is your VMTOOLS directory execute:
+- Se você quiser verificar quão diferente está o diretório da sua VMTOOLS execute:
+
 
 ```
 DIRM FOR VMTOOLS REView
 ```
 
-& RECEIVE \<n\> (REP
+- RECEIVE \<n\> (REP
 
-Where \<n\> is the reader id that will show at the begging of the
-response.
+Onde \<n\> é o id do leitor que aparecerá no início da resposta.response.
 
-![Reader ID](/imgs/receivefile.png){#fig:receivefile}
+![Reader ID](/imgs/receivefile.png)
 
-& You can open using XEDIT and you will see the new MDISK statement at
-the bottom
+- Você pode abrir usando XEDIT e verá a nova declaração MDISK no final
 
 ```
 X VMTOOLS DIRECT
@@ -281,65 +231,69 @@ X VMTOOLS DIRECT
 ```
 MDISK 0191 3390 0001 5 LNX301 MR XXXXXXXX XXXXXXXX XXXXXXXX
 ```
-:::
 
-### How to change minidisk size
 
-::: easylist
-& Execute
+### Como mudar o tamanho do minidisco
+
+
+- Execute:
 
 ```
 DIRM FOR VMTOOLS CMD
 ```
 
-& DIRM FOR VMTOOLS CMD will open a panel
+- DIRM FOR VMTOOLS CMD abrirá um painel
 
-& We are going to increase the size of 191 minidisk from 5 cyl to 10 cyl
+- Vamos aumentar o tamanho do minidisco 191 de 5 cil para 10 cil
 
-& Follow the panel:
+- Siga o painel:
 
-![DASD CMD](/imgs/dasdcmd.png){#fig:dasdcmd}
+![DASD CMD](/imgs/dasdcmd.png)
 
-& Press F5 to submit.
-:::
+- Pressione F5 para enviar.
 
-### Exercise {#exercise-1}
 
-Add a new minidisk:
+### Exercício
 
-::: easylist
-& Address: 192 & Device type: 3390 & On AUTOG: && Size: 300 && Grpname:
-LINUX & Link Mode: MR & Label: LNX192 & Passwords: && READ WRITE MULTI
-:::
+Adicione um novo minidisco:
 
-### FTP files to VMTOOLS 192
+- Address: 192
+-  Device type: 3390 
+-   On AUTOG: 
+    -     Size: 300
+    -     Grpname: LINUX 
+    -     Link Mode: MR 
+    -     Label: LNX192 
+    -     Passwords: READ WRITE MULTI
 
-During the class the instruction will teach you how to FTP files to our
-new minidisk 192. These files are essential to the Linux installation.
-These steps are not documented here because it depends on your
-environment.
 
-These instructions are present in the slide deck.
+### Transferir arquivos via FTP para VMTOOLS 192
 
-## Creating our Linux Profile
+Durante a aula, o instrutor ensinará como transferir arquivos via FTP para nosso novo minidisco 192. Esses arquivos são essenciais para a instalação do Linux. Estes passos não estão documentados aqui porque dependem do seu ambiente.
 
-On this section a profile to be included by Linux virtual machines will
-be created.
+Estas instruções estão presentes no conjunto de slides.
 
-::: easylist
-& Log on as MAINT. & Create the user directory source file.
+## Criando nosso Perfil Linux
+
+Nesta seção, será criado um perfil para ser incluído pelas máquinas virtuais Linux.
+
+- Faça login como MAINT. 
+- Crie o arquivo fonte do diretório do usuário.
+
 
 ```
 ===> x LINDFLT DIRECT
 ```
 
-& In XEDIT tipe "INPUT" to enable input mode
+
+- Em XEDIT digite "INPUT" para habilitar o modo de entrada
+
 
 ```
 ===> INPUT
 ```
 
-& Paste de following content
+- Cole o seguinte conteúdo
 
 ```
 PROFILE LINDFLT
@@ -363,36 +317,41 @@ LINK VMTOOLS 192 191 RR
 LINK TCPMAINT 592 592 RR 
 ```
 
-& Hit ENTER two times to exit input mode.
+- Pressione ENTER duas vezes para sair do modo de entrada.
 
-::: bclogo
-Explanation
+!!! Explanation
 
-::: easylist
-& PROFILE LINDFLT - Define the profile named LINDFLT & COMMAND CP SET
-PF12 RETRIEVE - Enable F12 to retrieve commands & COMMAND CP SET PF11
-RETRIEVE FORWARD - Enable F11 to & COMMAND SET VSWITCH VSW1 GRANT
-&USERID - Grant access to VSW1 & COMMAND DEFINE NIC 600 TYPE QDIO -
-Define a network card on vaddr 600 & COMMAND COUPLE 600 TO SYSTEM VSW1 -
-Couple the NIC to VSW1 & IPL CMS - When the user ID is logged on, IPL
-CMS & MACH ESA 2 -The machine architecture is ESA with a maximum of 4
-CPUs. & OPTION APPLMON - To enable Linux guest for data gathering & CPU
-00 BASE - CPU 00 is the base and the only CPU set for now & SPOOL 000C
-2540 READER \* - Definition of a virtual reader & SPOOL 000D 2540 PUNCH
-A - Definition of a virtual punch & SPOOL 000E 1403 A - Definition of a
-virtual printer & CONSOLE 009 3215 T - Definition of a console & LINK
-MAINT 0190 0190 RR - Link to MAINT's 190 minidisk with read access &
+```js
+PROFILE LINDFLT - Define the profile named LINDFLT 
+COMMAND CP SET
+PF12 RETRIEVE - Enable F12 to retrieve commands 
+COMMAND CP SET PF11
+RETRIEVE FORWARD - Enable F11 to 
+COMMAND SET VSWITCH VSW1 GRANT &USERID - Grant access to VSW1 
+COMMAND DEFINE NIC 600 TYPE QDIO - Define a network card on vaddr 600 
+COMMAND COUPLE 600 TO SYSTEM VSW1 - Couple the NIC to VSW1 
+IPL CMS - When the user ID is logged on, IPL CMS 
+MACH ESA 2 - The machine architecture is ESA with a maximum of 4 CPUs. 
+OPTION APPLMON - To enable Linux guest for data gathering 
+CPU 00 BASE - CPU 00 is the base and the only CPU set for now 
+SPOOL 000C 2540 READER \* - Definition of a virtual reader 
+SPOOL 000D 2540 PUNCH A - Definition of a virtual punch 
+SPOOL 000E 1403 A - Definition of a virtual printer 
+CONSOLE 009 3215 T - Definition of a console 
+LINK MAINT 0190 0190 RR - Link to MAINT's 190 minidisk with read access 
 LINK MAINT 019D 019D RR - Link to MAINT's 19D minidisk with read access
-& LINK MAINT 019E 019E RR - Link to MAINT's 19E minidisk with read
-access & LINK VMTOOLS 192 191 RR - Link to VMTOOLS 192 minidisk as 191
-with read access & LINK TCPMAINT 592 592 RR - Link to TCPMAINT's 592
-minidisk with read access. This is where the ftp utility is located.
-:::
-:::
+LINK MAINT 019E 019E RR - Link to MAINT's 19E minidisk with read access 
+LINK VMTOOLS 192 191 RR - Link to VMTOOLS 192 minidisk as 191 with read access 
+LINK TCPMAINT 592 592 RR - Link to TCPMAINT's 592 minidisk with read access. This is where the ftp utility is located.
+```
 
-& Save and quit XEDIT using "file" command.
+!!!
 
-To add our new profile to z/VM directory use DIRM ADD:
+
+- Salve e saia do XEDIT usando o comando "file".
+
+Para adicionar nosso novo perfil ao diretório z/VM, use DIRM ADD:
+
 
 ```
 DIRM ADD LINDFLT
@@ -431,34 +390,38 @@ Ready; T=0.01/0.01 14:37:31
 
                                                             RUNNING   ZVMWSXX 
 ```
-:::
 
-## Create the LINUX1 virtual machine
 
-To create a Linux image we will use a DASD 3390-09 (10016 cyl) as base.
-DIRMAINT has a feature called PROTODIRs that we can use to create
-directory template for our Linux.
+## Criar a máquina virtual LINUX1
 
-::: easylist
-& First, grab a copy of LINUX PROTODIR
+Para criar uma imagem Linux, usaremos um DASD 3390-09 (10016 cil) como base. O DIRMAINT possui um recurso chamado PROTODIRs que podemos usar para criar um modelo de diretório para nosso Linux.
+
+- Primeiro, pegue uma cópia do PROTODIR LINUX
+
 
 ```
 ===> DIRM SEND LINUX PROTODIR
 ```
 
-& **Receive** a file called LINUX PROTODIR and edit it
+
+- **Receba** um arquivo chamado LINUX PROTODIR e edite-o
+
 
 ```
 X LINUX PROTODIR
 ```
 
-& In XEDIT tipe "INPUT" to enable input mode
+
+- No XEDIT digite "INPUT" para habilitar o modo de entrada
+
 
 ```
 ===> INPUT
 ```
 
-& Paste de following content
+
+- Em XEDIT digite "INPUT" para habilitar o modo de entrada
+
 
 ```
 USER LINUX NOLOG 1G 1G G
@@ -470,9 +433,10 @@ MDISK 0103 3390 AUTOG 800 LINUX MR READ WRITE MULTIPLE
 MDISK 0104 3390 AUTOG 800 LINUX MR READ WRITE MULTIPLE
 ```
 
-& Save and close the file
+- Salve e feche o arquivo
 
-& Apply the LINUX PROTODIR changes using the following command
+- Aplique as mudanças do LINUX PROTODIR usando o seguinte comando
+
 
 ```
 ===> DIRM FILE LINUX PROTODIR
@@ -489,14 +453,16 @@ Ready; T=0.12/0.14 13:34:17
  DVHREQ2289I Your FILE request for MAINT at * has completed; with RC = 0.
 ```
 
-& Create the virtual machine definition for LINUX1. []{#step:createlinux
-label="step:createlinux"}
+- Crie a definição da máquina virtual para LINUX1.
+
 
 ```
 ===> dirm add linux1 like linux pw zcloud
 ```
 
-& If you receive RC = 0, you should be able to query your new VM:
+
+- Se você receber RC = 0, você deve ser capaz de consultar sua nova VM:
+
 
 ```
 q linux1
@@ -504,10 +470,7 @@ HCPCQU045E LINUX1 not logged on
 Ready(00045); T=0.01/0.01 13:36:33
 ```
 
-& If you receive "Invalid option - LINUX1" response, something wrong
-occured on step
-[\[step:createlinux\]](#step:createlinux){reference-type="ref"
-reference="step:createlinux"}
+- Se você receber a resposta "Invalid option - LINUX1", algo deu errado no passo acima
 
 ```
 q linux1
@@ -515,11 +478,9 @@ HCPCQV003E Invalid option - LINUX1
 Ready(00003); T=0.01/0.01 13:38:31
 ```
 
-### Exercise {#sec:createlinux2}
+### Exercício
 
-::: easylist
-& Create LINUX2 VM. This VM will be used on chapter
-[11](#cap:clonelinux){reference-type="ref" reference="cap:clonelinux"}
-()
-:::
-:::
+- Crie a VM LINUX2. Esta VM será usada no próximo capítulo
+
+
+

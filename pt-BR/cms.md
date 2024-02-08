@@ -401,13 +401,13 @@ SET PF12 ?
 DASD 019E LINKED R/W; R/O BY 10 USERS
 ```
 
-      4.3 Accesse o disco como file mode F:
+4.3 Accesse o disco como file mode F:
 
 ```
 ==> acc 19e f
 ```
 
-      4.4 Copie para o disco MAINT 19E (F) com o sufixo de file mode 2 (porque o disco MAINT 19E é comumente acessado com um sufixo de file mode de 2, arquivos não serão vistos por outras máquinas virtuais a menos que tenham este sufixo de file mode):
+4.4 Copie para o disco MAINT 19E (F) com o sufixo de file mode 2 (porque o disco MAINT 19E é comumente acessado com um sufixo de file mode de 2, arquivos não serão vistos por outras máquinas virtuais a menos que tenham este sufixo de file mode):
 
 ```
 ==> copy profile xedit a = = f2
@@ -422,7 +422,6 @@ HCPNSD440I The Named Saved System (NSS) CMS was successfully defined in fileid 0
 ==> ipl 190 parm savesys cms
 HCPNSS440I Named Saved System (NSS) CMS was successfully saved in fileid 0002.
 ```
-:::
 
 O mesmo PROFILE XEDIT agora deve ser acessível a todas as máquinas virtuais no sistema z/VM.
 

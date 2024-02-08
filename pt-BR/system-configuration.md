@@ -69,7 +69,7 @@ MNT51D 51D  D   R/O    26 3390 4096      293       1796-38       2884       4680
 PMT551 551  E   R/O    40 3390 4096        8        119-02       7081       7200
 MNT190 190  S   R/O   207 3390 4096      696      18085-49      19175      37260
 MNT19E 19E  Y/S R/O   500 3390 4096     1123      30403-34      59597      90000
-(*|\textcolor{red}{PMTCF0 CF0}|*)  X   R/W   120 3390 4096        2         15-01      21585      21600
+PMTCF0 CF0  X   R/W   120 3390 4096        2         15-01      21585      21600
 Ready; T=0.01/0.01 08:30:39                                                     
                                                                                 
                                                                                 
@@ -192,7 +192,7 @@ SYSTEM   CONFIG   X1  F 80  Trunc=80 Size=376 Line=0 Col=1 Alt=0
 ====>                                                                           
 ```
 
-- Localize a string "VOLUMES DE DESPEJO E SPOOL". Na linha de comando do XEDIT,
+- Localize a string "VOLUME DUMP E SPOOL". Na linha de comando do XEDIT,
 digite o seguinte comando e pressione Enter:
 
 ```
@@ -204,7 +204,8 @@ digite o seguinte comando e pressione Enter:
 
 Duplicate the following line:
 
-::: bclogo
+!!!Note
+
 Duplicating a line on XEDIT To duplicate a line in XEDIT place a double
 quote (\") in the line number and press enter, example:
 
@@ -213,7 +214,7 @@ quote (\") in the line number and press enter, example:
 
 00081
 
-[\"]{style="color: red"}0082 CP_Owned Slot 10 M01S01
+"082 CP_Owned Slot 10 M01S01
 
 00083
 
@@ -241,7 +242,7 @@ Agora você deve ver algo como o seguinte:
 00080 /**********************************************************************/
 00081
 00082     CP_Owned   Slot  10  M01S01
-00083     CP_Owned   (*|\textcolor{red}{Slot  11}|*)  (*|\textcolor{red}{M01S02}|*)
+00083     CP_Owned   Slot  11  M01S02
 ```
 
 - Para adicionar o volume PAGE, localize a string "VOLUMES DE PÁGINA E TDISK" (Dica: você pode encontrar esta seção logo abaixo da seção de SPOOL). Na linha de comando do XEDIT, digite o seguinte comando e pressione Enter:
@@ -360,7 +361,7 @@ pressione a tecla Enter:
 00106 /**********************************************************************/
 00107 /* Shared User Volumes                                                */
 00108 /**********************************************************************/
-(*|\textcolor{red}{i2}|*)109                User_Volume_List  VMCOM2 630RL1 630RL2                   
+i2109                User_Volume_List  VMCOM2 630RL1 630RL2                   
 00110                                                                         
 00111 /**********************************************************************/
 00112 /* User volumes for local minidisks                                   */
@@ -382,7 +383,7 @@ Exemplo:
 00107 /* Shared User Volumes                                                */
 00108 /**********************************************************************/
 00109                User_Volume_List  VMCOM2 630RL1 630RL2                   
-00110                (*|\textcolor{red}{User\_Volume\_Include  LNX*}|*)                                                                        
+00110                User_Volume_Include  LNX*                         
 00111                                                                       
 00112 /**********************************************************************/
 00113 /* User volumes for local minidisks                                   */
@@ -504,7 +505,7 @@ SYSTEM   CONFIG   Z1  F 80  Trunc=80 Size=286 Line=190 Col=1 Alt=2
 00190 /*                        Status of Devices                           */
 00191 /**********************************************************************/
 00192                                                                         
-(*| \textcolor{red}{i} |*)0193  Devices ,                                                              
+i0193  Devices ,                                                              
 00194    Online_at_IPL   0000-FFFF,                                           
 00195    Sensed          0000-FFFF                                            
 00196                                                                         
@@ -568,9 +569,9 @@ Defina **0009** como o primeiro dispositivo nas declarações **Operator_Console
 00201 /*                     Console Definitions                            */
 00202 /**********************************************************************/
 00203                                                                         
-00204  Operator_Consoles     (*|\textcolor{red}{0009}|*) 0020 0021 0022 0023 0E20 0E21 1020 ,        
+00204  Operator_Consoles     0009 0020 0021 0022 0023 0E20 0E21 1020 ,        
 00205                        System_3270 System_Console                       
-00206  Emergency_Message_Consoles   (*|\textcolor{red}{0009}|*) 0020 0021 0022 0023 0E20 0E21 1020 , 
+00206  Emergency_Message_Consoles   0009 0020 0021 0022 0023 0E20 0E21 1020 , 
 00207                               System_Console                            
 00208                                                                         
 ```
@@ -706,7 +707,7 @@ query alloc spool
 VOLID  RDEV      START        END  PAGES IN USE   PAGE USED
 ------ ---- ---------- ---------- ------ ------ ------ ----
 M01S01 0205          1       3337 600660   9020  39600   1%
-M01P02 0304          1       3337 600660      0      0   0%
+M01S02 0304          1       3337 600660      0      0   0%
                                   ------ ------        ----
 SUMMARY                            1026K   9020          1%
 USABLE                             1026K   9020          1%
@@ -745,11 +746,11 @@ DASD 0206 CP OWNED  M01P01   0
 DASD 0207 CP SYSTEM M01W01   10
 DASD 0208 CP SYSTEM M01W02   1 
 DASD 0209 CP SYSTEM M01W03   1 
-DASD (*|\textcolor{red}{0300}|*) CP OWNED  (*|\textcolor{red}{M01P02}|*)   0 
-DASD (*|\textcolor{red}{0301}|*) CP SYSTEM (*|\textcolor{red}{LNX301}|*)   0
-DASD (*|\textcolor{red}{0302}|*) CP SYSTEM (*|\textcolor{red}{LNX302}|*)   0
-DASD (*|\textcolor{red}{0303}|*) CP SYSTEM (*|\textcolor{red}{LNX303}|*)   0
-DASD (*|\textcolor{red}{0304}|*) CP OWNED  (*|\textcolor{red}{M01S02}|*)   0 
+DASD 0300 CP OWNED  M01P02   0 
+DASD 0301 CP SYSTEM LNX301   0
+DASD 0302 CP SYSTEM LNX302   0
+DASD 0303 CP SYSTEM LNX303   0
+DASD 0304 CP OWNED  M01S02   0 
 Ready; T=0.01/0.01 11:19:21    
 ```
 

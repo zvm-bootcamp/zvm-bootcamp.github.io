@@ -361,11 +361,11 @@ Saia do FILELIST.
 
 ### XEDIT
 
-#### Configure o PERFIL XEDIT
+#### Configure o PROFILE XEDIT
 
-O comando XEDIT procura pelo arquivo de configuração PERFIL XEDIT quando é invocado. Nem todas as máquinas virtuais CMS têm uma cópia deste arquivo, então as sessões XEDIT parecem e se comportam de maneira diferente. O disco MAINT 191 (A) tem um PERFIL XEDIT então quando você está editando arquivos no MAINT, os valores neste perfil geralmente estão em vigor.
+O comando XEDIT procura pelo arquivo de configuração PROFILE XEDIT quando é invocado. Nem todas as máquinas virtuais CMS têm uma cópia deste arquivo, então as sessões XEDIT parecem e se comportam de maneira diferente. O disco MAINT 191 (A) tem um PROFILE XEDIT então quando você está editando arquivos no MAINT, os valores neste perfil geralmente estão em vigor.
 
-Para configurar o perfil XEDIT no cluster SSI, execute os seguintes passos:
+Para configurar o PROFILE XEDIT no cluster SSI, execute os seguintes passos:
 
 
 1. Faça login no MAINT se você ainda não fez. 
@@ -424,7 +424,7 @@ HCPNSS440I Named Saved System (NSS) CMS was successfully saved in fileid 0002.
 ```
 :::
 
-O mesmo PERFIL XEDIT agora deve ser acessível a todas as máquinas virtuais no sistema z/VM.
+O mesmo PROFILE XEDIT agora deve ser acessível a todas as máquinas virtuais no sistema z/VM.
 
 #### Criando uma EXEC
 

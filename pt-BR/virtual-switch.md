@@ -43,7 +43,7 @@ Agora você pode executar o script GETCF0 para obter acesso de escrita ao disco 
 
 ```
 /* define vswitch named VSW1 and set MAC address prefix to 02-00-0X */
-DEFINE VSWITCH VSW1 RDEV 803 806 
+DEFINE VSWITCH VSW1 RDEV 803 806 ETH
 VMLAN MACPREFIX 0200XX
 ```
 

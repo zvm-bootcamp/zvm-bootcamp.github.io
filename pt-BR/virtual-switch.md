@@ -44,7 +44,7 @@ Agora você pode executar o script GETCF0 para obter acesso de escrita ao disco 
 ```
 /* define vswitch named VSW1 and set MAC address prefix to 02-00-0X */
 DEFINE VSWITCH VSW1 RDEV 803 806 
-VMLAN MACPREFIX 0200(*|\textcolor{red}{XX}|*)
+VMLAN MACPREFIX 0200XX
 ```
 
 - Salve as alterações e saia do arquivo.
